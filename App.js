@@ -147,20 +147,23 @@ function LearnNav() {
         }}
       />
       <Learn.Screen 
-        name="LearnModule" 
+        name="Modules" 
         component={LearnModuleScreen} 
-        options={
-          ({route}) => ({title: route.params.id.title})}
+        options={{
+          headerShown: false
+        }}
       />
       <Learn.Screen 
         name="LearnDetail" 
         component={LearnDetailScreen}
         options={{
-          title:'',
+          title:null,
           headerStyle: {
             backgroundColor: '#000',
+            shadowColor:'transparent',
+            elevation:0
           },
-          headerTintColor: '#fff',
+          headerTintColor: '#FFF',
         }}
       />
     </Learn.Navigator>

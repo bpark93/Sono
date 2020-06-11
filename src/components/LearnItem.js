@@ -8,7 +8,7 @@ const LearnItem = ({item}) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity
-                onPress={() => navigation.navigate('LearnModule', {id: item})}
+                onPress={() => navigation.navigate('Modules', {id: item})}
                 activeOpacity={0.8}
             >
                 <View style={styles.moduleStyle}>
