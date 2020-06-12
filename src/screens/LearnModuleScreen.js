@@ -44,7 +44,8 @@ const LearnModuleScreen = ({route, navigation}) => {
         justifyContent:'flex-end'
       }} >
           <TouchableOpacity style={{flex:1}} onPress={()=> navigation.goBack()} >
-            <MaterialCommunityIcons name="arrow-left" size={24} color="white" style={{position: 'absolute', top:50, left:15}}/>
+            <MaterialCommunityIcons name="arrow-left" size={24} color="white" style={styles.backIconStyle}/> 
+            {/* Not clicking when scrolled up on Android */}
           </TouchableOpacity>
           <Animated.Text style={{
             fontFamily:"Raleway-Bold",
@@ -55,7 +56,7 @@ const LearnModuleScreen = ({route, navigation}) => {
           }}>{id.title}</Animated.Text>
       </Animated.View>
       <ScrollView 
-        style={{flex:1, marginTop:HEADER_MIN_HEIGHT, paddingTop:HEADER_MAX_HEIGHT-HEADER_MIN_HEIGHT+5}}
+        style={{flex:1, marginTop:HEADER_MIN_HEIGHT, paddingTop:HEADER_MAX_HEIGHT-HEADER_MIN_HEIGHT+10}}
         onScroll={Animated.event(
           [{nativeEvent: {contentOffset: {y: scrollY} }}]
         )}
@@ -73,12 +74,11 @@ const LearnModuleScreen = ({route, navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  headerText:{
-    fontFamily:"Raleway-Bold",
-    fontSize:30, 
-    color:'white',
-    marginHorizontal:15,
-    marginBottom:10
+  backIconStyle:{
+    position: 'absolute',
+    top:50, 
+    left:15, 
+    zIndex:1
   }
 });
 

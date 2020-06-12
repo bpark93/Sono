@@ -157,13 +157,7 @@ function LearnNav() {
         name="LearnDetail" 
         component={LearnDetailScreen}
         options={{
-          title:null,
-          headerStyle: {
-            backgroundColor: '#000',
-            shadowColor:'transparent',
-            elevation:0
-          },
-          headerTintColor: '#FFF',
+          headerShown: false
         }}
       />
     </Learn.Navigator>
