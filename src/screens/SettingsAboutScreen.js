@@ -8,7 +8,7 @@ const SettingsAboutScreen = () => {
             <Image source={require('../../assets/western-logo.png')}/>
             <View style={styles.textBox}>
                 <Headline>Credits</Headline>
-                <View style={{flexDirection:'row', justifyContent:'space-around'}}>
+                {/* <View style={{flexDirection:'row', justifyContent:'space-around'}}>
                     <Text>Brian Park</Text><Caption style={{}}> MD 2023 Candidate</Caption>
                 </View>
                 <View style={{flexDirection:'row', justifyContent:'space-around'}}>
@@ -19,7 +19,7 @@ const SettingsAboutScreen = () => {
                 </View>
                 <View style={{flexDirection:'row', justifyContent:'space-around'}}>
                     <Text>Derek Wu</Text><Caption> MD 2021 Candidate</Caption>
-                </View>
+                </View> */}
                 <Text>Icons made by Freepik from www.flaticon.com</Text>
             </View>
         </View>

@@ -506,13 +506,13 @@ const learnDatabase = [
         pages: [
             {
                 title: 'Ultrasound Physics',
-                video: '',
+                video: 'https://westernsono.ca/wp-content/uploads/2015/02/a-tale-of-four-valves1.mp4?_t=1514825035',
                 progress: '80%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Ultrasound Controls',
-                video: '',
+                video: 'https://westernsono.ca/wp-content/uploads/2015/02/stroke-volume-assessment1.mp4?_t=1514825033',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
@@ -543,20 +543,20 @@ const learnDatabase = [
         pages: [
             {
                 title: 'Basics and Physics',
-                video: '1V1r3MMcjQU',
+                video: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
                 progress: '100%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Artefacts',
-                video: 'bXi2ywmQHzg',
+                video: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
                 progress: '10%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
 
             },
             {
                 title: 'Image Acquisition',
-                video: 'aYSoYXqWJ5A',
+                video: 'https://westernsono.ca/wp-content/uploads/2013/06/lung-acquisition.mp4?_t=1514825028',
                 progress: '0%',
                 captionText: "The standard views for image acquisition of solid organs are typically dictated by what windows are possible based on external anatomy and surrounding structures.  The lungs, however, can be imaged from anywhere on the thorax.  This boundless opportunity can create confusion and, possibly, crippling anxiety as to which portions of the lungs deserve to be imaged.  The idea is, much like the way we auscultate, to take a representative sample from major lung zones and then synthesize a conclusion – clear lungs, unilateral lung disease, bilateral lung disease, etc that permits a rapid differential diagnosis for the respiratory failure that confronts you.  Efficiency and accuracy are essential."
             },
@@ -593,19 +593,19 @@ const learnDatabase = [
             },
             {
                 title: 'Alveolar Consolidation and Shred Sign',
-                video: '0qY9AghmFUs',
+                video: 'https://westernsono.ca/wp-content/uploads/2016/06/yogesh-lala-alveolar-consolidation.mp4?_t=1514825049',
                 progress: '0%',
                 captionText: "Sliding lung, A lines and B lines – easy enough, right?  But what about the spectrum of alveolar consolidation and the so called “shred” sign.  This review by Yogesh Lala, MD, FRCPC – alumnus of our critical care program, has got YOU covered."
             },
             {
                 title: 'Loss of Lung Sliding: Beyond Pneumothorax',
-                video: '2AulDYEjLZs',
+                video: 'https://westernsono.ca/wp-content/uploads/2015/12/untitled.mp4?_t=1514825048',
                 progress: '0%',
                 captionText: "All that slides is NOT pneumothorax – we know this. When lung sliding is lost, however, the importance of this and what this could mean, is less certain. To better understand loss of lung sliding, please enjoy this excellent screencast by Dr. Paul Lee from the internal medicine program at Western University."
             },
             {
                 title: 'Acute Respiratory Distress Syndrome',
-                video: 'rAC9Y28zpG8',
+                video: 'https://westernsono.ca/wp-content/uploads/2015/08/lung-ultrasonography-in-ards-2015.mp4?_t=1514825036',
                 progress: '0%',
                 captionText: ""
             },
@@ -799,13 +799,76 @@ const learnDatabase = [
         title: 'Critical Care Hemodynamics',
         thumbnail: require('./assets/png/044-blood.png'),
         progress:0,
-        pages: [],
+        pages: [
+            {
+                title: 'Hypovolemic Shock',
+                video: 'https://westernsono.ca/wp-content/uploads/2015/11/hypovolemia-final.mp4?_t=1514825045',
+                progress: '0%',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            },
+            {
+                title: 'Distributive Shock',
+                video: 'https://westernsono.ca/wp-content/uploads/2015/11/vasoplegia-final.mp4?_t=1514825047',
+                progress: '0%',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            },
+            {
+                title: 'Cardiogenic Shock',
+                video: 'https://westernsono.ca/wp-content/uploads/2015/11/cardiogenic-shock-final.mp4?_t=1514825037',
+                progress: '0%',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            },
+            {
+                title: 'Sepsis with CHF',
+                video: 'https://westernsono.ca/wp-content/uploads/2015/11/sepsis-chf-final.mp4?_t=1514825046',
+                progress: '0%',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            },
+            {
+                title: 'Calcium Channel Blocker Overdose',
+                video: 'https://westernsono.ca/wp-content/uploads/2015/11/ccb-od-final.mp4?_t=1514825038',
+                progress: '0%',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            },
+            {
+                title: 'Dimensionless Index',
+                video: 'https://westernsono.ca/wp-content/uploads/2015/11/dimensionless-index-final.mp4?_t=1514825042',
+                progress: '0%',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            },
+            {
+                title: 'Cor Pulmonale',
+                video: 'https://westernsono.ca/wp-content/uploads/2015/11/cor-pulmonale-rv-overload-final.mp4?_t=1514825040',
+                progress: '0%',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            },
+            {
+                title: 'Hypertrophic Obstructive Cardiomyopathy',
+                video: 'https://westernsono.ca/wp-content/uploads/2015/11/hocm-final.mp4?_t=1514825043',
+                progress: '0%',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            },
+
+        ],
     },
     {
         title: 'Transesophageal Echo (TEE)',
         thumbnail: require('./assets/png2/038-esophagus.png'),
         progress:0,
         pages: [],
+    },
+    {
+        title: 'Trans-cranial Doppler',
+        thumbnail: require('./assets/png2/060-brain.png'),
+        progress:0,
+        pages: [
+            {
+                title: 'Vasospasm and Cerebral Circulatory Arrest',
+                video: 'https://westernsono.ca/wp-content/uploads/2016/06/tcd-camtasia.mp4?_t=1514825049',
+                progress: '0%',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            },
+        ],
     },
     
 ]
