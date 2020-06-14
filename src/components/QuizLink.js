@@ -5,12 +5,12 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 const QuizLink = ({name}) => {
     return (
         <View style={styles.container}>
-            <View style={{flexDirection:'row'}}>
+            <View style={{flexDirection:'row', width:300, alignItems:'center'}}>
                 <MaterialCommunityIcons name="crown" size={24} style={{marginRight:10}} />
                 <Text style={styles.text}>{name}: Module Test</Text>
             </View>
             <TouchableOpacity style={styles.button}>
-                <Text style={styles.text}>Start</Text>
+                <Text style={styles.buttonText}>Start</Text>
             </TouchableOpacity>
         </View>
     )
@@ -35,6 +35,11 @@ const styles = StyleSheet.create({
         margin:15
     },
     text:{
+        fontFamily:'Raleway-Regular',
+        fontSize:20,
+        
+    },
+    buttonText:{
         fontFamily:'Raleway-Regular',
         fontSize:20,
     }

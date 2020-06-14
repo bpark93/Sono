@@ -82,7 +82,7 @@ function App() {
           headerShown: false,
           tabBarColor: '#FFFFFF'
         }}
-        activeColor="#7b1fa2"
+        activeColor="#4f2683"
         inactiveColor="#8e8e93"
       >
         <Main.Screen 
@@ -266,7 +266,7 @@ const theme = {
   roundness: 10,
   colors: {
     ...DefaultTheme.colors,
-    primary: '#7b1fa2',
+    primary: '#4f2683',
     background: '#ffffff',
   },
   fonts: {

@@ -537,7 +537,7 @@ const learnDatabase = [
         ],
     },
     {
-        title: 'Lung Ultrasound',
+        title: 'Lung and Pleura',
         thumbnail: require('./assets/png2/042-lungs.png'),
         progress:10,
         pages: [

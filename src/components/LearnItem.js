@@ -16,8 +16,8 @@ const LearnItem = ({item}) => {
                         style={styles.iconStyle}
                         source={item.thumbnail}
                     />
-                    <Text style={{fontFamily:'Raleway-Regular', fontSize:18, marginLeft:20}}>{item.title}</Text>
-
+                    <Text style={styles.textStyle}>{item.title}</Text>
+                    {/* <Text style={styles.progressStyle}>{item.progress}%</Text> */}
                 </View>
             </TouchableOpacity>
         </View>
@@ -27,7 +27,7 @@ const LearnItem = ({item}) => {
 const styles = StyleSheet.create({
     moduleStyle:{
         alignItems:'center',
-        // justifyContent:'space-between',
+        // justifyContent:"space-around",
         margin: 5,
         flexDirection:'row'
     },
@@ -37,6 +37,15 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         resizeMode:'contain',
         marginBottom: 5,
+    },
+    textStyle:{
+        fontFamily:'Raleway-Regular', 
+        fontSize:18, 
+        marginLeft:20, 
+        width:250
+    },
+    progressStyle:{
+        fontSize:16
     },
     container: {
         flex:1,

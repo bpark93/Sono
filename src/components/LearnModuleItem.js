@@ -25,13 +25,13 @@ const LearnModuleItem = ({page, index}) => {
                 activeOpacity={0.8}
             >
                 <View style={styles.moduleStyle}>
-                    <Text style={{fontFamily:'Raleway-Light', fontSize:14, width:30}}>{index}. </Text>
+                    <Text style={{fontFamily:'Raleway-Light', fontSize:14, width:50}}>{index}. </Text>
                     <Text style={{fontFamily:'Raleway-Regular', fontSize:18, width:windowWidth-100}}>{page.title}</Text>
                     {page.progress === '100%'?
-                        <Text style={{fontFamily:'Raleway-Bold', fontSize:14,marginLeft:10, color:'green'}}>{page.progress}</Text>
+                        <FontAwesome name="check-circle" size={18} color='green'/>
                     :   page.progress === '0%'?
-                        <Text style={{fontFamily:'Raleway-Light', fontSize:14,marginLeft:15,color:'gray'}}>{page.progress}</Text>
-                    :   <Text style={{fontFamily:'Raleway-Light', fontSize:14,marginLeft:15,color:'#3498db'}}>{page.progress}</Text>
+                        <FontAwesome name="play-circle" size={18} color='gray'/>
+                    :   <FontAwesome name="play-circle" size={18} color='#2980b9'/>
                     }
                 </View>
             </TouchableOpacity>
@@ -52,7 +52,10 @@ const LearnModuleItem = ({page, index}) => {
                     <View style={{justifyContent:'space-around', alignItems:'center', flexDirection:'row'}}>
                         <TouchableOpacity onPress={() => navigation.navigate('LearnDetail', {id: page})} style={styles.done}>
                             <Text style={styles.buttonText}>Complete</Text>
-                            <FontAwesome name="check-circle" size={14} color='white' />
+                            <FontAwesome name="check-circle" size={14} color='white' style={{marginLeft:5}} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.done}>
+                            <Text style={styles.buttonText}>Retake Quiz</Text>
                         </TouchableOpacity>
                     </View>
                 :   <View style={{justifyContent:'space-around', alignItems:'center', flexDirection:'row'}}>
@@ -76,7 +79,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
         margin: 15,
         flexDirection:'row',
-        justifyContent:'space-between'
+        // justifyContent:'space-between'
     },
     container: {
         flex:1,
@@ -114,8 +117,9 @@ const styles = StyleSheet.create({
         width:150, 
         backgroundColor:'#FECB2E', 
         borderRadius:30, 
+        flexDirection:'row',
         alignItems:'center', 
-        justifyContent:'space-evenly',
+        justifyContent:'center',
         marginVertical:10
     },
     buttonText:{

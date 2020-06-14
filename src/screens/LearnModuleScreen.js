@@ -28,7 +28,7 @@ const LearnModuleScreen = ({route, navigation}) => {
   })
   const textMarginBottom = scrollY.interpolate({
     inputRange:[50,HEADER_MAX_HEIGHT-HEADER_MIN_HEIGHT],
-    outputRange:[10, 27],
+    outputRange:[10, 30],
     extrapolate:'clamp'
   })
     
@@ -39,11 +39,11 @@ const LearnModuleScreen = ({route, navigation}) => {
         top:0,
         left:0,
         right:0,
-        backgroundColor:'#9b59b6',
+        backgroundColor:'#4f2683',
         height:headerHeight,
         justifyContent:'flex-end'
       }} >
-          <TouchableOpacity style={{flex:1}} onPress={()=> navigation.goBack()} >
+          <TouchableOpacity style={{flex:1, width:100}} onPress={()=> navigation.goBack()} >
             <MaterialCommunityIcons name="arrow-left" size={24} color="white" style={styles.backIconStyle}/> 
             {/* Not clicking when scrolled up on Android */}
           </TouchableOpacity>
@@ -62,7 +62,7 @@ const LearnModuleScreen = ({route, navigation}) => {
         )}
         scrollEventThrottle={16}
       >
-        <View style={{flex:1, marginBottom:60, backgroundColor:'white'}}>
+        <View style={{flex:1, marginBottom:100, backgroundColor:'white'}}>
           {id.pages.map((page, index) => (
           <LearnModuleItem page={page} key={page.title} index={index+1}/>
           ))}
@@ -76,7 +76,7 @@ const LearnModuleScreen = ({route, navigation}) => {
 const styles = StyleSheet.create({
   backIconStyle:{
     position: 'absolute',
-    top:50, 
+    top:45, 
     left:15, 
     zIndex:1
   }
