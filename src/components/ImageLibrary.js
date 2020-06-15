@@ -13,7 +13,7 @@ const SearchDetailScreen = ({page}) => {
         <View>
             {/* Add Chips for the different Views */}
         </View>
-        <ScrollView style={{flex:1, backgroundColor:'#FFFFFF'}}  >
+        <ScrollView style={{flex:1, backgroundColor:'white'}}  >
             {page.images.map((item) => (
                 <View key={item.title}>
                     <Text style={styles.header}>{item.title}</Text>
@@ -22,8 +22,8 @@ const SearchDetailScreen = ({page}) => {
                         resizeMode="contain"
                         imageBackgroundColor="#000000"
                         style={{
-                        width: width,
-                        height: width,
+                            width: width,
+                            height: width,
                         }}
                         source={{uri:item.url}}
                     />

@@ -4,28 +4,38 @@ import { View, Text, StyleSheet} from 'react-native'
 const ShortSummary = ({data}) => {
 
     return (
-        <View>
+        <>
             <View style={styles.row}>
-                <Text style={styles.topCategory}>Probe</Text>
+                <View style={styles.topCategory}>
+                    <Text style={{fontFamily:'Raleway-Bold', color:'white'}}>Probe</Text>
+                </View>
                 <Text style={styles.text}>{data.probe}</Text>
             </View>
             <View style={styles.row}>
-                <Text style={styles.category}>Preset</Text>
+                <View style={styles.category}>
+                    <Text style={{fontFamily:'Raleway-Bold', color:'white'}}>Preset</Text>
+                </View>
                 <Text style={styles.altText}>{data.preset}</Text>
             </View>
             <View style={styles.row}>
-                <Text style={styles.category}>{`Patient\nPosition`}</Text>
+                <View style={styles.category}>
+                    <Text style={{fontFamily:'Raleway-Bold', color:'white'}}>{`Patient\nPosition`}</Text>
+                </View>
                 <Text style={styles.text}>{data.patient_position}</Text>
             </View>
             <View style={styles.row}>
-                <Text style={styles.category}>{`Probe\nPosition`}</Text>
+                <View style={styles.category}>
+                    <Text style={{fontFamily:'Raleway-Bold', color:'white'}}>{`Probe\nPosition`}</Text>
+                </View>
                 <Text style={styles.altText}>{data.probe_position}</Text>
             </View>
             <View style={styles.row}>
-                <Text style={styles.bottomCategory}>{`Areas of\nInterest`}</Text>
+                <View style={styles.bottomCategory}>
+                    <Text style={{fontFamily:'Raleway-Bold', color:'white'}}>{`Areas of\nInterest`}</Text>
+                </View>
                 <Text style={styles.text}>{data.areas_of_interest}</Text>
             </View>
-        </View>
+        </>
     )
 }
 
@@ -35,7 +45,7 @@ const styles = StyleSheet.create({
         height: 50,        
     },
     category: {
-        backgroundColor:'#715696',
+        backgroundColor:'#4f2683',
         color: 'white',
         flex:1,
         paddingLeft:13,
@@ -43,16 +53,15 @@ const styles = StyleSheet.create({
         fontFamily:'Raleway-Bold',
     },
     topCategory: {
-        backgroundColor:'#715696',
+        backgroundColor:'#4f2683',
         color: 'white',
         flex:1,
         paddingLeft:13,
         paddingTop:7,
-        fontFamily:'Raleway-Bold',
-        borderTopLeftRadius:10
+        borderTopLeftRadius:10,
     },
     bottomCategory: {
-        backgroundColor:'#715696',
+        backgroundColor:'#4f2683',
         color: 'white',
         flex:1,
         paddingLeft:13,

@@ -506,13 +506,13 @@ const learnDatabase = [
         pages: [
             {
                 title: 'Ultrasound Physics',
-                video: 'https://westernsono.ca/wp-content/uploads/2015/02/a-tale-of-four-valves1.mp4?_t=1514825035',
+                video: '',
                 progress: '80%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Ultrasound Controls',
-                video: 'https://westernsono.ca/wp-content/uploads/2015/02/stroke-volume-assessment1.mp4?_t=1514825033',
+                video: '',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
@@ -543,13 +543,13 @@ const learnDatabase = [
         pages: [
             {
                 title: 'Basics and Physics',
-                video: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+                youtube: '1V1r3MMcjQU',
                 progress: '100%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Artefacts',
-                video: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+                youtube: 'bXi2ywmQHzg',
                 progress: '10%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
 
@@ -562,38 +562,38 @@ const learnDatabase = [
             },
             {
                 title: 'Image Interpretation',
-                video: 'Y9Hv84m3kOM',
+                youtube: 'Y9Hv84m3kOM',
                 altVideo: 'uv6zI4QHYss',
                 progress: '0%',
                 captionText: "Are you able to find the lungs and pleura on ultrasound but need a refresher on how to decode the various findings that you might see?  Lung ultrasound (more than pleural) is an artifact driven field and this tutorial seeks to educate and demystify the lung findings of A lines, B lines and sliding lung as well as the classic pleural findings of consolidation and effusion.",
             },
             {
                 title: 'Pneumothorax',
-                video: 'y9GIZ_Fonus',
+                youtube: 'y9GIZ_Fonus',
                 progress: '0%',
                 captionText: ""
             },
             {
                 title: 'Consolidation',
-                video: 'l-BX3wVhDIg',
+                youtube: 'l-BX3wVhDIg',
                 progress: '0%',
                 captionText: "Interpreting a consolidation pattern of the lung with a concomitant pleural effusion can sometimes be challenging. Is it a pneumonia pattern with secondary para-pneumonic effusion, or is there a pleural effusion with secondary compressive atelectasis? Does size of each matter, or help us with the diagnosis? Are there any other secondary signs that will help us rule in an infectious process? The answer is yes!"
             },
             {
                 title: 'Pleural Effusion',
-                video: 'hLhRKo6llMA',
+                youtube: 'hLhRKo6llMA',
                 progress: '0%',
                 captionText: ""
             },
             {
                 title: 'Common Pitfalls in LUS',
-                video: '58kS_jrxiMI',
+                youtube: '58kS_jrxiMI',
                 progress: '0%',
                 captionText: "This 15-minute screencast reviews common mistakes in lung ultrasound image acquisition, interpretation, and clinical integration. It aims to sharpen your lung POCUS skills and help you unlock the true potential of this powerful diagnostic modality."
             },
             {
                 title: 'Alveolar Consolidation and Shred Sign',
-                video: 'https://westernsono.ca/wp-content/uploads/2016/06/yogesh-lala-alveolar-consolidation.mp4?_t=1514825049',
+                youtube: '0qY9AghmFUs',
                 progress: '0%',
                 captionText: "Sliding lung, A lines and B lines – easy enough, right?  But what about the spectrum of alveolar consolidation and the so called “shred” sign.  This review by Yogesh Lala, MD, FRCPC – alumnus of our critical care program, has got YOU covered."
             },
@@ -611,7 +611,7 @@ const learnDatabase = [
             },
             {
                 title: 'Respiratory Failure',
-                video: 'q_-F4fHRv5g',
+                youtube: 'q_-F4fHRv5g',
                 progress: '0%',
                 captionText: ""
             },
@@ -630,22 +630,22 @@ const learnDatabase = [
         pages: [
             {
                 title: 'US Guided Peripheral IV Insertion Part 1',
-                video: 'YVQhpcsmaHM',
+                youtube: 'YVQhpcsmaHM',
                 captionText: ''
             },
             {
                 title: 'US Guided Peripheral IV Insertion Part 2',
-                video: 'Z6mOKmZcshI',
+                youtube: 'Z6mOKmZcshI',
                 captionText: ''
             },
             {
                 title: 'Sterile Technique for US Guided Central Line',
-                video: 'BIZJdzqgF88',
+                youtube: 'BIZJdzqgF88',
                 captionText: ''
             },
             {
                 title: 'Fracture Management',
-                video: '9Dd25I1b4_I',
+                youtube: '9Dd25I1b4_I',
                 captionText: ''
             }, 
             {
@@ -667,27 +667,27 @@ const learnDatabase = [
         pages: [
             {
                 title: 'Anatomy and Sono-Anatomy',
-                video: 'llUZeU-NUQo',
+                youtube: 'llUZeU-NUQo',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Hydronephrosis',
-                video: 'RLxcOUQZ8G8',
+                youtube: 'RLxcOUQZ8G8',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
 
             },
             {
                 title: 'Hydronephrosis Mimics',
-                video: 'p4qJzOuYgb8',
+                youtube: 'p4qJzOuYgb8',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
 
             },
             {
                 title: 'Stones and Masses',
-                video: 'PGBuxlmTta8',
+                youtube: 'PGBuxlmTta8',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
 
@@ -701,19 +701,19 @@ const learnDatabase = [
         pages: [
             {
                 title: 'FAST Exam Part 1: Approach',
-                video: 'orL-bSlwBTA',
+                youtube: 'orL-bSlwBTA',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'FAST Exam Part 2: Algorithm and Pitfalls',
-                video: 'E6J06ta07QA',
+                youtube: 'E6J06ta07QA',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Small Bowel Obstruction',
-                video: 'X_Ui91kjfag',
+                youtube: 'X_Ui91kjfag',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
@@ -726,19 +726,19 @@ const learnDatabase = [
         pages: [
             {
                 title: 'Introduction',
-                video: 'PwqFuc4qzvY',
+                youtube: 'PwqFuc4qzvY',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Stones and Mimics',
-                video: 'pY2BinfQea0',
+                youtube: 'pY2BinfQea0',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Cholecystitis',
-                video: 'XMEN2ZDUtNU',
+                youtube: 'XMEN2ZDUtNU',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
@@ -751,19 +751,19 @@ const learnDatabase = [
         pages: [
             {
                 title: 'Trans-Abdominal Technique',
-                video: 'jgyYftAAQgk',
+                youtube: 'jgyYftAAQgk',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Endocavitary Approach',
-                video: 'By8TPKMRfdc',
+                youtube: 'By8TPKMRfdc',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Defining a Positive OB Study',
-                video: 'Ww-_VGPlqdo',
+                youtube: 'Ww-_VGPlqdo',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
@@ -776,7 +776,7 @@ const learnDatabase = [
         pages: [
             {
                 title: 'DVT',
-                video: 'kenAPbRVMl0',
+                youtube: 'kenAPbRVMl0',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
@@ -789,7 +789,7 @@ const learnDatabase = [
         pages: [
             {
                 title: 'Common Pathologies',
-                video: 'dW8F_sMojKk',
+                youtube: 'dW8F_sMojKk',
                 progress: '0%',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },

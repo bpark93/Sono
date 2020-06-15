@@ -10,12 +10,14 @@ const LearnDetailScreen = ({route, navigation}) => {
     const width = useWindowDimensions().width
     const height = width*9/16;
     const playerRef = useRef(null);
-
-    useEffect(()=> {
-        navigation.addListener('blur', ()=> {
-            playerRef.current.pauseAsync();
-        })
-    },[navigation])
+    if (id.video){
+        useEffect(()=> {
+            const unsubscribe = navigation.addListener('blur', ()=> {
+                playerRef.current.pauseAsync();
+            })
+            return () => unsubscribe();
+        },[navigation])
+    }
 
     return (
         <>
@@ -25,10 +27,11 @@ const LearnDetailScreen = ({route, navigation}) => {
                 </TouchableOpacity>
             </View>
             <View style={{marginTop:70}}>
-                {/* <YoutubePlayer
+                { id.youtube ? 
+                <YoutubePlayer
                         height={height}
                         width={width}
-                        videoId={id.video}
+                        videoId={id.youtube}
                         play={true}
                         volume={50}
                         playbackRate={1}
@@ -37,8 +40,8 @@ const LearnDetailScreen = ({route, navigation}) => {
                             showClosedCaptions: false,
                             preventFullScreen:true,
                         }}
-                /> */}
-                <Video
+                />
+                :<Video
                     ref={playerRef}
                     source={{ uri: id.video}}
                     rate={1.0}
@@ -52,6 +55,7 @@ const LearnDetailScreen = ({route, navigation}) => {
                         height: height,
                     }}
                 />
+                }
             </View>
             <ScrollView style={styles.container}>
                 <Text style={styles.header}>{id.title}</Text>

@@ -3,7 +3,10 @@ import {View, Text, StyleSheet, Dimensions} from 'react-native'
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import ImageModal from 'react-native-image-modal';
 
+const WIDTH = Dimensions.get('window').width;
+
 class SnapCarousel extends Component {
+    
     _renderItem = ({item, index}) => {
         return (
             <View style={styles.slide}>
@@ -11,7 +14,7 @@ class SnapCarousel extends Component {
                     resizeMode="contain"
                     imageBackgroundColor="black"
                     source={{uri: item.source_url}}
-                    style={{height:275, width:350}}
+                    style={{height:275, width:WIDTH-60}}
                 />
                 <View style={{height:60, backgroundColor:'white', borderWidth:0.5, borderBottomLeftRadius:15, borderBottomRightRadius:15, justifyContent:'center'}} >
                     <Text style={styles.title}>{item.title.rendered.replace("_",". ").replace(/_/g, " ")}</Text>
@@ -21,7 +24,6 @@ class SnapCarousel extends Component {
     }
 
     render(){
-        const WIDTH = Dimensions.get('window').width;
         return (
             <>
                 <Carousel
