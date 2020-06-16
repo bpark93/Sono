@@ -2,34 +2,39 @@ import React, {useState, useEffect} from 'react'
 import {View, Text, StyleSheet, TouchableOpacity, Image, useWindowDimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
+import {getLearnProgress, setLearnProgress} from '../components/getLearnDatabase'
 
 
 const LearnModuleItem = ({page, index}) => {
     const navigation = useNavigation();
     const windowWidth = useWindowDimensions().width
-    const [pressed, setPressed] = useState(false);
 
+    const [pressed, setPressed] = useState(false);
     const handlePress = () => {
-        if (pressed) {
-            setPressed(false);
-        } else {
-            setPressed(true);
-        }
-        // navigation.navigate('LearnDetail', {id: page})
+        setPressed(!pressed)
     }
+
+    const [progress, setProgress] = useState(null);
+    useEffect(() => {
+        const x = async () => {
+            const xx = await getLearnProgress(page.id);
+            setProgress(xx)
+        }
+        x();
+    },[navigation])
 
     return (
         <View style={styles.container}>
             <TouchableOpacity
                 onPress={() => handlePress()}
-                activeOpacity={0.8}
+                // activeOpacity={0.8}
             >
                 <View style={styles.moduleStyle}>
                     <Text style={{fontFamily:'Raleway-Light', fontSize:14, width:50}}>{index}. </Text>
                     <Text style={{fontFamily:'Raleway-Regular', fontSize:18, width:windowWidth-100}}>{page.title}</Text>
-                    {page.progress === '100%'?
+                    {progress === '100'?
                         <FontAwesome name="check-circle" size={18} color='green'/>
-                    :   page.progress === '0%'?
+                    :   progress === '0'?
                         <FontAwesome name="play-circle" size={18} color='gray'/>
                     :   <FontAwesome name="play-circle" size={18} color='#2980b9'/>
                     }
@@ -39,7 +44,7 @@ const LearnModuleItem = ({page, index}) => {
             {pressed? 
                 <>
                 <Text style={styles.shortText} numberOfLines={5}>{page.captionText}</Text>
-                {page.progress === '0%'?
+                {progress === '0'?
                     <View style={{justifyContent:'space-around', alignItems:'center', flexDirection:'row'}}>
                         <TouchableOpacity onPress={() => navigation.navigate('LearnDetail', {id: page})} style={styles.start}>
                             <Text style={styles.buttonText}>Start</Text>
@@ -48,7 +53,7 @@ const LearnModuleItem = ({page, index}) => {
                             <Text style={styles.buttonText}>Take Quiz</Text>
                         </TouchableOpacity>
                     </View>
-                :   page.progress === '100%'?
+                :   progress === '100'?
                     <View style={{justifyContent:'space-around', alignItems:'center', flexDirection:'row'}}>
                         <TouchableOpacity onPress={() => navigation.navigate('LearnDetail', {id: page})} style={styles.done}>
                             <Text style={styles.buttonText}>Complete</Text>

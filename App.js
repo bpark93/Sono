@@ -20,6 +20,7 @@ import {LearnScreen,
 import Onboarding from './src/components/Onboarding'
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import checkIfFirstLaunch from './src/components/checkIfFirstLaunch'
+import {learnProgressInitialized, getLearnProgress} from './src/components/getLearnDatabase'
 import * as Font from 'expo-font';
 
 const Main = createMaterialBottomTabNavigator();
@@ -31,8 +32,6 @@ const Settings = createStackNavigator();
 function App() {
 
   const [first, setFirst] = useState(null);
-  const [fontLoaded, setFontLoaded] = useState(false)
-
   useEffect(()=> {
     async function fetchData() {
       const firstLaunch = await checkIfFirstLaunch();
@@ -41,6 +40,7 @@ function App() {
     fetchData();
   },[]);
 
+  const [fontLoaded, setFontLoaded] = useState(false)
   useEffect(() => {
     async function loadFonts() {
       await Font.loadAsync({
@@ -55,7 +55,21 @@ function App() {
     loadFonts();
   },[]);
 
-  if (!fontLoaded){
+  const [dataInitialized, setDataInitialized] = useState(false)
+  useEffect(() => {
+    async function fetchData() {
+      const xxx = await learnProgressInitialized();
+      if (xxx) {
+        setDataInitialized(true)
+      } else{
+        const y = await learnProgressInitialized();
+        if (y) {setDataInitialized(true)};
+      }      
+    }
+    fetchData();
+  })
+
+  if (!fontLoaded || !dataInitialized){
     return (
       <View style={{flex:1, alignItems: 'center', justifyContent:'center'}}>
         <ActivityIndicator

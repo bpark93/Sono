@@ -36,11 +36,7 @@ const CasesDetailScreen = ({route}) => {
     },[])
 
     const toggleAnswer = () => {
-        if (answerToggle){
-            setAnswerToggle(false);
-        } else {
-            setAnswerToggle(true);
-        }
+        setAnswerToggle(!answerToggle)
     }
 
     return (
