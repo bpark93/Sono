@@ -1,5 +1,5 @@
 import React, {useRef} from 'react'
-import { Image, View, Text, StyleSheet, TouchableOpacity, useWindowDimensions, ScrollView } from 'react-native'
+import { Image, View, Text, StyleSheet, TouchableOpacity, useWindowDimensions, ScrollView, Dimensions } from 'react-native'
 import YoutubePlayer from 'react-native-youtube-iframe';
 import ShortSummary from '../components/ShortSummary'
 import {database} from '../../database'
@@ -10,8 +10,14 @@ const RapidReviews = ({page}) => {
     const navigation = useNavigation();
     const playerRef = useRef(null);
     
-    const width = useWindowDimensions().width
-    const height = width*9/16;
+    // USING WINDOW DIMENSIONS SEEMS TO BREAK FULLSCREEN -- HARD CODE FOR NOW
+    // const windowWidth = Dimensions.get('window').width
+    // const width = Math.floor(windowWidth);
+    // const height = Math.floor(width*9/16);
+    const height = 225;
+    const width = 400;
+
+    // STILL BREAKS - go to Cases, come back, fullscreen, error persists
 
     const handleOnPress = (id) => {
         const response = database.filter((item) => item.id === id);
@@ -23,20 +29,21 @@ const RapidReviews = ({page}) => {
         <ScrollView style={{flex:1, backgroundColor:'#FFFFFF'}}>
             {/* Youtube Video embedded */}
             {page.video? 
-            <YoutubePlayer
-                ref={playerRef}
-                height={height}
-                width={width}
-                videoId={page.video}
-                play={true}
-                volume={50}
-                playbackRate={1}
-                playerParams={{
-                    cc_lang_pref: "us",
-                    showClosedCaptions: false,
-                    preventFullScreen:true,
-                }}
-            /> :null}
+            <View style={{backgroundColor:'black', alignItems:'center', justifyContent:'center'}}>
+                <YoutubePlayer
+                    ref={playerRef}
+                    height={225}
+                    width={400}
+                    videoId={page.video}
+                    play={true}
+                    volume={50}
+                    playbackRate={1}
+                    playerParams={{
+                        cc_lang_pref: "us",
+                        showClosedCaptions: false,
+                    }}
+                />
+            </View> :null}
 
             {/* Links to Images */}
             {/* <View style={{marginLeft:15, marginVertical:15}}>

@@ -16,6 +16,7 @@ const CategoriesList = () => {
 
   return (
     <ScrollView style={{flex:1}}>
+      <Text style={{marginHorizontal:30, color:'gray', fontFamily:"Raleway-Light", marginTop:5}}>e.g. pneumothorax, hydronephrosis, AAA...</Text>
       <Text style={styles.subheaderStyle}>Categories</Text>
       {categoryDatabase.map((index) => (
         index.type==="page" ?
@@ -31,7 +32,7 @@ const CategoriesList = () => {
               />
             }
             right={() => 
-              <MaterialCommunityIcons name='chevron-right' size={24} style={{marginTop:30, marginRight:10}}/>
+              <MaterialCommunityIcons name='chevron-right' size={24} style={{marginTop:10, marginRight:10}}/>
             }
           />
         :<List.Accordion 
@@ -99,8 +100,8 @@ const styles = StyleSheet.create({
       fontFamily:'Raleway-Medium'
     },
     image: {
-      width: 100,
-      height: 75,
+      width: 60,
+      height: 40,
       resizeMode:'contain'
   },
 });

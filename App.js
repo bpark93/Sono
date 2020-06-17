@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View} from 'react-native'
+import {View, AsyncStorage} from 'react-native'
 import { Provider as PaperProvider, DefaultTheme, ActivityIndicator } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -19,8 +19,10 @@ import {LearnScreen,
 } from './screenIndex'
 import Onboarding from './src/components/Onboarding'
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { FontAwesome5 } from '@expo/vector-icons'; 
 import checkIfFirstLaunch from './src/components/checkIfFirstLaunch'
-import {learnProgressInitialized, getLearnProgress} from './src/components/getLearnDatabase'
+import {learnProgressInitialized} from './src/components/getLearnDatabase'
+import {initializeBookmark} from './src/components/useBookmark'
 import * as Font from 'expo-font';
 
 const Main = createMaterialBottomTabNavigator();
@@ -34,6 +36,7 @@ function App() {
   const [first, setFirst] = useState(null);
   useEffect(()=> {
     async function fetchData() {
+      // await AsyncStorage.clear()
       const firstLaunch = await checkIfFirstLaunch();
       setFirst(firstLaunch);
     }
@@ -58,18 +61,32 @@ function App() {
   const [dataInitialized, setDataInitialized] = useState(false)
   useEffect(() => {
     async function fetchData() {
-      const xxx = await learnProgressInitialized();
-      if (xxx) {
+      const learnDataInitialized = await learnProgressInitialized();
+      if (learnDataInitialized) {
         setDataInitialized(true)
       } else{
-        const y = await learnProgressInitialized();
-        if (y) {setDataInitialized(true)};
+        const tryAgain = await learnProgressInitialized();
+        if (tryAgain) {setDataInitialized(true)};
       }      
     }
     fetchData();
   })
 
-  if (!fontLoaded || !dataInitialized){
+  const [bookmarkInitialized, setBookmarkInitialized] = useState(false);
+  useEffect(() => {
+    async function fetchData() {
+      const bookmarkReady = await initializeBookmark();
+      if (bookmarkReady) {
+        setBookmarkInitialized(true)
+      } else{
+        const tryAgain = await initializeBookmark();
+        if (tryAgain) {setBookmarkInitialized(true)};
+      }   
+    }
+    fetchData();
+  })
+
+  if (!fontLoaded || !dataInitialized || !bookmarkInitialized){
     return (
       <View style={{flex:1, alignItems: 'center', justifyContent:'center'}}>
         <ActivityIndicator
@@ -80,7 +97,7 @@ function App() {
     )
   }
   
-  if (first) { // FIX BACK TO FIRST WHEN DONE DEVLOPING
+  if (!first) { // FIX BACK TO FIRST WHEN DONE DEVLOPING
     return <Onboarding onDoneClick={(firstBool) => setFirst(firstBool)}/>
   }
 
@@ -114,7 +131,7 @@ function App() {
           component={SearchNav} 
           options={{
             tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons name="magnify" color={color} size={23} />
+              <MaterialCommunityIcons name="library-video" size={20} color={color}/>
             ),
           }}
         />

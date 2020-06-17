@@ -10,6 +10,7 @@ const slides = [
       title: 'Learn Ultrasound',
       text: 'Learn the tool that is revolutionizing\ncare in nearly every medical and\nsurgical specialty',
       image: require('../../assets/carousel1.png'),
+      animation: require('../../assets/lottie/phonetest.json'),
       backgroundColor: '#FFFFFF',
     },
     {
@@ -17,6 +18,7 @@ const slides = [
       title: 'Solve Cases',
       text: 'Work your way through realistic and\ncomprehensive teaching cases with\ndetailed answer keys',
       image: require('../../assets/carousel2.png'),
+      animation: require('../../assets/lottie/workingOffice.json'),
       backgroundColor: '#FFFFFF',
     },
     {
@@ -24,6 +26,7 @@ const slides = [
       title: 'Quickly find images',
       text: 'Access a vast library of normal and\npathologic findings',
       image: require('../../assets/carousel3.png'),
+      animation: require('../../assets/lottie/video.json'),
       backgroundColor: '#FFFFFF',
     }
 ];
@@ -32,7 +35,7 @@ const _renderItem = ({ item }) => {
   return (
     <View style={styles.slide}>
         <Text style={styles.title}>{item.title}</Text>
-        <Image source={item.image} style={{width:200, height:200}} />
+        <LottieView source={item.animation} style={{width:400, height:400}} autoPlay loop/>
         <Text style={styles.text}>{item.text}</Text>
     </View>
   );
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
     paddingBottom:80
   },
   title: {
-    paddingBottom:80,
+    paddingBottom:30,
     fontSize: 30,
     fontFamily:'Raleway-Medium'
   },
@@ -110,7 +113,7 @@ export default Onboarding = ({onDoneClick}) => {
         renderNextButton={_renderNextButton}
         renderPrevButton={_renderPrevButton} // DOESN'T WORK
         activeDotStyle={{backgroundColor: '#000000'}}
-        onDone={() => onDoneClick(false)} //FIX BACK TO FALSE WHEN DONE
+        onDone={() => onDoneClick(true)} //FIX BACK TO FALSE WHEN DONE
       />
     );
 }

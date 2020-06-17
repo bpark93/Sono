@@ -64,7 +64,7 @@ const LearnModuleScreen = ({route, navigation}) => {
       >
         <View style={{flex:1, marginBottom:100, backgroundColor:'white'}}>
           {id.pages.map((page, index) => (
-          <LearnModuleItem page={page} key={page.title} index={index+1}/>
+          <LearnModuleItem page={page} key={page.title} index={index+1} category={id.title}/>
           ))}
           <QuizLink name={id.title}/>
         </View>

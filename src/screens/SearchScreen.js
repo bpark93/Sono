@@ -14,6 +14,7 @@ const SearchScreen = () => {
     return (
         <View style={styles.container}>
             <Searchbar 
+                autoFocus
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder="Search"
