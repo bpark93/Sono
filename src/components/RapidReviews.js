@@ -114,7 +114,8 @@ const MaterialsItem = ({material}) => {
             <View style={{
                 borderWidth: Platform.OS === 'ios'? 1: 0,  // No box in iOS 
                 borderRadius:10,
-                marginBottom:5
+                marginBottom:5,
+                borderColor:'#bdc3c7'
             }}>
                 <Checkbox 
                     status={checked? 'checked':'unchecked'}
