@@ -53,7 +53,7 @@ const database = [
     {
         "title": "Biliary Image Acquisition",
         "id":"2", 
-        "category": "Abdominal/GI",
+        "category": "Abdominal",
         "type": "rapidreview",
         "tags": ['Gallbladder', 'Liver', 'Bile ducts'],
         "video": 'vf_XBY7a80A',
@@ -227,7 +227,7 @@ const database = [
     {
         "title": "FAST Exam Image Acquisition",
         "id":"9",
-        "category": "Abdominal/GI",
+        "category": "Abdominal",
         "type": "rapidreview",
         "tags": [],
         "video":'3gRz01WIrgc',
@@ -514,7 +514,7 @@ const categoryDatabase = [
         }
     },
     {
-        title: 'Abdominal/GI',
+        title: 'Abdominal',
         image: require('./assets/png/029-intestine.png'),
         groups: {
             'Gallbladder':{
@@ -525,6 +525,15 @@ const categoryDatabase = [
                        id:'2',
                    }
                 ],
+            },
+            'Trauma':{
+                pages:[
+                    {
+                        title:"FAST Exam Image Acquisition",
+                        type: "video",
+                        id:'9',
+                    }
+                ]
             },
             'Spleen':{},
             'Stomach':{},
@@ -573,7 +582,15 @@ const categoryDatabase = [
         image: require('./assets/png/050-fetus.png'),
         done: false,
         groups: {
-            'Image Acquisition':{}
+            'Image Acquisition':{
+                pages:[
+                    {
+                        title:"Transabdominal Pelvic Exam",
+                        type: "video",
+                        id:'10',
+                    }
+                ]
+            }
         }
     },
     {

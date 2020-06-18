@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, FlatList, Image, ScrollView, TouchableOpacity} 
 import { useNavigation } from '@react-navigation/native';
 import { AsyncStorage } from 'react-native';
 import {database} from '../../database'
+import { FontAwesome } from '@expo/vector-icons';
 
 const RECENT = "recent_pages"
 const MAX_ITEMS = 5
@@ -42,8 +43,22 @@ const RecentPages = () => {
                         onPress={() => navigation.navigate('SearchDetail', {id:page})}
                         style={{flexDirection:'row', marginBottom:8}}    
                     >
-                        <Text style={styles.category}>{page.category}</Text>
-                        <Text style={styles.text}>{page.title}</Text>
+                        <View style={styles.categoryView}>
+                            <Text style={styles.category} >{page.category}</Text> 
+                        </View>
+                        <View style={styles.pageInfo}>
+                            {page.video?
+                                    <FontAwesome 
+                                        name="film" 
+                                        style={styles.iconStyle}
+                                    />
+                                    :<FontAwesome 
+                                        name="image" 
+                                        style={styles.iconStyle}
+                                    />
+                            }
+                            <Text style={styles.text}>{page.title}</Text>
+                        </View>
                     </TouchableOpacity>
                 ))
                 :<View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
@@ -115,10 +130,9 @@ const setList = async (id) => {
 
 const styles = StyleSheet.create({
     iconStyle: {
-        fontSize: 30,
+        fontSize: 14,
         color: 'black',
-        marginTop: 10,
-        marginRight:10,
+        // marginRight:10,
     },
     subheaderStyle: {
         marginVertical: 15,
@@ -128,19 +142,30 @@ const styles = StyleSheet.create({
     category:{
         fontSize:14,
         fontFamily:"Raleway-Bold",
-        color:'#34aadc',
+        color:'#34aadc',       
+    },
+    categoryView:{
         borderColor:'#34aadc',
         borderWidth:2,
         borderRadius:5,
         padding:5,
-        marginRight:5,
+        // flex:1,
+        justifyContent:'center',
+        alignItems:'center'
     },
     text:{
         fontFamily:'Raleway-Regular',
         fontSize:14,
         margin:5,
-        width:250
     },
+    pageInfo:{
+        flexDirection:'row',
+        borderBottomWidth:0.5,
+        borderColor:'gray',
+        marginLeft:10,
+        // flex:3,
+        alignItems:'center'
+    }
 })
 
 export {RecentPages, initializeRecentPages, setList}
