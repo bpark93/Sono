@@ -19,11 +19,11 @@ import {LearnScreen,
 } from './screenIndex'
 import Onboarding from './src/components/Onboarding'
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
-import { FontAwesome5 } from '@expo/vector-icons'; 
 import checkIfFirstLaunch from './src/components/checkIfFirstLaunch'
 import {learnProgressInitialized} from './src/components/getLearnDatabase'
 import {initializeBookmark} from './src/components/useBookmark'
 import * as Font from 'expo-font';
+import {initializeRecentPages} from './src/components/RecentPages'
 
 const Main = createMaterialBottomTabNavigator();
 const Learn = createStackNavigator();
@@ -86,7 +86,21 @@ function App() {
     fetchData();
   })
 
-  if (!fontLoaded || !dataInitialized || !bookmarkInitialized){
+  const [recentPagesInitialized, setRecentPagesInitialized] = useState(false)
+  useEffect(() => {
+    async function fetchData() {
+      const pagesReady = await initializeRecentPages();
+      if (pagesReady){
+        setRecentPagesInitialized(true)
+      } else{
+        const tryAgain = await initializeRecentPages();
+        if (tryAgain) {setRecentPagesInitialized(true)}
+      }
+    }
+    fetchData();
+  })
+
+  if (!fontLoaded || !dataInitialized || !bookmarkInitialized || !recentPagesInitialized){
     return (
       <View style={{flex:1, alignItems: 'center', justifyContent:'center'}}>
         <ActivityIndicator
@@ -97,14 +111,14 @@ function App() {
     )
   }
   
-  if (!first) { // FIX BACK TO FIRST WHEN DONE DEVLOPING
+  if (first) { // FIX BACK TO FIRST WHEN DONE DEVLOPING
     return <Onboarding onDoneClick={(firstBool) => setFirst(firstBool)}/>
   }
 
   return (
     <NavigationContainer>
       <Main.Navigator
-        initialRouteName='Learn'
+        initialRouteName='Library'
         backBehavior='initialRoute'
         // tabBarPosition='bottom'
         style={{
@@ -131,7 +145,7 @@ function App() {
           component={SearchNav} 
           options={{
             tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons name="library-video" size={20} color={color}/>
+              <MaterialCommunityIcons name="magnify" size={23} color={color}/>
             ),
           }}
         />
@@ -208,7 +222,7 @@ function SearchNav() {
     <Search.Navigator
       screenOptions={{
         headerStyle:{
-          shadowColor:'transparent',
+          // shadowColor:'transparent', -- LOOKS BETTER ON iOS
           elevation:0
         },
         headerTitleStyle:{

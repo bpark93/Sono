@@ -13,7 +13,7 @@ const database = [
     {
         "title": "Renal Image Acquisition", 
         "id":"1",
-        "category": "Abdomen",
+        "category": "Renal/GU",
         "type": "rapidreview",
         "tags": ['renal', 'kidney', 'Hydronephrosis'],
         "video": 'Zym9AN1rDeM',
@@ -53,7 +53,7 @@ const database = [
     {
         "title": "Biliary Image Acquisition",
         "id":"2", 
-        "category": "Abdomen",
+        "category": "Abdominal/GI",
         "type": "rapidreview",
         "tags": ['Gallbladder', 'Liver', 'Bile ducts'],
         "video": 'vf_XBY7a80A',
@@ -102,7 +102,7 @@ const database = [
     {
         "title": "Abdominal Aorta Image Acquisition", 
         "id":"3",
-        "category": "Abdomen",
+        "category": "Aorta",
         "type": "rapidreview",
         "tags": ['Aorta', 'AAA',],
         "video": 'aTQe17jUQNc',
@@ -227,7 +227,7 @@ const database = [
     {
         "title": "FAST Exam Image Acquisition",
         "id":"9",
-        "category": "Trauma",
+        "category": "Abdominal/GI",
         "type": "rapidreview",
         "tags": [],
         "video":'3gRz01WIrgc',
@@ -242,7 +242,7 @@ const database = [
     {
         "title": "Pelvic Exam Image Acquisition",
         "id":"10",
-        "category": "Pelvis",
+        "category": "Female Pelvis",
         "type": "rapidreview",
         "tags": [],
         "video":'lj_ApJwf3w4',
@@ -256,36 +256,103 @@ const database = [
     },
     {
         "title": "LV - Severely Depressed",
+        "alt":"Left Ventricle Failure",
         "id":"11",
         "category": "Cardiac",
         "type": "image",
         "tags": [],
+        "options":["PSSA", "PSLA", "A4C", "Subcostal", "Color"],
         "images":[
            {
                url: "https://westernsono.ca/wp-content/uploads/2020/02/1_A4C_2D_1.webp",
                contributor:'John Doe, MD, Emergency Medicine',
-               title:'Severe LV Failure',
+               title:'Severe LV Failure - Apical 4 chamber',
+               option:'A4C',
                caption:'60 yo F, presenting with [], note the X,Y,Z features',
            },
            {
                 url:"https://westernsono.ca/wp-content/uploads/2020/02/3_PSLA_2D.webp",
                 contributor:'Michael Scott, PGY-4, Critical Care',
-                title:'LV failure in some context',
+                title:'LV failure PSLA',
+                option:'PSLA',
                 caption:'72 yo M, presenting with [], note the X,Y,Z features',
             },
             {
                 url: "https://westernsono.ca/wp-content/uploads/2020/02/5_A5C_2D.webp",
                 contributor:'Jane Schmoe, MS-3',
-                title:'LV failure in a different context',
+                title:'LV failure Apical 4 Chamber',
+                option:'A4C',
                 caption:'25 yo F, presenting with [], note the X,Y,Z features',
             },
-           
+            {
+                url: "https://westernsono.ca/wp-content/uploads/2020/02/3_PSLA_AV_zoomed_colour.webp",
+                contributor:'Jane Schmoe, MS-3',
+                title:'Test Item 1',
+                option:'PSLA',
+                caption:'25 yo F, presenting with [], note the X,Y,Z features',
+            },
+            {
+                url: "https://westernsono.ca/wp-content/uploads/2020/02/4_PSLA_CD.webp",
+                contributor:'Jane Schmoe, MS-3',
+                title:'Test Item 2',
+                option:'PSLA',
+                caption:'25 yo F, presenting with [], note the X,Y,Z features',
+            },
+            {
+                url: "https://westernsono.ca/wp-content/uploads/2020/02/9_A5C_colour.webp",
+                contributor:'Jane Schmoe, MS-3',
+                title:'Test Item 3',
+                option:'Color',
+                caption:'25 yo F, presenting with [], note the X,Y,Z features',
+            },
+            {
+                url: "https://westernsono.ca/wp-content/uploads/2020/02/5_PSSA_AV_Colour.webp",
+                contributor:'Jane Schmoe, MS-3',
+                title:'Test Item 4',
+                option:'Color',
+                caption:'25 yo F, presenting with [], note the X,Y,Z features',
+            },
+            {
+                url: "https://westernsono.ca/wp-content/uploads/2020/02/4_PSSA_AV_2D.webp",
+                contributor:'Jane Schmoe, MS-3',
+                title:'Test Item 5',
+                option:'PSSA',
+                caption:'25 yo F, presenting with [], note the X,Y,Z features',
+            },
+            {
+                url: "https://westernsono.ca/wp-content/uploads/2020/02/8_AV-VTI.webp",
+                contributor:'Jane Schmoe, MS-3',
+                title:'Test Item 6',
+                option:'PSLA',
+                caption:'25 yo F, presenting with [], note the X,Y,Z features',
+            },
+            {
+                url: "https://westernsono.ca/wp-content/uploads/2020/02/7_A5C_2D.webp",
+                contributor:'Jane Schmoe, MS-3',
+                title:'Test Item 7',
+                option:'A4C',
+                caption:'25 yo F, presenting with [], note the X,Y,Z features',
+            },
+            {
+                url: "https://westernsono.ca/wp-content/uploads/2020/02/3_PSLA_AV_zoomed_colour.webp",
+                contributor:'Jane Schmoe, MS-3',
+                title:'Test Item 8',
+                option:'Color',
+                caption:'25 yo F, presenting with [], note the X,Y,Z features',
+            },
+            {
+                url: "https://westernsono.ca/wp-content/uploads/2020/02/3_PSLA_AV_zoomed_colour.webp",
+                contributor:'Jane Schmoe, MS-3',
+                title:'Test Item 9',
+                option:'Color',
+                caption:'25 yo F, presenting with [], note the X,Y,Z features',
+            },           
         ]
     },
     {
         "title": "Advanced Critical Care Quantitative Assessment Resource",
         "id":"12",
-        "category": "",
+        "category": "Resource",
         "type": "resource",
         "tags": [],
         "pageURL": "https://westernsono.ca/advanced-critical-care-ultrasound-quantitative-assessment-resource/#content",
@@ -317,6 +384,29 @@ const database = [
                 caption:'25 yo F, presenting with [], note the X,Y,Z features',
             },
            
+        ]
+    },
+    {
+        "title": "US-Guided Peripheral IV",
+        "id":"14",
+        "category": "Procedural",
+        "type": "rapidreview",
+        "tags": [],
+        "video":'TmqrMVln7Ag',
+        "orientation": {
+            "probe": 'Curvilinear',
+            "preset": 'Abdominal',
+            "patient_position": 'Supine',
+            "probe_position": '',
+            "areas_of_interest": 'Arteries, Veins, Nerves',
+        },
+        "materials":[
+            "Tourniquet",
+            "Skin clearning solution",
+            "Angiocatheter",
+            "IV Tubing",
+            "Saline flush",
+            "Bandage"
         ]
     },
 ]
@@ -465,8 +555,16 @@ const categoryDatabase = [
         image: require('./assets/png/injection.png'),
         done: false,
         groups: {
+            'Vascular Access':{
+                pages: [
+                    {
+                        title:"US-Guided Peripheral IV",
+                        type: "video",
+                        id:'14'
+                    }
+                ],
+            },
             'Spine':{},
-            'Vascular Access':{},
             'Nerve Blocks':{},
         }
     },

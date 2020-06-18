@@ -35,7 +35,8 @@ const _renderItem = ({ item }) => {
   return (
     <View style={styles.slide}>
         <Text style={styles.title}>{item.title}</Text>
-        <LottieView source={item.animation} style={{width:400, height:400}} autoPlay loop/>
+        {/* <LottieView source={item.animation} style={{width:400, height:400}} autoPlay loop/> */}
+        <Image source={item.image} style={{width:250, height:250}}/>
         <Text style={styles.text}>{item.text}</Text>
     </View>
   );
@@ -113,7 +114,7 @@ export default Onboarding = ({onDoneClick}) => {
         renderNextButton={_renderNextButton}
         renderPrevButton={_renderPrevButton} // DOESN'T WORK
         activeDotStyle={{backgroundColor: '#000000'}}
-        onDone={() => onDoneClick(true)} //FIX BACK TO FALSE WHEN DONE
+        onDone={() => onDoneClick(false)} //FIX BACK TO FALSE WHEN DONE
       />
     );
 }

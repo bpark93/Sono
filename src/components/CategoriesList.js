@@ -16,8 +16,8 @@ const CategoriesList = () => {
 
   return (
     <ScrollView style={{flex:1}}>
-      <Text style={{marginHorizontal:30, color:'gray', fontFamily:"Raleway-Light", marginTop:5}}>e.g. pneumothorax, hydronephrosis, AAA...</Text>
-      <Text style={styles.subheaderStyle}>Categories</Text>
+      {/* <Text style={{marginHorizontal:30, color:'gray', fontFamily:"Raleway-Light", marginTop:5}}>e.g. pneumothorax, hydronephrosis, AAA...</Text> */}
+      <Text style={styles.subheaderStyle}>Find standard images and technique videos</Text>
       {categoryDatabase.map((index) => (
         index.type==="page" ?
           <List.Item 
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     subheaderStyle: {
       marginLeft: 20,
       marginVertical: 15,
-      fontSize: 20,
+      fontSize: 18,
       fontFamily:'Raleway-Medium'
     },
     image: {

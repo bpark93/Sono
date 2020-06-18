@@ -1,21 +1,21 @@
-import React, {useRef} from 'react'
-import { Image, View, Text, StyleSheet, TouchableOpacity, useWindowDimensions, ScrollView, Dimensions } from 'react-native'
+import React, {useRef, useState} from 'react'
+import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, useWindowDimensions, ScrollView, Platform } from 'react-native'
 import YoutubePlayer from 'react-native-youtube-iframe';
 import ShortSummary from '../components/ShortSummary'
 import {database} from '../../database'
 import { StackActions } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
+import {Checkbox } from 'react-native-paper'
 
 const RapidReviews = ({page}) => {
     const navigation = useNavigation();
     const playerRef = useRef(null);
     
     // USING WINDOW DIMENSIONS SEEMS TO BREAK FULLSCREEN -- HARD CODE FOR NOW
-    // const windowWidth = Dimensions.get('window').width
-    // const width = Math.floor(windowWidth);
-    // const height = Math.floor(width*9/16);
-    const height = 225;
-    const width = 400;
+    const width = useWindowDimensions().width
+    const height = width*9/16
+    // const height = 225;
+    // const width = 400;
 
     // STILL BREAKS - go to Cases, come back, fullscreen, error persists
 
@@ -26,14 +26,14 @@ const RapidReviews = ({page}) => {
     }
 
     return (
-        <ScrollView style={{flex:1, backgroundColor:'#FFFFFF'}}>
-            {/* Youtube Video embedded */}
-            {page.video? 
+        <>
+        {/* Youtube Video embedded */}
+        {page.video? 
             <View style={{backgroundColor:'black', alignItems:'center', justifyContent:'center'}}>
                 <YoutubePlayer
                     ref={playerRef}
-                    height={225}
-                    width={400}
+                    height={height}
+                    width={width}
                     videoId={page.video}
                     play={true}
                     volume={50}
@@ -44,23 +44,29 @@ const RapidReviews = ({page}) => {
                     }}
                 />
             </View> :null}
-
-            {/* Links to Images */}
-            {/* <View style={{marginLeft:15, marginVertical:15}}>
-                <TouchableOpacity>
-                    <Text style={styles.touchable}>Standard Images - Longitudinal</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                >
-                    <Text style={styles.touchable}>Standard Images - Transverse</Text>
-                </TouchableOpacity>
-            </View> */}
+        <ScrollView style={{flex:1, backgroundColor:'#FFFFFF'}}>
+            
+            {/* Materials */}
+            
+            {page.materials? 
+                <View>
+                    <Text style={styles.header}>Required Materials</Text>
+                    {page.materials.map(item => 
+                        <MaterialsItem material={item} key={item}/>
+                    )}
+                </View>
+                :null
+            }
+            
 
             {/* Table */}
             {page.orientation? 
-            <View style={{margin: 15, borderWidth:0.5, borderColor:'white'}}>
+            <>
+            <Text style={styles.header}>Quick Summary</Text>
+            <View style={{marginHorizontal: 15, borderWidth:0.5, borderColor:'white'}}>
                 <ShortSummary data={page.orientation}/>
-            </View>: null}
+            </View>
+            </>: null}
 
             {/* Text Content */}
             {page.body? 
@@ -97,8 +103,35 @@ const RapidReviews = ({page}) => {
             {/* CLICKING NEEDS TO REFRESH */}
             
         </ScrollView>
+        </>
     )
 };
+
+const MaterialsItem = ({material}) => {
+    const [checked, setChecked] = useState(false)
+    return (
+        <View style={{flexDirection:'row', marginHorizontal:20}} key={material} >
+            <View style={{
+                borderWidth: Platform.OS === 'ios'? 1: 0,  // No box in iOS 
+                borderRadius:10,
+                marginBottom:5
+            }}>
+                <Checkbox 
+                    status={checked? 'checked':'unchecked'}
+                    onPress={() => setChecked(!checked)}
+                    color="#4f2683"
+                />
+            </View>
+            <TouchableWithoutFeedback onPress={() => setChecked(!checked)}>
+                <Text style={{
+                    ...styles.body,
+                    textDecorationLine: checked? 'line-through' : 'none',
+                    width:200
+                }}>{material}</Text>
+            </TouchableWithoutFeedback>
+        </View>
+    )
+}
 
 const styles = StyleSheet.create({
     touchable: {
@@ -107,7 +140,7 @@ const styles = StyleSheet.create({
     },
     header: {
         fontSize: 20,
-        marginLeft:15,
+        marginHorizontal:15,
         marginTop:15,
         marginBottom:15,
         fontFamily:'Raleway-Medium'

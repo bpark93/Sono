@@ -1,18 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'
-import {View, Text, StyleSheet, Image, Modal, ScrollView, TouchableOpacity, Platform, StatusBar,SafeAreaView} from 'react-native'
+import {View, Text, StyleSheet, Image, Modal, ScrollView,useWindowDimensions,TouchableOpacity, Platform, SafeAreaView} from 'react-native'
 import YoutubePlayer from 'react-native-youtube-iframe';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { Video } from 'expo-av';
 import LearnDetailButtons from '../components/LearnDetailButtons'
 import {setLearnProgress, getLearnProgress} from '../components/getLearnDatabase'
 import {Snackbar} from 'react-native-paper'
+import { StatusBar } from 'expo-status-bar';
 
 const LearnDetailScreen = ({route, navigation}) => {
     const {id, category} = route.params;
-    // const width = useWindowDimensions().width
-    // const height = width*9/16;
-    const width = 400;
-    const height = 225;
+    const width = useWindowDimensions().width
+    const height = width*9/16;
     const playerRef = useRef(null);
     const [progress, setProgress] = useState(null)
 
@@ -28,19 +27,9 @@ const LearnDetailScreen = ({route, navigation}) => {
     },[])
 
     const [snackVisible, setSnackVisible] = useState(false)
-    const onDismissSnackbar = () => {
-        setSnackVisible(false)
-    }
-
     const [modalVisible, setModalVisible] = useState(false)
-    const onRequestCloseModal = () => {
-        setModalVisible(false)
-    }
-
     const [transcriptToggled, setTranscriptToggled] = useState(false)
-    const onTranscriptDismissed = () => {
-        setTranscriptToggled(false)
-    }
+
 
     if (id.video){
         useEffect(()=> {
@@ -53,16 +42,19 @@ const LearnDetailScreen = ({route, navigation}) => {
 
     return (
         <View style={{flex:1}}>
-            <View style={{position:'absolute', top:0, left:0, right:0, backgroundColor:'black', height:70+height}}>
-                <TouchableOpacity style={{flex:1}} onPress={()=> navigation.goBack()} >
-                    <MaterialCommunityIcons name="arrow-left" size={24} color="white" style={{position: 'absolute', top:50, left:15 }}/>
-                </TouchableOpacity>
-            </View>
-            <View style={{marginTop:70, alignItems:"center"}}>
+            {/* <View style={{position:'absolute', top:0, left:0, right:0, backgroundColor:'black', height:70+height}}></View> */}
+            {/* <StatusBar style="light" translucent/> 
+                FOR SOME REASON PERSISTS ON OTHER SCREENS on Android
+            */}
+            <TouchableOpacity style={styles.backButton} onPress={()=> navigation.goBack()} >
+                <MaterialCommunityIcons name="arrow-left" size={24} color="white"/>
+            </TouchableOpacity>
+            <View style={{alignItems:"center", backgroundColor:'black'}}>
+                <View style={{marginTop:30}}>
                 { id.youtube ? 
                 <YoutubePlayer
-                        height={225}
-                        width={400}
+                        height={height}
+                        width={width}
                         videoId={id.youtube}
                         play={true}
                         volume={50}
@@ -71,6 +63,7 @@ const LearnDetailScreen = ({route, navigation}) => {
                             cc_lang_pref: "us",
                             showClosedCaptions: false,
                         }}
+                        
                 />
                 :<Video
                     ref={playerRef}
@@ -87,6 +80,7 @@ const LearnDetailScreen = ({route, navigation}) => {
                     }}
                 />
                 }
+                </View>
             </View>
             {!transcriptToggled? 
             <ScrollView style={styles.container} containerStyle={{justifyContent:'space-between', flex:1}}>
@@ -120,17 +114,17 @@ const LearnDetailScreen = ({route, navigation}) => {
             }
             <Snackbar 
                 visible={snackVisible}
-                onDismiss={() => onDismissSnackbar()}
+                onDismiss={() => setSnackVisible(false)}
                 duration={3000}
                 action={{
                     label:"Okay",
-                    onPress: () => onDismissSnackbar()
+                    onPress: () => setSnackVisible(false)
                 }}
             >"{id.title}" added to Bookmarks</Snackbar>
             <Modal
                 animationType="slide"
                 visible={modalVisible}
-                onRequestClose={() => onRequestCloseModal()}
+                onRequestClose={() => setModalVisible(false)}
 
             >
                 <View style={styles.modalView}>
@@ -196,6 +190,14 @@ const styles = StyleSheet.create({
         width:50,
         alignItems:'center',
         justifyContent:'center'
+    },
+    backButton:{
+        position:'absolute', 
+        top:40, 
+        left:15, 
+        width:30, 
+        height:30,
+        zIndex:1
     }
 });
 

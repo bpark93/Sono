@@ -1,20 +1,25 @@
-import React, { useState } from 'react'
-import {View, StyleSheet, FlatList, TouchableOpacity, Text, Keyboard} from 'react-native'
-import { Searchbar, List } from 'react-native-paper';
+import React, { useState, useRef, useEffect} from 'react'
+import {View, StyleSheet, Text, Keyboard, ScrollView} from 'react-native'
+import { Searchbar, HelperText } from 'react-native-paper';
 import { FontAwesome } from '@expo/vector-icons';
 import useResults from '../components/useResults';
 import SearchResultsList from '../components/SearchResultsList';
 import CategoriesList from '../components/CategoriesList'
+import {RecentPages} from '../components/RecentPages'
+import checkIfFirstLaunch from '../components/checkIfFirstLaunch'
 
 const SearchScreen = () => {
 
     const [term, setTerm] = useState('');
     const [searchApi, results, errorMessage] = useResults();
 
+    const searchbarRef = useRef(null);
+
     return (
         <View style={styles.container}>
             <Searchbar 
-                autoFocus
+                ref={searchbarRef}
+                // autoFocus
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder="Search"
@@ -37,6 +42,7 @@ const SearchScreen = () => {
                 onIconPress={() => {
                     Keyboard.dismiss();
                     setTerm('')
+                    // searchbarRef.current.blur()
                 }}
                 inputStyle={styles.inputStyle}
                 style={styles.barStyle}
@@ -47,14 +53,23 @@ const SearchScreen = () => {
                     />
                 )}
             />
+            <HelperText 
+                type="info"
+                visible={!term /*&& !searchbarRef.current.isFocused()*/}
+                style={{marginHorizontal:15}}
+            >Try "pneumothorax", "FAST exam"...</HelperText>
             {errorMessage ? <Text>{errorMessage}</Text> : null}
-            {term ? 
-                <SearchResultsList 
-                    results={results}
-                /> :
-                <CategoriesList 
-                />
-            }
+            <ScrollView>
+                {term ? 
+                    <SearchResultsList 
+                        results={results}
+                    /> :
+                    <>
+                    <RecentPages />
+                    <CategoriesList/>
+                    </>
+                }
+            </ScrollView>
         </View>
     )
 };
