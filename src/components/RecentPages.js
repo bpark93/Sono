@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, FlatList, Image, ScrollView, TouchableOpacity} from 'react-native'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { AsyncStorage } from 'react-native';
 import {database} from '../../database'
 import { FontAwesome } from '@expo/vector-icons';
+import { useIsFocused } from '@react-navigation/native';
+
 
 const RECENT = "recent_pages"
 const MAX_ITEMS = 5
@@ -11,27 +13,30 @@ const MAX_ITEMS = 5
 const RecentPages = () => {
     const navigation = useNavigation();
     const [list, setList] = useState([])
-    useEffect(() => {
-        async function getData() {
-            console.log('hi')
-            const temp = await getList();
-            let finalList = [];
-            for (let j=0; j<temp.length; j++){
-                for (let i=0; i<database.length; i++){
-                    if (database[i].id === temp[j]){
-                        finalList = [...finalList, database[i]]
+    const isFocused = useIsFocused();
+
+    useFocusEffect(
+        React.useCallback(() => {
+            async function getData() {
+                console.log('hi')
+                const temp = await getList();
+                let finalList = [];
+                for (let j=0; j<temp.length; j++){
+                    for (let i=0; i<database.length; i++){
+                        if (database[i].id === temp[j]){
+                            finalList = [...finalList, database[i]]
+                        }
                     }
                 }
+                setList(finalList);
             }
-            setList(finalList);
-        }
-        const unsubscribe = navigation.addListener('focus', () => {
-            getData()
-        })
-        return () => unsubscribe();
-    },[navigation])
-
-    // WILL NOT TRIGGER ON BACKING FROM A SEARCH
+            getData();
+        // const unsubscribe = navigation.addListener('focus', () => {
+        //     getData()
+        // })
+            // return () => {};
+        },[])
+    )    
 
     return (
         <View style={{marginHorizontal:15}}>
