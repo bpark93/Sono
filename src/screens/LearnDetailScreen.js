@@ -43,10 +43,10 @@ const LearnDetailScreen = ({route, navigation}) => {
 
     const handleFullscreen = async (event) => {
         if (event.fullscreenUpdate === 0){
-            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
+            // await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
             console.log("HELLO")
         } else if (event.fullscreenUpdate === 2){
-            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+            // await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
             console.log("FUCK YOU")
         }
     }
