@@ -34,7 +34,7 @@ const RecentPages = () => {
         // const unsubscribe = navigation.addListener('focus', () => {
         //     getData()
         // })
-            // return () => {};
+            return () => getData();
         },[])
     )    
 
