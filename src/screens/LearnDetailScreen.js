@@ -3,10 +3,11 @@ import {View, Text, StyleSheet, Image, Modal, ScrollView,useWindowDimensions,Tou
 import YoutubePlayer from 'react-native-youtube-iframe';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { Video } from 'expo-av';
+import VideoPlayer from 'expo-video-player'
 import LearnDetailButtons from '../components/LearnDetailButtons'
 import {setLearnProgress, getLearnProgress} from '../components/getLearnDatabase'
 import {Snackbar} from 'react-native-paper'
-import { StatusBar } from 'expo-status-bar';
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 const LearnDetailScreen = ({route, navigation}) => {
     const {id, category} = route.params;
@@ -38,6 +39,16 @@ const LearnDetailScreen = ({route, navigation}) => {
             })
             return () => unsubscribe();
         },[navigation])
+    }
+
+    const handleFullscreen = async (event) => {
+        if (event.fullscreenUpdate === 0){
+            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
+            console.log("HELLO")
+        } else if (event.fullscreenUpdate === 2){
+            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+            console.log("FUCK YOU")
+        }
     }
 
     return (
@@ -74,6 +85,7 @@ const LearnDetailScreen = ({route, navigation}) => {
                     resizeMode="contain"
                     shouldPlay
                     useNativeControls
+                    onFullscreenUpdate={event => handleFullscreen(event)}
                     style={{ 
                         width: width,
                         height: height,

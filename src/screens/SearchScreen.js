@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect} from 'react'
 import {View, StyleSheet, Text, Keyboard, ScrollView} from 'react-native'
-import { Searchbar, HelperText } from 'react-native-paper';
+import { Searchbar} from 'react-native-paper';
 import { FontAwesome } from '@expo/vector-icons';
 import useResults from '../components/useResults';
 import SearchResultsList from '../components/SearchResultsList';
 import CategoriesList from '../components/CategoriesList'
 import {RecentPages} from '../components/RecentPages'
-import checkIfFirstLaunch from '../components/checkIfFirstLaunch'
+import Constants from 'expo-constants';
 
 const SearchScreen = () => {
 
@@ -53,11 +53,6 @@ const SearchScreen = () => {
                     />
                 )}
             />
-            <HelperText 
-                type="info"
-                visible={!term /*&& !searchbarRef.current.isFocused()*/}
-                style={{marginHorizontal:15}}
-            >Try "pneumothorax", "FAST exam"...</HelperText>
             {errorMessage ? <Text>{errorMessage}</Text> : null}
             <ScrollView>
                 {term ? 
@@ -93,7 +88,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#ffffff',
         flex: 1,
-        paddingTop:40,
+        paddingTop:Constants.statusBarHeight+10,
     },
     textStyle: {
         fontSize: 18,

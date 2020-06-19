@@ -3,9 +3,7 @@ import { View, Text, StyleSheet, FlatList, Image, ScrollView, TouchableOpacity} 
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { AsyncStorage } from 'react-native';
 import {database} from '../../database'
-import { FontAwesome } from '@expo/vector-icons';
-import { useIsFocused } from '@react-navigation/native';
-
+import { FontAwesome5 } from '@expo/vector-icons';
 
 const RECENT = "recent_pages"
 const MAX_ITEMS = 5
@@ -13,12 +11,11 @@ const MAX_ITEMS = 5
 const RecentPages = () => {
     const navigation = useNavigation();
     const [list, setList] = useState([])
-    const isFocused = useIsFocused();
 
     useFocusEffect(
         React.useCallback(() => {
+            let isActive = true;
             async function getData() {
-                console.log('hi')
                 const temp = await getList();
                 let finalList = [];
                 for (let j=0; j<temp.length; j++){
@@ -34,7 +31,7 @@ const RecentPages = () => {
         // const unsubscribe = navigation.addListener('focus', () => {
         //     getData()
         // })
-            return () => getData();
+            return () => {isActive = false};
         },[])
     )    
 
@@ -48,19 +45,25 @@ const RecentPages = () => {
                         onPress={() => navigation.navigate('SearchDetail', {id:page})}
                         style={{flexDirection:'row', marginBottom:8}}    
                     >
-                        <View style={styles.categoryView}>
+                        {/* <View style={styles.categoryView}>
                             <Text style={styles.category} >{page.category}</Text> 
-                        </View>
+                        </View> */}
+                        <PrettyTag category={page.category}/>
                         <View style={styles.pageInfo}>
-                            {page.video?
-                                    <FontAwesome 
-                                        name="film" 
-                                        style={styles.iconStyle}
-                                    />
-                                    :<FontAwesome 
-                                        name="image" 
-                                        style={styles.iconStyle}
-                                    />
+                            {page.type === "rapidreview"?
+                                <FontAwesome5 
+                                    name="play-circle" 
+                                    style={styles.iconStyle}
+                                />
+                            : page.type === "image"? 
+                                <FontAwesome5 
+                                    name="images" 
+                                    style={styles.iconStyle}
+                                />
+                            :   <FontAwesome5 
+                                    name="book-open" 
+                                    style={styles.iconStyle}
+                                />
                             }
                             <Text style={styles.text}>{page.title}</Text>
                         </View>
@@ -133,11 +136,45 @@ const setList = async (id) => {
     }
 }
 
+const PrettyTag = ({category}) => {
+    let picker = "#4f2683"
+    switch (category) {
+        case "Aorta":
+            picker = "#e51c23" // Material Red
+            break;
+        case "Cardiac":
+            picker = "#ff5722" // Material Deep Orange
+            break;
+        case "Lung":
+            picker = "#3f51b5" // Material Indigo
+            break;
+        case "Abdominal":
+            picker = "#5677fc" // Material Bluen
+            break;
+        case "Renal/GU":
+            picker = "#259b24" // Material Green
+            break;
+        case "Procedural":
+            picker = "#00bcd4" // Material Cyan
+            break;
+        case "Pelvic":
+            picker = "#e91e63" // Material Pink
+            break;
+        default:
+            break;
+    }
+    return (
+        <View style={{...styles.categoryView, borderColor:picker}}>
+            <Text style={{...styles.category, color:picker}}>{category}</Text> 
+        </View>
+    )
+}
+
 const styles = StyleSheet.create({
     iconStyle: {
-        fontSize: 14,
+        fontSize: 16,
         color: 'black',
-        // marginRight:10,
+        marginHorizontal:5,
     },
     subheaderStyle: {
         marginVertical: 15,
@@ -147,16 +184,17 @@ const styles = StyleSheet.create({
     category:{
         fontSize:14,
         fontFamily:"Raleway-Bold",
-        color:'#34aadc',       
+        color:'#4f2683',       
     },
     categoryView:{
-        borderColor:'#34aadc',
+        borderColor:'#4f2683',
         borderWidth:2,
         borderRadius:5,
+        // backgroundColor:'#4f2683',
         padding:5,
-        // flex:1,
+        width:90,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
     },
     text:{
         fontFamily:'Raleway-Regular',
@@ -167,8 +205,8 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         borderBottomWidth:0.5,
         borderColor:'gray',
-        marginLeft:10,
-        // flex:3,
+        marginHorizontal:10,
+        flex:1,
         alignItems:'center'
     }
 })

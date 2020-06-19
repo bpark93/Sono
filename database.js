@@ -242,7 +242,7 @@ const database = [
     {
         "title": "Pelvic Exam Image Acquisition",
         "id":"10",
-        "category": "Female Pelvis",
+        "category": "Pelvic",
         "type": "rapidreview",
         "tags": [],
         "video":'lj_ApJwf3w4',
@@ -578,7 +578,7 @@ const categoryDatabase = [
         }
     },
     {
-        title: 'Female Pelvis',
+        title: 'Pelvic',
         image: require('./assets/png/050-fetus.png'),
         done: false,
         groups: {
@@ -871,7 +871,7 @@ const learnDatabase = [
         ],
     },
     {
-        title: 'Female Pelvis',
+        title: 'Pelvic',
         thumbnail: require('./assets/png2/029-pelvic-area.png'),
         id:8,
         pages: [

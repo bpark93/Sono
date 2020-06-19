@@ -4,18 +4,17 @@ import { learnDatabase } from '../../database'
 import LearnItem from '../components/LearnItem'
 import LottieView from 'lottie-react-native';
 import BookmarkList from '../components/BookmarkList'
+import Constants from 'expo-constants';
 
 const LearnScreen = () => {
 
     return (
-        <View style={{flex:1}}>
-            <View style={styles.headerImage}>
-                <Image 
-                    style={styles.logoStyle}
-                    source={require('../../assets/western-logo.png')}
-                /> 
-            </View>
-            <ScrollView style={{backgroundColor:'white', flex:1}}>
+        <View style={{flex:1, backgroundColor:'white', paddingTop:Constants.statusBarHeight+15}}>
+            <Image 
+                style={styles.logoStyle}
+                source={require('../../assets/western-logo.png')}
+            /> 
+            <ScrollView style={{flex:1}}>
                 <BookmarkList />
                 <Text style={styles.header}>Browse Screencasts</Text>
                 {/* <FlatList 
@@ -41,11 +40,12 @@ const LearnScreen = () => {
 const styles = StyleSheet.create({
     headerImage: {
         backgroundColor: '#ffffff',
-        paddingVertical: 30,
+        paddingBottom: 30,
+        paddingTop:1,
         height:120
     },
     logoStyle: {
-        height:100,
+        height:70,
         width: 150, 
         resizeMode: 'contain',
         alignSelf:'center'

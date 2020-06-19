@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet, FlatList } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { List } from 'react-native-paper'
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 const SearchResultsScreen = ({results}) => {
     const navigation = useNavigation();
@@ -40,15 +40,20 @@ const SearchResultsScreen = ({results}) => {
                     title={item.title}
                     description={item.category} 
                     left={() => 
-                        item.video?
-                        <FontAwesome 
-                            name="film" 
-                            style={styles.iconStyle}
-                        />
-                        :<FontAwesome 
-                            name="image" 
-                            style={styles.iconStyle}
-                        />
+                        item.type === "rapidreview"?
+                            <FontAwesome5 
+                                name="play-circle" 
+                                style={styles.iconStyle}
+                            />
+                        : item.type === "image"? 
+                            <FontAwesome5 
+                                name="images" 
+                                style={styles.iconStyle}
+                            />
+                        :   <FontAwesome5 
+                                name="book-open" 
+                                style={styles.iconStyle}
+                            />
                     }
                     onPress={() => navigation.navigate('SearchDetail', {id: item})}
                 />

@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, useWindowDimensions, ScrollView, Platform } from 'react-native'
 import YoutubePlayer from 'react-native-youtube-iframe';
 import ShortSummary from '../components/ShortSummary'
@@ -10,6 +10,14 @@ import {Checkbox } from 'react-native-paper'
 const RapidReviews = ({page}) => {
     const navigation = useNavigation();
     const playerRef = useRef(null);
+    const [playing, setPlaying] = useState(true)
+
+    useEffect(()=> {
+        const unsubscribe = navigation.addListener('blur', ()=> {
+            setPlaying(false);
+        })
+        return () => unsubscribe();
+    },[navigation])
     
     // USING WINDOW DIMENSIONS SEEMS TO BREAK FULLSCREEN -- HARD CODE FOR NOW
     const width = useWindowDimensions().width
@@ -24,27 +32,31 @@ const RapidReviews = ({page}) => {
         const pushAction = StackActions.push('SearchDetail',{id: response[0]})
         navigation.dispatch(pushAction)
     }
+    
 
     return (
         <>
-        {/* Youtube Video embedded */}
-        {page.video? 
-            <View style={{backgroundColor:'black', alignItems:'center', justifyContent:'center'}}>
-                <YoutubePlayer
-                    ref={playerRef}
-                    height={height}
-                    width={width}
-                    videoId={page.video}
-                    play={true}
-                    volume={50}
-                    playbackRate={1}
-                    playerParams={{
-                        cc_lang_pref: "us",
-                        showClosedCaptions: false,
-                    }}
-                />
-            </View> :null}
+        
         <ScrollView style={{flex:1, backgroundColor:'#FFFFFF'}}>
+
+            {/* Youtube Video embedded */}
+            {page.video? 
+                <View style={{backgroundColor:'black', alignItems:'center', justifyContent:'center'}}>
+                    <YoutubePlayer
+                        ref={playerRef}
+                        height={height}
+                        width={width}
+                        videoId={page.video}
+                        play={playing}
+                        volume={50}
+                        playbackRate={1}
+                        playerParams={{
+                            cc_lang_pref: "us",
+                            showClosedCaptions: false,
+                        }}
+                    />
+                </View> 
+            :null}
             
             {/* Materials */}
             
@@ -61,12 +73,11 @@ const RapidReviews = ({page}) => {
 
             {/* Table */}
             {page.orientation? 
-            <>
-            <Text style={styles.header}>Quick Summary</Text>
-            <View style={{marginHorizontal: 15, borderWidth:0.5, borderColor:'white'}}>
-                <ShortSummary data={page.orientation}/>
-            </View>
-            </>: null}
+                <>
+                    <Text style={styles.header}>Quick Summary</Text>
+                    <ShortSummary data={page.orientation}/>
+                </>
+            :null}
 
             {/* Text Content */}
             {page.body? 
@@ -82,24 +93,26 @@ const RapidReviews = ({page}) => {
                             <Text style={styles.body} key={paragraph}>{paragraph}</Text>
                         )}
                     </View>
-                )):null}
+                ))
+            :null}
 
 
             {/* Associated Pages */}
             {page.associated_pages?
             <View 
-                style={{marginLeft:15, marginTop:15}}
-            >
-                <Text style={{fontWeight:'bold', marginBottom:5}}>Associated Pages</Text>
-                {page.associated_pages.map((index) => (
-                    <TouchableOpacity 
-                        key={index.id}
-                        onPress={() => handleOnPress(index.id)}
-                    >
-                        <Text style={styles.touchable}>{index.title}</Text>
-                    </TouchableOpacity>
-                ))}
-            </View>:null}
+                    style={{marginLeft:15, marginTop:15}}
+                >
+                    <Text style={{fontWeight:'bold', marginBottom:5}}>Associated Pages</Text>
+                    {page.associated_pages.map((index) => (
+                        <TouchableOpacity 
+                            key={index.id}
+                            onPress={() => handleOnPress(index.id)}
+                        >
+                            <Text style={styles.touchable}>{index.title}</Text>
+                        </TouchableOpacity>
+                    ))}
+                </View>
+            :null}
             {/* CLICKING NEEDS TO REFRESH */}
             
         </ScrollView>

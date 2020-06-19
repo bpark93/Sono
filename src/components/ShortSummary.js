@@ -4,7 +4,7 @@ import { View, Text, StyleSheet} from 'react-native'
 const ShortSummary = ({data}) => {
 
     return (
-        <>
+        <View style={{flex:1, marginHorizontal:15}}>
             <View style={styles.row}>
                 <View style={styles.topCategory}>
                     <Text style={{fontFamily:'Raleway-Bold', color:'white'}}>Probe</Text>
@@ -35,7 +35,7 @@ const ShortSummary = ({data}) => {
                 </View>
                 <Text style={styles.text}>{data.areas_of_interest}</Text>
             </View>
-        </>
+        </View>
     )
 }
 
