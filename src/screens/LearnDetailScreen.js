@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import {View, Text, StyleSheet, Image, Modal, ScrollView,useWindowDimensions,TouchableOpacity, Platform, SafeAreaView} from 'react-native'
+import {View, Text, StyleSheet, Image, Modal, ScrollView,useWindowDimensions,TouchableOpacity, Platform, Dimensions} from 'react-native'
 import YoutubePlayer from 'react-native-youtube-iframe';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { Video } from 'expo-av';
@@ -11,10 +11,22 @@ import * as ScreenOrientation from 'expo-screen-orientation';
 
 const LearnDetailScreen = ({route, navigation}) => {
     const {id, category} = route.params;
-    const width = useWindowDimensions().width
-    const height = width*9/16;
+
     const playerRef = useRef(null);
     const [progress, setProgress] = useState(null)
+
+    const Width = Dimensions.get("window").width;
+    const Height = Dimensions.get("window").height;
+    const [OrientationMode, setOrientationMode] = useState({
+        width: Width,
+        height: Width*9/16
+    });
+    const landscape = () => {
+        setOrientationMode({ width: Height, height: Width });
+    };
+    const portrait = () => {
+        setOrientationMode({ width: Width, height: Width*9/16 });
+    };
 
     useEffect(() => {
         const checkProgress = async () => {
@@ -41,13 +53,26 @@ const LearnDetailScreen = ({route, navigation}) => {
         },[navigation])
     }
 
-    const handleFullscreen = async (event) => {
+    const handleFullscreenVideo = async (event) => {
         if (event.fullscreenUpdate === 0){
-            // await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
-            console.log("HELLO")
+            landscape();
+            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
+            console.log(`HEIGHT: ${OrientationMode.height} WIDTH: ${OrientationMode.width}`)
         } else if (event.fullscreenUpdate === 2){
-            // await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
-            console.log("FUCK YOU")
+            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+            portrait();
+            console.log(`HEIGHT: ${OrientationMode.height} WIDTH: ${OrientationMode.width}`)
+        }
+    }
+    const handleFullScreenYoutube = async (status) => {
+        if (status === true){
+            landscape();
+            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
+            console.log(`HEIGHT: ${OrientationMode.height} WIDTH: ${OrientationMode.width}`)
+        } else if (status === false){
+            portrait();
+            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+            console.log(`HEIGHT: ${OrientationMode.height} WIDTH: ${OrientationMode.width}`)
         }
     }
 
@@ -64,12 +89,13 @@ const LearnDetailScreen = ({route, navigation}) => {
                 <View style={{marginTop:30}}>
                 { id.youtube ? 
                 <YoutubePlayer
-                        height={height}
-                        width={width}
+                        height={OrientationMode.height}
+                        width={OrientationMode.width}
                         videoId={id.youtube}
                         play={true}
                         volume={50}
                         playbackRate={1}
+                        onFullScreenChange={status => handleFullScreenYoutube(status)}
                         playerParams={{
                             cc_lang_pref: "us",
                             showClosedCaptions: false,
@@ -85,10 +111,10 @@ const LearnDetailScreen = ({route, navigation}) => {
                     resizeMode="contain"
                     shouldPlay
                     useNativeControls
-                    onFullscreenUpdate={event => handleFullscreen(event)}
+                    onFullscreenUpdate={event => handleFullscreenVideo(event)}
                     style={{ 
-                        width: width,
-                        height: height,
+                        width: OrientationMode.width,
+                        height: OrientationMode.height,
                     }}
                 />
                 }
