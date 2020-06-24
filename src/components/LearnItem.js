@@ -1,7 +1,6 @@
 import React from 'react'
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native'
 import { useNavigation } from '@react-navigation/native';
-// import { ProgressBar } from 'react-native-paper';
 
 const LearnItem = ({item}) => {
     const navigation = useNavigation();
@@ -17,7 +16,6 @@ const LearnItem = ({item}) => {
                         source={item.thumbnail}
                     />
                     <Text style={styles.textStyle}>{item.title}</Text>
-                    {/* <Text style={styles.progressStyle}>{item.progress}%</Text> */}
                 </View>
             </TouchableOpacity>
         </View>

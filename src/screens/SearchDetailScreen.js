@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import { View, StyleSheet } from 'react-native'
+import React, {useEffect} from 'react'
+import { View, StyleSheet, Text } from 'react-native'
 import { WebView } from 'react-native-webview';
 import {ActivityIndicator} from 'react-native-paper'
 import RapidReviews from '../components/RapidReviews'
@@ -17,22 +17,20 @@ const SearchDetailScreen = ({route}) => {
     },[])
     
     if (id.type === 'resource') { 
-        const [webViewLoading, setWebViewLoading] = useState(true)
         return (
-            <>
-                {webViewLoading ? (
-                    <View style={{flex:1, alignItems: 'center', justifyContent:'center', backgroundColor:'#FFFFFF'}}>
+            <WebView 
+                source={{ uri: id.pageURL }}
+                renderLoading={() => (
+                    <View style={{flex:1, alignItems: 'center', /*justifyContent:'center',*/ backgroundColor:'#FFFFFF'}}>
                         <ActivityIndicator
                             animating={true} 
                             size='large'  
                         />
+                        <Text style={{marginTop:20}}>Loading Resource...</Text>
                     </View>
-                ) : null}
-                <WebView 
-                    source={{ uri: id.pageURL }}
-                    onLoadEnd={() => setWebViewLoading(false)}
-                />
-            </>               
+                )}
+                startInLoadingState={true}
+            />
         )        
     }
 

@@ -3,8 +3,6 @@ import {View, Text, StyleSheet, TouchableOpacity, Image, useWindowDimensions } f
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 import {getLearnProgress, setLearnProgress} from '../components/getLearnDatabase'
-import { categoryDatabase } from '../../database';
-
 
 const LearnModuleItem = ({page, index, category}) => {
     const navigation = useNavigation();
@@ -50,7 +48,7 @@ const LearnModuleItem = ({page, index, category}) => {
                 <Text style={styles.shortText} numberOfLines={5}>{page.captionText}</Text>
                 {progress === '0'?
                     <View style={{justifyContent:'space-around', alignItems:'center', flexDirection:'row'}}>
-                        <TouchableOpacity onPress={() => navigation.navigate('LearnDetail', {id: page, category})} style={styles.start}>
+                        <TouchableOpacity onPress={() => navigation.replace('LearnDetail', {id: page, category})} style={styles.start}>
                             <Text style={styles.buttonText}>Start</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.quiz}>
@@ -59,7 +57,7 @@ const LearnModuleItem = ({page, index, category}) => {
                     </View>
                 :   progress === '100'?
                     <View style={{justifyContent:'space-around', alignItems:'center', flexDirection:'row'}}>
-                        <TouchableOpacity onPress={() => navigation.navigate('LearnDetail', {id: page, category})} style={styles.done}>
+                        <TouchableOpacity onPress={() => navigation.replace('LearnDetail', {id: page, category})} style={styles.done}>
                             <Text style={styles.buttonText}>Complete</Text>
                             <FontAwesome name="check-circle" size={14} color='white' style={{marginLeft:5}} />
                         </TouchableOpacity>
@@ -68,7 +66,7 @@ const LearnModuleItem = ({page, index, category}) => {
                         </TouchableOpacity>
                     </View>
                 :   <View style={{justifyContent:'space-around', alignItems:'center', flexDirection:'row'}}>
-                        <TouchableOpacity onPress={() => navigation.navigate('LearnDetail', {id: page, category})} style={styles.continue}>
+                        <TouchableOpacity onPress={() => navigation.replace('LearnDetail', {id: page, category})} style={styles.continue}>
                             <Text style={styles.buttonText}>Continue</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.quiz}>

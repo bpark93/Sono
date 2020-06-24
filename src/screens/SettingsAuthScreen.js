@@ -1,10 +1,11 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 
 const SettingsAuthScreen = () => {
     return (
-        <View style={styles.container}>
-            <Text>SettingsAuthScreen</Text>
+        <View style={{flex:1, justifyContent:'center', alignItems:'center', backgroundColor:'white'}}>
+            <Image source={require('../../assets/crane.png')} style={{height: 200, width:200, marginBottom:20}}/>
+            <Text>Under construction</Text>
         </View>
     )
 }

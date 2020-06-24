@@ -37,7 +37,7 @@ const RecentPages = () => {
 
     return (
         <View style={{marginHorizontal:15}}>
-            <Text style={styles.subheaderStyle}>Recent Pages</Text>
+            <Text style={styles.subheaderStyle}>Recently visited</Text>
             {list.length !=0 ?
                 list.map(page => (
                     <TouchableOpacity 
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     },
     subheaderStyle: {
         marginVertical: 15,
-        fontSize: 20,
+        fontSize: 18,
         fontFamily:'Raleway-Medium'
     },
     category:{

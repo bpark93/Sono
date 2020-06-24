@@ -1,20 +1,33 @@
 import React, { useEffect, useRef, useState } from 'react'
-import {View, Text, StyleSheet, Image, Modal, ScrollView,useWindowDimensions,TouchableOpacity, Platform, Dimensions} from 'react-native'
+import {View, Text, StyleSheet, Image, Modal, ScrollView,useWindowDimensions,TouchableOpacity, Platform, Dimensions, StatusBar} from 'react-native'
 import YoutubePlayer from 'react-native-youtube-iframe';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { Video } from 'expo-av';
-import VideoPlayer from 'expo-video-player'
+import {learnDatabase} from '../../database'
 import LearnDetailButtons from '../components/LearnDetailButtons'
 import {setLearnProgress, getLearnProgress} from '../components/getLearnDatabase'
 import {Snackbar} from 'react-native-paper'
 import * as ScreenOrientation from 'expo-screen-orientation';
+import Constants from 'expo-constants';
 
 const LearnDetailScreen = ({route, navigation}) => {
     const {id, category} = route.params;
 
+    // Progress
     const playerRef = useRef(null);
     const [progress, setProgress] = useState(null)
+    useEffect(() => {
+        const checkProgress = async () => {
+            const pageprogress = await getLearnProgress(id.id)
+            if (pageprogress === "0"){
+                setLearnProgress(id.id, "10");
+            }
+            setProgress(pageprogress)
+        }
+        checkProgress();
+    },[])
 
+    // Orientation manipulation
     const Width = Dimensions.get("window").width;
     const Height = Dimensions.get("window").height;
     const [OrientationMode, setOrientationMode] = useState({
@@ -27,23 +40,51 @@ const LearnDetailScreen = ({route, navigation}) => {
     const portrait = () => {
         setOrientationMode({ width: Width, height: Width*9/16 });
     };
-
-    useEffect(() => {
-        const checkProgress = async () => {
-            const pageprogress = await getLearnProgress(id.id)
-            if (pageprogress === "0"){
-                setLearnProgress(id.id, "10");
+    const handleFullscreenVideo = async (event) => {
+        if (event.fullscreenUpdate === 0){
+            try{
+                landscape();
+                await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
+            } catch (error){
+                console.log(error)
             }
-            setProgress(pageprogress)
+        } else if (event.fullscreenUpdate === 2){
+            try{
+                portrait();
+                await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+            } catch (error){
+                console.log(error)
+            }
         }
-        checkProgress();
-    },[])
+    }
+    const handleFullScreenYoutube = async (status) => {
+        if (status === true){
+            try{
+                landscape();
+                await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
+            } catch (error){
+                console.log(error)
+            }
+        } else if (status === false){
+            try{
+                portrait();
+                await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+            } catch (error){
+                console.log(error)
+            }
+        }
+    }
 
+    // Set up for navigation to Modules 
+    const categoryId = id.id.split(".")[0]
+    const moduleParams = learnDatabase.filter(item => item.id.toString() === categoryId)
+    
+    // States for Buttons
     const [snackVisible, setSnackVisible] = useState(false)
     const [modalVisible, setModalVisible] = useState(false)
     const [transcriptToggled, setTranscriptToggled] = useState(false)
 
-
+    // To pause video once clicking away
     if (id.video){
         useEffect(()=> {
             const unsubscribe = navigation.addListener('blur', ()=> {
@@ -53,40 +94,16 @@ const LearnDetailScreen = ({route, navigation}) => {
         },[navigation])
     }
 
-    const handleFullscreenVideo = async (event) => {
-        if (event.fullscreenUpdate === 0){
-            landscape();
-            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
-            console.log(`HEIGHT: ${OrientationMode.height} WIDTH: ${OrientationMode.width}`)
-        } else if (event.fullscreenUpdate === 2){
-            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
-            portrait();
-            console.log(`HEIGHT: ${OrientationMode.height} WIDTH: ${OrientationMode.width}`)
-        }
-    }
-    const handleFullScreenYoutube = async (status) => {
-        if (status === true){
-            landscape();
-            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
-            console.log(`HEIGHT: ${OrientationMode.height} WIDTH: ${OrientationMode.width}`)
-        } else if (status === false){
-            portrait();
-            await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
-            console.log(`HEIGHT: ${OrientationMode.height} WIDTH: ${OrientationMode.width}`)
-        }
-    }
-
     return (
-        <View style={{flex:1}}>
+        <View style={{flex:1, }}>
             {/* <View style={{position:'absolute', top:0, left:0, right:0, backgroundColor:'black', height:70+height}}></View> */}
-            {/* <StatusBar style="light" translucent/> 
-                FOR SOME REASON PERSISTS ON OTHER SCREENS on Android
-            */}
-            <TouchableOpacity style={styles.backButton} onPress={()=> navigation.goBack()} >
+            {/* <StatusBar style="dark" translucent/>  */}
+           
+            <TouchableOpacity style={styles.backButton} onPress={()=> navigation.replace('Modules', {id:moduleParams[0]})} >
                 <MaterialCommunityIcons name="arrow-left" size={24} color="white"/>
             </TouchableOpacity>
-            <View style={{alignItems:"center", backgroundColor:'black'}}>
-                <View style={{marginTop:30}}>
+            <View style={{alignItems:"center", backgroundColor:'black', marginTop: Constants.statusBarHeight}}>
+                <View>
                 { id.youtube ? 
                 <YoutubePlayer
                         height={OrientationMode.height}

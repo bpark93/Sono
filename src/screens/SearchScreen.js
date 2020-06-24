@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect} from 'react'
-import {View, StyleSheet, Text, Keyboard, ScrollView} from 'react-native'
-import { Searchbar} from 'react-native-paper';
+import {View, StyleSheet, Text, Keyboard, ScrollView, AsyncStorage} from 'react-native'
+import { Searchbar, Banner} from 'react-native-paper';
 import { FontAwesome } from '@expo/vector-icons';
 import useResults from '../components/useResults';
 import SearchResultsList from '../components/SearchResultsList';
@@ -14,6 +14,19 @@ const SearchScreen = () => {
     const [searchApi, results, errorMessage] = useResults();
 
     const searchbarRef = useRef(null);
+
+    const [bannerVisible, setBannerVisible] = useState(false);
+    const dismissForever = async () => {
+        await AsyncStorage.setItem("search_screen_banner_dismissed", "true")
+    }
+    useEffect(() => {
+        async function getBannerInfo () {
+            // AsyncStorage.removeItem("search_screen_banner_dismissed")
+            const bannerInfo = await AsyncStorage.getItem("search_screen_banner_dismissed")
+            bannerInfo === "true"? setBannerVisible(false) : setBannerVisible(true)
+        }
+        getBannerInfo();
+    },[])
 
     return (
         <View style={styles.container}>
@@ -53,6 +66,21 @@ const SearchScreen = () => {
                     />
                 )}
             />
+            <Banner
+                visible={bannerVisible}
+                icon="information"
+                actions={[
+                    {
+                        label: "Got it",
+                        onPress: () => {
+                            setBannerVisible(false)
+                            dismissForever();
+                        }
+                    }
+                ]}    
+            >
+                <Text>{`Testers! Try searching or navigating to the following pages to see possible features: \n\nAbdominal Aorta Image Aquisition\nUS-Guided Peripheral IV\nLV - Severely Depressed`}</Text>
+            </Banner>
             {errorMessage ? <Text>{errorMessage}</Text> : null}
             <ScrollView>
                 {term ? 
