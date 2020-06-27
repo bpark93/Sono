@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, useWindowDimensions, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, useWindowDimensions } from 'react-native'
 import ImageModal from 'react-native-image-modal';
 import LibraryChip from '../components/LibraryChip'
 import { FlatList } from 'react-native-gesture-handler';
@@ -48,25 +48,6 @@ const SearchDetailScreen = ({page}) => {
                 <LibraryChip name={item} handleChipPress={(name)=> handleChipPress(name)} key={item}/>
             ))}
         </View>
-        {/* <ScrollView style={{flex:1, backgroundColor:'white'}}>
-            {images.map((item) =>         
-                <View key={item.title}>
-                    <Text style={styles.header}>{item.title}</Text>
-                    <ImageModal 
-                        swipeToDismiss={true}
-                        resizeMode="contain"
-                        imageBackgroundColor="#000000"
-                        style={{
-                            width: width,
-                            height: width,
-                        }}
-                        source={{uri:item.url}}
-                    />
-                    <Text style={styles.body}>{item.caption}</Text>
-                    <Text style={styles.body}>Contributed by {item.contributor}</Text>
-                </View>
-            )}
-        </ScrollView> */}
         <FlatList 
             style={{flex:1, backgroundColor:'white'}}
             maxToRenderPerBatch={5}

@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     iconStyle: {
         fontSize: 30,
         color: 'black',
+        width:40,
         marginTop: 10,
         marginRight:10,
     },
