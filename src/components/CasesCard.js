@@ -1,15 +1,16 @@
 import React from 'react'
-import {View, Text, StyleSheet, Image, useWindowDimensions} from 'react-native'
+import {View, Text, StyleSheet, Image, Dimensions} from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons';
 import HTML from 'react-native-render-html';
 
 const CasesCard = ({result}) => {
+    const Width = Dimensions.get("window").width;
 
     return (
         <View style={styles.container}>
             {result._embedded["wp:featuredmedia"][0].media_details.sizes.course_thumbnail ? 
                 <Image 
-                    style={{height: 270, width:useWindowDimensions().width, resizeMode:'contain'}} 
+                    style={{height: 270, width:Width, resizeMode:'contain'}} 
                     source={{uri: result._embedded["wp:featuredmedia"][0].media_details.sizes.course_thumbnail.source_url}}
                 />
                 :null

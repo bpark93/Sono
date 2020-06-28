@@ -1,11 +1,12 @@
 import React, {useRef, useState, useEffect} from 'react'
-import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, useWindowDimensions, ScrollView, Platform } from 'react-native'
+import { Image, View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Dimensions, ScrollView, Platform } from 'react-native'
 import YoutubePlayer from 'react-native-youtube-iframe';
 import ShortSummary from '../components/ShortSummary'
 import {database} from '../../database'
 import { StackActions } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import {Checkbox } from 'react-native-paper'
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 const RapidReviews = ({page}) => {
     const navigation = useNavigation();
@@ -19,13 +20,36 @@ const RapidReviews = ({page}) => {
         return () => unsubscribe();
     },[navigation])
     
-    // USING WINDOW DIMENSIONS SEEMS TO BREAK FULLSCREEN -- HARD CODE FOR NOW
-    const width = useWindowDimensions().width
-    const height = width*9/16
-    // const height = 225;
-    // const width = 400;
-
-    // STILL BREAKS - go to Cases, come back, fullscreen, error persists
+    // Screen orientation
+    const Width = Dimensions.get("window").width;
+    const Height = Dimensions.get("window").height;
+    const [OrientationMode, setOrientationMode] = useState({
+        width: Width,
+        height: Width*9/16
+    });
+    const landscape = () => {
+        setOrientationMode({ width: Height, height: Width });
+    };
+    const portrait = () => {
+        setOrientationMode({ width: Width, height: Width*9/16 });
+    };
+    const handleFullScreenYoutube = async (status) => {
+        if (status === true){
+            try{
+                landscape();
+                await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE)
+            } catch (error){
+                console.log(error)
+            }
+        } else if (status === false){
+            try{
+                portrait();
+                await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+            } catch (error){
+                console.log(error)
+            }
+        }
+    }
 
     const handleOnPress = (id) => {
         const response = database.filter((item) => item.id === id);
@@ -33,31 +57,29 @@ const RapidReviews = ({page}) => {
         navigation.dispatch(pushAction)
     }
     
-
     return (
         <>
-        
-        <ScrollView style={{flex:1, backgroundColor:'#FFFFFF'}}>
-
             {/* Youtube Video embedded */}
             {page.video? 
-                <View style={{backgroundColor:'black', alignItems:'center', justifyContent:'center'}}>
-                    <YoutubePlayer
-                        ref={playerRef}
-                        height={height}
-                        width={width}
-                        videoId={page.video}
-                        play={playing}
-                        volume={50}
-                        playbackRate={1}
-                        playerParams={{
-                            cc_lang_pref: "us",
-                            showClosedCaptions: false,
-                        }}
-                    />
-                </View> 
-            :null}
-            
+                    <View style={{backgroundColor:'black', alignItems:'center', justifyContent:'center', marginBottom:5}}>
+                        <YoutubePlayer
+                            ref={playerRef}
+                            height={OrientationMode.height}
+                            width={OrientationMode.width}
+                            videoId={page.video}
+                            play={playing}
+                            volume={50}
+                            playbackRate={1}
+                            onFullScreenChange={status => handleFullScreenYoutube(status)}
+                            playerParams={{
+                                cc_lang_pref: "us",
+                                showClosedCaptions: false,
+                            }}
+                        />
+                    </View> 
+                :null}
+        <ScrollView style={{flex:1, backgroundColor:'#FFFFFF'}}>
+
             {/* Materials */}
             
             {page.materials? 
@@ -82,12 +104,18 @@ const RapidReviews = ({page}) => {
             {/* Text Content */}
             {page.body? 
                 page.body.map((item) => (
-                    <View key={item.content}>
+                    <View key={item.content} style={{marginVertical:10}}>
                         {item.header?
                         <Text style={styles.header}>{item.header}</Text>
                         :null}
                         {item.image?
-                        <Image source={item.image} style={{width:useWindowDimensions.width, height:300, resizeMode:'contain'}} />
+                        <Image 
+                            source={{uri: item.image}} 
+                            style={{width:Width, height:300, resizeMode:'contain', backgroundColor:'#ffffff'}} 
+                            defaultSource={require('../../assets/loading.png')}
+                            onLoadStart={() => console.log('start')}
+                            onLoadEnd={() => console.log('end')}
+                        />
                         :null}
                         {item.content.map((paragraph) => 
                             <Text style={styles.body} key={paragraph}>{paragraph}</Text>
@@ -112,9 +140,7 @@ const RapidReviews = ({page}) => {
                         </TouchableOpacity>
                     ))}
                 </View>
-            :null}
-            {/* CLICKING NEEDS TO REFRESH */}
-            
+            :null}            
         </ScrollView>
         </>
     )

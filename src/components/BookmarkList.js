@@ -36,7 +36,7 @@ const BookmarkList = () => {
     return (
         <>
         <Text style={styles.header}>Bookmarks</Text>
-        <ScrollView style={{marginBottom:15}} nestedScrollEnabled horizontal>
+        <ScrollView style={{marginBottom:15}} nestedScrollEnabled horizontal showsHorizontalScrollIndicator={false}>
             {bookmark.length != 0?
             bookmark.map(item => (
                 categoryList.filter(mod => mod[1].toString() === item.id.split(".")[0]).map((thing) => (

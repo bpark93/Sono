@@ -58,7 +58,8 @@ const LearnModuleScreen = ({route, navigation}) => {
       <ScrollView 
         style={{flex:1, marginTop:HEADER_MIN_HEIGHT, paddingTop:HEADER_MAX_HEIGHT-HEADER_MIN_HEIGHT+10}}
         onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {y: scrollY} }}]
+          [{nativeEvent: {contentOffset: {y: scrollY} }}],
+          { useNativeDriver: false }
         )}
         scrollEventThrottle={16}
       >

@@ -46,7 +46,7 @@ const database = [
                     'Assess both the longitudinal and transverse views by rotating the transducer 90 degrees.',
                     'Tilt or fan the transducer superiorly and inferiorly to assess the superior and inferior poles of the kidney.',
                 ],
-                "image": require('./assets/renalOverview1.png')
+                "image": "https://via.placeholder.com/400.gif/09f/fff?text=Placeholder+Image"
             },            
         ]
     },
@@ -87,7 +87,7 @@ const database = [
                     'From the starting position, slide the probe laterally and inferiorly along the costal margin until the gallbladder comes into view.',
                     'In the longitudinal plane, the thick-walled portal vein and gallbladder often have an “exclamation point” appearance',
                 ],
-                "image": require('./assets/biliaryOverview.png')
+                "image": "https://via.placeholder.com/400.gif/09f/fff?text=Placeholder+Image"
             }, 
             {
                 "header": '',
@@ -95,7 +95,7 @@ const database = [
                     'The CBD is located just anterior to the portal vein. The portal triad (containing the portal vein, hepatic artery and CBD) is often called the “Mickey Mouse” sign. Using the zoom function or color doppler can help distinguish the different components of the triad.',
                     'The diameter of the CBD is measured from inner wall to inner wall in either a transverse or longitudinal plane at the point where the hepatic artery courses between the portal vein and CBD, and is normally < 6 mm.',
                 ],
-                "image": require('./assets/biliaryTriad.png')
+                "image": "https://via.placeholder.com/400.gif/09f/fff?text=Placeholder+Image"
             }, 
         ]
     },
@@ -135,14 +135,14 @@ const database = [
                     'Once the aorta is identified, slide the transducer inferiorly on the abdominal wall, allowing for contiguous imaging of the aorta.',
                     'Measurement of the aortic diameter should be obtained in both longitudinal and transverse planes.',
                 ],
-                "image": require('./assets/aorta.png')
+                "image": "https://via.placeholder.com/400.gif/09f/fff?text=Placeholder+Image"
             }, 
             {
                 "header": '',
                 "content": [
                     'If "images" cannot be obtained due to bowel gas, drains or scarring, then the aorta can also be imaged laterally from the left or right flank. Place the transducer on the mid-axillary line',
                 ],
-                "image": require('./assets/aorta2.png')
+                "image": "https://via.placeholder.com/400.gif/09f/fff?text=Placeholder+Image"
             }, 
         ]
     },
@@ -255,7 +255,7 @@ const database = [
         },
     },
     {
-        "title": "LV - Severely Depressed",
+        "title": "LV Failure",
         "alt":"Left Ventricle Failure",
         "id":"11",
         "category": "Cardiac",
@@ -441,21 +441,34 @@ const database = [
         "category": "Procedural",
         "type": "rapidreview",
         "tags": [],
-        "video":'TmqrMVln7Ag',
+        "video":'5dIyh0kqKCs',
         "orientation": {
-            "probe": 'Curvilinear',
+            "probe": 'Curvilinear or Linear',
             "preset": 'Abdominal',
             "patient_position": 'Supine',
-            "probe_position": '',
-            "areas_of_interest": 'Arteries, Veins, Nerves',
+            "probe_position": 'Antecubital Fossa',
+            "areas_of_interest": 'Cephalic, Basilic, Cubital Veins of the arm',
         },
         "materials":[
             "Tourniquet",
-            "Skin clearning solution",
-            "Angiocatheter",
+            "Tegaderm",
+            "Angiocatheter - 20G",
             "IV Tubing",
             "Saline flush",
-            "Bandage"
+            "Bandage",
+            "Antiseptic",
+            "Ultrasound Gel"
+        ],
+        "body": [
+            {
+                "header": 'Procedure',
+                "content": [
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+                    'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+                    'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                ],
+                "image": "https://via.placeholder.com/400.gif/09f/fff?text=Placeholder+Image"
+            }, 
         ]
     },
 ]
@@ -465,14 +478,14 @@ const categoryDatabase = [
         title: 'Aorta',
         image: require('./assets/png/044-blood.png'),
         groups: {
+            "Image Acquisition":{
+                title:"Abdominal Aorta Image Acquisition", 
+                id:'3',
+                type:"video",
+            },
             "Normal Anatomy":{
-                title:'adsf',
                 pages: [
-                    {
-                        title:"Abdominal Aorta Image Acquisition", 
-                        id:'3',
-                        type:"video",
-                    },
+                    
                 ],
             },
             'Abdominal Aorta Pathology':{
@@ -485,13 +498,15 @@ const categoryDatabase = [
                 ],
             },
             "Thoracic Aorta Pathology":{
-                title:'adsf',
+                pages: [
+                    
+                ],
             }
         }
     },
     {
         title: 'Cardiac',
-        image: require('./assets/png/014-heart.png'),
+        image: require('./assets/png2/040-heart.png'),
         groups: {
             'Cardiac Views':{
                 title:'Cardiac Views',
@@ -517,26 +532,36 @@ const categoryDatabase = [
                 title: 'Left Ventricle',
                 pages: [
                     {
-                        title:"Severely depressed",
+                        title:"LV Failure",
                         type:"image",
                         id:'11'
+                    },
+                    {
+                        title:"LV Thrombus",
+                        type:"image",
+                        id:'xx'
+                    },
+                    {
+                        title:"Hyperdynamic LV",
+                        type:"image",
+                        id:'xxy'
                     },
                 ],
             },
             'Right Ventricle':{
-                title: 'Right Ventricle',
+                pages:[],
             },
             'IVC':{
-                title: 'IVC',
+                pages:[],
             },
             'Atria':{
-                title: 'Atria',
+                pages:[],
             },
             'Pericardium':{
-                title: 'Pericardium',
+                pages:[],
             },
             'Valves':{
-                title: 'Valves',
+                pages:[],
             },
         }
     },
@@ -548,7 +573,7 @@ const categoryDatabase = [
     },
     {
         title: 'Lung',
-        image: require('./assets/png/021-lungs.png'),
+        image: require('./assets/png2/042-lungs.png'),
         groups: {
             'Image Acquisition':{
                 pages: [
@@ -559,7 +584,9 @@ const categoryDatabase = [
                     }
                  ],
             },
-            'Pneumothorax':{},
+            'Pneumothorax':{
+                pages:[],
+            },
         }
     },
     {
@@ -584,15 +611,23 @@ const categoryDatabase = [
                     }
                 ]
             },
-            'Spleen':{},
-            'Stomach':{},
-            'Small Intestine':{},
-            'Large Intestine':{},
+            'Spleen':{
+                pages:[],
+            },
+            'Stomach':{
+                pages:[],
+            },
+            'Small Intestine':{
+                pages:[],
+            },
+            'Large Intestine':{
+                pages:[],
+            },
         }
     },
     {
         title: 'Renal/GU',
-        image: require('./assets/png/022-kidneys.png'),
+        image: require('./assets/png2/032-kidney.png'),
         groups: {
             'Kidneys':{
                 pages: [
@@ -603,9 +638,15 @@ const categoryDatabase = [
                     }
                 ],
             },
-            'Ureters':{},
-            'Bladder':{},
-            'Male Reproductive Organs':{},
+            'Ureters':{
+                pages:[],
+            },
+            'Bladder':{
+                pages:[],
+            },
+            'Male Reproductive Organs':{
+                pages:[],
+            },
         }
     },
     {
@@ -622,8 +663,12 @@ const categoryDatabase = [
                     }
                 ],
             },
-            'Spine':{},
-            'Nerve Blocks':{},
+            'Spine':{
+                pages:[],
+            },
+            'Nerve Blocks':{
+                pages:[],
+            },
         }
     },
     {
@@ -647,7 +692,9 @@ const categoryDatabase = [
         image: require('./assets/png/016-brain.png'),
         done: false,
         groups: {
-            'adsf':{}
+            'Transcranial Doppler':{
+                pages:[],
+            }
         }
     },
     {
@@ -655,7 +702,9 @@ const categoryDatabase = [
         image: require('./assets/png/039-elbow.png'),
         done: false,
         groups: {
-            'adsf':{}
+            'Fracture':{
+                pages:[],
+            }
         }
     },
     

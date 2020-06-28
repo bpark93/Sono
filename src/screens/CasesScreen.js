@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
-import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native'
-
+import {View, Text, StyleSheet, TouchableOpacity, FlatList, useWindowDimensions} from 'react-native'
+import ContentLoader, { Rect, Circle, Path } from "react-content-loader/native"
 import { ActivityIndicator } from 'react-native-paper'
 import wpServer from '../api/wpServer';
 import CasesCard from '../components/CasesCard'
@@ -39,6 +39,9 @@ const CasesScreen = ({navigation}) => {
         setPage(page => page+1)
     }
 
+    const width = useWindowDimensions().width
+    const height = useWindowDimensions().height
+
     return (
         <View style={styles.container}>
             <FlatList 
@@ -55,18 +58,36 @@ const CasesScreen = ({navigation}) => {
                 initialNumToRender={2}
                 ListFooterComponent={() => {
                     return loading ? 
-                        <View style={styles.loadingContainer}>
-                            <ActivityIndicator // UPGRADE TO SOMETHING FANCIER
-                                animating={true}
-                                color='purple'
-                                size='large'
-                                style={{paddingTop:15}}
-                            />
-                            <Text style={{paddingVertical: 20}}>Loading...</Text>
-                        </View>
+                        // <View style={styles.loadingContainer}>
+                        //     <ActivityIndicator // UPGRADE TO SOMETHING FANCIER
+                        //         animating={true}
+                        //         color='purple'
+                        //         size='large'
+                        //         style={{paddingTop:15}}
+                        //     />
+                        //     <Text style={{paddingVertical: 20}}>Loading...</Text>
+                        // </View>
+                        <ContentLoader 
+                            speed={1.2}
+                            width={width}
+                            height={height}
+                            viewBox={`0 0 ${width} ${height}`}
+                            backgroundColor="#f5f6f7"
+                            foregroundColor="#eeeeee"
+                        >
+                            <Circle cx="40" cy="285" r="8"/>
+                            <Rect x="55" y="280" rx="5" ry="5" width="140" height="10" /> 
+                            <Rect x="25" y="300" rx="5" ry="5" width={width-50} height="20" /> 
+                            <Rect x="25" y="330" rx="5" ry="5" width={width-50} height="10" /> 
+                            <Rect x="25" y="345" rx="5" ry="5" width={width-50} height="10" /> 
+                            <Rect x="25" y="360" rx="5" ry="5" width={width-50} height="10" /> 
+                            <Rect x="15" y="0" rx="10" ry="10" width={width-30} height="250" />
+                            <Rect x="15" y="390" rx="10" ry="10" width={width-30} height="250" />
+                        </ContentLoader>
+                        
                     :<View style={{alignItems:'flex-end', marginHorizontal:15}}>
                         <TouchableOpacity onPress={() => handleLoadMore()} activeOpacity={0.8} style={styles.next}>
-                            <Text>Next Page ></Text>
+                            <Text style={{fontFamily:"Raleway-Regular", color:"#4f2683"}}>Load More</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -92,9 +113,9 @@ const styles = StyleSheet.create({
     },
     next:{
         height:50, 
-        width:150, 
-        borderWidth:0.5,
-        borderRadius:30, 
+        width:120, 
+        // borderWidth:0.5,
+        // borderRadius:30, 
         alignItems:'center', 
         justifyContent:'center',
         marginVertical:10

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import {View, Text, StyleSheet, Image, Modal, ScrollView,useWindowDimensions,TouchableOpacity, Platform, Dimensions, StatusBar} from 'react-native'
+import {View, Text, StyleSheet, Image, Modal, ScrollView,TouchableOpacity, Dimensions} from 'react-native'
 import YoutubePlayer from 'react-native-youtube-iframe';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { Video } from 'expo-av';
@@ -9,6 +9,7 @@ import {setLearnProgress, getLearnProgress} from '../components/getLearnDatabase
 import {Snackbar} from 'react-native-paper'
 import * as ScreenOrientation from 'expo-screen-orientation';
 import Constants from 'expo-constants';
+import { StatusBar } from 'expo-status-bar';
 
 const LearnDetailScreen = ({route, navigation}) => {
     const {id, category} = route.params;
@@ -95,13 +96,11 @@ const LearnDetailScreen = ({route, navigation}) => {
     }
 
     return (
-        <View style={{flex:1, }}>
-            {/* <View style={{position:'absolute', top:0, left:0, right:0, backgroundColor:'black', height:70+height}}></View> */}
-            {/* <StatusBar style="dark" translucent/>  */}
+        <View style={{flex:1}}>
+            <View style={{position:'absolute', top:0, left:0, right:0, backgroundColor:'black', height:20+Height}}></View>
+            {/* <StatusBar style="dark" />  */}
            
-            <TouchableOpacity style={styles.backButton} onPress={()=> navigation.replace('Modules', {id:moduleParams[0]})} >
-                <MaterialCommunityIcons name="arrow-left" size={24} color="white"/>
-            </TouchableOpacity>
+            
             <View style={{alignItems:"center", backgroundColor:'black', marginTop: Constants.statusBarHeight}}>
                 <View>
                 { id.youtube ? 
@@ -139,8 +138,16 @@ const LearnDetailScreen = ({route, navigation}) => {
             </View>
             {!transcriptToggled? 
             <ScrollView style={styles.container} containerStyle={{justifyContent:'space-between', flex:1}}>
-                <View style={{flex:1}}>
-                    <Text style={styles.category}>{category}</Text>
+                
+                    <View style={styles.categoryTouchable}  >
+                        <TouchableOpacity 
+                            style={{flexDirection:'row', alignItems:'center'}}
+                            onPress={()=> navigation.replace('Modules', {id:moduleParams[0]})}
+                        >
+                            <MaterialCommunityIcons name="chevron-left" size={30} color="#4f2683"/>
+                            <Text style={styles.category}>{category}</Text>
+                        </TouchableOpacity>
+                    </View>
                     <Text style={styles.header}>{id.title}</Text>
                     <Text style={styles.body}>{id.captionText}</Text>
                     <LearnDetailButtons 
@@ -150,7 +157,6 @@ const LearnDetailScreen = ({route, navigation}) => {
                         modalToggle={() => setModalVisible(true)}
                         transcriptToggle={() => setTranscriptToggled(true)}
                     />
-                </View>
                 {/* <View>
                     <Text style={styles.header}>Next Up</Text>
                     <TouchableOpacity>
@@ -208,11 +214,10 @@ const styles = StyleSheet.create({
         fontFamily:'Raleway-Regular',
     },
     category:{
-        marginHorizontal:15,
-        fontSize:16,
-        fontFamily:"Raleway-Light",
-        color:'gray',
-        marginTop:20,
+        marginHorizontal:10,
+        fontSize:20,
+        fontFamily:"Raleway-Regular",
+        color:'#4f2683',
     },
     container:{
         flex:1, 
@@ -246,13 +251,10 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center'
     },
-    backButton:{
-        position:'absolute', 
-        top:40, 
-        left:15, 
-        width:30, 
-        height:30,
-        zIndex:1
+    categoryTouchable:{
+        flexDirection:'row',
+        marginHorizontal:15,
+        marginTop:10,
     }
 });
 
