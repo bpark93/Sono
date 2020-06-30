@@ -9,7 +9,6 @@ import {setLearnProgress, getLearnProgress} from '../components/getLearnDatabase
 import {Snackbar} from 'react-native-paper'
 import * as ScreenOrientation from 'expo-screen-orientation';
 import Constants from 'expo-constants';
-import { StatusBar } from 'expo-status-bar';
 
 const LearnDetailScreen = ({route, navigation}) => {
     const {id, category} = route.params;
@@ -98,7 +97,6 @@ const LearnDetailScreen = ({route, navigation}) => {
     return (
         <View style={{flex:1}}>
             <View style={{position:'absolute', top:0, left:0, right:0, backgroundColor:'black', height:20+Height}}></View>
-            {/* <StatusBar style="dark" />  */}
            
             
             <View style={{alignItems:"center", backgroundColor:'black', marginTop: Constants.statusBarHeight}}>

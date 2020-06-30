@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import {View, Text, StyleSheet, TouchableOpacity, FlatList, useWindowDimensions} from 'react-native'
-import ContentLoader, { Rect, Circle, Path } from "react-content-loader/native"
+import ContentLoader, { Rect, Circle } from "react-content-loader/native"
 import { ActivityIndicator } from 'react-native-paper'
 import wpServer from '../api/wpServer';
 import CasesCard from '../components/CasesCard'
