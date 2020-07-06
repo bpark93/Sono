@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react'
 import {View, Text, StyleSheet, TouchableOpacity, Image, useWindowDimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
-import {getLearnProgress, setLearnProgress} from '../components/getLearnDatabase'
+import {getLearnProgress} from '../components/getLearnDatabase'
+import { ProgressBar } from 'react-native-paper';
 
 const LearnModuleItem = ({page, index, category}) => {
     const navigation = useNavigation();
@@ -11,19 +12,21 @@ const LearnModuleItem = ({page, index, category}) => {
     const [pressed, setPressed] = useState(false);
     const handlePress = () => {
         setPressed(!pressed)
+        updateProgress();
     }
 
     const [progress, setProgress] = useState(null);
+    const updateProgress = async () => {
+        const learnProgressStorage = await getLearnProgress(page.id);
+        setProgress(learnProgressStorage)
+    }
     useEffect(() => {
-        const x = async () => {
-            const xx = await getLearnProgress(page.id);
-            setProgress(xx)
-        }
         const unsubscribe = navigation.addListener('focus', ()=> {
-            x();
+            updateProgress();
         })
         return () => unsubscribe();
     },[navigation])
+    const percentage = parseInt(progress)/100
 
     return (
         <View style={styles.container}>
@@ -46,34 +49,16 @@ const LearnModuleItem = ({page, index, category}) => {
             {pressed? 
                 <>
                 <Text style={styles.shortText} numberOfLines={5}>{page.captionText}</Text>
-                {progress === '0'?
-                    <View style={{justifyContent:'space-around', alignItems:'center', flexDirection:'row'}}>
-                        <TouchableOpacity onPress={() => navigation.replace('LearnDetail', {id: page, category})} style={styles.start}>
-                            <Text style={styles.buttonText}>Start</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.quiz}>
-                            <Text style={styles.buttonText}>Take Quiz</Text>
-                        </TouchableOpacity>
-                    </View>
-                :   progress === '100'?
-                    <View style={{justifyContent:'space-around', alignItems:'center', flexDirection:'row'}}>
-                        <TouchableOpacity onPress={() => navigation.replace('LearnDetail', {id: page, category})} style={styles.done}>
-                            <Text style={styles.buttonText}>Complete</Text>
-                            <FontAwesome name="check-circle" size={14} color='white' style={{marginLeft:5}} />
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.done}>
-                            <Text style={styles.buttonText}>Retake Quiz</Text>
-                        </TouchableOpacity>
-                    </View>
-                :   <View style={{justifyContent:'space-around', alignItems:'center', flexDirection:'row'}}>
-                        <TouchableOpacity onPress={() => navigation.replace('LearnDetail', {id: page, category})} style={styles.continue}>
-                            <Text style={styles.buttonText}>Continue</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.quiz}>
-                            <Text style={styles.buttonText}>Take Quiz</Text>
-                        </TouchableOpacity>
-                    </View>
-                }
+                <View style={{justifyContent:'space-around', alignItems:'center', flexDirection:'row'}}>
+                    <ProgressBar progress={percentage} color="#4f2683" style={{width:150}}/>
+                    <Text style={{color:'gray', fontSize:14, fontFamily:'Raleway-Regular'}}>{progress}%</Text>
+                    <TouchableOpacity 
+                        onPress={() => navigation.replace('LearnDetail', {id: page, category})} 
+                        style={progress==='0'? styles.start : progress==='100'? styles.done : styles.continue}
+                    >
+                        <Text style={styles.buttonText}>{progress==='0'? "Start" : progress==='100'? "Complete" : "Continue"}</Text>
+                    </TouchableOpacity>
+                </View>
                 </>
                 :null
             }
@@ -94,7 +79,7 @@ const styles = StyleSheet.create({
     },
     start:{
         height:50, 
-        width:150, 
+        width:100, 
         backgroundColor:'#2ecc71', 
         borderRadius:30, 
         alignItems:'center', 
@@ -103,7 +88,7 @@ const styles = StyleSheet.create({
     },
     quiz:{
         height:50, 
-        width:150, 
+        width:100, 
         backgroundColor:'#5FC9F8', 
         borderRadius:30, 
         alignItems:'center', 
@@ -112,7 +97,7 @@ const styles = StyleSheet.create({
     },
     continue:{
         height:50, 
-        width:150, 
+        width:100, 
         backgroundColor:'#2980b9', 
         borderRadius:30, 
         alignItems:'center', 

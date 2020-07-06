@@ -54,6 +54,16 @@ const SearchDetailScreen = ({page}) => {
             windowSize={5}
             data={images}
             keyExtractor={item => item.title}
+            ListHeaderComponent={() => (
+                <View style={{backgroundColor:'white', paddingHorizontal:15}}>
+                    <Text style={{fontSize:20, fontFamily:'Raleway-Medium', marginVertical:5}}>Key Features</Text>
+                    {page.key_features? 
+                        page.key_features.map(tip => (
+                            <Text key={tip} style={{marginVertical:2}}>{`\u2022 ${tip}`}</Text>
+                        ))
+                    :null}
+                </View>
+            )}
             renderItem={({item}) => (
                 <View>
                     <Text style={styles.header}>{item.title}</Text>

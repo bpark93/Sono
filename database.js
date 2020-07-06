@@ -1,14 +1,3 @@
-const firebaseConfig = {
-    apiKey: "AIzaSyDlBJzJf4SmjoSQ0aqj_7yeMoK2Z5rZzQ4",
-    authDomain: "pocus-9d28e.firebaseapp.com",
-    databaseURL: "https://pocus-9d28e.firebaseio.com",
-    projectId: "pocus-9d28e",
-    storageBucket: "pocus-9d28e.appspot.com",
-    messagingSenderId: "645095278671",
-    appId: "1:645095278671:web:f49fbc1cd958acfd6c023a",
-    measurementId: "G-LYVKTZXSZ9"
-  };
-
 const database = [
     {
         "title": "Renal Image Acquisition", 
@@ -255,12 +244,18 @@ const database = [
         },
     },
     {
-        "title": "LV Failure",
+        "title": "Reduced LV Function",
         "alt":"Left Ventricle Failure",
         "id":"11",
         "category": "Cardiac",
         "type": "image",
         "tags": [],
+        "key_features": [
+            "Grading LV systolic function focuses on an \"eyeball\" approach",
+            "Reduced LV function can be determind by 3 key parameters: reduced endocardial excursion, reduced myocardial thickening, and reduced mitral valve excursion",
+            "Regional wall motion abnormalities may cause a potential underestimation of LV systolic function",
+            "Severe hypertrophy/hypertrophic cardiomyopathy may cause an overestimation of LV function"
+        ],
         "options":["PSSA", "PSLA", "A4C", "Subcostal", "Color", "VTI"],
         "images":[
            {
@@ -413,6 +408,10 @@ const database = [
         "category": "Aorta",
         "type": "image",
         "tags": [],
+        "key_features": [
+            "Look for ...",
+            "AAA's typically show a ..."
+        ],
         "images":[
            {
                url: "https://via.placeholder.com/150/0000FF/808080?Text=Placeholder1",
@@ -532,7 +531,7 @@ const categoryDatabase = [
                 title: 'Left Ventricle',
                 pages: [
                     {
-                        title:"LV Failure",
+                        title:"Reduced LV Function",
                         type:"image",
                         id:'11'
                     },
@@ -746,6 +745,12 @@ const learnDatabase = [
                 id:'1.5',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
+            {
+                title: 'Principles of Doppler Ultrasound',
+                youtube: 'mwr-wF_IMeU',
+                id:'1.6',
+                captionText: "Learn the principles of Doppler ultrasound in this 20-minute screencast from Dr. Katie Wiskar. This tutorial covers basic ultrasound physics, different Doppler modes, and multiple examples from various POCUS applications.",
+            },
         ],
     },
     {
@@ -768,6 +773,7 @@ const learnDatabase = [
             },
             {
                 title: 'Image Acquisition',
+                youtube:'aYSoYXqWJ5A',
                 video: 'https://westernsono.ca/wp-content/uploads/2013/06/lung-acquisition.mp4?_t=1514825028',
                 id:'2.3',
                 captionText: "The standard views for image acquisition of solid organs are typically dictated by what windows are possible based on external anatomy and surrounding structures.  The lungs, however, can be imaged from anywhere on the thorax.  This boundless opportunity can create confusion and, possibly, crippling anxiety as to which portions of the lungs deserve to be imaged.  The idea is, much like the way we auscultate, to take a representative sample from major lung zones and then synthesize a conclusion – clear lungs, unilateral lung disease, bilateral lung disease, etc that permits a rapid differential diagnosis for the respiratory failure that confronts you.  Efficiency and accuracy are essential. By Dr. Rob Arntfield"
@@ -786,45 +792,59 @@ const learnDatabase = [
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type"
             },
             {
-                title: 'Consolidation',
-                youtube: 'l-BX3wVhDIg',
-                id:'2.6',
-                captionText: "Interpreting a consolidation pattern of the lung with a concomitant pleural effusion can sometimes be challenging. Is it a pneumonia pattern with secondary para-pneumonic effusion, or is there a pleural effusion with secondary compressive atelectasis? Does size of each matter, or help us with the diagnosis? Are there any other secondary signs that will help us rule in an infectious process? The answer is yes!"
-            },
-            {
                 title: 'Pleural Effusion',
                 youtube: 'hLhRKo6llMA',
+                id:'2.6',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type"
+            },
+            {
+                title: 'Alveolar Interstitial Syndrome and Pneumonia',
+                youtube: 'm_VxmbIO0Rs',
                 id:'2.7',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type"
             },
             {
+                title: 'BLUE Protocol and Cases from Emergency Medicine',
+                youtube: 'rzBoRbuc4-0',
+                id:'2.8',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type"
+            },
+            {
+                title: 'Plerual Effusion and Consolidation size - Pneumonia vs. Atelectasis',
+                youtube: 'l-BX3wVhDIg',
+                id:'2.9',
+                captionText: "Interpreting a consolidation pattern of the lung with a concomitant pleural effusion can sometimes be challenging. Is it a pneumonia pattern with secondary para-pneumonic effusion, or is there a pleural effusion with secondary compressive atelectasis? Does size of each matter, or help us with the diagnosis? Are there any other secondary signs that will help us rule in an infectious process? The answer is yes!"
+            },
+            {
                 title: 'Common Pitfalls in LUS',
                 youtube: '58kS_jrxiMI',
-                id:'2.8',
+                id:'2.10',
                 captionText: "This 15-minute screencast reviews common mistakes in lung ultrasound image acquisition, interpretation, and clinical integration. It aims to sharpen your lung POCUS skills and help you unlock the true potential of this powerful diagnostic modality."
             },
             {
                 title: 'Alveolar Consolidation and Shred Sign',
                 youtube: '0qY9AghmFUs',
-                id:'2.9',
+                id:'2.11',
                 captionText: "Sliding lung, A lines and B lines – easy enough, right?  But what about the spectrum of alveolar consolidation and the so called “shred” sign.  This review by Yogesh Lala, MD, FRCPC – alumnus of our critical care program, has got YOU covered."
             },
             {
                 title: 'Loss of Lung Sliding: Beyond Pneumothorax',
+                youtube:'2AulDYEjLZs',
                 video: 'https://westernsono.ca/wp-content/uploads/2015/12/untitled.mp4?_t=1514825048',
-                id:'2.10',
+                id:'2.12',
                 captionText: "All that slides is NOT pneumothorax – we know this. When lung sliding is lost, however, the importance of this and what this could mean, is less certain. To better understand loss of lung sliding, please enjoy this excellent screencast by Dr. Paul Lee from the internal medicine program at Western University."
             },
             {
                 title: 'Acute Respiratory Distress Syndrome',
+                youtube:'rAC9Y28zpG8',
                 video: 'https://westernsono.ca/wp-content/uploads/2015/08/lung-ultrasonography-in-ards-2015.mp4?_t=1514825036',
-                id:'2.11',
+                id:'2.13',
                 captionText: "Tutorial on the use of point of care ultrasound in acute respiratory syndrome presented by Ann George, MD"
             },
             {
                 title: 'Respiratory Failure',
                 youtube: 'q_-F4fHRv5g',
-                id:'2.12',
+                id:'2.14',
                 captionText: "Bedside Lung ultrasound has its place beyond the ED and ICU. Enjoy this case of respiratory failure in the general medicine ward presented by Lucas Ciprietti PGY4 Internal Medicine"
             },
         ]
@@ -833,7 +853,62 @@ const learnDatabase = [
         title: 'Echocardiography',
         thumbnail: require('./assets/png2/040-heart.png'),
         id:3,
-        pages: [],
+        pages: [
+            {
+                title: 'Essential Views and Techniques',
+                youtube: '',
+                id:'3.1',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type"
+            },
+            {
+                title: 'Assessment of LV Function',
+                youtube: 'v2SUfIwdjdI',
+                id:'3.2',
+                captionText: "The point of care ultrasound revolution has brought a renaissance to providers of resuscitative care: No longer is determination of shock something that requires invasive monitoring (e.g. Swan Ganz) or an ICU admission. Instead, with good image acquisition and image interpretation skills, point of care echo can answer this question anywhere in the hospital – the ED, the ward, the ICU and, the CT scanner or the cafeteria.\n\nAssessing LV function at the point of care is typically used for patients in shock. Compromised LV function may either be the cause or may significantly complicate shock management. Our approach for managing shock based on LV function is shown in this flowsheet.\n\nThe “eyeball” method for addressing LV function is acceptable and even necessary in the point of care setting. Exact determination of ejection fraction (EF) is time consuming and the additional investment in acquiring a more “precise” number does not typically provide incrementally better or more detailed care. A patient with an EF of 20% and one with an EF 25% are typically resuscitated in a similar fashion, for instance."
+            },
+            {
+                title: 'Assessment of the RV',
+                youtube: '',
+                id:'3.3',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type"
+            },
+            {
+                title: 'Pericardial Effusion',
+                youtube: '',
+                id:'3.4',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type"
+            },
+            {
+                title: 'Inferior Vena Cava',
+                youtube: '',
+                id:'3.5',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type"
+            },
+            {
+                title: 'Valve assessment',
+                youtube: '',
+                id:'3.6',
+                captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type"
+            },
+            {
+                title: 'Stroke Volume Determination',
+                youtube: 'UrQKyURqDBI',
+                id:'3.7',
+                captionText: "The eyeball method of LV function determination works. Sometimes, however, you may need a better hemodynamic understanding.  Or maybe you just like numbers and the whole “qualitative LV function” thing isn’t for you? Either way, you can learn the how and the why of stroke volume determination with point of care echo here in 10 minutes."
+            },
+            {
+                title: 'Regional Wall Motion Abnormalities',
+                youtube: 'TWviIgG2V60',
+                id:'3.8',
+                captionText: "Looking for a tool to help stratify your acute coronary syndrome patients? Look no further. Dr. Erica Beatty (PGY4 Emergency Medicine) walks us through the identification of regional wall motion abnormalities (RWMA) using POCUS. Several cardiac views will be presented and their findings will be correlated with a differential diagnosis and put into clinical context."
+            },
+            {
+                title: 'Aortic Stenosis vs. Sclerosis',
+                youtube: 'RDPaeCqfA2Y',
+                id:'3.9',
+                captionText: "A short tutorial by Dr. Katie Wiskar outlining the ultrasound approach to distinguishing aortic stenosis from aortic sclerosis using POCUS and spectral Doppler."
+            },
+        ],
     },
     {
         title: 'Procedures',
@@ -994,8 +1069,8 @@ const learnDatabase = [
         ],
     },
     {
-        title: 'Deep Vein Thrombosis',
-        thumbnail: require('./assets/png/005-leg.png'),
+        title: 'Vascular',
+        thumbnail: require('./assets/png/049-blood.png'),
         id:9,
         pages: [
             {
@@ -1009,6 +1084,12 @@ const learnDatabase = [
                 youtube: '-HERC2yB0Yk',
                 id:'9.2',
                 captionText: "Sean Spence (PGY-5 Critical Care Medicine, University of Calgary) explains how to conduct a DVT exam. He covers lower extremity vascular anatomy relevant to the DVT exam and then wraps up by demonstrating a DVT study done by himself. There are examples of both a normal study and a positive finding.",
+            },
+            {
+                title: 'Solid Organ Doppler Assessment of Venous Congestion',
+                youtube: 'e_bIVvFV6jE',
+                id:'9.3',
+                captionText: "In this 15-minute video, Dr Katie Wiskar covers an introduction to solid organ doppler assessment of venous congestion - the cool new kid on the POCUS block when it comes to volume status.",
             },
         ],
     },
@@ -1032,12 +1113,14 @@ const learnDatabase = [
         pages: [
             {
                 title: 'Hypovolemic Shock',
+                youtube:'THJjNqhfi54',
                 video: 'https://westernsono.ca/wp-content/uploads/2015/11/hypovolemia-final.mp4?_t=1514825045',
                 id:'11.1',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Distributive Shock',
+                youtube:'OAtiIY_Apco',
                 video: 'https://westernsono.ca/wp-content/uploads/2015/11/vasoplegia-final.mp4?_t=1514825047',
                 id:'11.2',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
@@ -1045,36 +1128,42 @@ const learnDatabase = [
             },
             {
                 title: 'Cardiogenic Shock',
+                youtube:'-sYW0xNLqkA',
                 video: 'https://westernsono.ca/wp-content/uploads/2015/11/cardiogenic-shock-final.mp4?_t=1514825037',
                 id:'11.3',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Sepsis with CHF',
+                youtube:'MiV8lrtdKEU',
                 video: 'https://westernsono.ca/wp-content/uploads/2015/11/sepsis-chf-final.mp4?_t=1514825046',
                 id:'11.4',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Calcium Channel Blocker Overdose',
+                youtube:'dXEGVc-JHxw',
                 video: 'https://westernsono.ca/wp-content/uploads/2015/11/ccb-od-final.mp4?_t=1514825038',
                 id:'11.5',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Dimensionless Index',
+                youtube:'UFDpp1WtZjQ',
                 video: 'https://westernsono.ca/wp-content/uploads/2015/11/dimensionless-index-final.mp4?_t=1514825042',
                 id:'11.6',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Cor Pulmonale',
+                youtube:'NwmMdyeV8og',
                 video: 'https://westernsono.ca/wp-content/uploads/2015/11/cor-pulmonale-rv-overload-final.mp4?_t=1514825040',
                 id:'11.7',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
             },
             {
                 title: 'Hypertrophic Obstructive Cardiomyopathy',
+                youtube:'HH1V6D-TDfo',
                 video: 'https://westernsono.ca/wp-content/uploads/2015/11/hocm-final.mp4?_t=1514825043',
                 id:'11.8',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
@@ -1132,6 +1221,7 @@ const learnDatabase = [
         pages: [
             {
                 title: 'Vasospasm and Cerebral Circulatory Arrest',
+                youtube:'sWR9a3tBZVY',
                 video: 'https://westernsono.ca/wp-content/uploads/2016/06/tcd-camtasia.mp4?_t=1514825049',
                 id:'13.1',
                 captionText: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",

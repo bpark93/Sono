@@ -6,26 +6,45 @@ import { Video } from 'expo-av';
 import {learnDatabase} from '../../database'
 import LearnDetailButtons from '../components/LearnDetailButtons'
 import {setLearnProgress, getLearnProgress} from '../components/getLearnDatabase'
-import {Snackbar} from 'react-native-paper'
+import {Snackbar, TextInput, Button} from 'react-native-paper'
 import * as ScreenOrientation from 'expo-screen-orientation';
 import Constants from 'expo-constants';
 
 const LearnDetailScreen = ({route, navigation}) => {
     const {id, category} = route.params;
+    const videoRef = useRef(null);
+    const youtubeRef = useRef(null);
 
     // Progress
-    const playerRef = useRef(null);
     const [progress, setProgress] = useState(null)
     useEffect(() => {
         const checkProgress = async () => {
             const pageprogress = await getLearnProgress(id.id)
             if (pageprogress === "0"){
-                setLearnProgress(id.id, "10");
+                setLearnProgress(id.id, "1");
             }
             setProgress(pageprogress)
         }
         checkProgress();
+
+        const updateProgress = async () => {
+            const duration = await youtubeRef.current.getDuration()
+            const currentTime = await youtubeRef.current.getCurrentTime()
+            const percentage = Math.floor(currentTime/duration*100)
+            const temp = await getLearnProgress(id.id)
+            const progressInt = parseInt(temp)
+
+            if (percentage > progressInt){
+                setLearnProgress(id.id, percentage.toString())
+            }
+        }
+        const unsubscribe = navigation.addListener('blur', ()=> {
+            updateProgress();
+        })
+        return () => unsubscribe();
     },[])
+
+    
 
     // Orientation manipulation
     const Width = Dimensions.get("window").width;
@@ -83,16 +102,22 @@ const LearnDetailScreen = ({route, navigation}) => {
     const [snackVisible, setSnackVisible] = useState(false)
     const [modalVisible, setModalVisible] = useState(false)
     const [transcriptToggled, setTranscriptToggled] = useState(false)
+    const [noteVisible, setNoteVisible] = useState(false)
 
     // To pause video once clicking away
     if (id.video){
         useEffect(()=> {
             const unsubscribe = navigation.addListener('blur', ()=> {
-                playerRef.current.pauseAsync();
+                videoRef.current.pauseAsync();
             })
             return () => unsubscribe();
         },[navigation])
     }
+
+    // Notes 
+    const [text, setText] = useState('');
+    const textinputRef = useRef(null)
+
 
     return (
         <View style={{flex:1}}>
@@ -103,6 +128,7 @@ const LearnDetailScreen = ({route, navigation}) => {
                 <View>
                 { id.youtube ? 
                 <YoutubePlayer
+                        ref={youtubeRef}
                         height={OrientationMode.height}
                         width={OrientationMode.width}
                         videoId={id.youtube}
@@ -117,7 +143,7 @@ const LearnDetailScreen = ({route, navigation}) => {
                         
                 />
                 :<Video
-                    ref={playerRef}
+                    ref={videoRef}
                     source={{ uri: id.video}}
                     rate={1.0}
                     volume={1.0}
@@ -136,31 +162,48 @@ const LearnDetailScreen = ({route, navigation}) => {
             </View>
             {!transcriptToggled? 
             <ScrollView style={styles.container} containerStyle={{justifyContent:'space-between', flex:1}}>
-                
-                    <View style={styles.categoryTouchable}  >
-                        <TouchableOpacity 
-                            style={{flexDirection:'row', alignItems:'center'}}
-                            onPress={()=> navigation.replace('Modules', {id:moduleParams[0]})}
-                        >
-                            <MaterialCommunityIcons name="chevron-left" size={30} color="#4f2683"/>
-                            <Text style={styles.category}>{category}</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <Text style={styles.header}>{id.title}</Text>
-                    <Text style={styles.body}>{id.captionText}</Text>
-                    <LearnDetailButtons 
-                        progress={progress} 
-                        pageInfo={id} 
-                        snackToggle={() => setSnackVisible(true)}
-                        modalToggle={() => setModalVisible(true)}
-                        transcriptToggle={() => setTranscriptToggled(true)}
-                    />
-                {/* <View>
-                    <Text style={styles.header}>Next Up</Text>
-                    <TouchableOpacity>
-                        <Text style={styles.link}>Next Unit goes here</Text>
+                <View style={styles.categoryTouchable}  >
+                    <TouchableOpacity 
+                        style={{flexDirection:'row', alignItems:'center'}}
+                        onPress={()=> navigation.replace('Modules', {id:moduleParams[0]})}
+                    >
+                        <MaterialCommunityIcons name="chevron-left" size={30} color="#4f2683"/>
+                        <Text style={styles.category}>{category}</Text>
                     </TouchableOpacity>
-                </View> */}
+                </View>
+                <Text style={styles.header}>{id.title}</Text>
+                <LearnDetailButtons 
+                    progress={progress} 
+                    pageInfo={id} 
+                    snackToggle={() => setSnackVisible(true)}
+                    modalToggle={() => setModalVisible(true)}
+                    transcriptToggle={() => setTranscriptToggled(true)}
+                    noteToggle={() => setNoteVisible(!noteVisible)}
+                />
+                <Text style={styles.body}>{id.captionText}</Text>
+
+                {noteVisible? 
+                    <View style={{margin:15, flex:1}}>
+                        <Text style={{fontSize:18, fontFamily:'Raleway-Bold', marginBottom:5}}>Notes</Text>
+                        <TextInput 
+                            ref={textinputRef}
+                            mode="outlined"
+                            label="Add a new note"
+                            value={text}
+                            onChangeText={text => setText(text)}
+                            multiline={true}
+                            numberOfLines={3}
+                        />
+                        <Button
+                            mode="text"
+                            onPress={() => {
+
+                                textinputRef.current.clear()
+                            }}
+                        >Submit</Button>
+                    </View>
+                    :null
+                }
             </ScrollView>
             :<View style={{...styles.container, alignItems:'flex-end'}}>
                 <TouchableOpacity style={styles.transcriptButton} onPress={() => setTranscriptToggled(false)}>
@@ -171,6 +214,7 @@ const LearnDetailScreen = ({route, navigation}) => {
                 </ScrollView>
             </View>
             }
+            
             <Snackbar 
                 visible={snackVisible}
                 onDismiss={() => setSnackVisible(false)}
@@ -208,7 +252,7 @@ const styles = StyleSheet.create({
         fontFamily:'Raleway-Bold'
     },
     body:{
-        marginHorizontal:15,
+        margin:15,
         fontFamily:'Raleway-Regular',
     },
     category:{
