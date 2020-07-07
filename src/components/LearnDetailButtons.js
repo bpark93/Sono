@@ -41,7 +41,7 @@ const LearnDetailButtons = ({progress, pageInfo, snackToggle, modalToggle, trans
                         snackToggle();
                     }}>
                     <MaterialCommunityIcons name="bookmark-outline" size={30} color="gray" />
-                    <Text style={styles.buttonText}>Save</Text>
+                    <Text style={styles.buttonText}>Bookmark</Text>
                 </TouchableOpacity>
                 }
 

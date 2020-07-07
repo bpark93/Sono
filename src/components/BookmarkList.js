@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, ImageBackground} from 'react-native'
 import { useNavigation } from '@react-navigation/native';
-import { List, } from 'react-native-paper'
-import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import {getBookmark} from './useBookmark'
 import {learnDatabase} from '../../database'
 

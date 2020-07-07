@@ -105,7 +105,7 @@ const LearnDetailScreen = ({route, navigation}) => {
     const [noteVisible, setNoteVisible] = useState(false)
 
     // To pause video once clicking away
-    if (id.video){
+    if (id.youtube === undefined){
         useEffect(()=> {
             const unsubscribe = navigation.addListener('blur', ()=> {
                 videoRef.current.pauseAsync();
