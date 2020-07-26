@@ -774,7 +774,7 @@ const learnDatabase = [
         youtube: "1V1r3MMcjQU",
         id: "2.1",
         captionText:
-          "An introduction to the physics involved in ultrasound imaging, some knobology and how to perform an ultrasound exam. Some material will be review from the Fundamentals Module, but it will highlight those fundamentals in a Lung ultrasound specific context! By Dany Burke MD FRCPC Critical Care Western PGY7",
+          "An introduction to the physics involved in ultrasound imaging, some knobology and how to perform an ultrasound exam. The majority of this material will be review from the Fundamentals Module, feel free to skip if you feel you have a solid understanding of the basics! By Dany Burke MD FRCPC Critical Care Western PGY7",
       },
       {
         title: "Artefacts",

@@ -53,7 +53,7 @@ const LearnModuleItem = ({page, index, category}) => {
                     <Text style={{color:'gray', fontSize:14, fontFamily:'Raleway-Regular'}}>{progress}%</Text>
                     <TouchableOpacity 
                         onPress={() => {
-                            if (!page.video){
+                            if (!page.video&&!page.youtube){
                                 navigation.replace('LearnText', {id: page, category})
                             } else {
                                 navigation.replace('LearnDetail', {id: page, category})

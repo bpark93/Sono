@@ -8,11 +8,11 @@ const SettingsAboutScreen = () => {
             <Image source={require('../../assets/western-logo.png')}/>
             <View style={styles.textBox}>
                 <Headline>Credits</Headline>
-                <Subheading>Software</Subheading>
+                <Subheading>Project Lead and Software Engineer</Subheading>
                 <View style={{flexDirection:'row', justifyContent:'space-around'}}>
                     <Text>Brian Park</Text><Caption style={{}}> MD 2023 Candidate</Caption>
                 </View>
-                <Subheading>Direction</Subheading>
+                <Subheading>Content and Direction</Subheading>
                 <View style={{flexDirection:'row', justifyContent:'space-around'}}>
                     <Text>Frank Myslik</Text><Caption> MD, CCFP-EM</Caption>
                 </View>
