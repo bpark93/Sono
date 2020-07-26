@@ -37,12 +37,11 @@ const LearnModuleItem = ({page, index, category}) => {
                 <View style={styles.moduleStyle}>
                     <Text style={{fontFamily:'Raleway-Light', fontSize:14, width:50}}>{index}. </Text>
                     <Text style={{fontFamily:'Raleway-Regular', fontSize:18, width:windowWidth-100}}>{page.title}</Text>
-                    {progress === '100'?
-                        <FontAwesome name="check-circle" size={18} color='green'/>
-                    :   progress === '0'?
-                        <FontAwesome name="play-circle" size={18} color='gray'/>
-                    :   <FontAwesome name="play-circle" size={18} color='#2980b9'/>
-                    }
+                    <FontAwesome 
+                        name={!page.video&&!page.youtube ? 'file-text' : progress==='100'? "check-circle" : "play-circle"} 
+                        size={18} 
+                        color={progress==='100'? "green" : progress==='0' ? 'gray' : '#2980b9'}
+                    />
                 </View>
             </TouchableOpacity>
             
@@ -53,7 +52,13 @@ const LearnModuleItem = ({page, index, category}) => {
                     <ProgressBar progress={percentage} color="#4f2683" style={{width:150}}/>
                     <Text style={{color:'gray', fontSize:14, fontFamily:'Raleway-Regular'}}>{progress}%</Text>
                     <TouchableOpacity 
-                        onPress={() => navigation.replace('LearnDetail', {id: page, category})} 
+                        onPress={() => {
+                            if (!page.video){
+                                navigation.replace('LearnText', {id: page, category})
+                            } else {
+                                navigation.replace('LearnDetail', {id: page, category})
+                            }
+                        }} 
                         style={progress==='0'? styles.start : progress==='100'? styles.done : styles.continue}
                     >
                         <Text style={styles.buttonText}>{progress==='0'? "Start" : progress==='100'? "Complete" : "Continue"}</Text>

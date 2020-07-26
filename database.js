@@ -266,7 +266,7 @@ const database = [
     options: ["PSSA", "PSLA", "A4C", "Subcostal", "Color", "VTI"],
     images: [
       {
-        url: "https://westernsono.ca/wp-content/uploads/2020/02/1_PSLA_2D.webp",
+        url: "https://westernsono.ca/wp-content/uploads/2020/02/1_PSLA_2D.gif",
         contributor: "John Doe, MD, Emergency Medicine",
         title: "PSLA Item 1",
         option: "PSLA",
@@ -274,14 +274,14 @@ const database = [
       },
       {
         url:
-          "https://westernsono.ca/wp-content/uploads/2020/02/1_A4C_2D_1.webp",
+          "https://westernsono.ca/wp-content/uploads/2020/02/1_A4C_2D_1.gif",
         contributor: "John Doe, MD, Emergency Medicine",
         title: "A4C Item 1",
         option: "A4C",
         caption: "60 yo F, presenting with [], note the X,Y,Z features",
       },
       {
-        url: "https://westernsono.ca/wp-content/uploads/2020/02/2_A4C_CD.webp",
+        url: "https://westernsono.ca/wp-content/uploads/2020/02/2_A4C_CD.gif",
         contributor: "Michael Scott, PGY-4, Critical Care",
         title: "Color Item 1",
         option: "Color",
@@ -289,14 +289,14 @@ const database = [
       },
       {
         url:
-          "https://westernsono.ca/wp-content/uploads/2020/02/2_PSLA_AV_zoomed_2D.webp",
+          "https://westernsono.ca/wp-content/uploads/2020/02/2_PSLA_AV_zoomed_2D.gif",
         contributor: "Jane Schmoe, MD",
         title: "PSLA Item 2",
         option: "PSLA",
         caption: "25 yo F, presenting with [], note the X,Y,Z features",
       },
       {
-        url: "https://westernsono.ca/wp-content/uploads/2020/02/3_PSLA_2D.webp",
+        url: "https://westernsono.ca/wp-content/uploads/2020/02/3_PSLA_2D.gif",
         contributor: "Jane Schmoe, MD",
         title: "PSLA Item 3",
         option: "PSLA",
@@ -304,14 +304,14 @@ const database = [
       },
       {
         url:
-          "https://westernsono.ca/wp-content/uploads/2020/02/3_PSLA_AV_zoomed_colour.webp",
+          "https://westernsono.ca/wp-content/uploads/2020/02/3_PSLA_AV_zoomed_colour.gif",
         contributor: "Jane Schmoe, MD",
         title: "Color Item 2",
         option: "Color",
         caption: "25 yo F, presenting with [], note the X,Y,Z features",
       },
       {
-        url: "https://westernsono.ca/wp-content/uploads/2020/02/4_PSLA_CD.webp",
+        url: "https://westernsono.ca/wp-content/uploads/2020/02/4_PSLA_CD.gif",
         contributor: "Jane Schmoe, MD",
         title: "Color Item 3",
         option: "Color",
@@ -319,14 +319,14 @@ const database = [
       },
       {
         url:
-          "https://westernsono.ca/wp-content/uploads/2020/02/4_PSSA_AV_2D.webp",
+          "https://westernsono.ca/wp-content/uploads/2020/02/4_PSSA_AV_2D.gif",
         contributor: "Jane Schmoe, MD",
         title: "PSSA Item 1",
         option: "PSSA",
         caption: "25 yo F, presenting with [], note the X,Y,Z features",
       },
       {
-        url: "https://westernsono.ca/wp-content/uploads/2020/02/5_A5C_2D.webp",
+        url: "https://westernsono.ca/wp-content/uploads/2020/02/5_A5C_2D.gif",
         contributor: "Jane Schmoe, MD",
         title: "A4C Item 2",
         option: "A4C",
@@ -334,14 +334,14 @@ const database = [
       },
       {
         url:
-          "https://westernsono.ca/wp-content/uploads/2020/02/5_PSSA_AV_colour.webp",
+          "https://westernsono.ca/wp-content/uploads/2020/02/5_PSSA_AV_colour.gif",
         contributor: "Jane Schmoe, MD",
         title: "Color Item 4",
         option: "Color",
         caption: "25 yo F, presenting with [], note the X,Y,Z features",
       },
       {
-        url: "https://westernsono.ca/wp-content/uploads/2020/02/6_A4C_2D.webp",
+        url: "https://westernsono.ca/wp-content/uploads/2020/02/6_A4C_2D.gif",
         contributor: "Jane Schmoe, MD",
         title: "A4C Item 3",
         option: "A4C",
@@ -349,21 +349,21 @@ const database = [
       },
       {
         url:
-          "https://westernsono.ca/wp-content/uploads/2020/02/6_mitral-inflow-CW.webp",
+          "https://westernsono.ca/wp-content/uploads/2020/02/6_mitral-inflow-CW.gif",
         contributor: "Jane Schmoe, MD",
         title: "VTI Item 1",
         option: "VTI",
         caption: "25 yo F, presenting with [], note the X,Y,Z features",
       },
       {
-        url: "https://westernsono.ca/wp-content/uploads/2020/02/7_A5C_2D.webp",
+        url: "https://westernsono.ca/wp-content/uploads/2020/02/7_A5C_2D.gif",
         contributor: "Jane Schmoe, MD",
         title: "A4C Item 4",
         option: "A4C",
         caption: "25 yo F, presenting with [], note the X,Y,Z features",
       },
       {
-        url: "https://westernsono.ca/wp-content/uploads/2020/02/7_LVOT-PW.webp",
+        url: "https://westernsono.ca/wp-content/uploads/2020/02/7_LVOT-PW.gif",
         contributor: "Jane Schmoe, MD",
         title: "VTI Item 2",
         option: "VTI",
@@ -371,14 +371,14 @@ const database = [
       },
       {
         url:
-          "https://westernsono.ca/wp-content/uploads/2020/02/8_A5C_AV_focus_2D.webp",
+          "https://westernsono.ca/wp-content/uploads/2020/02/8_A5C_AV_focus_2D.gif",
         contributor: "Jane Schmoe, MD",
         title: "A4C Item 5",
         option: "A4C",
         caption: "25 yo F, presenting with [], note the X,Y,Z features",
       },
       {
-        url: "https://westernsono.ca/wp-content/uploads/2020/02/8_AV-VTI.webp",
+        url: "https://westernsono.ca/wp-content/uploads/2020/02/8_AV-VTI.gif",
         contributor: "Jane Schmoe, MD",
         title: "VTI Item 3",
         option: "VTI",
@@ -386,7 +386,7 @@ const database = [
       },
       {
         url:
-          "https://westernsono.ca/wp-content/uploads/2020/02/9_A5C_colour.webp",
+          "https://westernsono.ca/wp-content/uploads/2020/02/9_A5C_colour.gif",
         contributor: "Jane Schmoe, MD",
         title: "Color Item 5",
         option: "Color",
@@ -394,7 +394,7 @@ const database = [
       },
       {
         url:
-          "https://westernsono.ca/wp-content/uploads/2020/02/10_AR_spetraljet.webp",
+          "https://westernsono.ca/wp-content/uploads/2020/02/10_AR_spetraljet.gif",
         contributor: "Jane Schmoe, MD",
         title: "VTI Item 4",
         option: "VTI",
@@ -402,7 +402,7 @@ const database = [
       },
       {
         url:
-          "https://westernsono.ca/wp-content/uploads/2020/02/11_AR_AS_combined.webp",
+          "https://westernsono.ca/wp-content/uploads/2020/02/11_AR_AS_combined.gif",
         contributor: "Jane Schmoe, MD",
         title: "VTI Item 5",
         option: "VTI",
@@ -727,35 +727,30 @@ const learnDatabase = [
     pages: [
       {
         title: "Ultrasound Physics",
-        video: "",
         id: "1.1",
-        captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+        captionText:"An understanding of ultrasound physics (groan) is a necessary evil in the quest to applying and mastering ultrasound at the point of care. Begin this module to start your POCUS journey!",
+        headerImage:require('./assets/png/movement.png')
       },
       {
         title: "Ultrasound Controls",
-        video: "",
         id: "1.2",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
       {
         title: "Probe Types",
-        video: "",
         id: "1.3",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
       {
         title: "Probe Movements",
-        video: "",
         id: "1.4",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
       {
         title: "Ultrasound Machine Maintenance",
-        video: "",
         id: "1.5",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
@@ -1310,4 +1305,134 @@ const learnDatabase = [
   },
 ];
 
-export { database, categoryDatabase, learnDatabase };
+const testDatabase = [
+  {
+    title:"Fundamentals Module Test",
+    image:require("./assets/png/fundamentals.png"),
+    id:1,
+    count:5,
+    eta:5,
+    questions:[
+      {
+        content:'Ultrasound gel serves to:',
+        answers:[
+          'Accelerate sound waves from the transducer for maximal body penetration',
+          'Protect sound beams from scatter from air at the interface of the probe and the body',
+          'Eliminate friction from the probe on the patient\'s body for a more pleasing scanning experience',
+          'All of the above'
+        ],
+        correct:1,
+      },
+      {
+        content:'Which of the following statements are correct?\n1. Low frequency waves are ideal for good penetration.\n2. High frequency waves are ideal for vascular access.\n3. Phase array probes have a small footprint, fast frame rate.\n4. The focal zone has the best lateral resolution.',
+        answers:[
+          '1, 3',
+          '3, 4',
+          '1, 2, 4',
+          'All of the above'
+        ],
+        correct:3,
+      },
+      {
+        content:'M-Mode',
+        answers:[
+          'Is a synonym for 2D or B mode',
+          'Provides vivid details regarding motion of structures by plotting a time lapsed image',
+          'Is applied to diminish motion artifacts',
+          'Is a mode of imaging where gain is not applicable'
+        ],
+        correct:1,
+      },
+      {
+        content:'Which artifact is present in this image?',
+        image:'https://www.proprofs.com/api/ckeditor_images/Screen%20Shot%202014-07-22%20at%209_39_56%20PM.jpg',
+        answers:[
+          'Enhancement',
+          'Ring down',
+          'Reverberation',
+          'Mirror image'
+        ],
+        correct:2,
+      },
+      {
+        content:'Regarding Doppler, which of the following is FALSE',
+        answers:[
+          'The Doppler effect is characterized by decreasing frequencies for objects moving away from the listener and increasing frequency for objects moving toward the listener',
+          'Has both a Colour and a graphical (spectral) means of being represented on an ultrasound machine',
+          'In colour Doppler, objects moving toward the transducer are depicted as red and objects moving away from the transducer are depicted as being blue.',
+          'Doppler can only be applied using the phased array transducer'
+        ],
+        correct:3,
+      },
+    ]
+  },
+  {
+    title: "Lung and Pleural Ultrasound Module Test",
+    image: require("./assets/png2/042-lungs.png"),
+    id:2,
+    count:5,
+    eta:30,
+    questions: [
+      {
+        content:'A 32 year old man with a history of IV drug use present to the ED for shortness of breath and fevers for the past 2 days. What do you suspect based on this lung ultrasound of the anterior right chest (similar findings found throughout both lung fields)?',
+        video:'https://westernsono.ca/wp-content/uploads/2018/08/Lung-Inflammatory-B-lines-infarct-Linear-probe.mp4',
+        answers:[
+          "Cardiogenic pulmonary",
+          'Diffuse pneumonia',
+          'Septic emboli with ARDS',
+          'Pulmonary embolism'
+        ],
+        correct:2,
+        explanation:'This image above shows a significant B line burden suggestive of interstitial syndrome, a thickened, irregular pleura suggestive of an inflammatory etiology (non cardiogenic), as well as a subpleural nodular hypoechogenicity compatible with subpleural infarct which suggests pulmonary embolism. Taken with the clinical context, this is suggestive of septic embolism in the context of right sided infective endocarditis, which was confirmed in this patient, or septic thrombophlebitis (a rarer occurrence).'
+      },
+      {
+        content:'A patient is assessed post op day 2 from orthotopic liver transplant for worsening hypoxemia. Vital signs are HR 100bpm, BP 100/40, SpO292% on 50% FM and Temp 37.2C orally. Chest Xray shows small lung volumes and some haziness over the right lung field. Below is a lung ultrasound from the right PLAPS point. What is your diagnosis?',
+        video:'https://westernsono.ca/wp-content/uploads/2018/08/Lung-Dynamic-air-bronchograms-Sweet.mp4',
+        answers:[
+          'Bacterial pneumonia',
+          'Atelectasis',
+          'Ascites causing small lung volumes',
+          'Cardiogenic pulmonary edema'
+        ],
+        correct:0,
+        explanation:'The image shows a large organ with tissue density. This could represent either consolidated lung or liver. The surest way to distinguish between the two would be to locate the diaphragm which should always be done.\nIn this case, the presence of air bronchograms (the hyperchogenic artefacts where air is in contact with tissue) suggests that this is much more likely to be lung (though air may be seen in the liver in case of pneumobilia or portal venous air).\nThe flowing movement of the air in the bronchi makes this a dynamic air bronchogram. This suggests the consolidation is not related to insufficient air entry into the lung (as in atelectasis) but related to abnormal material in the alveoli (generally pus as in pneumonia). Dynamic air bronchograms have a 94% Specificity but only 61% Sensitivity for the diagnosis of pneumonia in the ICU and are therefore a much better rule in tool (Positive likelihood ratio = 10) than rule out tool (Negative likelihood ratio = 0.4)'
+      },
+      {
+        content:'A 40 year old male suffers a motor vehicle collision. He is brought to the ED. He is short of breath. His vital signs are BP 110/80, HR 110bpm, RR 28 SpO2 94% on 50% face mask. Lung ultrasound is performed to assess for pneumothorax (see below). What is shown and what do you do?',
+        video:'https://westernsono.ca/wp-content/uploads/2018/08/Lung-Pseudolung-point.mp4',
+        answers:[
+          'Pneumothorax - Insert chest tube',
+          'Consolidation from pulmonary contusion - Intubate',
+          'Pneumothorax, likely small - Wait for chest X-ray',
+          'Pseudolung point - Continue assessment'
+        ],
+        correct:3,
+        explanation:'The clip shown is an example of a pseudolung point: a point where normal pleura is in juxtaposition to another organ/tissue. The sudden appearance and loss of presence of lung sliding resembles a lung point. However, in a pseudolung point, when lung sliding disappears, we are able to see the adjacent organ deeper (in this case the heart).  Pseudolung points tend to arise on the chest where organs and pleura switch places during tidal ventilation (the left anterior chest due to the heart and the costophrenic angles due to the abdominal viscera). In a true lung point, the zone where lung sliding is lost should show an A-line pattern (due to air in the pleural space).'
+      },
+      {
+        content:'A patient is assessed for hypoxemia in the ICU.  Chest X ray shows a left sided haziness with suspected consolidation. Lung ultrasound is shown below. What is the likely etiology for the patient\'s hypoxemia and what is best management?',
+        video:'https://westernsono.ca/wp-content/uploads/2018/08/Plankton-sign.mp4',
+        answers:[
+          "Transudative pleural effusion due to congestive heart failure - Give diuretics",
+          'Bacterial pneumonia - Give antibiotics',
+          'Complex pleural effusion - Diagnostic +/- therapeutic thoracentesis',
+        ],
+        correct:2,
+        explanation:'The clip shows a moderate sized mostly anechoic pleural effusion with swirling hyperchogenicities within it. When there is only one hyperechogenicity, this is termed plankton sign. It is a sign of proteinaceous, cellular or other inflammatory debris within the effusion, compatible with an exsudate. This could represent a complex parapneumonic effusion, a hemothorax, a malignant effusion, etc. Hence, diagnostic thoracentesis is indicated with consideration for therapeutic thoracentesis/chest tube placement for symptom relief or, in the case of empyema, source control.'
+      },
+      {
+        content:'A patient is assessed for hypoxemia in the post cardiac surgery recovery unit. Chest Xray shows haziness in the right lower lung field. Lung ultrasound of the right PLAPS point is shown below, what is seen and what is the likely diagnosis?',
+        video:'https://westernsono.ca/wp-content/uploads/2018/08/Atelectasis-partial-inflation.mp4',
+        answers:[
+          "Consolidation with dynamic air bronchograms - Pneumonia",
+          'Consolidation with partial inspiratory recruitment - Atelectasis',
+          'B - Lines - Heart failure',
+        ],
+        correct:1,
+        explanation:'The clip shows a consolidation with air bronchograms. On inspiration, there is motion seen and the air bronchograms move which could suggest dynamic air bronchograms. However, we are not seeing the flowing motion of air within the bronchi, but rather the interface between aerated and non aerated lung if moving centrifugally (as evidence by the shred sign moving towards the probe). This suggests inspiratory recruit of the consolidation, compatible with atelectasis.'
+      },
+    ]
+  }
+]
+
+export { database, categoryDatabase, learnDatabase, testDatabase };

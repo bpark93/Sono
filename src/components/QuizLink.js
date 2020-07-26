@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-const QuizLink = ({name}) => {
+const QuizLink = ({name, id}) => {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
@@ -11,7 +11,7 @@ const QuizLink = ({name}) => {
                 <MaterialCommunityIcons name="crown" size={24} style={{marginRight:10}} />
                 <Text style={styles.text}>{name}: Module Test</Text>
             </View>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.push('Test')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.push('Test', {id: id})}>
                 <Text style={styles.buttonText}>Start</Text>
             </TouchableOpacity>
         </View>

@@ -15,7 +15,8 @@ import {LearnScreen,
   SettingsAuthScreen,
   SettingsHelpScreen,
   SettingsAboutScreen,
-  LearnTestScreen
+  LearnTestScreen,
+  LearnTextScreen,
 } from './screenIndex'
 import Onboarding from './src/components/Onboarding'
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
@@ -210,7 +211,14 @@ function LearnNav() {
         name="Test" 
         component={LearnTestScreen}
         options={{
-          title: 'Module Test'
+          headerShown: false
+        }}
+      />
+      <Learn.Screen 
+        name="LearnText" 
+        component={LearnTextScreen}
+        options={{
+          headerShown: false
         }}
       />
     </Learn.Navigator>

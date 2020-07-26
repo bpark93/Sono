@@ -69,42 +69,48 @@ const LearnDetailButtons = ({
       )}
 
       {/* Transcript Button */}
-      <TouchableOpacity
-        style={styles.touchable}
-        onPress={() => {
-          transcriptToggle();
-          // noteToggle();
-        }}
-      >
-        <MaterialCommunityIcons
-          name="file-document-box-outline"
-          size={30}
-          color="gray"
-        />
-        <Text style={styles.buttonText}>Transcript</Text>
-      </TouchableOpacity>
+      {transcriptToggle? (
+        <TouchableOpacity
+          style={styles.touchable}
+          onPress={() => {
+            transcriptToggle();
+            // noteToggle();
+          }}
+        >
+          <MaterialCommunityIcons
+            name="file-document-box-outline"
+            size={30}
+            color="gray"
+          />
+          <Text style={styles.buttonText}>Transcript</Text>
+        </TouchableOpacity>
+        ) : null
+      }
 
       {/* Note Button */}
-      <TouchableOpacity
-        style={styles.touchable}
-        onPress={() => {
-          if(notePressed){
-            setNotePressed(false);
-            noteToggle(false);
-          }
-          else {
-            setNotePressed(true);
-            noteToggle(true);
-          }
-        }}
-      >
-        <MaterialCommunityIcons
-          name={notePressed?"close-octagon-outline":"comment-plus-outline"}
-          size={30}
-          color={notePressed?"red":"gray"}
-        />
-        <Text style={styles.buttonText}>{notePressed? "Close" : "Notes"}</Text>
-      </TouchableOpacity>
+      {noteToggle? (
+        <TouchableOpacity
+          style={styles.touchable}
+          onPress={() => {
+            if(notePressed){
+              setNotePressed(false);
+              noteToggle(false);
+            }
+            else {
+              setNotePressed(true);
+              noteToggle(true);
+            }
+          }}
+        >
+          <MaterialCommunityIcons
+            name={notePressed?"close-octagon-outline":"comment-plus-outline"}
+            size={30}
+            color={notePressed?"red":"gray"}
+          />
+          <Text style={styles.buttonText}>{notePressed? "Close" : "Notes"}</Text>
+        </TouchableOpacity>
+        ) : null
+      }
 
       {/* Quiz Button */}
       {progress === "100" ? (

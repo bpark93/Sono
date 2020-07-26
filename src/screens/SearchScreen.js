@@ -79,7 +79,7 @@ const SearchScreen = () => {
                     }
                 ]}    
             >
-                <Text>{`Testers! Try searching or navigating to the following pages: \n\nAorta Image Aquisition\nUS-Guided Peripheral IV\nLV Failure`}</Text>
+                <Text>{`Welcome to WesternSono! Try searching or navigating to the following pages: \n\nAorta Image Aquisition\nUS-Guided Peripheral IV\nReduced LV Function`}</Text>
             </Banner>
             {errorMessage ? <Text>{errorMessage}</Text> : null}
             <ScrollView>

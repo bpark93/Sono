@@ -41,7 +41,13 @@ const BookmarkList = () => {
                         <TouchableOpacity 
                             style={styles.touchable}
                             key={item.id}
-                            onPress={() => navigation.navigate('LearnDetail', {id:item, category:thing[0]})}
+                            onPress={() => {
+                                if (!item.video&&!item.youtube){
+                                    navigation.navigate('LearnText', {id:item, category:thing[0]})
+                                } else {
+                                    navigation.navigate('LearnDetail', {id:item, category:thing[0]})
+                                }
+                            }}
                         >
                             <ImageBackground 
                                 source={thing[2]}

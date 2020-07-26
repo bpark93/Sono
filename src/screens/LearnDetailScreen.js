@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Dimensions,
+  TouchableWithoutFeedback,
 } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -22,6 +23,7 @@ import * as ScreenOrientation from "expo-screen-orientation";
 import Constants from "expo-constants";
 import { addNote, getNotes, editNote } from "../components/useLearnNotes";
 import LearnNotes from '../components/LearnNotes'
+import firebase from '../components/firebase'
 
 const LearnDetailScreen = ({ route, navigation }) => {
   const { id, category } = route.params;
@@ -167,7 +169,6 @@ const LearnDetailScreen = ({ route, navigation }) => {
       if (notesStringList===[]){return null}
       else{
         const notes = notesStringList.map(note => JSON.parse(note))
-        console.log(JSON.stringify(notes))
         setNoteList(notes);
       }
     } catch (error) {
@@ -189,6 +190,20 @@ const LearnDetailScreen = ({ route, navigation }) => {
     setCurrentTime(item.time)
     setNewNoteButtonPressed(true);
   }
+
+  const [transcriptText, setTranscriptText] = useState([])
+  useEffect(() => {
+    firebase
+    .firestore()
+    .collection("learnTranscripts")
+    .doc(''+id.id)
+    .get().then(function(doc) {
+        setTranscriptText(doc.data().body)
+    }).catch(function(error){
+        setTranscriptText("Error getting Trasncript. Refresh the page to try again.")
+    })
+    console.log(transcriptText.length)
+  },[])
 
 
   return (
@@ -387,7 +402,20 @@ const LearnDetailScreen = ({ route, navigation }) => {
             <MaterialCommunityIcons name="close" size={24} color="black" />
           </TouchableOpacity>
           <ScrollView>
-            <Text style={styles.body}>{id.transcript}</Text>
+            {transcriptText.map(paragraph => (
+                <View key={paragraph.timestamp}>
+                    <TouchableWithoutFeedback onPress={() => youtubeSeek(paragraph.timestamp)}>
+                        <Text 
+                            style={{
+                                fontFamily: "Raleway-Regular", 
+                                textDecorationLine:'underline', 
+                                marginHorizontal:15,
+                                color:'#03a9f4'
+                            }}>{formatTime(paragraph.timestamp)}</Text>
+                    </TouchableWithoutFeedback>
+                    <Text style={styles.body}>{paragraph.body}</Text>
+                </View>
+            ))}
           </ScrollView>
         </View>
       )}

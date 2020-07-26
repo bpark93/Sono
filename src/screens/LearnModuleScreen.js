@@ -43,7 +43,7 @@ const LearnModuleScreen = ({route, navigation}) => {
         height:headerHeight,
         justifyContent:'flex-end'
       }} >
-          <TouchableOpacity style={{flex:1, width:100}} onPress={()=> navigation.goBack()} >
+          <TouchableOpacity style={{flex:1, width:100}} onPress={()=> navigation.navigate("LearnMain")} >
             <MaterialCommunityIcons name="arrow-left" size={24} color="white" style={styles.backIconStyle}/> 
             {/* Not clicking when scrolled up on Android */}
           </TouchableOpacity>
@@ -67,7 +67,7 @@ const LearnModuleScreen = ({route, navigation}) => {
           {id.pages.map((page, index) => (
           <LearnModuleItem page={page} key={page.title} index={index+1} category={id.title}/>
           ))}
-          <QuizLink name={id.title}/>
+          <QuizLink name={id.title} id={id.id}/>
         </View>
       </ScrollView>
     </View>

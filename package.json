@@ -40,7 +40,8 @@
     "react-native-tab-view": "^2.14.2",
     "react-native-web": "~0.11.7",
     "react-native-webview": "9.4.0",
-    "react-native-youtube-iframe": "^1.2.4"
+    "react-native-youtube-iframe": "^1.2.4",
+    "firebase": "7.9.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^8.2.3",
