@@ -201,9 +201,8 @@ const LearnDetailScreen = ({ route, navigation }) => {
     .get().then(function(doc) {
         setTranscriptText(doc.data().body)
     }).catch(function(error){
-      setErrorMessage("Error getting Trasncript. Refresh the page to try again.")
+      setErrorMessage("The transcript for this page is unavailable.")
     })
-    console.log(transcriptText.length)
   },[])
 
 
@@ -418,9 +417,10 @@ const LearnDetailScreen = ({ route, navigation }) => {
                     <Text style={styles.body}>{paragraph.body}</Text>
                 </View>
             ))}
-            {errorMessage && (
-              <Text style={{alignSelf:'center', fontSize:18}}>{errorMessage}</Text>
-            )}
+            {errorMessage ? 
+              <Text style={{fontSize:18, marginHorizontal:30}}>{errorMessage}</Text>
+              :null
+            }
           </ScrollView>
         </View>
       )}
