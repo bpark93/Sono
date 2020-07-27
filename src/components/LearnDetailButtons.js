@@ -14,6 +14,7 @@ const LearnDetailButtons = ({
   modalToggle,
   transcriptToggle,
   noteToggle,
+  youtubeToggle,
 }) => {
   const [savePressed, setSavePressed] = useState(false);
   useEffect(() => {
@@ -116,7 +117,10 @@ const LearnDetailButtons = ({
       {progress === "100" ? (
         <TouchableOpacity
           style={styles.touchable}
-          onPress={() => modalToggle()}
+          onPress={() => {
+            modalToggle();
+            youtubeToggle();
+          }}
         >
           <MaterialCommunityIcons name="trophy" size={30} color="#f1c40f" />
           <Text style={{ ...styles.buttonText, color: "#f1c40f" }}>
@@ -126,7 +130,10 @@ const LearnDetailButtons = ({
       ) : (
         <TouchableOpacity
           style={styles.touchable}
-          onPress={() => modalToggle()}
+          onPress={() => {
+            modalToggle();
+            youtubeToggle();
+          }}
         >
           <MaterialCommunityIcons
             name="trophy-outline"

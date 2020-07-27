@@ -884,7 +884,7 @@ const learnDatabase = [
     pages: [
       {
         title: "Essential Views and Techniques",
-        youtube: "",
+        youtube: "bON-KPiiNCk",
         id: "3.1",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
@@ -898,28 +898,28 @@ const learnDatabase = [
       },
       {
         title: "Assessment of the RV",
-        youtube: "",
+        youtube: "bON-KPiiNCk",
         id: "3.3",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
       {
         title: "Pericardial Effusion",
-        youtube: "",
+        youtube: "bON-KPiiNCk",
         id: "3.4",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
       {
         title: "Inferior Vena Cava",
-        youtube: "",
+        youtube: "bON-KPiiNCk",
         id: "3.5",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
       {
         title: "Valve assessment",
-        youtube: "",
+        youtube: "bON-KPiiNCk",
         id: "3.6",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
@@ -984,13 +984,13 @@ const learnDatabase = [
       },
       {
         title: "Paracentesis",
-        video: "",
+        video: "bON-KPiiNCk",
         id: "4.6",
         captionText: "",
       },
       {
         title: "Thoracentesis",
-        video: "",
+        video: "bON-KPiiNCk",
         id: "4.7",
         captionText: "",
       },
@@ -1375,7 +1375,7 @@ const testDatabase = [
     questions: [
       {
         content:'A 32 year old man with a history of IV drug use present to the ED for shortness of breath and fevers for the past 2 days. What do you suspect based on this lung ultrasound of the anterior right chest (similar findings found throughout both lung fields)?',
-        video:'https://westernsono.ca/wp-content/uploads/2018/08/Lung-Inflammatory-B-lines-infarct-Linear-probe.mp4',
+        video:'https://res.cloudinary.com/dwtw3ge2z/video/upload/v1595814525/Learn/Lung/moduleTest/Lung-Inflammatory-B-lines-infarct-Linear-probe_s4pg2e.mp4',
         answers:[
           "Cardiogenic pulmonary",
           'Diffuse pneumonia',
@@ -1387,7 +1387,7 @@ const testDatabase = [
       },
       {
         content:'A patient is assessed post op day 2 from orthotopic liver transplant for worsening hypoxemia. Vital signs are HR 100bpm, BP 100/40, SpO292% on 50% FM and Temp 37.2C orally. Chest Xray shows small lung volumes and some haziness over the right lung field. Below is a lung ultrasound from the right PLAPS point. What is your diagnosis?',
-        video:'https://westernsono.ca/wp-content/uploads/2018/08/Lung-Dynamic-air-bronchograms-Sweet.mp4',
+        video:'https://res.cloudinary.com/dwtw3ge2z/video/upload/v1595814525/Learn/Lung/moduleTest/Lung-Dynamic-air-bronchograms-Sweet_gjmfwq.mp4',
         answers:[
           'Bacterial pneumonia',
           'Atelectasis',
@@ -1399,7 +1399,7 @@ const testDatabase = [
       },
       {
         content:'A 40 year old male suffers a motor vehicle collision. He is brought to the ED. He is short of breath. His vital signs are BP 110/80, HR 110bpm, RR 28 SpO2 94% on 50% face mask. Lung ultrasound is performed to assess for pneumothorax (see below). What is shown and what do you do?',
-        video:'https://westernsono.ca/wp-content/uploads/2018/08/Lung-Pseudolung-point.mp4',
+        video:'https://res.cloudinary.com/dwtw3ge2z/video/upload/v1595814526/Learn/Lung/moduleTest/Lung-Pseudolung-point_giqmvu.mp4',
         answers:[
           'Pneumothorax - Insert chest tube',
           'Consolidation from pulmonary contusion - Intubate',
@@ -1411,7 +1411,7 @@ const testDatabase = [
       },
       {
         content:'A patient is assessed for hypoxemia in the ICU.  Chest X ray shows a left sided haziness with suspected consolidation. Lung ultrasound is shown below. What is the likely etiology for the patient\'s hypoxemia and what is best management?',
-        video:'https://westernsono.ca/wp-content/uploads/2018/08/Plankton-sign.mp4',
+        video:'https://res.cloudinary.com/dwtw3ge2z/video/upload/v1595814529/Learn/Lung/moduleTest/Plankton-sign_y6bwhb.mp4',
         answers:[
           "Transudative pleural effusion due to congestive heart failure - Give diuretics",
           'Bacterial pneumonia - Give antibiotics',
@@ -1422,7 +1422,7 @@ const testDatabase = [
       },
       {
         content:'A patient is assessed for hypoxemia in the post cardiac surgery recovery unit. Chest Xray shows haziness in the right lower lung field. Lung ultrasound of the right PLAPS point is shown below, what is seen and what is the likely diagnosis?',
-        video:'https://westernsono.ca/wp-content/uploads/2018/08/Atelectasis-partial-inflation.mp4',
+        video:'https://res.cloudinary.com/dwtw3ge2z/video/upload/v1595814518/Learn/Lung/moduleTest/Atelectasis-partial-inflation_i3qsp4.mp4',
         answers:[
           "Consolidation with dynamic air bronchograms - Pneumonia",
           'Consolidation with partial inspiratory recruitment - Atelectasis',

@@ -192,6 +192,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
   }
 
   const [transcriptText, setTranscriptText] = useState([])
+  const [errorMessage, setErrorMessage] = useState('')
   useEffect(() => {
     firebase
     .firestore()
@@ -200,7 +201,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
     .get().then(function(doc) {
         setTranscriptText(doc.data().body)
     }).catch(function(error){
-        setTranscriptText("Error getting Trasncript. Refresh the page to try again.")
+      setErrorMessage("Error getting Trasncript. Refresh the page to try again.")
     })
     console.log(transcriptText.length)
   },[])
@@ -289,6 +290,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
             modalToggle={() => setModalVisible(true)}
             transcriptToggle={() => setTranscriptToggled(true)}
             noteToggle={(bool) => setNoteVisible(bool)}
+            youtubeToggle={() => setYoutubePlaying(false)}
           />
           <Text style={styles.body}>{id.captionText}</Text>
 
@@ -402,7 +404,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
             <MaterialCommunityIcons name="close" size={24} color="black" />
           </TouchableOpacity>
           <ScrollView>
-            {transcriptText.map(paragraph => (
+            {transcriptText && transcriptText.map(paragraph => (
                 <View key={paragraph.timestamp}>
                     <TouchableWithoutFeedback onPress={() => youtubeSeek(paragraph.timestamp)}>
                         <Text 
@@ -416,6 +418,9 @@ const LearnDetailScreen = ({ route, navigation }) => {
                     <Text style={styles.body}>{paragraph.body}</Text>
                 </View>
             ))}
+            {errorMessage && (
+              <Text style={{alignSelf:'center', fontSize:18}}>{errorMessage}</Text>
+            )}
           </ScrollView>
         </View>
       )}
