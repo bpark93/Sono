@@ -119,7 +119,9 @@ const LearnDetailButtons = ({
           style={styles.touchable}
           onPress={() => {
             modalToggle();
-            youtubeToggle();
+            if (pageInfo.video || pageInfo.youtube){
+              youtubeToggle();
+            }
           }}
         >
           <MaterialCommunityIcons name="trophy" size={30} color="#f1c40f" />
@@ -132,7 +134,9 @@ const LearnDetailButtons = ({
           style={styles.touchable}
           onPress={() => {
             modalToggle();
-            youtubeToggle();
+            if (pageInfo.video || pageInfo.youtube){
+              youtubeToggle();
+            }
           }}
         >
           <MaterialCommunityIcons

@@ -112,7 +112,6 @@ const RapidReviews = ({page}) => {
                         <Image 
                             source={{uri: item.image}} 
                             style={{width:Width, height:300, resizeMode:'contain', backgroundColor:'#ffffff'}} 
-                            defaultSource={require('../../assets/loading.png')}
                             onLoadStart={() => console.log('start')}
                             onLoadEnd={() => console.log('end')}
                         />
