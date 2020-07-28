@@ -1,15 +1,20 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import {View, StyleSheet, Text,Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native'
 import {testDatabase} from '../../database'
 import Constants from "expo-constants";
 import { Video } from 'expo-av';
 import Carousel from 'react-native-snap-carousel';
-import {RadioButton, } from 'react-native-paper'
+import {RadioButton, Button, Portal, Dialog} from 'react-native-paper'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+
 
 const Width = Dimensions.get("window").width;
 const Height = Dimensions.get("window").height;
 
 const LearnTestScreen = ({route}) => {
+    const navigation = useNavigation();
+    
     const {id} = route.params
     const selectedTest = testDatabase.find(item => item.id === id) 
 
@@ -20,10 +25,23 @@ const LearnTestScreen = ({route}) => {
         setQuestionsAnswered(questionsAnswered+1);
     }
 
+    const [warningVisible, setWarningVisible] = useState(false)
+
     return (
         selectedTest? (
             !startPressed? (
                 <View style={styles.container}>
+                    <TouchableOpacity 
+                        style={{
+                            position:'absolute',
+                            top:45,
+                            left:15,
+                        }}
+                        onPress={()=> navigation.goBack()} 
+                    >
+                        <MaterialCommunityIcons name="arrow-left" size={24} color="black"/> 
+                        {/* Not clicking when scrolled up on Android */}
+                    </TouchableOpacity>
                     <Image source={selectedTest.image} style={{height:150, width:150, marginBottom:20}}/>
                     <Text style={styles.header}>{selectedTest.title}</Text>
                     <Text style={styles.caption}>Ready to put your new-found knowledge to the test? Click the button below to get started. </Text>
@@ -40,6 +58,36 @@ const LearnTestScreen = ({route}) => {
                 </View>
             ) : (
                 <View style={styles.container}>
+                    <Text 
+                        style={{
+                            fontFamily:'Raleway-Regular', 
+                            fontSize:18
+                    }}>
+                        {questionsAnswered}/{selectedTest.count} Questions Answered
+                    </Text>
+                    <View style={{flexDirection:'row'}}>
+                        <Button
+                            mode='text'
+                            icon='exit-run'
+                            color='red'
+                            style={{
+                                marginHorizontal:10
+                            }}
+                            onPress={() => setWarningVisible(true)}
+                        >Quit test</Button>
+
+                        {questionsAnswered === selectedTest.count ? (
+                            <Button
+                                mode='contained'
+                                color='green'
+                                icon='thumb-up-outline'
+                                style={{
+                                    marginHorizontal:10
+                                }}
+                            >Submit</Button>
+                            ):null
+                        }
+                    </View>
                     <Carousel
                         // ref={(c) => { this._carousel = c; }}
                         data={selectedTest.questions}
@@ -51,13 +99,23 @@ const LearnTestScreen = ({route}) => {
                         itemWidth={Width-20}
                         itemHeight={Height-50}
                         layout="default"
-                        ListFooterComponent={() => {
-                            return (
-                                <View>
-                                    {/* Submit button */}
-                                </View>
-                        )}}
+                        color='#4f2683'
                     />
+                    <Portal>
+                        <Dialog visible={warningVisible} onDismiss={() => setWarningVisible(false)}>
+                        <Dialog.Title>Are you sure you want to quit the test?</Dialog.Title>
+                        <Dialog.Content>
+                            <Text>Your progress will not be saved.</Text>
+                        </Dialog.Content>
+                        <Dialog.Actions>
+                            <Button onPress={() => setWarningVisible(false)}>Cancel</Button>
+                            <Button onPress={() => {
+                                navigation.goBack()
+                                setWarningVisible(false)
+                            }}>Quit</Button>
+                        </Dialog.Actions>
+                        </Dialog>
+                    </Portal>
                 </View>
             )
         ) : (
@@ -66,16 +124,36 @@ const LearnTestScreen = ({route}) => {
                 <Text>This module test is being developed. Stay tuned!</Text>
             </View>
         )
+
     )
 };
 
 const QuizQuestions = ({data, index, increment}) => {
     const playerRef = useRef(null)
-    const [value, setValue] = useState('first');
+    const [value, setValue] = useState('');
+    const [answered, setAnswered] = useState(false)
+    useEffect(() => {
+        if (value.length != 0){
+            setAnswered(true);
+        }
+    },[value])
+    useEffect(() => {
+        if (answered){
+            increment();
+        }
+    },[answered])
+    
 
     return (
         <ScrollView 
-            style={{backgroundColor:'#ecf0f1', borderRadius:20, }} 
+            style={{
+                backgroundColor:'white',
+                borderColor:'#eeeeee',
+                borderWidth:1,
+                borderRadius:20, 
+                elevation:2, 
+                margin:5, 
+            }} 
             contentContainerStyle={{alignItems:'center'}}
             showsVerticalScrollIndicator={false}
         >
@@ -83,14 +161,14 @@ const QuizQuestions = ({data, index, increment}) => {
                 style={{
                     fontFamily:'Raleway-Bold', 
                     fontSize:24, color:'#4f2683', 
-                    margin:30
+                    marginVertical:20
                 }}
             >{`Question ${index+1}`}</Text>
             <Text 
                 style={{
-                    fontSize:18, 
+                    fontSize:16, 
                     marginBottom:20,
-                    marginHorizontal:10
+                    marginHorizontal:20
                 }}
             >{data.content}</Text>
             {data.video && (
@@ -106,19 +184,30 @@ const QuizQuestions = ({data, index, increment}) => {
                     style={{
                         width:Width-20,
                         height:(Width-20)*0.75,
-                        borderRadius:20
+                        borderRadius:20,
+                        marginBottom:10
                     }}
                 />
             )}
             <RadioButton.Group onValueChange={value => setValue(value)} value={value}>
                 {data.answers.map(answer => (
-                    <View key={answer} style={{backgroundColor:'white', borderRadius:20, marginVertical:10, marginHorizontal:30, padding:10, flex:1}}>
-                        <RadioButton.Item 
-                            value={answer}
-                            label={answer}
-                            style={{marginHorizontal:20}}
-                        />
-                    </View>
+                    // <View key={answer} style={{borderRadius:20, marginTop:20, marginHorizontal:30, padding:10, elevation:2}}>
+                        <View 
+                            key={answer} 
+                            style={{
+                                width:Width-80,  
+                                borderRadius:20, 
+                                backgroundColor:'#F5F5F5',
+                                marginBottom:10,
+                                overflow:'hidden'
+                            }}
+                        >
+                            <RadioButton.Item 
+                                value={answer}
+                                label={answer}
+                                labelStyle={{width:Width-150}}
+                            />
+                        </View>
                 ))}
             </RadioButton.Group>
         </ScrollView>

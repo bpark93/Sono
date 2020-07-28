@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, ImageBackground} from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, ImageBackground, Dimensions} from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import {getBookmark} from './useBookmark'
 import {learnDatabase} from '../../database'
+
+const Width = Dimensions.get('window').width
 
 const BookmarkList = () => {
     const navigation = useNavigation();
@@ -66,7 +68,7 @@ const BookmarkList = () => {
                             <Text style={styles.text}>{item.title}</Text>
                         </TouchableOpacity>
                     ))))
-            :<View style={{flex:1, alignItems:'center', justifyContent:'center', width:400, height:150}}>
+            :<View style={{flex:1, alignItems:'center', justifyContent:'center', width:Width, height:150}}>
                 <Image 
                     source={require('../../assets/write.png')}
                     style={{

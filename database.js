@@ -1382,7 +1382,7 @@ const testDatabase = [
           'Septic emboli with ARDS',
           'Pulmonary embolism'
         ],
-        correct:2,
+        correct:'Septic emboli with ARDS',
         explanation:'This image above shows a significant B line burden suggestive of interstitial syndrome, a thickened, irregular pleura suggestive of an inflammatory etiology (non cardiogenic), as well as a subpleural nodular hypoechogenicity compatible with subpleural infarct which suggests pulmonary embolism. Taken with the clinical context, this is suggestive of septic embolism in the context of right sided infective endocarditis, which was confirmed in this patient, or septic thrombophlebitis (a rarer occurrence).'
       },
       {
@@ -1394,7 +1394,7 @@ const testDatabase = [
           'Ascites causing small lung volumes',
           'Cardiogenic pulmonary edema'
         ],
-        correct:0,
+        correct:'Bacterial pneumonia',
         explanation:'The image shows a large organ with tissue density. This could represent either consolidated lung or liver. The surest way to distinguish between the two would be to locate the diaphragm which should always be done.\nIn this case, the presence of air bronchograms (the hyperchogenic artefacts where air is in contact with tissue) suggests that this is much more likely to be lung (though air may be seen in the liver in case of pneumobilia or portal venous air).\nThe flowing movement of the air in the bronchi makes this a dynamic air bronchogram. This suggests the consolidation is not related to insufficient air entry into the lung (as in atelectasis) but related to abnormal material in the alveoli (generally pus as in pneumonia). Dynamic air bronchograms have a 94% Specificity but only 61% Sensitivity for the diagnosis of pneumonia in the ICU and are therefore a much better rule in tool (Positive likelihood ratio = 10) than rule out tool (Negative likelihood ratio = 0.4)'
       },
       {
@@ -1406,7 +1406,7 @@ const testDatabase = [
           'Pneumothorax, likely small - Wait for chest X-ray',
           'Pseudolung point - Continue assessment'
         ],
-        correct:3,
+        correct:'Pseudolung point - Continue assessment',
         explanation:'The clip shown is an example of a pseudolung point: a point where normal pleura is in juxtaposition to another organ/tissue. The sudden appearance and loss of presence of lung sliding resembles a lung point. However, in a pseudolung point, when lung sliding disappears, we are able to see the adjacent organ deeper (in this case the heart).  Pseudolung points tend to arise on the chest where organs and pleura switch places during tidal ventilation (the left anterior chest due to the heart and the costophrenic angles due to the abdominal viscera). In a true lung point, the zone where lung sliding is lost should show an A-line pattern (due to air in the pleural space).'
       },
       {
@@ -1417,7 +1417,7 @@ const testDatabase = [
           'Bacterial pneumonia - Give antibiotics',
           'Complex pleural effusion - Diagnostic +/- therapeutic thoracentesis',
         ],
-        correct:2,
+        correct:'Complex pleural effusion - Diagnostic +/- therapeutic thoracentesis',
         explanation:'The clip shows a moderate sized mostly anechoic pleural effusion with swirling hyperchogenicities within it. When there is only one hyperechogenicity, this is termed plankton sign. It is a sign of proteinaceous, cellular or other inflammatory debris within the effusion, compatible with an exsudate. This could represent a complex parapneumonic effusion, a hemothorax, a malignant effusion, etc. Hence, diagnostic thoracentesis is indicated with consideration for therapeutic thoracentesis/chest tube placement for symptom relief or, in the case of empyema, source control.'
       },
       {
@@ -1428,7 +1428,7 @@ const testDatabase = [
           'Consolidation with partial inspiratory recruitment - Atelectasis',
           'B - Lines - Heart failure',
         ],
-        correct:1,
+        correct:'Consolidation with partial inspiratory recruitment - Atelectasis',
         explanation:'The clip shows a consolidation with air bronchograms. On inspiration, there is motion seen and the air bronchograms move which could suggest dynamic air bronchograms. However, we are not seeing the flowing motion of air within the bronchi, but rather the interface between aerated and non aerated lung if moving centrifugally (as evidence by the shred sign moving towards the probe). This suggests inspiratory recruit of the consolidation, compatible with atelectasis.'
       },
     ]

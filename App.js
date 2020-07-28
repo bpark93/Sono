@@ -211,7 +211,8 @@ function LearnNav() {
         name="Test" 
         component={LearnTestScreen}
         options={{
-          headerShown: false
+          headerShown: false,
+          gestureEnabled: false
         }}
       />
       <Learn.Screen 
