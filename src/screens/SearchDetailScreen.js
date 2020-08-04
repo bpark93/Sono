@@ -1,49 +1,51 @@
-import React, {useEffect} from 'react'
-import { View, StyleSheet, Text } from 'react-native'
-import { WebView } from 'react-native-webview';
-import {ActivityIndicator} from 'react-native-paper'
-import RapidReviews from '../components/RapidReviews'
-import ImageLibrary from '../components/ImageLibrary'
-import {setList} from '../components/RecentPages'
+import React, { useEffect, useState } from "react";
+import RapidReviews from "../components/RapidReviews";
+import ImageLibrary from "../components/ImageLibrary";
+import ResourceTool from '../components/ResourceTool'
+import { setList } from "../components/RecentPages";
+import firebase from "../components/firebase";
 
-const SearchDetailScreen = ({route}) => {
-    const {id} = route.params;
+const SearchDetailScreen = ({ route }) => {
+  const { id } = route.params;
 
-    useEffect(() => {
-        async function setRecent(){
-            await setList(id.id)
-        }
-        setRecent();
-    },[])
-    
-    if (id.type === 'resource') { 
-        return (
-            <WebView 
-                source={{ uri: id.pageURL }}
-                renderLoading={() => (
-                    <View style={{flex:1, alignItems: 'center', /*justifyContent:'center',*/ backgroundColor:'#FFFFFF'}}>
-                        <ActivityIndicator
-                            animating={true} 
-                            size='large'  
-                        />
-                        <Text style={{marginTop:20}}>Loading Resource...</Text>
-                    </View>
-                )}
-                startInLoadingState={true}
-            />
-        )        
+  useEffect(() => {
+    async function setRecent() {
+      await setList(id.id);
     }
+    setRecent();
+  }, []);
+
+  if (id.type === "resource") {
+    const [pageInfo, setPageInfo] = useState([]);
+    const [errorMessage, setErrorMessage] = useState("");
+    useEffect(() => {
+      firebase
+        .firestore()
+        .collection("pages")
+        .doc("" + id.id)
+        .get()
+        .then(function (doc) {
+          setPageInfo(doc.data().content);
+        })
+        .catch(function (error) {
+          setErrorMessage("This page is not available yet. Stay tuned for updates!");
+        });
+    }, []);
 
     return (
-        // Rapid Reviews
-        id.type==='rapidreview'?
-        <RapidReviews page={id}/>
-        :
-        //Image library
-        <ImageLibrary page={id} />
-    )
-};
+      <ResourceTool pageInfo={pageInfo} errorMessage={errorMessage}/>
+    );
+  }
 
-const styles = StyleSheet.create({});
+  return (
+    // Rapid Reviews
+    id.type === "rapidreview" ? (
+      <RapidReviews page={id} />
+    ) : (
+      //Image library
+      <ImageLibrary page={id} />
+    )
+  );
+};
 
 export default SearchDetailScreen;

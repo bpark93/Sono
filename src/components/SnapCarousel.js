@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {View, Text, StyleSheet, Dimensions} from 'react-native'
-import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {View, StyleSheet, Dimensions} from 'react-native'
+import Carousel from 'react-native-snap-carousel';
 import ImageModal from 'react-native-image-modal';
 
 const WIDTH = Dimensions.get('window').width;
@@ -14,11 +14,11 @@ class SnapCarousel extends Component {
                     resizeMode="contain"
                     imageBackgroundColor="black"
                     source={{uri: item.source_url}}
-                    style={{height:275, width:WIDTH-60}}
+                    style={{height:(WIDTH-60)*0.75, width:WIDTH-60}}
                 />
-                <View style={{height:60, backgroundColor:'white', borderWidth:0.5, borderBottomLeftRadius:15, borderBottomRightRadius:15, justifyContent:'center'}} >
+                {/* <View style={{height:60, backgroundColor:'white', borderWidth:0.5, borderBottomLeftRadius:15, borderBottomRightRadius:15, justifyContent:'center'}} >
                     <Text style={styles.title}>{item.title.rendered.replace("_",". ").replace(/_/g, " ")}</Text>
-                </View>
+                </View> */}
             </View>
         );
     }
@@ -34,23 +34,6 @@ class SnapCarousel extends Component {
                     itemWidth={WIDTH-60}
                     layout="default"
                 />
-                {/* <Pagination
-                    dotsLength={this.props.images.length}
-                    activeDotIndex={activeSlide}
-                    containerStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.75)' }}
-                    dotStyle={{
-                        width: 10,
-                        height: 10,
-                        borderRadius: 5,
-                        marginHorizontal: 8,
-                        backgroundColor: 'rgba(255, 255, 255, 0.92)'
-                    }}
-                    inactiveDotStyle={{
-                        // Define styles for inactive dots here
-                    }}
-                    inactiveDotOpacity={0.4}
-                    inactiveDotScale={0.6}
-                /> */}
             </>
         )
     }
@@ -60,7 +43,7 @@ const styles = StyleSheet.create({
     slide:{
         flex:1,
         height:350,
-        justifyContent:'flex-end',
+        justifyContent:'center',
         marginVertical:15,
         backgroundColor:'black',
         borderRadius:15

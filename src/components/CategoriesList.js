@@ -16,7 +16,7 @@ const CategoriesList = () => {
 
   return (
     <ScrollView style={{flex:1}}>
-      <Text style={styles.subheaderStyle}>Find standard images and technique videos</Text>
+      <Text style={styles.subheaderStyle}>Find images, videos, and tools</Text>
       {categoryDatabase.map((index) => (
         index.type==="page" ?
           <List.Item 
@@ -59,45 +59,45 @@ const ListAccordion = ({index, handleOnPress}) => {
           {/* <View style={{backgroundColor: expanded? '#FAFAFA': 'white'}}> */}
           {Object.entries(index.groups).map((item) => (
             item[1].pages?
-            <List.Accordion
-              key={item}
-              style={{...styles.subCategoryStyle, backgroundColor: expanded? '#FAFAFA': 'white'}}
-              title={item[0]}
-              left={() => <FontAwesome5 name='folder' size={16}/>} 
-            >
-              {item[1].pages.map((page) => (
-                <List.Item 
-                  key={page.id}
-                  style={{...styles.listItemStyle, backgroundColor: expanded? '#FAFAFA': 'white' }}
-                  title={page.title}
-                  onPress={()=> handleOnPress(page.id)}
-                  left={()=> {
-                    if (page.type === 'video') {
-                      return <FontAwesome5 name='play-circle' size={16} style={{marginTop:7}}/>
-                    } else if (page.type === 'image') {
-                      return <FontAwesome5 name='images' size={16} style={{marginTop:7}}/>
-                    } else {
-                      return <FontAwesome5 name='accessible-icon' size={16} style={{marginTop:7}}/>
+              <List.Accordion
+                key={item}
+                style={{...styles.subCategoryStyle, backgroundColor: expanded? '#FAFAFA': 'white'}}
+                title={item[0]}
+                left={() => <FontAwesome5 name='folder' size={16}/>} 
+              >
+                {item[1].pages.map((page) => (
+                  <List.Item 
+                    key={page.id}
+                    style={{...styles.listItemStyle, backgroundColor: expanded? '#FAFAFA': 'white' }}
+                    title={page.title}
+                    onPress={()=> handleOnPress(page.id)}
+                    left={()=> {
+                      if (page.type === 'video') {
+                        return <FontAwesome5 name='play-circle' size={16} style={{marginTop:7}}/>
+                      } else if (page.type === 'image') {
+                        return <FontAwesome5 name='images' size={16} style={{marginTop:7}}/>
+                      } else {
+                        return <FontAwesome5 name='tools' size={16} style={{marginTop:7}}/>
+                      }
+                    }}
+                    right={() => 
+                      <FontAwesome5 name='chevron-right' size={14} style={{marginTop:10, marginRight:15, color:'#673ab7'}}/>
                     }
-                  }}
-                  right={() => 
-                    <FontAwesome5 name='chevron-right' size={14} style={{marginTop:10, marginRight:15, color:'#673ab7'}}/>
-                  }
-                />
-              ))}
-            </List.Accordion>
+                  />
+                ))}
+              </List.Accordion>
             :<List.Item 
                   key={item[0]}
                   style={{...styles.subCategoryStyle, backgroundColor: expanded? '#FAFAFA': 'white'}}
                   title={item[0]}
-                  onPress={()=> handleOnPress(item[1].id)}
+                  onPress={()=> handleOnPress(item[1])}
                   left={()=> {
                     if (item[1].type === 'video') {
                       return <FontAwesome5 name='play-circle' size={16} style={{marginTop:7}}/>
                     } else if (item[1].type === 'image') {
                       return <FontAwesome5 name='images' size={16} style={{marginTop:7}}/>
                     } else {
-                      return <FontAwesome5 name='accessible-icon' size={16} style={{marginTop:7}}/>
+                      return <FontAwesome5 name='tools' size={16} style={{marginTop:7}}/>
                     }
                   }}
                   right={() => 
@@ -115,10 +115,12 @@ const styles = StyleSheet.create({
       marginHorizontal: 0,
     },
     subCategoryStyle:{
-      paddingLeft:40
+      paddingLeft:40,
+      height:55
     },
     listItemStyle: {
       paddingLeft:55,
+      height:50
     },
     iconStyle: {
         fontSize: 30,

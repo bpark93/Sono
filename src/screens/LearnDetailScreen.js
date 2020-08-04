@@ -22,8 +22,8 @@ import { Snackbar, TextInput, Button } from "react-native-paper";
 import * as ScreenOrientation from "expo-screen-orientation";
 import Constants from "expo-constants";
 import { addNote, getNotes, editNote } from "../components/useLearnNotes";
-import LearnNotes from '../components/LearnNotes'
-import firebase from '../components/firebase'
+import LearnNotes from "../components/LearnNotes";
+import firebase from "../components/firebase";
 
 const LearnDetailScreen = ({ route, navigation }) => {
   const { id, category } = route.params;
@@ -153,22 +153,23 @@ const LearnDetailScreen = ({ route, navigation }) => {
     }
   };
   // time formatter
-  const formatTime = time => {
-    const minutes = Math.floor(time/60)
-    let seconds = Math.floor(time%60)
-    if (seconds<10){
-        seconds = "0"+seconds
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    let seconds = Math.floor(time % 60);
+    if (seconds < 10) {
+      seconds = "0" + seconds;
     }
-    return `${minutes}:${seconds}`
-  }
+    return `${minutes}:${seconds}`;
+  };
   // Note state
   const [noteList, setNoteList] = useState([]);
   const parseNoteList = async () => {
     try {
       const notesStringList = await getNotes(id.id);
-      if (notesStringList===[]){return null}
-      else{
-        const notes = notesStringList.map(note => JSON.parse(note))
+      if (notesStringList === []) {
+        return null;
+      } else {
+        const notes = notesStringList.map((note) => JSON.parse(note));
         setNoteList(notes);
       }
     } catch (error) {
@@ -177,34 +178,35 @@ const LearnDetailScreen = ({ route, navigation }) => {
   };
   useEffect(() => {
     parseNoteList();
-  },[])
-  const youtubeSeek = seconds => {
-      youtubeRef.current.seekTo(seconds)
-  }
-  const [editing, setEditing] = useState(false)
-  const [original, setOriginal] = useState(null)
+  }, []);
+  const youtubeSeek = (seconds) => {
+    youtubeRef.current.seekTo(seconds);
+  };
+  const [editing, setEditing] = useState(false);
+  const [original, setOriginal] = useState(null);
   const edit = (item) => {
     setEditing(true);
-    setText(item.note)
-    setOriginal(item)
-    setCurrentTime(item.time)
+    setText(item.note);
+    setOriginal(item);
+    setCurrentTime(item.time);
     setNewNoteButtonPressed(true);
-  }
+  };
 
-  const [transcriptText, setTranscriptText] = useState([])
-  const [errorMessage, setErrorMessage] = useState('')
+  const [transcriptText, setTranscriptText] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
     firebase
-    .firestore()
-    .collection("learnTranscripts")
-    .doc(''+id.id)
-    .get().then(function(doc) {
-        setTranscriptText(doc.data().body)
-    }).catch(function(error){
-      setErrorMessage("The transcript for this page is unavailable.")
-    })
-  },[])
-
+      .firestore()
+      .collection("learnTranscripts")
+      .doc("" + id.id)
+      .get()
+      .then(function (doc) {
+        setTranscriptText(doc.data().body);
+      })
+      .catch(function (error) {
+        setErrorMessage("The transcript for this page is unavailable.");
+      });
+  }, []);
 
   return (
     <View style={{ flex: 1 }}>
@@ -305,7 +307,11 @@ const LearnDetailScreen = ({ route, navigation }) => {
                 Notes
               </Text>
               <TouchableOpacity
-                style={{ flexDirection: "row", marginVertical:10, justifyContent:'center' }}
+                style={{
+                  flexDirection: "row",
+                  marginVertical: 10,
+                  justifyContent: "center",
+                }}
                 onPress={() => {
                   if (!newNoteButtonPressed) {
                     setNewNoteButtonPressed(true);
@@ -315,8 +321,8 @@ const LearnDetailScreen = ({ route, navigation }) => {
                   } else {
                     // setYoutubePlaying(true)
                     setNewNoteButtonPressed(false);
-                    setEditing(false)
-                    setText('')
+                    setEditing(false);
+                    setText("");
                   }
                 }}
               >
@@ -327,7 +333,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
                   size={16}
                   style={{ marginRight: 5, marginTop: 3 }}
                 />
-                <Text style={{ fontSize: 14, textDecorationLine:"underline" }}>
+                <Text style={{ fontSize: 14, textDecorationLine: "underline" }}>
                   {newNoteButtonPressed ? "Cancel" : "Add a new note"}
                 </Text>
               </TouchableOpacity>
@@ -345,47 +351,52 @@ const LearnDetailScreen = ({ route, navigation }) => {
                   <Button
                     mode="contained"
                     disabled={text ? false : true}
-                    style={{marginHorizontal:100, marginVertical:10}}
-                    labelStyle={{fontWeight:'bold'}}
+                    style={{ marginHorizontal: 100, marginVertical: 10 }}
+                    labelStyle={{ fontWeight: "bold" }}
                     onPress={async () => {
-                        if(!editing){
-                            await addNote(id.id, text, currentTime);
-                            textinputRef.current.clear();
-                            setText('')
-                            setNewNoteButtonPressed(false)
-                            await parseNoteList();
-                        }
-                        else{
-                            await editNote(id.id, text, currentTime, original)
-                            textinputRef.current.clear();
-                            setNewNoteButtonPressed(false)
-                            setEditing(false)
-                            setText('')
-                            await parseNoteList();
-                        }
+                      if (!editing) {
+                        await addNote(id.id, text, currentTime);
+                        textinputRef.current.clear();
+                        setText("");
+                        setNewNoteButtonPressed(false);
+                        await parseNoteList();
+                      } else {
+                        await editNote(id.id, text, currentTime, original);
+                        textinputRef.current.clear();
+                        setNewNoteButtonPressed(false);
+                        setEditing(false);
+                        setText("");
+                        await parseNoteList();
+                      }
                     }}
                   >
-                    {editing? "Update" : `Add note @ ${formatTime(currentTime)}`}
+                    {editing
+                      ? "Update"
+                      : `Add note @ ${formatTime(currentTime)}`}
                   </Button>
                 </View>
               )}
               <View>
-                {noteList.length===0? (
-                    <View style={{justifyContent:'center', alignItems:'center'}}>
-                        <Text style={{color:"#9E9E9E", fontSize:18}}>No saved notes.</Text>
-                    </View>
+                {noteList.length === 0 ? (
+                  <View
+                    style={{ justifyContent: "center", alignItems: "center" }}
+                  >
+                    <Text style={{ color: "#9E9E9E", fontSize: 18 }}>
+                      No saved notes.
+                    </Text>
+                  </View>
                 ) : (
                   noteList.map((item) => (
-                        <LearnNotes 
-                            key={item.note} 
-                            item={item} 
-                            id={id.id}
-                            formatTime={time => formatTime(time)} 
-                            seek={time => youtubeSeek(time)}
-                            refresh={() => parseNoteList()}
-                            edit={x => edit(x)}
-                        />
-                    ))
+                    <LearnNotes
+                      key={item.note}
+                      item={item}
+                      id={id.id}
+                      formatTime={(time) => formatTime(time)}
+                      seek={(time) => youtubeSeek(time)}
+                      refresh={() => parseNoteList()}
+                      edit={(x) => edit(x)}
+                    />
+                  ))
                 )}
               </View>
             </View>
@@ -403,24 +414,31 @@ const LearnDetailScreen = ({ route, navigation }) => {
             <MaterialCommunityIcons name="close" size={24} color="black" />
           </TouchableOpacity>
           <ScrollView>
-            {transcriptText && transcriptText.map(paragraph => (
+            {transcriptText &&
+              transcriptText.map((paragraph) => (
                 <View key={paragraph.timestamp}>
-                    <TouchableWithoutFeedback onPress={() => youtubeSeek(paragraph.timestamp)}>
-                        <Text 
-                            style={{
-                                fontFamily: "Raleway-Regular", 
-                                textDecorationLine:'underline', 
-                                marginHorizontal:15,
-                                color:'#03a9f4'
-                            }}>{formatTime(paragraph.timestamp)}</Text>
-                    </TouchableWithoutFeedback>
-                    <Text style={styles.body}>{paragraph.body}</Text>
+                  <TouchableWithoutFeedback
+                    onPress={() => youtubeSeek(paragraph.timestamp)}
+                  >
+                    <Text
+                      style={{
+                        fontFamily: "Raleway-Regular",
+                        textDecorationLine: "underline",
+                        marginHorizontal: 15,
+                        color: "#03a9f4",
+                      }}
+                    >
+                      {formatTime(paragraph.timestamp)}
+                    </Text>
+                  </TouchableWithoutFeedback>
+                  <Text style={styles.body}>{paragraph.body}</Text>
                 </View>
-            ))}
-            {errorMessage ? 
-              <Text style={{fontSize:18, marginHorizontal:30}}>{errorMessage}</Text>
-              :null
-            }
+              ))}
+            {errorMessage ? (
+              <Text style={{ fontSize: 18, marginHorizontal: 30 }}>
+                {errorMessage}
+              </Text>
+            ) : null}
           </ScrollView>
         </View>
       )}

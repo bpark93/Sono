@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, AsyncStorage} from 'react-native'
+import {View, AsyncStorage, YellowBox } from 'react-native'
 import { Provider as PaperProvider, DefaultTheme, ActivityIndicator } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -26,6 +26,7 @@ import {initializeBookmark} from './src/components/useBookmark'
 import * as Font from 'expo-font';
 import {initializeRecentPages} from './src/components/RecentPages'
 
+
 const Main = createMaterialBottomTabNavigator();
 const Learn = createStackNavigator();
 const Search = createStackNavigator();
@@ -33,6 +34,8 @@ const Cases = createStackNavigator();
 const Settings = createStackNavigator();
 
 function App() {
+
+  YellowBox.ignoreWarnings(['Setting a timer for a long period of time, i.e. multiple minutes,']); // REMEMBER TO TAKE OUT 
 
   const [first, setFirst] = useState(null);
   useEffect(()=> {

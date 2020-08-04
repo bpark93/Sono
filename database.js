@@ -411,14 +411,11 @@ const database = [
     ],
   },
   {
-    title: "Advanced Critical Care Quantitative Assessment Resource",
+    title: "Anatomical Assessments",
     id: "12",
     category: "Resource",
     type: "resource",
     tags: [],
-    pageURL:
-      "https://westernsono.ca/advanced-critical-care-ultrasound-quantitative-assessment-resource/#content",
-    requestURL: "https://westernsono.ca/wp-json/wp/v2/pages/14811",
   },
   {
     title: "Abdominal Aortic Aneurysm",
@@ -485,6 +482,55 @@ const database = [
       },
     ],
   },
+  {
+    title: "Hemodynamic Assessment",
+    id: "15",
+    category: "Resource",
+    type: "resource",
+  },
+  {
+    title: "Diastology",
+    id: "16",
+    category: "Resource",
+    type: "resource",
+  },
+  {
+    title: "Valvular Assessment",
+    id: "17",
+    category: "Resource",
+    type: "resource",
+  },
+  {
+    title: "Pericardial Assessment",
+    id: "18",
+    category: "Resource",
+    type: "resource",
+  },
+  {
+    title: "Pleural Assessment",
+    id: "19",
+    category: "Resource",
+    type: "resource",
+  },
+  {
+    title: "Transcranial Doppler",
+    id: "20",
+    category: "Resource",
+    type: "resource",
+  },
+  {
+    title: "Other lesions",
+    id: "21",
+    category: "Resource",
+    type: "resource",
+  },
+  {
+    title: "Terminology",
+    id: "22",
+    category: "Resource",
+    type: "resource",
+  },
+
 ];
 
 const categoryDatabase = [
@@ -518,7 +564,7 @@ const categoryDatabase = [
     title: "Cardiac",
     image: require("./assets/png2/040-heart.png"),
     groups: {
-      "Cardiac Views": {
+      "Image Acquisition - Cardiac Views": {
         title: "Cardiac Views",
         pages: [
           {
@@ -546,16 +592,6 @@ const categoryDatabase = [
             type: "image",
             id: "11",
           },
-          {
-            title: "LV Thrombus",
-            type: "image",
-            id: "xx",
-          },
-          {
-            title: "Hyperdynamic LV",
-            type: "image",
-            id: "xxy",
-          },
         ],
       },
       "Right Ventricle": {
@@ -576,10 +612,19 @@ const categoryDatabase = [
     },
   },
   {
-    title: "Quantitative Assessment",
+    title: "Quantitative Assessment Tools",
     image: require("./assets/png/geometry.png"),
-    type: "page",
-    id: "12",
+    groups:{
+        "Anatomic Assessment":"12",
+        "Hemodynamic Assessment":"15",
+        "Diastology":"16",
+        "Valvular Assessment":"17",
+        "Pericardial Assessment": "18",
+        "Pleural Assessment": "19",
+        "Transcranial Doppler" :"20",
+        "Other lesions":"21",
+        "Terminology":"22"
+    }
   },
   {
     title: "Lung",
