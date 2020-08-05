@@ -1,13 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 import {View, StyleSheet, Text,Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native'
-import {testDatabase} from '../../database'
 import Constants from "expo-constants";
 import { Video } from 'expo-av';
 import Carousel from 'react-native-snap-carousel';
-import {RadioButton, Button, Portal, Dialog} from 'react-native-paper'
+import {RadioButton, Button, Portal, Dialog, ActivityIndicator} from 'react-native-paper'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-
+import firebase from "../components/firebase";
 
 const Width = Dimensions.get("window").width;
 const Height = Dimensions.get("window").height;
@@ -16,7 +15,21 @@ const LearnTestScreen = ({route}) => {
     const navigation = useNavigation();
     
     const {id} = route.params
-    const selectedTest = testDatabase.find(item => item.id === id) 
+    const [pageInfo, setPageInfo] = useState([]);
+    const [errorMessage, setErrorMessage] = useState("");
+    useEffect(() => {
+      firebase
+        .firestore()
+        .collection("learnModuleTest")
+        .doc("" + id)
+        .get()
+        .then(function (doc) {
+          setPageInfo(doc.data());
+        })
+        .catch(function (error) {
+          setErrorMessage("This page is not available yet. Stay tuned for updates!");
+        });
+    }, []);
 
     const [startPressed, setStartPressed] = useState(false)
     const [submitPressed, setSubmitPressed] = useState(false)
@@ -38,7 +51,7 @@ const LearnTestScreen = ({route}) => {
     const [warningVisible, setWarningVisible] = useState(false)
 
     return (
-        selectedTest? (
+        pageInfo && !errorMessage? (
             !startPressed? (
                 <View style={styles.container}>
                     <TouchableOpacity 
@@ -52,8 +65,8 @@ const LearnTestScreen = ({route}) => {
                         <MaterialCommunityIcons name="arrow-left" size={24} color="black"/> 
                         {/* Not clicking when scrolled up on Android */}
                     </TouchableOpacity>
-                    <Image source={selectedTest.image} style={{height:150, width:150, marginBottom:20}}/>
-                    <Text style={styles.header}>{selectedTest.title}</Text>
+                    <Image source={{uri: pageInfo.image}} style={{height:150, width:150, marginBottom:20}}/>
+                    <Text style={styles.header}>{pageInfo.title}</Text>
                     <Text style={styles.caption}>Ready to put your new-found knowledge to the test? Click the button below to get started. </Text>
                     
                     <TouchableOpacity 
@@ -63,19 +76,19 @@ const LearnTestScreen = ({route}) => {
                         <Text style={{color:'white'}}>START</Text>
                     </TouchableOpacity>
                     <Text style={{marginTop:10}}>
-                        {`Total number of questions: ${selectedTest.count}\nEstimated length: ${selectedTest.eta} minutes`}
+                        {`Total number of questions: ${pageInfo.count}\nEstimated length: ${pageInfo.eta} minutes`}
                     </Text>
                 </View>
             ) : (
                 <View style={styles.container}>
                     {!submitPressed ? (
-                        <View>
+                        <>
                             <Text 
                                 style={{
                                     fontFamily:'Raleway-Regular', 
                                     fontSize:18
                             }}>
-                                {questionsAnswered}/{selectedTest.count} Questions Answered
+                                {questionsAnswered}/{pageInfo.count} Questions Answered
                             </Text>
                             <View style={{flexDirection:'row'}}>
                                 <Button
@@ -88,7 +101,7 @@ const LearnTestScreen = ({route}) => {
                                     onPress={() => setWarningVisible(true)}
                                 >Quit test</Button>
 
-                                {questionsAnswered === selectedTest.count ? (
+                                {questionsAnswered === pageInfo.count ? (
                                     <Button
                                         mode='contained'
                                         color='green'
@@ -101,9 +114,9 @@ const LearnTestScreen = ({route}) => {
                                     ):null
                                 }
                             </View>
-                        </View>
+                        </>
                         ):(
-                            <View>
+                            <>
                                 <Text 
                                     style={{
                                         fontFamily:'Raleway-Regular', 
@@ -111,7 +124,7 @@ const LearnTestScreen = ({route}) => {
                                         alignSelf:'center',
                                         marginBottom: reviewPressed ? 5 : 20
                                 }}>
-                                    Your score is {Math.floor(numberCorrect/selectedTest.count*100)}%
+                                    Your score is {Math.floor(numberCorrect/pageInfo.count*100)}%
                                 </Text>
                                 <View style={{flexDirection:'row'}}>
                                     <Button
@@ -135,13 +148,13 @@ const LearnTestScreen = ({route}) => {
                                     >Review Questions</Button>
                                     )}
                                 </View>
-                            </View>
+                            </>
                         )
                     }
                     {submitPressed && reviewPressed || !submitPressed&&!reviewPressed ? 
                     <Carousel
                         // ref={(c) => { this._carousel = c; }}
-                        data={selectedTest.questions}
+                        data={pageInfo.questions}
                         renderItem={({item, index}) => {
                             return (
                                 <QuizQuestions 
@@ -219,8 +232,7 @@ const QuizQuestions = ({data, index, increment, increaseScore, decreaseScore, re
         } else if (answered && !correct) {
             decreaseScore();
         }
-    },[correct])
-    
+    },[correct])    
 
     return (
         <ScrollView 
@@ -267,10 +279,21 @@ const QuizQuestions = ({data, index, increment, increaseScore, decreaseScore, re
                     }}
                 />
             )}
+            {data.image && (
+                <Image 
+                    source={{uri: data.image}}
+                    style={{
+                        width:Width-20,
+                        height:(Width-20)*0.75,
+                        borderRadius:20,
+                        marginBottom:10,
+                        resizeMode:'contain'
+                    }}
+                />
+            )}
             {!reviewPressed ?
             <RadioButton.Group onValueChange={value => setValue(value)} value={value}>
                 {data.answers.map(answer => (
-                    // <View key={answer} style={{borderRadius:20, marginTop:20, marginHorizontal:30, padding:10, elevation:2}}>
                         <View 
                             key={answer} 
                             style={{
@@ -291,9 +314,8 @@ const QuizQuestions = ({data, index, increment, increaseScore, decreaseScore, re
             </RadioButton.Group>
             : (
                 <>
-                <RadioButton.Group onValueChange={value => setValue(value)} value={data.correct}>
+                <RadioButton.Group onValueChange={() => null} value={data.correct}>
                     {data.answers.map(answer => (
-                        // <View key={answer} style={{borderRadius:20, marginTop:20, marginHorizontal:30, padding:10, elevation:2}}>
                             <View 
                                 key={answer} 
                                 style={{
@@ -301,34 +323,42 @@ const QuizQuestions = ({data, index, increment, increaseScore, decreaseScore, re
                                     borderRadius:20, 
                                     backgroundColor:'#F5F5F5',
                                     marginBottom:10,
-                                    overflow:'hidden'
+                                    overflow:'hidden',
+                                    borderWidth: answer === data.correct? 3 : 0,
+                                    borderColor: answer === data.correct? 'green' : null,
                                 }}
                             >
                                 <RadioButton.Item 
                                     value={answer}
                                     label={answer}
-                                    labelStyle={{width:Width-150}}
+                                    labelStyle={{
+                                        width:Width-150,
+                                    }}
                                     disabled
                                 />
                             </View>
                     ))}
                 </RadioButton.Group>
-                <Text 
-                    style={{
-                        fontFamily:'Raleway-Bold', 
-                        fontSize:24, color:'#4f2683', 
-                        marginVertical:20
-                    }}
-                >Explanation</Text>
-                <Text
-                    style={{
-                        fontSize:16, 
-                        marginBottom:20,
-                        marginHorizontal:20
-                    }}
-                >
-                    {data.explanation}
-                </Text>
+                {data.explanation && (
+                    <>
+                        <Text 
+                            style={{
+                                fontFamily:'Raleway-Bold', 
+                                fontSize:24, color:'#4f2683', 
+                                marginVertical:20
+                            }}
+                        >Explanation</Text>
+                        <Text
+                            style={{
+                                fontSize:16, 
+                                marginBottom:20,
+                                marginHorizontal:20
+                            }}
+                        >
+                            {data.explanation}
+                        </Text>
+                    </>
+                )}
                 </>
             )}
         </ScrollView>

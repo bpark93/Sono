@@ -171,6 +171,7 @@ const ResourceTool = ({pageInfo, errorMessage}) => {
 
               {section.calculator && (
                 <List.Accordion title="Calculators">
+                  <Text style={{alignSelf:'center', color:'gray', fontSize:12}}>{`Rounded to 2 decimal places.\nNaN = Not a number`}</Text>
                   {section.calculator.map((calculator) => (
                     <Calculator
                       id={calculator.id}
@@ -270,7 +271,7 @@ const Calculator = ({ id, formulaImage }) => {
         source={{ uri: formulaImage }}
         style={{
           height: 50,
-          width: 200,
+          width: 300,
           resizeMode: "contain",
           marginVertical:10
         }}
@@ -292,7 +293,7 @@ const Calculator = ({ id, formulaImage }) => {
         keyboardType="numeric"
       />
       <Text style={{ fontSize: 18, marginVertical: 15 }}>
-        {`${var3Name} = ${formula}`}
+        {`${var3Name} = ${var1 && var2 ? formula : "0"}`}
       </Text>
     </View>
   );

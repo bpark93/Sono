@@ -117,7 +117,7 @@ const LearnTextScreen = ({ route, navigation }) => {
           ) : (
             <HTML 
               html={content}
-              baseFontStyle={{fontSize:18, fontFamily:'Raleway-Medium'}}
+              baseFontStyle={{fontSize:14, fontFamily:'Raleway-Medium'}}
               containerStyle={styles.htmlStyle}
             />
           )

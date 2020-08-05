@@ -7,7 +7,7 @@ export default () => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const searchOptions = {
-        keys: ['title', 'alt', 'category','tags']
+        keys: ['title', 'alt', 'category']
     };
     const fuse = new Fuse(database, searchOptions);
        
@@ -17,7 +17,6 @@ export default () => {
             const response = await fuse.search(newText);
             setResults(response);         
         } catch(e) {
-            console.log(e)
             setErrorMessage('Your search could not be made at this time. :(')
         }
     }

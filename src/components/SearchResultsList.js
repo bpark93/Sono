@@ -8,31 +8,6 @@ const SearchResultsScreen = ({results}) => {
     const navigation = useNavigation();
     return (
         <View>
-            {/* <FlatList
-                data={results}
-                keyExtractor={() => JSON.stringify(Math.floor(Math.random()*10000))}
-                renderItem={({item}) => {
-                    return (
-                        <List.Item 
-                            style={styles.listItemStyle}
-                            title={item.item.title}
-                            description={item.item.category} 
-                            left={() => 
-                                item.item.video?
-                                <FontAwesome 
-                                    name="film" 
-                                    style={styles.iconStyle}
-                                />
-                                :<FontAwesome 
-                                    name="image" 
-                                    style={styles.iconStyle}
-                                />
-                            }
-                            onPress={() => navigation.navigate('SearchDetail', {id: item.item})}
-                        />
-                    )
-                }}
-            /> */}
             {results.map(({item}) => (
                 <List.Item 
                     key={item.id}
