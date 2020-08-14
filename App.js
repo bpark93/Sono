@@ -56,6 +56,8 @@ function App() {
         'Raleway-Thin': require('./assets/fonts/Raleway/Raleway-Thin.ttf'),
         'Raleway-Light': require('./assets/fonts/Raleway/Raleway-Light.ttf'),
         'Raleway-Bold': require('./assets/fonts/Raleway/Raleway-Bold.ttf'),
+        'Roboto-Black': require('./assets/fonts/Roboto/Roboto-Black.ttf'),
+        'Roboto-Regular': require('./assets/fonts/Roboto/Roboto-Regular.ttf')
       })
       setFontLoaded(true);
     }
@@ -238,8 +240,9 @@ function SearchNav() {
           elevation:0
         },
         headerTitleStyle:{
-          fontFamily:'Raleway-Medium'
-        }
+          fontFamily:'Raleway-Bold',
+        },
+        headerBackTitle:"",
       }}
     >
       <Search.Screen 

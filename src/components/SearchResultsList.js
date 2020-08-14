@@ -26,7 +26,7 @@ const SearchResultsScreen = ({results}) => {
                                 style={styles.iconStyle}
                             />
                         :   <FontAwesome5 
-                                name="book-open" 
+                                name="tools" 
                                 style={styles.iconStyle}
                             />
                     }
