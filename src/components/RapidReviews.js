@@ -17,6 +17,7 @@ import { StackActions } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 import { Checkbox } from "react-native-paper";
 import * as ScreenOrientation from "expo-screen-orientation";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const RapidReviews = ({ page }) => {
   const navigation = useNavigation();
@@ -72,6 +73,9 @@ const RapidReviews = ({ page }) => {
     navigation.dispatch(pushAction);
   };
 
+  // Buttons
+  const [activeIndex, setActiveIndex] = useState(1);
+
   return (
     <>
       {/* Youtube Video embedded */}
@@ -81,7 +85,6 @@ const RapidReviews = ({ page }) => {
             backgroundColor: "black",
             alignItems: "center",
             justifyContent: "center",
-            marginBottom: 5,
           }}
         >
           <YoutubePlayer
@@ -100,28 +103,130 @@ const RapidReviews = ({ page }) => {
           />
         </View>
       ) : null}
-      <ScrollView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-        {/* Materials */}
 
-        {page.materials ? (
-          <View>
-            <Text style={styles.header}>Required Materials</Text>
-            {page.materials.map((item) => (
-              <MaterialsItem material={item} key={item} />
-            ))}
-          </View>
+      {/* Buttons */}
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-around",
+          padding: 10,
+          backgroundColor: "white",
+        }}
+      >
+        <TouchableOpacity style={{ alignItems: "center", flex: 1 }}>
+          <MaterialCommunityIcons
+            name="bookmark-outline"
+            size={30}
+            color="gray"
+          />
+          <Text style={{ fontSize: 11, color: "gray", marginBottom:5 }}>Bookmark</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            alignItems: "center",
+            flex: 1,
+            borderBottomWidth: activeIndex === 1 ? 2 : 0,
+            borderBottomColor:"#4f2683"
+          }}
+          onPress={() => setActiveIndex(1)}
+        >
+          <MaterialCommunityIcons
+            name="table"
+            size={30}
+            color={activeIndex === 1 ? "#4f2683" : "gray"}
+          />
+          <Text
+            style={{
+              fontSize: 11,
+              color: activeIndex === 1 ? "#4f2683" : "gray",
+              marginBottom:5
+            }}
+          >
+            Orientation
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            alignItems: "center",
+            flex: 1,
+            borderBottomWidth: activeIndex === 2 ? 2 : 0,
+            borderBottomColor:"#4f2683"
+          }}
+          onPress={() => setActiveIndex(2)}
+        >
+          <MaterialCommunityIcons
+            name="clipboard-text-outline"
+            size={30}
+            color={activeIndex === 2 ? "#4f2683" : "gray"}
+          />
+          <Text
+            style={{
+              fontSize: 11,
+              color: activeIndex === 2 ? "#4f2683" : "gray",
+              marginBottom:5
+            }}
+          >
+            Details
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            alignItems: "center",
+            flex: 1,
+            borderBottomWidth: activeIndex === 3 ? 2 : 0,
+            borderBottomColor:"#4f2683"
+          }}
+          onPress={() => setActiveIndex(3)}
+        >
+          <MaterialCommunityIcons
+            name="format-list-checkbox"
+            size={30}
+            color={activeIndex === 3 ? "#4f2683" : "gray"}
+          />
+          <Text
+            style={{
+              fontSize: 11,
+              color: activeIndex === 3 ? "#4f2683" : "gray",
+              marginBottom:5
+            }}
+          >
+            Materials
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
+        {/* Materials */}
+        {activeIndex === 3 ? (
+          page.materials ? (
+            <View>
+              <Text style={styles.header}>Required Materials</Text>
+              {page.materials.map((item) => (
+                <MaterialsItem material={item} key={item} />
+              ))}
+            </View>
+          ) : (
+            <View
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Text style={{ fontSize: 20 }}>
+                No required materials for this study.
+              </Text>
+            </View>
+          )
         ) : null}
 
         {/* Table */}
-        {page.orientation ? (
-          <>
-            <Text style={styles.header}>Quick Summary</Text>
-            <ShortSummary data={page.orientation} />
-          </>
+        {activeIndex === 1 && page.orientation ? (
+          <ShortSummary data={page.orientation} />
         ) : null}
 
         {/* Text Content */}
-        {page.body
+        {activeIndex === 2 && page.body
           ? page.body.map((item) => (
               <View key={item.content} style={{ marginVertical: 10 }}>
                 {item.header ? (
@@ -148,7 +253,7 @@ const RapidReviews = ({ page }) => {
           : null}
 
         {/* Associated Pages */}
-        {page.associated_pages ? (
+        {activeIndex === 2 && page.associated_pages ? (
           <View style={{ marginLeft: 15, marginTop: 15 }}>
             <Text style={{ fontWeight: "bold", marginBottom: 5 }}>
               Associated Pages
