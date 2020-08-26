@@ -18,23 +18,7 @@ const CategoriesList = () => {
     <ScrollView style={{flex:1}}>
       <Text style={styles.subheaderStyle}>Find images, videos, and tools</Text>
       {categoryDatabase.map((index) => (
-        index.type==="page" ?
-          <List.Item 
-            key={index.id}
-            style={styles.categoryStyle}
-            title={index.title}
-            onPress={()=> handleOnPress(index.id)}
-            left={()=>  
-              <Image 
-                source={index.image} 
-                style={styles.image}
-              />
-            }
-            right={() => 
-              <FontAwesome5 name='chevron-right' size={14} style={{marginTop:10, marginRight:15, color:'#673ab7'}}/>
-            }
-          />
-        :<ListAccordion index={index} handleOnPress={(param) => handleOnPress(param)} key={index.title}/>
+        <ListAccordion index={index} handleOnPress={(param) => handleOnPress(param)} key={index.title}/>
       ))}
     </ScrollView>
   );
