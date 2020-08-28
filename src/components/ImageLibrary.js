@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, useWindowDimensions } from 'react-native'
+import { View, Text, StyleSheet, useWindowDimensions, FlatList } from 'react-native'
 import ImageModal from 'react-native-image-modal';
 import LibraryChip from '../components/LibraryChip'
-import { FlatList } from 'react-native-gesture-handler';
+import { useNavigation } from "@react-navigation/native";
+
 
 const SearchDetailScreen = ({page}) => {
     
@@ -40,12 +41,17 @@ const SearchDetailScreen = ({page}) => {
         viewToggleHandler();
     },[viewing])
 
+    const navigation = useNavigation();
+    useEffect(() => {
+        navigation.setOptions({ title: page.title })
+    },[])
+
     return (
         //Image library
         <>
         <View style={{backgroundColor:'white', padding:10, flexDirection:'row', justifyContent:'space-around', flexWrap:'wrap',}}>
-            {page.options && page.options.map(item => (
-                <LibraryChip name={item} handleChipPress={(name)=> handleChipPress(name)} key={item}/>
+            {page.filter_options && page.filter_options.map(item => (
+                <LibraryChip name={item.text} handleChipPress={(name)=> handleChipPress(name)} key={item.text}/>
             ))}
         </View>
         <FlatList 
@@ -59,7 +65,7 @@ const SearchDetailScreen = ({page}) => {
                     <Text style={{fontSize:20, fontFamily:'Raleway-Medium', marginVertical:5}}>Key Features</Text>
                     {page.key_features? 
                         page.key_features.map(tip => (
-                            <Text key={tip} style={{marginVertical:2}}>{`\u2022 ${tip}`}</Text>
+                            <Text key={tip.text} style={{marginVertical:2}}>{`\u2022 ${tip.text}`}</Text>
                         ))
                     :null}
                 </View>

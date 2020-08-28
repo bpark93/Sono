@@ -4,6 +4,7 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { AsyncStorage } from 'react-native';
 import {database} from '../../database'
 import { FontAwesome5 } from '@expo/vector-icons';
+import firebase from "../components/firebase";
 
 const RECENT = "recent_pages"
 const MAX_ITEMS = 5
@@ -11,6 +12,7 @@ const MAX_ITEMS = 5
 const RecentPages = () => {
     const navigation = useNavigation();
     const [list, setList] = useState([])
+
 
     useFocusEffect(
         React.useCallback(() => {

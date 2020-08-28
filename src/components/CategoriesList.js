@@ -1,125 +1,201 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, FlatList, Image, ScrollView} from 'react-native'
-import { useNavigation } from '@react-navigation/native';
-import { List, } from 'react-native-paper'
-import { FontAwesome5 } from '@expo/vector-icons';
-import {categoryDatabase} from '../../database'
-import {database} from '../../database'
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Image,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { List } from "react-native-paper";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { categoryDatabase } from "../../database";
+import firebase from "../components/firebase";
+import { database } from "../../database";
 
 const CategoriesList = () => {
-  const navigation = useNavigation();
+  const [layout, setLayout] = useState([]);
 
-  const handleOnPress = (id) => {
-    const response = database.filter((item) => item.id === id);
-    navigation.navigate('SearchDetail', {id: response[0]})
-  }
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("pages")
+      .doc("layout")
+      .get()
+      .then(function (doc) {
+        setLayout(doc.data());
+      })
+      .catch(function (error) {
+        console.log("Error getting List", error);
+      });
+  }, []);
 
   return (
-    <ScrollView style={{flex:1}}>
+    <ScrollView style={{ flex: 1 }}>
       <Text style={styles.subheaderStyle}>Find images, videos, and tools</Text>
-      {categoryDatabase.map((index) => (
-        <ListAccordion index={index} handleOnPress={(param) => handleOnPress(param)} key={index.title}/>
-      ))}
+      {layout ? (
+        Object.entries(layout).map((category) => (
+          <ListAccordion
+            name={category[0]}
+            groups={category[1]}
+            key={category[0]}
+          />
+        ))
+      ) : (
+        <ActivityIndicator size="large" />
+      )}
     </ScrollView>
   );
-}
+};
 
-const ListAccordion = ({index, handleOnPress}) => {
-  const [expanded, setExpanded] = useState(false)
+const ListAccordion = ({ index, name, groups}) => {
+  const navigation = useNavigation();
+  
+  const [expanded, setExpanded] = useState(false);
   return (
-    <List.Accordion 
-          style={{backgroundColor: expanded? '#F4F4F4': 'white'}}
-          titleStyle={{fontFamily: expanded? "Raleway-Bold":"Raleway-Regular"}}
-          key={index.title}
-          title={index.title}
-          left={() => 
-            <Image 
-              source={index.image} 
-              style={styles.image}
-            />}
-          onPress={() => setExpanded(!expanded)}
+    <List.Accordion
+      style={{ backgroundColor: expanded ? "#F4F4F4" : "white" }}
+      titleStyle={{ fontFamily: expanded ? "Raleway-Bold" : "Raleway-Regular" }}
+      key={name}
+      title={name}
+      // left={() => <Image source={index.image} style={styles.image} />} --> CHANGE
+      onPress={() => setExpanded(!expanded)}
+    >
+      {Object.entries(groups).map((subcategory) =>
+        // true ? (
+          <List.Accordion
+            key={subcategory[0]}
+            style={{
+              ...styles.subCategoryStyle,
+              backgroundColor: expanded ? "#FAFAFA" : "white",
+            }}
+            title={subcategory[0]}
+            left={() => <FontAwesome5 name="folder" size={16} />}
           >
-
-          {/* <View style={{backgroundColor: expanded? '#FAFAFA': 'white'}}> */}
-          {Object.entries(index.groups).map((item) => (
-            item[1].pages?
-              <List.Accordion
-                key={item}
-                style={{...styles.subCategoryStyle, backgroundColor: expanded? '#FAFAFA': 'white'}}
-                title={item[0]}
-                left={() => <FontAwesome5 name='folder' size={16}/>} 
-              >
-                {item[1].pages.map((page) => (
-                  <List.Item 
-                    key={page.id}
-                    style={{...styles.listItemStyle, backgroundColor: expanded? '#FAFAFA': 'white' }}
-                    title={page.title}
-                    onPress={()=> handleOnPress(page.id)}
-                    left={()=> {
-                      if (page.type === 'video') {
-                        return <FontAwesome5 name='play-circle' size={16} style={{marginTop:7}}/>
-                      } else if (page.type === 'image') {
-                        return <FontAwesome5 name='images' size={16} style={{marginTop:7}}/>
-                      } else {
-                        return <FontAwesome5 name='tools' size={16} style={{marginTop:7}}/>
-                      }
-                    }}
-                    right={() => 
-                      <FontAwesome5 name='chevron-right' size={14} style={{marginTop:10, marginRight:15, color:'#673ab7'}}/>
-                    }
-                  />
-                ))}
-              </List.Accordion>
-            :<List.Item 
-                  key={item[0]}
-                  style={{...styles.subCategoryStyle, backgroundColor: expanded? '#FAFAFA': 'white'}}
-                  title={item[0]}
-                  onPress={()=> handleOnPress(item[1])}
-                  left={()=> {
-                    if (item[1].type === 'video') {
-                      return <FontAwesome5 name='play-circle' size={16} style={{marginTop:7}}/>
-                    } else if (item[1].type === 'image') {
-                      return <FontAwesome5 name='images' size={16} style={{marginTop:7}}/>
-                    } else {
-                      return <FontAwesome5 name='tools' size={16} style={{marginTop:7}}/>
-                    }
-                  }}
-                  right={() => 
-                    <FontAwesome5 name='chevron-right' size={14} style={{marginTop:10, marginRight:15, color:'#673ab7'}}/>
+            {subcategory[1].map((page) => (
+              <List.Item
+                key={page.id}
+                style={{
+                  ...styles.listItemStyle,
+                  backgroundColor: expanded ? "#FAFAFA" : "white",
+                }}
+                title={page.title}
+                onPress={() => navigation.navigate("SearchDetail", { id: page.id })}
+                left={() => {
+                  if (page.type === "rapidreview") {
+                    return (
+                      <FontAwesome5
+                        name="play-circle"
+                        size={16}
+                        style={{ marginTop: 7 }}
+                      />
+                    );
+                  } else if (page.type === "image") {
+                    return (
+                      <FontAwesome5
+                        name="images"
+                        size={16}
+                        style={{ marginTop: 7 }}
+                      />
+                    );
+                  } else {
+                    return (
+                      <FontAwesome5
+                        name="tools"
+                        size={16}
+                        style={{ marginTop: 7 }}
+                      />
+                    );
                   }
-            />
-          ))}
-          {/* </View> */}
-        </List.Accordion>
-  )
-}
+                }}
+                right={() => (
+                  <FontAwesome5
+                    name="chevron-right"
+                    size={14}
+                    style={{ marginTop: 10, marginRight: 15, color: "#673ab7" }}
+                  />
+                )}
+              />
+            ))}
+          </List.Accordion>
+        // ) : (
+        //   <List.Item
+        //     key={item[0]}
+        //     style={{
+        //       ...styles.subCategoryStyle,
+        //       backgroundColor: expanded ? "#FAFAFA" : "white",
+        //     }}
+        //     title={item[0]}
+        //     onPress={() => handleOnPress(item[1])}
+        //     left={() => {
+        //       if (item[1].type === "video") {
+        //         return (
+        //           <FontAwesome5
+        //             name="play-circle"
+        //             size={16}
+        //             style={{ marginTop: 7 }}
+        //           />
+        //         );
+        //       } else if (item[1].type === "image") {
+        //         return (
+        //           <FontAwesome5
+        //             name="images"
+        //             size={16}
+        //             style={{ marginTop: 7 }}
+        //           />
+        //         );
+        //       } else {
+        //         return (
+        //           <FontAwesome5
+        //             name="tools"
+        //             size={16}
+        //             style={{ marginTop: 7 }}
+        //           />
+        //         );
+        //       }
+        //     }}
+        //     right={() => (
+        //       <FontAwesome5
+        //         name="chevron-right"
+        //         size={14}
+        //         style={{ marginTop: 10, marginRight: 15, color: "#673ab7" }}
+        //       />
+        //     )}
+        //   />
+        // )
+      )}
+    </List.Accordion>
+  );
+};
 
 const styles = StyleSheet.create({
-    categoryStyle: {
-      marginHorizontal: 0,
-    },
-    subCategoryStyle:{
-      paddingLeft:40,
-      height:55
-    },
-    listItemStyle: {
-      paddingLeft:55,
-      height:50
-    },
-    iconStyle: {
-        fontSize: 30,
-        color: 'black',
-    },
-    subheaderStyle: {
-      marginLeft: 20,
-      marginVertical: 15,
-      fontSize: 18,
-      fontFamily:'Raleway-Medium'
-    },
-    image: {
-      width: 60,
-      height: 30,
-      resizeMode:'contain'
+  categoryStyle: {
+    marginHorizontal: 0,
+  },
+  subCategoryStyle: {
+    paddingLeft: 40,
+    height: 55,
+  },
+  listItemStyle: {
+    paddingLeft: 55,
+    height: 50,
+  },
+  iconStyle: {
+    fontSize: 30,
+    color: "black",
+  },
+  subheaderStyle: {
+    marginLeft: 20,
+    marginVertical: 15,
+    fontSize: 18,
+    fontFamily: "Raleway-Medium",
+  },
+  image: {
+    width: 60,
+    height: 30,
+    resizeMode: "contain",
   },
 });
 

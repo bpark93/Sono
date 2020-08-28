@@ -76,6 +76,10 @@ const RapidReviews = ({ page }) => {
   // Buttons
   const [activeIndex, setActiveIndex] = useState(1);
 
+  useEffect(() => {
+    navigation.setOptions({ title: page.title })
+  },[])
+
   return (
     <>
       {/* Youtube Video embedded */}
@@ -111,6 +115,8 @@ const RapidReviews = ({ page }) => {
           justifyContent: "space-around",
           padding: 10,
           backgroundColor: "white",
+          elevation:1
+          // Need to add for iOS
         }}
       >
         <TouchableOpacity style={{ alignItems: "center", flex: 1 }}>
@@ -198,10 +204,10 @@ const RapidReviews = ({ page }) => {
       <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
         {/* Materials */}
         {activeIndex === 3 ? (
-          page.materials ? (
+          page.required_materials ? (
             <View>
               <Text style={styles.header}>Required Materials</Text>
-              {page.materials.map((item) => (
+              {page.required_materials.map((item) => (
                 <MaterialsItem material={item} key={item} />
               ))}
             </View>
@@ -222,13 +228,16 @@ const RapidReviews = ({ page }) => {
 
         {/* Table */}
         {activeIndex === 1 && page.orientation ? (
-          <ShortSummary data={page.orientation} />
+          <View>
+            <Text style={styles.header}>Quick Summary</Text>
+            <ShortSummary data={page.orientation} />
+          </View>
         ) : null}
 
         {/* Text Content */}
-        {activeIndex === 2 && page.body
-          ? page.body.map((item) => (
-              <View key={item.content} style={{ marginVertical: 10 }}>
+        {activeIndex === 2 && page.details
+          ? page.details.map((item, index) => (
+              <View key={index}>
                 {item.header ? (
                   <Text style={styles.header}>{item.header}</Text>
                 ) : null}
@@ -243,11 +252,11 @@ const RapidReviews = ({ page }) => {
                     }}
                   />
                 ) : null}
-                {item.content.map((paragraph) => (
-                  <Text style={styles.body} key={paragraph}>
-                    {paragraph}
+                {item.text ? (
+                  <Text style={styles.body}>
+                    {item.text}
                   </Text>
-                ))}
+                ):null}
               </View>
             ))
           : null}
@@ -274,6 +283,9 @@ const RapidReviews = ({ page }) => {
 };
 
 const MaterialsItem = ({ material }) => {
+
+  // material.notes, material.level
+
   const [checked, setChecked] = useState(false);
   return (
     <View style={{ flexDirection: "row", marginHorizontal: 20 }} key={material}>
@@ -299,7 +311,7 @@ const MaterialsItem = ({ material }) => {
             width: 200,
           }}
         >
-          {material}
+          {material.text}
         </Text>
       </TouchableWithoutFeedback>
     </View>
@@ -320,7 +332,7 @@ const styles = StyleSheet.create({
   },
   body: {
     marginHorizontal: 15,
-    marginTop: 10,
+    marginVertical: 15,
     fontFamily: "Raleway-Light",
   },
 });

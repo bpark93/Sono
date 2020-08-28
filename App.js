@@ -255,7 +255,9 @@ function SearchNav() {
       <Search.Screen 
         name="SearchDetail" 
         component={SearchDetailScreen} 
-        options={({route}) => ({title: route.params.id.title})}
+        options={{
+          title:''
+        }}
       />
     </Search.Navigator>
   );
