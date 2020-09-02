@@ -304,7 +304,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
                   marginBottom: 5,
                 }}
               >
-                Notes
+                Your Notes
               </Text>
               <TouchableOpacity
                 style={{

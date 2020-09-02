@@ -18,7 +18,6 @@ import { useNavigation } from "@react-navigation/native";
 import { Checkbox } from "react-native-paper";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import * as WebBrowser from "expo-web-browser";
 import TabButtons from "./TabButtons";
 
 const RapidReviews = ({ page }) => {

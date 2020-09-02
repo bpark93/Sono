@@ -112,14 +112,14 @@ const ReferenceDocument = ({ page }) => {
                     </View>
                   ))}
                   {section.caveats ? (
-                    <View>
+                    <View style={{marginBottom:10}}>
                       <Text style={{ ...styles.header, fontSize: 18 }}>
                         Caveats
                       </Text>
                       {section.caveats.map((caveat) => (
                         <Text
                           key={caveat}
-                          style={styles.paragraph}
+                          style={{...styles.paragraph, margin:0, marginLeft:10}}
                         >{`\u2022 ${caveat}`}</Text>
                       ))}
                     </View>
