@@ -537,232 +537,45 @@ const categoryDatabase = [
   {
     title: "Aorta",
     image: require("./assets/png/044-blood.png"),
-    groups: {
-      "Image Acquisition": {
-        title: "Abdominal Aorta Image Acquisition",
-        id: "3",
-        type: "video",
-      },
-      "Normal Anatomy": {
-        pages: [],
-      },
-      "Abdominal Aorta Pathology": {
-        pages: [
-          {
-            title: "Abdominal Aortic Aneurysm",
-            id: "13",
-            type: "image",
-          },
-        ],
-      },
-      "Thoracic Aorta Pathology": {
-        pages: [],
-      },
-    },
   },
   {
     title: "Cardiac",
     image: require("./assets/png2/040-heart.png"),
-    groups: {
-      "Image Acquisition - Cardiac Views": {
-        title: "Cardiac Views",
-        pages: [
-          {
-            title: "Parasternal Views",
-            type: "video",
-            id: "4",
-          },
-          {
-            title: "Apical Four Chamber View",
-            type: "video",
-            id: "5",
-          },
-          {
-            title: "Subcostal View",
-            type: "video",
-            id: "6",
-          },
-        ],
-      },
-      "Left Ventricle": {
-        title: "Left Ventricle",
-        pages: [
-          {
-            title: "Reduced LV Function",
-            type: "image",
-            id: "11",
-          },
-        ],
-      },
-      "Right Ventricle": {
-        pages: [],
-      },
-      IVC: {
-        pages: [],
-      },
-      Atria: {
-        pages: [],
-      },
-      Pericardium: {
-        pages: [],
-      },
-      Valves: {
-        pages: [],
-      },
-    },
   },
   {
-    title: "Quantitative Assessment Tools",
+    title: "Quantitative Assessment",
     image: require("./assets/png/geometry.png"),
-    groups:{
-        "Anatomic Assessment":"12",
-        "Hemodynamic Assessment":"15",
-        "Diastology":"16",
-        "Valvular Assessment":"17",
-        "Pericardial Assessment": "18",
-        "Pleural Assessment": "19",
-        "Transcranial Doppler" :"20",
-        "Other lesions":"21",
-        "Terminology":"22"
-    }
   },
   {
     title: "Lung",
     image: require("./assets/png2/042-lungs.png"),
-    groups: {
-      "Image Acquisition": {
-        pages: [
-          {
-            title: "BLUE Protocol",
-            type: "video",
-            id: "7",
-          },
-        ],
-      },
-      Pneumothorax: {
-        pages: [],
-      },
-    },
   },
   {
     title: "Abdominal",
     image: require("./assets/png/029-intestine.png"),
-    groups: {
-      Gallbladder: {
-        pages: [
-          {
-            title: "Biliary Image Acquisition",
-            type: "video",
-            id: "2",
-          },
-        ],
-      },
-      Trauma: {
-        pages: [
-          {
-            title: "FAST Exam Image Acquisition",
-            type: "video",
-            id: "9",
-          },
-        ],
-      },
-      Spleen: {
-        pages: [],
-      },
-      Stomach: {
-        pages: [],
-      },
-      "Small Intestine": {
-        pages: [],
-      },
-      "Large Intestine": {
-        pages: [],
-      },
-    },
   },
   {
     title: "Renal/GU",
     image: require("./assets/png2/032-kidney.png"),
-    groups: {
-      Kidneys: {
-        pages: [
-          {
-            title: "Renal Image Acquisition",
-            type: "video",
-            id: "1",
-          },
-        ],
-      },
-      Ureters: {
-        pages: [],
-      },
-      Bladder: {
-        pages: [],
-      },
-      "Male Reproductive Organs": {
-        pages: [],
-      },
-    },
   },
   {
     title: "Procedural",
     image: require("./assets/png/injection.png"),
-    done: false,
-    groups: {
-      "Vascular Access": {
-        pages: [
-          {
-            title: "US-Guided Peripheral IV",
-            type: "video",
-            id: "14",
-          },
-        ],
-      },
-      Spine: {
-        pages: [],
-      },
-      "Nerve Blocks": {
-        pages: [],
-      },
-    },
   },
   {
     title: "Pelvic",
     image: require("./assets/png/050-fetus.png"),
-    done: false,
-    groups: {
-      "Image Acquisition": {
-        pages: [
-          {
-            title: "Transabdominal Pelvic Exam",
-            type: "video",
-            id: "10",
-          },
-        ],
-      },
-    },
   },
   {
     title: "Nervous System",
     image: require("./assets/png/016-brain.png"),
-    done: false,
-    groups: {
-      "Transcranial Doppler": {
-        pages: [],
-      },
-    },
   },
   {
     title: "Musculoskeletal",
     image: require("./assets/png/039-elbow.png"),
-    done: false,
-    groups: {
-      Fracture: {
-        pages: [],
-      },
-    },
   },
 ];
+
 
 const learnDatabase = [
   {

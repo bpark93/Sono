@@ -32,6 +32,8 @@ const CategoriesList = () => {
       });
   }, []);
 
+  
+
   return (
     <ScrollView style={{ flex: 1 }}>
       <Text style={styles.subheaderStyle}>Find images, videos, and tools</Text>
@@ -50,8 +52,13 @@ const CategoriesList = () => {
   );
 };
 
-const ListAccordion = ({ index, name, groups}) => {
+const ListAccordion = ({ name, groups}) => {
   const navigation = useNavigation();
+  const getIcon = (name) => {
+    const temp = categoryDatabase.filter(item => item.title === name)
+    return temp[0].image
+  }
+  const icon = getIcon(name)
   
   const [expanded, setExpanded] = useState(false);
   return (
@@ -60,7 +67,7 @@ const ListAccordion = ({ index, name, groups}) => {
       titleStyle={{ fontFamily: expanded ? "Raleway-Bold" : "Raleway-Regular" }}
       key={name}
       title={name}
-      // left={() => <Image source={index.image} style={styles.image} />} --> CHANGE
+      left={() => <Image source={icon} style={styles.image} />}
       onPress={() => setExpanded(!expanded)}
     >
       {Object.entries(groups).map((subcategory) =>

@@ -18,6 +18,8 @@ import { useNavigation } from "@react-navigation/native";
 import { Checkbox } from "react-native-paper";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as WebBrowser from "expo-web-browser";
+import TabButtons from "./TabButtons";
 
 const RapidReviews = ({ page }) => {
   const navigation = useNavigation();
@@ -74,11 +76,11 @@ const RapidReviews = ({ page }) => {
   };
 
   // Buttons
-  const [activeIndex, setActiveIndex] = useState(1);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    navigation.setOptions({ title: page.title })
-  },[])
+    navigation.setOptions({ title: page.title });
+  }, []);
 
   return (
     <>
@@ -109,107 +111,49 @@ const RapidReviews = ({ page }) => {
       ) : null}
 
       {/* Buttons */}
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-around",
-          padding: 10,
-          backgroundColor: "white",
-          elevation:1
-          // Need to add for iOS
-        }}
-      >
-        <TouchableOpacity style={{ alignItems: "center", flex: 1 }}>
-          <MaterialCommunityIcons
-            name="bookmark-outline"
-            size={30}
-            color="gray"
-          />
-          <Text style={{ fontSize: 11, color: "gray", marginBottom:5 }}>Bookmark</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            alignItems: "center",
-            flex: 1,
-            borderBottomWidth: activeIndex === 1 ? 2 : 0,
-            borderBottomColor:"#4f2683"
-          }}
-          onPress={() => setActiveIndex(1)}
-        >
-          <MaterialCommunityIcons
-            name="table"
-            size={30}
-            color={activeIndex === 1 ? "#4f2683" : "gray"}
-          />
-          <Text
-            style={{
-              fontSize: 11,
-              color: activeIndex === 1 ? "#4f2683" : "gray",
-              marginBottom:5
-            }}
-          >
-            Orientation
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            alignItems: "center",
-            flex: 1,
-            borderBottomWidth: activeIndex === 2 ? 2 : 0,
-            borderBottomColor:"#4f2683"
-          }}
-          onPress={() => setActiveIndex(2)}
-        >
-          <MaterialCommunityIcons
-            name="clipboard-text-outline"
-            size={30}
-            color={activeIndex === 2 ? "#4f2683" : "gray"}
-          />
-          <Text
-            style={{
-              fontSize: 11,
-              color: activeIndex === 2 ? "#4f2683" : "gray",
-              marginBottom:5
-            }}
-          >
-            Details
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            alignItems: "center",
-            flex: 1,
-            borderBottomWidth: activeIndex === 3 ? 2 : 0,
-            borderBottomColor:"#4f2683"
-          }}
-          onPress={() => setActiveIndex(3)}
-        >
-          <MaterialCommunityIcons
-            name="format-list-checkbox"
-            size={30}
-            color={activeIndex === 3 ? "#4f2683" : "gray"}
-          />
-          <Text
-            style={{
-              fontSize: 11,
-              color: activeIndex === 3 ? "#4f2683" : "gray",
-              marginBottom:5
-            }}
-          >
-            Materials
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <TabButtons 
+        activeIndex={activeIndex}
+        setActiveIndex={setActiveIndex}
+        settings={[
+          {
+            name:"Orientation",
+            icon:"table"
+          },
+          {
+            name:"Details",
+            icon:"clipboard-text-outline"
+          },
+          {
+            name:"Materials",
+            icon:"format-list-checkbox"
+          },
+          {
+            name:"References",
+            icon:"book-open-outline"
+          },
+        ]}
+      />
 
       <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
         {/* Materials */}
-        {activeIndex === 3 ? (
+        {activeIndex === 2 ? (
           page.required_materials ? (
             <View>
               <Text style={styles.header}>Required Materials</Text>
-              {page.required_materials.map((item) => (
-                <MaterialsItem material={item} key={item} />
-              ))}
+              {page.required_materials
+                .filter((item) => item.level === "Required")
+                .map((item) => (
+                  <MaterialsItem material={item} key={item.text} />
+                ))}
+              {page.required_materials
+                .filter((item) => item.level === "Optional")
+                .map((item) => (
+                  <MaterialsItem
+                    material={item}
+                    key={item.text}
+                    optional={true}
+                  />
+                ))}
             </View>
           ) : (
             <View
@@ -227,7 +171,7 @@ const RapidReviews = ({ page }) => {
         ) : null}
 
         {/* Table */}
-        {activeIndex === 1 && page.orientation ? (
+        {activeIndex === 0 && page.orientation ? (
           <View>
             <Text style={styles.header}>Quick Summary</Text>
             <ShortSummary data={page.orientation} />
@@ -235,7 +179,7 @@ const RapidReviews = ({ page }) => {
         ) : null}
 
         {/* Text Content */}
-        {activeIndex === 2 && page.details
+        {activeIndex === 1 && page.details
           ? page.details.map((item, index) => (
               <View key={index}>
                 {item.header ? (
@@ -246,23 +190,21 @@ const RapidReviews = ({ page }) => {
                     source={{ uri: item.image }}
                     style={{
                       width: Width,
-                      height: 300,
+                      height: 280,
                       resizeMode: "contain",
                       backgroundColor: "#ffffff",
                     }}
                   />
                 ) : null}
                 {item.text ? (
-                  <Text style={styles.body}>
-                    {item.text}
-                  </Text>
-                ):null}
+                  <Text style={styles.body}>{item.text}</Text>
+                ) : null}
               </View>
             ))
           : null}
 
         {/* Associated Pages */}
-        {activeIndex === 2 && page.associated_pages ? (
+        {activeIndex === 1 && page.associated_pages ? (
           <View style={{ marginLeft: 15, marginTop: 15 }}>
             <Text style={{ fontWeight: "bold", marginBottom: 5 }}>
               Associated Pages
@@ -277,23 +219,33 @@ const RapidReviews = ({ page }) => {
             ))}
           </View>
         ) : null}
+
+        {/* References */}
+        {activeIndex === 3 && page.references
+          ? page.references.map((ref) => (
+              <View style={{ marginHorizontal: 15, marginTop: 15 }} key={ref.text}>
+                <Text>{ref.text}</Text>
+              </View>
+            ))
+          : null}
       </ScrollView>
     </>
   );
 };
 
-const MaterialsItem = ({ material }) => {
-
+const MaterialsItem = ({ material, optional }) => {
   // material.notes, material.level
 
   const [checked, setChecked] = useState(false);
   return (
-    <View style={{ flexDirection: "row", marginHorizontal: 20 }} key={material}>
+    <View
+      style={{ flexDirection: "row", marginHorizontal: 20 }}
+      key={material.text}
+    >
       <View
         style={{
           borderWidth: Platform.OS === "ios" ? 1 : 0, // No box in iOS
           borderRadius: 10,
-          marginBottom: 5,
           borderColor: "#bdc3c7",
         }}
       >
@@ -307,11 +259,30 @@ const MaterialsItem = ({ material }) => {
         <Text
           style={{
             ...styles.body,
+            fontWeight: "bold",
             textDecorationLine: checked ? "line-through" : "none",
-            width: 200,
           }}
         >
+          {optional && (
+            <Text
+              style={{
+                fontWeight: "normal",
+                fontFamily: "Raleway-Regular",
+                color: "gray",
+                fontSize: 10,
+              }}
+            >
+              {`(OPTIONAL) `}
+            </Text>
+          )}
           {material.text}
+          <Text
+            style={{
+              fontWeight: "normal",
+              fontFamily: "Raleway-Regular",
+              color: "gray",
+            }}
+          >{` - ${material.notes}`}</Text>
         </Text>
       </TouchableWithoutFeedback>
     </View>
@@ -332,8 +303,8 @@ const styles = StyleSheet.create({
   },
   body: {
     marginHorizontal: 15,
-    marginVertical: 15,
-    fontFamily: "Raleway-Light",
+    marginVertical: 10,
+    fontFamily: "Raleway-Regular",
   },
 });
 
