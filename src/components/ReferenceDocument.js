@@ -300,8 +300,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   paragraph: {
-    fontFamily: "Raleway-Regular",
-    fontSize: 16,
+    fontFamily: "Roboto-Regular",
+    fontSize: 14,
     margin: 10,
   },
   card: {
