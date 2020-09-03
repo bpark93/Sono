@@ -7,18 +7,35 @@ import {
   ScrollView,
   AsyncStorage,
 } from "react-native";
-import { Searchbar, Banner } from "react-native-paper";
+import { Searchbar, Banner, ActivityIndicator } from "react-native-paper";
 import { FontAwesome } from "@expo/vector-icons";
 import useResults from "../components/useResults";
 import SearchResultsList from "../components/SearchResultsList";
 import CategoriesList from "../components/CategoriesList";
 import { RecentPages } from "../components/RecentPages";
 import Constants from "expo-constants";
+import firebase from "../components/firebase";
 
 const SearchScreen = () => {
-  const [term, setTerm] = useState("");
-  const [searchApi, results, errorMessage] = useResults();
+  
+  const [layout, setLayout] = useState([]);
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("pages")
+      .doc("layout")
+      .get()
+      .then(function (doc) {
+        setLayout(doc.data());
+      })
+      .catch(function (error) {
+        console.log("Error getting List", error);
+      });
+  }, []);
 
+  const [term, setTerm] = useState("");
+  const [searchApi, results, errorMessage] = useResults(layout);
+  
   const searchbarRef = useRef(null);
 
   const [bannerVisible, setBannerVisible] = useState(false);
@@ -36,7 +53,7 @@ const SearchScreen = () => {
     getBannerInfo();
   }, []);
 
-  return (
+  return layout.length !== 0 ? (
     <View style={styles.container}>
       <Searchbar
         ref={searchbarRef}
@@ -65,7 +82,7 @@ const SearchScreen = () => {
         style={styles.barStyle}
         clearIcon={() => <FontAwesome name="remove" style={styles.iconStyle} />}
       />
-      <Banner
+      {/* <Banner
         visible={bannerVisible}
         icon="information"
         actions={[
@@ -79,18 +96,29 @@ const SearchScreen = () => {
         ]}
       >
         <Text>{`Welcome to WesternSono! Try searching or navigating to the following pages: \n\nAorta Image Aquisition\nUS-Guided Peripheral IV\nReduced LV Function`}</Text>
-      </Banner>
+      </Banner> */}
       {errorMessage ? <Text>{errorMessage}</Text> : null}
       <ScrollView>
         {term ? (
           <SearchResultsList results={results} />
         ) : (
           <>
-            <RecentPages />
-            <CategoriesList />
+            <RecentPages layout={layout} />
+            <CategoriesList layout={layout} />
           </>
         )}
       </ScrollView>
+    </View>
+  ) : (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "white",
+      }}
+    >
+      <ActivityIndicator size="large" />
     </View>
   );
 };

@@ -47,9 +47,25 @@ const SearchDetailScreen = ({ page }) => {
   }, [viewing]);
 
   const navigation = useNavigation();
+  const [bookmarked, setBookmarked] = useState(false);
+
   useEffect(() => {
-    navigation.setOptions({ title: page.title });
-  }, []);
+    navigation.setOptions({
+      title: page.title,
+      headerRight: () => (
+        <TouchableOpacity onPress={() => {
+            setBookmarked(!bookmarked)
+            }}>
+          <MaterialCommunityIcons
+            name={bookmarked ? "star" : "star-outline"}
+            size={28}
+            color={bookmarked ? "gold" : "black"}
+            style={{ marginRight: 20 }}
+          />
+        </TouchableOpacity>
+      ),
+    });
+  }, [bookmarked]);
 
   return (
     //Image library

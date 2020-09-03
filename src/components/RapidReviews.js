@@ -15,7 +15,7 @@ import ShortSummary from "../components/ShortSummary";
 import { database } from "../../database";
 import { StackActions } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
-import { Checkbox } from "react-native-paper";
+import { Checkbox, Snackbar } from "react-native-paper";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import TabButtons from "./TabButtons";
@@ -77,9 +77,28 @@ const RapidReviews = ({ page }) => {
   // Buttons
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const [bookmarked, setBookmarked] = useState(false);
+  const [snackVisible, setSnackVisible] = useState(false);
   useEffect(() => {
-    navigation.setOptions({ title: page.title });
-  }, []);
+    navigation.setOptions({
+      title: page.title,
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => {
+            setBookmarked(!bookmarked);
+            setSnackVisible(!snackVisible)
+          }}
+        >
+          <MaterialCommunityIcons
+            name={bookmarked ? "star" : "star-outline"}
+            size={28}
+            color={bookmarked ? "gold" : "black"}
+            style={{ marginRight: 20 }}
+          />
+        </TouchableOpacity>
+      ),
+    });
+  }, [bookmarked]);
 
   return (
     <>
@@ -110,25 +129,25 @@ const RapidReviews = ({ page }) => {
       ) : null}
 
       {/* Buttons */}
-      <TabButtons 
+      <TabButtons
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
         settings={[
           {
-            name:"Orientation",
-            icon:"table"
+            name: "Orientation",
+            icon: "table",
           },
           {
-            name:"Details",
-            icon:"clipboard-text-outline"
+            name: "Details",
+            icon: "clipboard-text-outline",
           },
           {
-            name:"Materials",
-            icon:"format-list-checkbox"
+            name: "Materials",
+            icon: "format-list-checkbox",
           },
           {
-            name:"References",
-            icon:"book-open-outline"
+            name: "References",
+            icon: "book-open-outline",
           },
         ]}
       />
@@ -222,11 +241,26 @@ const RapidReviews = ({ page }) => {
         {/* References */}
         {activeIndex === 3 && page.references
           ? page.references.map((ref) => (
-              <View style={{ marginHorizontal: 15, marginTop: 15 }} key={ref.text}>
+              <View
+                style={{ marginHorizontal: 15, marginTop: 15 }}
+                key={ref.text}
+              >
                 <Text>{ref.text}</Text>
               </View>
             ))
           : null}
+
+        <Snackbar
+          visible={snackVisible}
+          onDismiss={() => setSnackVisible(false)}
+          duration={3000}
+          action={{
+            label: "Okay",
+            onPress: () => setSnackVisible(false),
+          }}
+        >
+          "{page.title}" added to Bookmarks
+        </Snackbar>
       </ScrollView>
     </>
   );

@@ -2,15 +2,22 @@ import { useState } from 'react';
 import Fuse from 'fuse.js'
 import {database} from '../../database'
 
-export default () => {
+export default (layout) => {
     const [results, setResults] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
+
+    let flatLayout = []
+    Object.entries(layout).map(category => {
+        Object.entries(category[1]).map(subcategory => {
+            flatLayout.push(subcategory[1])
+        })
+    })
+    const flatterLayout = flatLayout.flat()
 
     const searchOptions = {
         keys: ['title', 'alt', 'category']
     };
-    const fuse = new Fuse(database, searchOptions);
-       
+    const fuse = new Fuse(flatterLayout, searchOptions);       
     
     const searchApi = async (newText) => {
         try {

@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
-  View,
   Text,
   StyleSheet,
-  FlatList,
   Image,
   ScrollView,
   ActivityIndicator,
@@ -12,28 +10,9 @@ import { useNavigation } from "@react-navigation/native";
 import { List } from "react-native-paper";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { categoryDatabase } from "../../database";
-import firebase from "../components/firebase";
-import { database } from "../../database";
 
-const CategoriesList = () => {
-  const [layout, setLayout] = useState([]);
-
-  useEffect(() => {
-    firebase
-      .firestore()
-      .collection("pages")
-      .doc("layout")
-      .get()
-      .then(function (doc) {
-        setLayout(doc.data());
-      })
-      .catch(function (error) {
-        console.log("Error getting List", error);
-      });
-  }, []);
-
+const CategoriesList = ({layout}) => {
   
-
   return (
     <ScrollView style={{ flex: 1 }}>
       <Text style={styles.subheaderStyle}>Find images, videos, and tools</Text>
@@ -127,51 +106,6 @@ const ListAccordion = ({ name, groups}) => {
               />
             ))}
           </List.Accordion>
-        // ) : (
-        //   <List.Item
-        //     key={item[0]}
-        //     style={{
-        //       ...styles.subCategoryStyle,
-        //       backgroundColor: expanded ? "#FAFAFA" : "white",
-        //     }}
-        //     title={item[0]}
-        //     onPress={() => handleOnPress(item[1])}
-        //     left={() => {
-        //       if (item[1].type === "video") {
-        //         return (
-        //           <FontAwesome5
-        //             name="play-circle"
-        //             size={16}
-        //             style={{ marginTop: 7 }}
-        //           />
-        //         );
-        //       } else if (item[1].type === "image") {
-        //         return (
-        //           <FontAwesome5
-        //             name="images"
-        //             size={16}
-        //             style={{ marginTop: 7 }}
-        //           />
-        //         );
-        //       } else {
-        //         return (
-        //           <FontAwesome5
-        //             name="tools"
-        //             size={16}
-        //             style={{ marginTop: 7 }}
-        //           />
-        //         );
-        //       }
-        //     }}
-        //     right={() => (
-        //       <FontAwesome5
-        //         name="chevron-right"
-        //         size={14}
-        //         style={{ marginTop: 10, marginRight: 15, color: "#673ab7" }}
-        //       />
-        //     )}
-        //   />
-        // )
       )}
     </List.Accordion>
   );

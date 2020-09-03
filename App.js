@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, AsyncStorage, YellowBox } from 'react-native'
+import {View, AsyncStorage, YellowBox, TouchableOpacity } from 'react-native'
 import { Provider as PaperProvider, DefaultTheme, ActivityIndicator } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -256,7 +256,7 @@ function SearchNav() {
         name="SearchDetail" 
         component={SearchDetailScreen} 
         options={{
-          title:''
+          title:'',
         }}
       />
     </Search.Navigator>

@@ -6,18 +6,37 @@ import {
   ScrollView,
   Dimensions,
   Image,
+  TouchableWithoutFeedback,
+  TouchableOpacity
 } from "react-native";
 import { Divider, TextInput, HelperText } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import TabButtons from "./TabButtons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const { width } = Dimensions.get("window");
 
 const ReferenceDocument = ({ page }) => {
   const navigation = useNavigation();
+
+  const [bookmarked, setBookmarked] = useState(false);
   useEffect(() => {
-    navigation.setOptions({ title: page.title });
-  }, []);
+    navigation.setOptions({
+      title: page.title,
+      headerRight: () => (
+        <TouchableOpacity onPress={() => {
+            setBookmarked(!bookmarked)
+            }}>
+          <MaterialCommunityIcons
+            name={bookmarked ? "star" : "star-outline"}
+            size={28}
+            color={bookmarked ? "gold" : "black"}
+            style={{ marginRight: 20 }}
+          />
+        </TouchableOpacity>
+      ),
+    });
+  }, [bookmarked]);
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -112,14 +131,18 @@ const ReferenceDocument = ({ page }) => {
                     </View>
                   ))}
                   {section.caveats ? (
-                    <View style={{marginBottom:10}}>
+                    <View style={{ marginBottom: 10 }}>
                       <Text style={{ ...styles.header, fontSize: 18 }}>
                         Caveats
                       </Text>
                       {section.caveats.map((caveat) => (
                         <Text
                           key={caveat}
-                          style={{...styles.paragraph, margin:0, marginLeft:10}}
+                          style={{
+                            ...styles.paragraph,
+                            margin: 0,
+                            marginLeft: 10,
+                          }}
                         >{`\u2022 ${caveat}`}</Text>
                       ))}
                     </View>

@@ -1,29 +1,39 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, StyleSheet, FlatList, Image, ScrollView, TouchableOpacity} from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native'
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { AsyncStorage } from 'react-native';
-import {database} from '../../database'
 import { FontAwesome5 } from '@expo/vector-icons';
-import firebase from "../components/firebase";
 
 const RECENT = "recent_pages"
 const MAX_ITEMS = 5
 
-const RecentPages = () => {
+const RecentPages = ({layout}) => {
     const navigation = useNavigation();
     const [list, setList] = useState([])
-
 
     useFocusEffect(
         React.useCallback(() => {
             let isActive = true;
+            async function flatten () {
+                let flatLayout = []
+                Object.entries(layout).map(category => {
+                    Object.entries(category[1]).map(subcategory => {
+                        flatLayout.push(subcategory[1])
+                    })
+                })
+                const flatterLayout = flatLayout.flat()
+                return flatterLayout
+            }            
+
             async function getData() {
                 const temp = await getList();
+                const flatterLayout = await flatten();
+
                 let finalList = [];
                 for (let j=0; j<temp.length; j++){
-                    for (let i=0; i<database.length; i++){
-                        if (database[i].id === temp[j]){
-                            finalList = [...finalList, database[i]]
+                    for (let i=0; i<flatterLayout.length; i++){
+                        if (flatterLayout[i].id === temp[j]){
+                            finalList = [...finalList, flatterLayout[i]]
                         }
                     }
                 }
@@ -44,7 +54,7 @@ const RecentPages = () => {
                 list.map(page => (
                     <TouchableOpacity 
                         key={page.title} 
-                        onPress={() => navigation.navigate('SearchDetail', {id:page})}
+                        onPress={() => navigation.navigate('SearchDetail', {id:page.id})}
                         style={{flexDirection:'row', marginBottom:8}}    
                     >
                         {/* <View style={styles.categoryView}>
@@ -92,7 +102,7 @@ const initializeRecentPages = async () => {
     try{
         const initialized = await AsyncStorage.getItem(RECENT)
         if (initialized === null) {
-            await AsyncStorage.setItem(RECENT, "empty")
+            await AsyncStorage.setItem(RECENT, "empty") // Why do this?
             return false
         }
         return true
