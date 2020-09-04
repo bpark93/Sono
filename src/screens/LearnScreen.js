@@ -17,16 +17,6 @@ const LearnScreen = () => {
             <ScrollView style={{flex:1}}>
                 <BookmarkList />
                 <Text style={styles.header}>Browse Screencasts</Text>
-                {/* <FlatList 
-                    showsVerticalScrollIndicator={false}
-                    data={learnDatabase}
-                    keyExtractor={(item) => item.title}
-                    renderItem={({item}) => {
-                        return (
-                            <LearnItem item={item} />
-                        );
-                    }}
-                /> */}
                 <View style={{flex:1}}>
                     {learnDatabase.map(item => (
                         <LearnItem item={item} key={item.id}/>
@@ -52,10 +42,7 @@ const styles = StyleSheet.create({
     },
     header:{
         fontFamily:'Raleway-Bold',
-        fontSize:16,
-        paddingBottom:15,
-        borderBottomWidth:0.5,
-        borderBottomColor:'gray',
+        fontSize:22,
         marginHorizontal:15
     }
 });

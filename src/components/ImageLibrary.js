@@ -5,11 +5,14 @@ import {
   StyleSheet,
   useWindowDimensions,
   FlatList,
+  TouchableOpacity
 } from "react-native";
 import ImageModal from "react-native-image-modal";
 import { Video } from "expo-av";
 import LibraryChip from "../components/LibraryChip";
 import { useNavigation } from "@react-navigation/native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 
 const SearchDetailScreen = ({ page }) => {
   const width = useWindowDimensions().width;

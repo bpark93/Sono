@@ -41,16 +41,12 @@ const SearchDetailScreen = ({ route }) => {
       pageInfo.length !== 0 ? ( 
         // Rapid Reviews
         pageInfo.type === "rapidreview" ? (
-          <RapidReviews page={pageInfo} />
+          <RapidReviews page={pageInfo} id={id} />
         ) : pageInfo.type === "image" ? (
           //Image library
-          <ImageLibrary page={pageInfo} />
+          <ImageLibrary page={pageInfo} id={id}/>
         ) : (
-          // <ResourceTool
-          //   pageInfo={pageInfo.content}
-          //   errorMessage={errorMessage}
-          // />
-          <ReferenceDocument page={pageInfo}/>
+          <ReferenceDocument page={pageInfo} id={id}/>
         )
       ) : (
         <View style={{flex:1, backgroundColor:'white', justifyContent:'center', alignItems:'center'}}>

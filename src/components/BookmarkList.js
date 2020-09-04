@@ -11,7 +11,7 @@ const BookmarkList = () => {
     const [bookmark, setBookmark] = useState([])
     useEffect(() => {
         async function getData(){
-            const currentBookmarkArray = await getBookmark();
+            const currentBookmarkArray = await getBookmark("learn");
             const modulesArray = learnDatabase.map(item => item.pages);
             const pagesArray = [].concat.apply([], modulesArray)
             const idArray = pagesArray.map(item => item.id)
@@ -35,7 +35,7 @@ const BookmarkList = () => {
 
     return (
         <>
-        <Text style={styles.header}>Bookmarks</Text>
+        <Text style={styles.header}>Your Bookmarks</Text>
         <ScrollView style={{marginBottom:15}} nestedScrollEnabled horizontal showsHorizontalScrollIndicator={false}>
             {bookmark.length != 0?
             bookmark.map(item => (

@@ -30,7 +30,7 @@ const SearchResultsScreen = ({results}) => {
                                 style={styles.iconStyle}
                             />
                     }
-                    onPress={() => navigation.navigate('SearchDetail', {id: item})}
+                    onPress={() => navigation.navigate('SearchDetail', {id: item.id})}
                 />
             ))}
         </View>

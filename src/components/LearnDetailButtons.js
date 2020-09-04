@@ -19,7 +19,7 @@ const LearnDetailButtons = ({
   const [savePressed, setSavePressed] = useState(false);
   useEffect(() => {
     async function bookmarkChecker() {
-      const temp = await getBookmark();
+      const temp = await getBookmark("learn");
       for (let i in temp) {
         if (temp[i] === pageInfo.id) {
           setSavePressed(true);
@@ -44,7 +44,7 @@ const LearnDetailButtons = ({
         <TouchableOpacity
           style={styles.touchable}
           onPress={async () => {
-            await removeBookmark(pageInfo.id);
+            await removeBookmark(pageInfo.id, "learn");
             setSavePressed(!savePressed);
           }}
         >
@@ -55,7 +55,7 @@ const LearnDetailButtons = ({
         <TouchableOpacity
           style={styles.touchable}
           onPress={async () => {
-            await setBookmark(pageInfo.id);
+            await setBookmark(pageInfo.id, "learn");
             setSavePressed(!savePressed);
             snackToggle();
           }}

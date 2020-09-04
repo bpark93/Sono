@@ -15,6 +15,7 @@ import CategoriesList from "../components/CategoriesList";
 import { RecentPages } from "../components/RecentPages";
 import Constants from "expo-constants";
 import firebase from "../components/firebase";
+import LibraryBookmarks from "../components/LibraryBookmarks";
 
 const SearchScreen = () => {
   
@@ -103,6 +104,7 @@ const SearchScreen = () => {
           <SearchResultsList results={results} />
         ) : (
           <>
+            <LibraryBookmarks layout={layout} />
             <RecentPages layout={layout} />
             <CategoriesList layout={layout} />
           </>

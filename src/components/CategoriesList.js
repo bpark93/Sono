@@ -11,8 +11,7 @@ import { List } from "react-native-paper";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { categoryDatabase } from "../../database";
 
-const CategoriesList = ({layout}) => {
-  
+const CategoriesList = ({ layout }) => {
   return (
     <ScrollView style={{ flex: 1 }}>
       <Text style={styles.subheaderStyle}>Find images, videos, and tools</Text>
@@ -31,14 +30,9 @@ const CategoriesList = ({layout}) => {
   );
 };
 
-const ListAccordion = ({ name, groups}) => {
+const ListAccordion = ({ name, groups }) => {
   const navigation = useNavigation();
-  const getIcon = (name) => {
-    const temp = categoryDatabase.filter(item => item.title === name)
-    return temp[0].image
-  }
-  const icon = getIcon(name)
-  
+
   const [expanded, setExpanded] = useState(false);
   return (
     <List.Accordion
@@ -46,67 +40,69 @@ const ListAccordion = ({ name, groups}) => {
       titleStyle={{ fontFamily: expanded ? "Raleway-Bold" : "Raleway-Regular" }}
       key={name}
       title={name}
-      left={() => <Image source={icon} style={styles.image} />}
+      left={() => <Image source={categoryDatabase[name]} style={styles.image} />}
       onPress={() => setExpanded(!expanded)}
     >
-      {Object.entries(groups).map((subcategory) =>
+      {Object.entries(groups).map((subcategory) => (
         // true ? (
-          <List.Accordion
-            key={subcategory[0]}
-            style={{
-              ...styles.subCategoryStyle,
-              backgroundColor: expanded ? "#FAFAFA" : "white",
-            }}
-            title={subcategory[0]}
-            left={() => <FontAwesome5 name="folder" size={16} />}
-          >
-            {subcategory[1].map((page) => (
-              <List.Item
-                key={page.id}
-                style={{
-                  ...styles.listItemStyle,
-                  backgroundColor: expanded ? "#FAFAFA" : "white",
-                }}
-                title={page.title}
-                onPress={() => navigation.navigate("SearchDetail", { id: page.id })}
-                left={() => {
-                  if (page.type === "rapidreview") {
-                    return (
-                      <FontAwesome5
-                        name="play-circle"
-                        size={16}
-                        style={{ marginTop: 7 }}
-                      />
-                    );
-                  } else if (page.type === "image") {
-                    return (
-                      <FontAwesome5
-                        name="images"
-                        size={16}
-                        style={{ marginTop: 7 }}
-                      />
-                    );
-                  } else {
-                    return (
-                      <FontAwesome5
-                        name="tools"
-                        size={16}
-                        style={{ marginTop: 7 }}
-                      />
-                    );
-                  }
-                }}
-                right={() => (
-                  <FontAwesome5
-                    name="chevron-right"
-                    size={14}
-                    style={{ marginTop: 10, marginRight: 15, color: "#673ab7" }}
-                  />
-                )}
-              />
-            ))}
-          </List.Accordion>
-      )}
+        <List.Accordion
+          key={subcategory[0]}
+          style={{
+            ...styles.subCategoryStyle,
+            backgroundColor: expanded ? "#FAFAFA" : "white",
+          }}
+          title={subcategory[0]}
+          left={() => <FontAwesome5 name="folder" size={16} />}
+        >
+          {subcategory[1].map((page) => (
+            <List.Item
+              key={page.id}
+              style={{
+                ...styles.listItemStyle,
+                backgroundColor: expanded ? "#FAFAFA" : "white",
+              }}
+              title={page.title}
+              onPress={() =>
+                navigation.navigate("SearchDetail", { id: page.id })
+              }
+              left={() => {
+                if (page.type === "rapidreview") {
+                  return (
+                    <FontAwesome5
+                      name="play-circle"
+                      size={16}
+                      style={{ marginTop: 7 }}
+                    />
+                  );
+                } else if (page.type === "image") {
+                  return (
+                    <FontAwesome5
+                      name="images"
+                      size={16}
+                      style={{ marginTop: 7 }}
+                    />
+                  );
+                } else {
+                  return (
+                    <FontAwesome5
+                      name="tools"
+                      size={16}
+                      style={{ marginTop: 7 }}
+                    />
+                  );
+                }
+              }}
+              right={() => (
+                <FontAwesome5
+                  name="chevron-right"
+                  size={14}
+                  style={{ marginTop: 10, marginRight: 15, color: "#673ab7" }}
+                />
+              )}
+            />
+          ))}
+        </List.Accordion>
+      ))}
     </List.Accordion>
   );
 };
@@ -128,10 +124,10 @@ const styles = StyleSheet.create({
     color: "black",
   },
   subheaderStyle: {
-    marginLeft: 20,
+    marginLeft: 15,
     marginVertical: 15,
     fontSize: 18,
-    fontFamily: "Raleway-Medium",
+    fontFamily: "Raleway-Bold",
   },
   image: {
     width: 60,

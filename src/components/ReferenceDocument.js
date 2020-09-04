@@ -6,27 +6,51 @@ import {
   ScrollView,
   Dimensions,
   Image,
-  TouchableWithoutFeedback,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
-import { Divider, TextInput, HelperText } from "react-native-paper";
+import { Divider, TextInput, HelperText, Snackbar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import TabButtons from "./TabButtons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {setBookmark, removeBookmark, getBookmark} from '../components/useBookmark'
 
 const { width } = Dimensions.get("window");
 
-const ReferenceDocument = ({ page }) => {
+const ReferenceDocument = ({ page, id }) => {
   const navigation = useNavigation();
 
   const [bookmarked, setBookmarked] = useState(false);
+  const [snackVisible, setSnackVisible] = useState(false);
+
+  useEffect(() => {
+    async function bookmarkChecker() {
+      const temp = await getBookmark("lib");
+      for (let i in temp) {
+        if (temp[i] === id) {
+          setBookmarked(true);
+        }
+      }
+    }
+    bookmarkChecker();
+  }, []);
+
   useEffect(() => {
     navigation.setOptions({
       title: page.title,
       headerRight: () => (
-        <TouchableOpacity onPress={() => {
-            setBookmarked(!bookmarked)
-            }}>
+        <TouchableOpacity
+          onPress={() => {
+            if (!bookmarked){
+              setBookmarked(true);
+              setBookmark(id, "lib");
+              setSnackVisible(true)
+            } else {
+              setBookmarked(false);
+              removeBookmark(id, "lib");
+            }
+            
+          }}
+        >
           <MaterialCommunityIcons
             name={bookmarked ? "star" : "star-outline"}
             size={28}
@@ -37,11 +61,23 @@ const ReferenceDocument = ({ page }) => {
       ),
     });
   }, [bookmarked]);
+  
 
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
+      <Snackbar
+          visible={snackVisible}
+          onDismiss={() => setSnackVisible(false)}
+          duration={3000}
+          action={{
+            label: "Okay",
+            onPress: () => setSnackVisible(false),
+          }}
+        >
+          "{page.title}" added to Bookmarks
+      </Snackbar>
       <TabButtons
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
@@ -64,140 +100,145 @@ const ReferenceDocument = ({ page }) => {
           },
         ]}
       />
+      <ScrollView>
+        {activeIndex === 0 && page.calculator
+          ? page.calculator.map((item, index) => (
+              <Calculator key={index} settings={item} />
+            ))
+          : null}
 
-      {activeIndex === 0 && page.calculator
-        ? page.calculator.map((item, index) => (
-            <Calculator key={index} settings={item} />
-          ))
-        : null}
+        {/* Normal Values  */}
+        {activeIndex === 1 && page.normalValues ? (
+          <View style={styles.card}>
+            <Text style={styles.header}>Normal Values</Text>
 
-      {/* Normal Values  */}
-      {activeIndex === 1 && page.normalValues ? (
-        <View style={styles.card}>
-          <Text style={styles.header}>Normal Values</Text>
+            {page.normalValues?.map((ref, index) => (
+              <View
+                style={{ ...styles.paragraph, flexDirection: "row" }}
+                key={ref.name}
+              >
+                <View
+                  style={{
+                    width: 150,
+                    alignItems: "flex-end",
+                    marginRight: 20,
+                  }}
+                >
+                  <Text>{ref.name}: </Text>
+                </View>
+                <Text style={{ fontSize: 16, fontFamily: "Roboto-Regular" }}>
+                  {ref.value}
+                </Text>
+              </View>
+            ))}
+          </View>
+        ) : null}
 
-          {page.normalValues?.map((ref, index) => (
-            <View
-              style={{ ...styles.paragraph, flexDirection: "row" }}
-              key={ref.name}
-            >
+        {/* Text Content */}
+        {activeIndex === 2 && page.content
+          ? page.content.map((section) => (
+              <View key={section.header}>
+                {typeof section.body === "string" ? (
+                  <View style={styles.card}>
+                    <Text style={styles.header}>{section.header}</Text>
+
+                    <Text style={styles.paragraph}>{section.body}</Text>
+                  </View>
+                ) : (
+                  <View style={styles.card}>
+                    <Text style={styles.header}>{section.header}</Text>
+
+                    {section.body.map((step, index) => (
+                      <View key={index}>
+                        {step.stepImage ? (
+                          <Image
+                            source={{ uri: step.stepImage }}
+                            style={{
+                              width: width - 30,
+                              height: (width - 30) * 0.75,
+                              marginVertical: 20,
+                            }}
+                            resizeMode="contain"
+                          />
+                        ) : null}
+                        <Text style={styles.paragraph}>
+                          {index + 1}. {step.stepBody}
+                        </Text>
+                      </View>
+                    ))}
+                    {section.caveats ? (
+                      <View style={{ marginBottom: 10 }}>
+                        <Text style={{ ...styles.header, fontSize: 18 }}>
+                          Caveats
+                        </Text>
+                        {section.caveats.map((caveat) => (
+                          <Text
+                            key={caveat}
+                            style={{
+                              ...styles.paragraph,
+                              margin: 0,
+                              marginLeft: 10,
+                            }}
+                          >{`\u2022 ${caveat}`}</Text>
+                        ))}
+                      </View>
+                    ) : null}
+                  </View>
+                )}
+              </View>
+            ))
+          : null}
+
+        {/* References */}
+        {activeIndex === 2 && page.references ? (
+          <View style={styles.card}>
+            <Text style={styles.header}>References</Text>
+
+            {page.references?.map((ref, index) => (
               <View
                 style={{
-                  width: 150,
-                  alignItems: "flex-end",
-                  marginRight: 20,
+                  ...styles.paragraph,
+                  flexDirection: "row",
+                  marginHorizontal: 20,
                 }}
+                key={ref.text}
               >
-                <Text>{ref.name}: </Text>
+                <Text>{index + 1}. </Text>
+                <Text>{ref.text}</Text>
               </View>
-              <Text style={{ fontSize: 16, fontFamily: "Roboto-Regular" }}>
-                {ref.value}
-              </Text>
-            </View>
-          ))}
-        </View>
-      ) : null}
+            ))}
+          </View>
+        ) : null}
 
-      {/* Text Content */}
-      {activeIndex === 2 && page.content
-        ? page.content.map((section) => (
-            <View key={section.header}>
-              {typeof section.body === "string" ? (
-                <View style={styles.card}>
-                  <Text style={styles.header}>{section.header}</Text>
+        {/* Terminology */}
+        {activeIndex === 3 && page.terminology ? (
+          <View style={styles.card}>
+            <Text style={styles.header}>Terminology</Text>
 
-                  <Text style={styles.paragraph}>{section.body}</Text>
-                </View>
-              ) : (
-                <View style={styles.card}>
-                  <Text style={styles.header}>{section.header}</Text>
-
-                  {section.body.map((step, index) => (
-                    <View key={index}>
-                      {step.stepImage ? (
-                        <Image
-                          source={{ uri: step.stepImage }}
-                          style={{
-                            width: width - 30,
-                            height: (width - 30) * 0.75,
-                            marginVertical: 20,
-                          }}
-                          resizeMode="contain"
-                        />
-                      ) : null}
-                      <Text style={styles.paragraph}>
-                        {index + 1}. {step.stepBody}
-                      </Text>
-                    </View>
-                  ))}
-                  {section.caveats ? (
-                    <View style={{ marginBottom: 10 }}>
-                      <Text style={{ ...styles.header, fontSize: 18 }}>
-                        Caveats
-                      </Text>
-                      {section.caveats.map((caveat) => (
-                        <Text
-                          key={caveat}
-                          style={{
-                            ...styles.paragraph,
-                            margin: 0,
-                            marginLeft: 10,
-                          }}
-                        >{`\u2022 ${caveat}`}</Text>
-                      ))}
-                    </View>
-                  ) : null}
-                </View>
-              )}
-            </View>
-          ))
-        : null}
-
-      {/* References */}
-      {activeIndex === 2 && page.references ? (
-        <View style={styles.card}>
-          <Text style={styles.header}>References</Text>
-
-          {page.references?.map((ref, index) => (
-            <View
-              style={{
-                ...styles.paragraph,
-                flexDirection: "row",
-                marginHorizontal: 20,
-              }}
-              key={ref.text}
-            >
-              <Text>{index + 1}. </Text>
-              <Text>{ref.text}</Text>
-            </View>
-          ))}
-        </View>
-      ) : null}
-
-      {/* Terminology */}
-      {activeIndex === 3 && page.terminology ? (
-        <View style={styles.card}>
-          <Text style={styles.header}>Terminology</Text>
-
-          {page.terminology.map((term, index) => (
-            <View
-              style={{ flexDirection: "row", marginVertical: 10 }}
-              key={index}
-            >
-              <Text
-                style={{ width: 120, fontWeight: "bold", marginHorizontal: 10 }}
+            {page.terminology.map((term, index) => (
+              <View
+                style={{ flexDirection: "row", marginVertical: 10 }}
+                key={index}
               >
-                {term.name}
-              </Text>
-              <View style={{ flex: 1 }}>
-                <Text style={{ marginBottom: 10 }}>{term.definition}</Text>
-                <Text>{term.explanation}</Text>
+                <Text
+                  style={{
+                    width: 120,
+                    fontWeight: "bold",
+                    marginHorizontal: 10,
+                  }}
+                >
+                  {term.name}
+                </Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ marginBottom: 10 }}>{term.definition}</Text>
+                  <Text>{term.explanation}</Text>
+                </View>
               </View>
-            </View>
-          ))}
-        </View>
-      ) : null}
-    </ScrollView>
+            ))}
+          </View>
+        ) : null}
+      </ScrollView>
+    </View>
   );
 };
 
@@ -227,6 +268,13 @@ const Calculator = ({ settings }) => {
     case "ci":
       formula1 = Math.sqrt((var1 * var2) / 3600).toFixed(2);
       formula2 = (var3 / formula1).toFixed(2);
+      break;
+    case "svri":
+      formula1 = ((var1-var2)*80/var3).toFixed(2);
+      break;
+    case "map":
+      formula1 = ((var1/3)+(var2*2/3)).toFixed(2);
+      break;
     default:
       break;
   }

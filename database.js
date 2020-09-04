@@ -533,48 +533,19 @@ const database = [
 
 ];
 
-const categoryDatabase = [
+const categoryDatabase = 
   {
-    title: "Aorta",
-    image: require("./assets/png/044-blood.png"),
-  },
-  {
-    title: "Cardiac",
-    image: require("./assets/png2/040-heart.png"),
-  },
-  {
-    title: "Quantitative Assessment",
-    image: require("./assets/png/geometry.png"),
-  },
-  {
-    title: "Lung",
-    image: require("./assets/png2/042-lungs.png"),
-  },
-  {
-    title: "Abdominal",
-    image: require("./assets/png/029-intestine.png"),
-  },
-  {
-    title: "Renal/GU",
-    image: require("./assets/png2/032-kidney.png"),
-  },
-  {
-    title: "Procedural",
-    image: require("./assets/png/injection.png"),
-  },
-  {
-    title: "Pelvic",
-    image: require("./assets/png/050-fetus.png"),
-  },
-  {
-    title: "Nervous System",
-    image: require("./assets/png/016-brain.png"),
-  },
-  {
-    title: "Musculoskeletal",
-    image: require("./assets/png/039-elbow.png"),
-  },
-];
+    "Aorta": require("./assets/png/044-blood.png"),
+    "Cardiac": require("./assets/png2/040-heart.png"),
+    "Quantitative Assessment": require("./assets/png/geometry.png"),
+    "Lung":require("./assets/png2/042-lungs.png"),
+    "Abdominal":require("./assets/png/029-intestine.png"),
+    "Renal/GU":require("./assets/png2/032-kidney.png"),
+    "Procedural": require("./assets/png/injection.png"),
+    "Pelvic": require("./assets/png/050-fetus.png"),
+    "Nervous System": require("./assets/png/016-brain.png"),
+    "Musculoskeletal": require("./assets/png/039-elbow.png"),
+  }
 
 
 const learnDatabase = [
