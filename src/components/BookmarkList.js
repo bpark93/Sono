@@ -20,24 +20,32 @@ const BookmarkList = ({ sortBy }) => {
   const [bookmark, setBookmark] = useState([]);
   const [reversedBookmark, setReversedBookmark] = useState([]);
 
-  useEffect(() => {
-    async function getData() {
-      const currentBookmarkArray = await getBookmark("learn");
-      const modulesArray = learnDatabase.map((item) => item.pages);
-      const pagesArray = [].concat.apply([], modulesArray);
-      const idArray = pagesArray.map((item) => item.id);
-      let finalList = [];
-      for (let i = 0; i < currentBookmarkArray.length; i++) {
-        for (let j = 0; j < idArray.length; j++) {
-          if (currentBookmarkArray[i] === idArray[j]) {
-            finalList = [...finalList, pagesArray[j]];
-          }
+  async function getData() {
+    const currentBookmarkArray = await getBookmark("learn");
+    const modulesArray = learnDatabase.map((item) => item.pages);
+    const pagesArray = [].concat.apply([], modulesArray);
+    const idArray = pagesArray.map((item) => item.id);
+    let finalList = [];
+    for (let i = 0; i < currentBookmarkArray.length; i++) {
+      for (let j = 0; j < idArray.length; j++) {
+        if (currentBookmarkArray[i] === idArray[j]) {
+          finalList = [...finalList, pagesArray[j]];
         }
       }
-      setBookmark(finalList);
     }
+    setBookmark(finalList);
+  }
+
+  useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", async () => {
+      await getData();
+    });
+    return () => unsubscribe();
+  }, [navigation]);
 
   useEffect(() => {
     const reversed = [...bookmark];
@@ -220,6 +228,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "Raleway-Regular",
     marginHorizontal: 10,
+    width:250
   },
   learnCategoryStyle: {
     width: 40,
