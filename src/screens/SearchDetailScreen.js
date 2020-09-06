@@ -15,7 +15,7 @@ const SearchDetailScreen = ({ route }) => {
       await setList(id);
     }
     setRecent();
-  }, []);
+  }, [id]);
 
   const [pageInfo, setPageInfo] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
@@ -34,7 +34,7 @@ const SearchDetailScreen = ({ route }) => {
           "There was an error retrieving page data. Please try again!"
         );
       });
-  }, []);
+  }, [id]);
 
   return (
       pageInfo.length !== 0 ? ( 

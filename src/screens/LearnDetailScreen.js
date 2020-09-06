@@ -178,7 +178,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
   };
   useEffect(() => {
     parseNoteList();
-  }, []);
+  }, [id]);
   const youtubeSeek = (seconds) => {
     youtubeRef.current.seekTo(seconds);
   };
@@ -206,7 +206,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
       .catch(function (error) {
         setErrorMessage("The transcript for this page is unavailable.");
       });
-  }, []);
+  }, [id]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -414,7 +414,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
             <MaterialCommunityIcons name="close" size={24} color="black" />
           </TouchableOpacity>
           <ScrollView>
-            {transcriptText &&
+            {transcriptText && !errorMessage ? 
               transcriptText.map((paragraph) => (
                 <View key={paragraph.timestamp}>
                   <TouchableWithoutFeedback
@@ -433,7 +433,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
                   </TouchableWithoutFeedback>
                   <Text style={styles.body}>{paragraph.body}</Text>
                 </View>
-              ))}
+              )):null}
             {errorMessage ? (
               <Text style={{ fontSize: 18, marginHorizontal: 30 }}>
                 {errorMessage}

@@ -118,11 +118,12 @@ const BookmarkItem = ({ info, updateBookmarkList }) => {
   return (
     <TouchableOpacity
       style={styles.touchable}
-      onPress={() =>
+      onPress={() => {
         navigation.navigate("Library", {
           screen: "SearchDetail",
           params: { id: info.id },
         })
+      }
       }
     >
       <View>
