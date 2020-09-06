@@ -19,8 +19,13 @@ import { Checkbox, Snackbar } from "react-native-paper";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import TabButtons from "./TabButtons";
+import {
+  setBookmark,
+  removeBookmark,
+  getBookmark,
+} from "../components/useBookmark";
 
-const RapidReviews = ({ page }) => {
+const RapidReviews = ({ page, id }) => {
   const navigation = useNavigation();
   const playerRef = useRef(null);
   const [playing, setPlaying] = useState(true);
@@ -77,20 +82,40 @@ const RapidReviews = ({ page }) => {
   // Buttons
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Bookmarks
   const [bookmarked, setBookmarked] = useState(false);
   const [snackVisible, setSnackVisible] = useState(false);
+
+  useEffect(() => {
+    async function bookmarkChecker() {
+      const temp = await getBookmark("lib");
+      for (let i in temp) {
+        if (temp[i] === id) {
+          setBookmarked(true);
+        }
+      }
+    }
+    bookmarkChecker();
+  }, []);
+
   useEffect(() => {
     navigation.setOptions({
       title: page.title,
       headerRight: () => (
         <TouchableOpacity
           onPress={() => {
-            setBookmarked(!bookmarked);
-            setSnackVisible(!snackVisible)
+            if (!bookmarked) {
+              setBookmarked(true);
+              setBookmark(id, "lib");
+              setSnackVisible(true);
+            } else {
+              setBookmarked(false);
+              removeBookmark(id, "lib");
+            }
           }}
         >
           <MaterialCommunityIcons
-            name={bookmarked ? "star" : "star-outline"}
+            name={bookmarked ? "bookmark" : "bookmark-outline"}
             size={28}
             color={bookmarked ? "gold" : "black"}
             style={{ marginRight: 20 }}
@@ -101,7 +126,7 @@ const RapidReviews = ({ page }) => {
   }, [bookmarked]);
 
   return (
-    <>
+    <View style={{flex:1}}>
       {/* Youtube Video embedded */}
       {page.video ? (
         <View
@@ -250,7 +275,9 @@ const RapidReviews = ({ page }) => {
             ))
           : null}
 
-        <Snackbar
+        
+      </ScrollView>
+      <Snackbar
           visible={snackVisible}
           onDismiss={() => setSnackVisible(false)}
           duration={3000}
@@ -261,8 +288,7 @@ const RapidReviews = ({ page }) => {
         >
           "{page.title}" added to Bookmarks
         </Snackbar>
-      </ScrollView>
-    </>
+    </View>
   );
 };
 

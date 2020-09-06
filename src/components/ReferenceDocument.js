@@ -8,7 +8,7 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { Divider, TextInput, HelperText, Snackbar } from "react-native-paper";
+import { TextInput, HelperText, Snackbar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import TabButtons from "./TabButtons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -52,7 +52,7 @@ const ReferenceDocument = ({ page, id }) => {
           }}
         >
           <MaterialCommunityIcons
-            name={bookmarked ? "star" : "star-outline"}
+            name={bookmarked ? "bookmark" : "bookmark-outline"}
             size={28}
             color={bookmarked ? "gold" : "black"}
             style={{ marginRight: 20 }}

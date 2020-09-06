@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { List } from "react-native-paper";
+import { List, Avatar  } from "react-native-paper";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { categoryDatabase } from "../../database";
 
@@ -40,7 +40,7 @@ const ListAccordion = ({ name, groups }) => {
       titleStyle={{ fontFamily: expanded ? "Raleway-Bold" : "Raleway-Regular" }}
       key={name}
       title={name}
-      left={() => <Image source={categoryDatabase[name]} style={styles.image} />}
+      left={() => <Avatar.Image source={categoryDatabase[name]} style={styles.image} size={38}/>}
       onPress={() => setExpanded(!expanded)}
     >
       {Object.entries(groups).map((subcategory) => (
@@ -130,9 +130,8 @@ const styles = StyleSheet.create({
     fontFamily: "Raleway-Bold",
   },
   image: {
-    width: 60,
-    height: 30,
-    resizeMode: "contain",
+    backgroundColor:'#E0E0E0',
+    marginLeft:10,
   },
 });
 

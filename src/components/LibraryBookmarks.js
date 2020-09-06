@@ -6,107 +6,177 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  ImageBackground,
   Dimensions,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { getBookmark } from "./useBookmark";
-import { categoryDatabase } from "../../database";
+import { getBookmark, removeBookmark } from "./useBookmark";
+import { Menu, IconButton } from "react-native-paper";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 const Width = Dimensions.get("window").width;
 
-const LibraryBookmarks = ({layout}) => {
+const LibraryBookmarks = ({ layout, sortBy }) => {
   const navigation = useNavigation();
   const [bookmark, setBookmark] = useState([]);
-  useEffect(() => {
-    async function flatten() {
-        let flatLayout = [];
-        Object.entries(layout).map((category) => {
-          Object.entries(category[1]).map((subcategory) => {
-            flatLayout.push(subcategory[1]);
-          });
-        });
-        const flatterLayout = flatLayout.flat();
-        return flatterLayout;
-      }
-    async function getData() {
-      const currentBookmarkArray = await getBookmark("lib");
-      const flatterLayout = await flatten();
-      let finalList = [];
-      for (let i = 0; i < currentBookmarkArray.length; i++) {
-        for (let j = 0; j < flatterLayout.length; j++) {
-          if (currentBookmarkArray[i] === flatterLayout[j].id) {
-            finalList = [...finalList, flatterLayout[j]];
-          }
+  const [reversedBookmark, setReversedBookmark] = useState([]);
+
+  const flatten = () => {
+    let flatLayout = [];
+    Object.entries(layout).map((category) => {
+      Object.entries(category[1]).map((subcategory) => {
+        flatLayout.push(subcategory[1]);
+      });
+    });
+    const flatterLayout = flatLayout.flat();
+    return flatterLayout;
+  };
+  const flatterLayout = flatten();
+
+  async function getData() {
+    const currentBookmarkArray = await getBookmark("lib");
+    let finalList = [];
+    for (let i = 0; i < currentBookmarkArray.length; i++) {
+      for (let j = 0; j < flatterLayout.length; j++) {
+        if (currentBookmarkArray[i] === flatterLayout[j].id) {
+          finalList = [...finalList, flatterLayout[j]];
         }
       }
-      console.log(finalList.length)
-      setBookmark(finalList);
     }
+    setBookmark(finalList);
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useEffect(() => {
     const unsubscribe = navigation.addListener("focus", async () => {
       await getData();
     });
     return () => unsubscribe();
   }, [navigation]);
 
-  return (
-    <>
-      <Text style={styles.header}>Your Bookmarks</Text>
-      <ScrollView
-        nestedScrollEnabled
-        horizontal
-        showsHorizontalScrollIndicator={false}
+  useEffect(() => {
+    const reversed = [...bookmark];
+    setReversedBookmark(reversed.reverse());
+  }, [bookmark]);
+
+  const updateBookmarkList = (id) => {
+    setBookmark(bookmark.filter(item => item.id !== id))
+  }
+
+  return bookmark.length != 0 ? (
+    <ScrollView>
+      {sortBy === "newest"
+        ? bookmark.map((item) => <BookmarkItem info={item} key={item.id} updateBookmarkList={updateBookmarkList}/>)
+        : reversedBookmark.map((item) => (
+            <BookmarkItem info={item} key={item.id} updateBookmarkList={updateBookmarkList}/>
+          ))}
+    </ScrollView>
+  ) : (
+    <View
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        width: Width,
+        height: 200,
+      }}
+    >
+      <Image
+        source={require("../../assets/write.png")}
+        style={{
+          height: 75,
+          width: 100,
+          opacity: 0.3,
+          resizeMode: "contain",
+        }}
+      />
+      <Text
+        style={{
+          opacity: 0.4,
+          marginTop: 15,
+          fontFamily: "Raleway-Bold",
+        }}
       >
-        {bookmark.length != 0 ? (
-          bookmark.map((item) => (
-                <TouchableOpacity
-                  style={styles.touchable}
-                  key={item.id}
-                  onPress={() => navigation.navigate("SearchDetail", { id: item.id })}
-                >
-                  <ImageBackground
-                    source={categoryDatabase[item.category]}
-                    style={{
-                      height: 150,
-                      width: 150,
-                      opacity: 0.3,
-                      position: "absolute",
-                      alignSelf: "center",
-                    }}
-                    imageStyle={{
-                      resizeMode: "contain",
-                    }}
-                  />
-                  <Text style={styles.category}>{item.category}</Text>
-                  <Text style={styles.text}>{item.title}</Text>
-                </TouchableOpacity>
-              ))
-        ) : (
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              width: Width,
-              height: 150,
-            }}
-          >
-            <Image
-              source={require("../../assets/write.png")}
-              style={{
-                height: 75,
-                width: 100,
-                opacity: 0.3,
-                resizeMode: "contain",
-              }}
-            />
-            <Text style={{ opacity: 0.3 }}>
-              Add to your bookmarks for quick access {bookmark.length}
-            </Text>
-          </View>
-        )}
-      </ScrollView>
-    </>
+        You don't have any saved bookmarks.
+      </Text>
+      <Text
+        style={{ opacity: 0.3, marginTop: 15, marginHorizontal: 30 }}
+        numberOfLines={2}
+      >
+        Your bookmarks can be downloaded for offline viewing.
+      </Text>
+    </View>
+  );
+};
+
+const BookmarkItem = ({ info, updateBookmarkList }) => {
+  const [menuVisible, setMenuVisible] = useState(false);
+  const navigation = useNavigation();
+
+  return (
+    <TouchableOpacity
+      style={styles.touchable}
+      onPress={() =>
+        navigation.navigate("Library", {
+          screen: "SearchDetail",
+          params: { id: info.id },
+        })
+      }
+    >
+      <View>
+        <Text
+          style={styles.category}
+        >{`${info.category} > ${info.subcategory}`}</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            marginHorizontal: 5,
+            marginTop: 5,
+          }}
+        >
+          {info.type === "rapidreview" ? (
+            <FontAwesome5 name="play-circle" style={styles.iconStyle} />
+          ) : info.type === "image" ? (
+            <FontAwesome5 name="images" style={styles.iconStyle} />
+          ) : (
+            <FontAwesome5 name="tools" style={styles.iconStyle} />
+          )}
+          <Text style={styles.page}>{info.title}</Text>
+        </View>
+      </View>
+      <Menu
+        visible={menuVisible}
+        onDismiss={() => setMenuVisible(false)}
+        anchor={
+          <IconButton
+            onPress={() => setMenuVisible(true)}
+            icon="dots-horizontal"
+            size={16}
+          />
+        }
+      >
+        <Menu.Item
+          onPress={() => {
+            setMenuVisible(false);
+          }}
+          title="Download"
+          icon="arrow-collapse-down"
+          titleStyle={{ fontSize: 14 }}
+        />
+        <Menu.Item
+          onPress={async () => {
+            removeBookmark(info.id, "lib")
+            updateBookmarkList(info.id)
+            setMenuVisible(false);
+          }}
+          title="Remove Bookmark"
+          icon="bookmark-remove"
+          titleStyle={{ fontSize: 14 }}
+        />
+      </Menu>
+    </TouchableOpacity>
   );
 };
 
@@ -115,7 +185,7 @@ const styles = StyleSheet.create({
     fontFamily: "Raleway-Bold",
     fontSize: 18,
     marginHorizontal: 15,
-    marginTop: 10,
+    marginVertical: 10,
   },
   text: {
     fontFamily: "Raleway-Regular",
@@ -124,22 +194,28 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   touchable: {
-    margin: 10,
-    marginLeft: 15,
-    flex: 1,
-    height: 150,
-    width: 150,
-    // backgroundColor: "#fdf6e3",
-    borderRadius: 15,
-    overflow: "hidden",
-    alignItems: "flex-start",
-    justifyContent: "flex-end",
+    marginHorizontal: 15,
+    backgroundColor: "white",
+    borderBottomWidth: 0.5,
+    paddingVertical: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   category: {
-    fontSize: 14,
-    fontFamily: "Raleway-Bold",
-    color: "#34aadc",
+    fontSize: 12,
+    fontFamily: "Raleway-Regular",
     marginHorizontal: 10,
+    color: "gray",
+  },
+  page: {
+    fontSize: 16,
+    marginLeft: 5,
+    fontFamily: "Raleway-Regular",
+  },
+  iconStyle: {
+    fontSize: 20,
+    color: "black",
+    marginHorizontal: 5,
   },
 });
 

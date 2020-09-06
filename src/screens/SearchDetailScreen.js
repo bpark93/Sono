@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import RapidReviews from "../components/RapidReviews";
 import ImageLibrary from "../components/ImageLibrary";
-import ResourceTool from "../components/ResourceTool";
 import ReferenceDocument from "../components/ReferenceDocument"
 import { setList } from "../components/RecentPages";
 import firebase from "../components/firebase";

@@ -9,8 +9,9 @@ import {LearnScreen,
   LearnDetailScreen,
   SearchScreen,
   SearchDetailScreen,
-  CasesScreen,
+  BookmarkScreen,
   CasesDetailScreen,
+  CasesListScreen,
   SettingsScreen,
   SettingsAuthScreen,
   SettingsHelpScreen,
@@ -30,7 +31,7 @@ import {initializeRecentPages} from './src/components/RecentPages'
 const Main = createMaterialBottomTabNavigator();
 const Learn = createStackNavigator();
 const Search = createStackNavigator();
-const Cases = createStackNavigator();
+const Bookmark = createStackNavigator();
 const Settings = createStackNavigator();
 
 function App() {
@@ -156,11 +157,11 @@ function App() {
           }}
         />
         <Main.Screen 
-          name="Cases" 
-          component={CasesNav} 
+          name="Bookmarks" 
+          component={BookmarkNav} 
           options={{
             tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons name="stethoscope" color={color} size={23} />
+              <MaterialCommunityIcons name="bookmark-outline" color={color} size={23} />
             ),
           }}
         />
@@ -227,6 +228,18 @@ function LearnNav() {
           headerShown: false
         }}
       />
+      <Learn.Screen 
+        name="CasesDetail" 
+        component={CasesDetailScreen}
+        options={({route}) => ({title: route.params.id.title.rendered})}
+      />
+      <Learn.Screen 
+        name="CasesList" 
+        component={CasesListScreen}
+        options={{
+          title: "Cases of the Week"
+        }}
+      />
     </Learn.Navigator>
   );
 }
@@ -244,6 +257,7 @@ function SearchNav() {
         },
         headerBackTitle:"",
       }}
+      initialRouteName="Search"
     >
       <Search.Screen 
         name="Search" 
@@ -263,9 +277,9 @@ function SearchNav() {
   );
 }
 
-function CasesNav() {
+function BookmarkNav() {
   return (
-    <Cases.Navigator
+    <Bookmark.Navigator
       screenOptions={{
         headerStyle:{
           shadowColor:'transparent',
@@ -276,19 +290,15 @@ function CasesNav() {
         }
       }}
     >
-      <Cases.Screen 
-        name="CasesMain" 
-        component={CasesScreen}
+      <Bookmark.Screen 
+        name="BookmarkMain" 
+        component={BookmarkScreen}
         options={{
-          title: 'Case of the Week'
+          title: 'Your Bookmarks'
         }}
       />
-      <Cases.Screen 
-        name="CasesDetail" 
-        component={CasesDetailScreen}
-        options={({route}) => ({title: route.params.id.title.rendered})}
-      />
-    </Cases.Navigator>
+      
+    </Bookmark.Navigator>
   );
 }
 
@@ -304,6 +314,7 @@ function SettingsNav() {
           fontFamily:'Raleway-Medium'
         }
       }}
+      initialRouteName="SettingsMain"
     >
       <Settings.Screen 
         name="SettingsMain" 

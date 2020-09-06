@@ -3,8 +3,9 @@ import LearnModuleScreen from './src/screens/LearnModuleScreen'
 import LearnDetailScreen from './src/screens/LearnDetailScreen'
 import SearchScreen from './src/screens/SearchScreen'
 import SearchDetailScreen from './src/screens/SearchDetailScreen'
-import CasesScreen from './src/screens/CasesScreen'
+import BookmarkScreen from './src/screens/BookmarkScreen'
 import CasesDetailScreen from './src/screens/CasesDetailScreen'
+import CasesListScreen from './src/screens/CasesListScreen'
 import SettingsScreen from './src/screens/SettingsScreen'
 import SettingsAuthScreen from './src/screens/SettingsAuthScreen'
 import SettingsHelpScreen from './src/screens/SettingsHelpScreen'
@@ -17,12 +18,14 @@ export {LearnScreen,
     LearnDetailScreen,
     SearchScreen,
     SearchDetailScreen,
-    CasesScreen,
+    BookmarkScreen,
     CasesDetailScreen,
+    CasesListScreen,
     SettingsScreen,
     SettingsAuthScreen,
     SettingsHelpScreen,
     SettingsAboutScreen,
     LearnTestScreen,
     LearnTextScreen,
+
 }

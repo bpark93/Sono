@@ -104,7 +104,7 @@ const SearchScreen = () => {
           <SearchResultsList results={results} />
         ) : (
           <>
-            <LibraryBookmarks layout={layout} />
+            {/* <LibraryBookmarks layout={layout} /> */}
             <RecentPages layout={layout} />
             <CategoriesList layout={layout} />
           </>

@@ -5,16 +5,21 @@ import {
   StyleSheet,
   useWindowDimensions,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import ImageModal from "react-native-image-modal";
 import { Video } from "expo-av";
 import LibraryChip from "../components/LibraryChip";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  setBookmark,
+  removeBookmark,
+  getBookmark,
+} from "../components/useBookmark";
+import { Snackbar } from "react-native-paper";
 
-
-const SearchDetailScreen = ({ page }) => {
+const SearchDetailScreen = ({ page, id }) => {
   const width = useWindowDimensions().width;
 
   const [viewing, setViewing] = useState([]);
@@ -50,17 +55,40 @@ const SearchDetailScreen = ({ page }) => {
   }, [viewing]);
 
   const navigation = useNavigation();
+
+  // Bookmarks
   const [bookmarked, setBookmarked] = useState(false);
+  const [snackVisible, setSnackVisible] = useState(false);
+  useEffect(() => {
+    async function bookmarkChecker() {
+      const temp = await getBookmark("lib");
+      for (let i in temp) {
+        if (temp[i] === id) {
+          setBookmarked(true);
+        }
+      }
+    }
+    bookmarkChecker();
+  }, []);
 
   useEffect(() => {
     navigation.setOptions({
       title: page.title,
       headerRight: () => (
-        <TouchableOpacity onPress={() => {
-            setBookmarked(!bookmarked)
-            }}>
+        <TouchableOpacity
+          onPress={() => {
+            if (!bookmarked) {
+              setBookmarked(true);
+              setBookmark(id, "lib");
+              setSnackVisible(true);
+            } else {
+              setBookmarked(false);
+              removeBookmark(id, "lib");
+            }
+          }}
+        >
           <MaterialCommunityIcons
-            name={bookmarked ? "star" : "star-outline"}
+            name={bookmarked ? "bookmark" : "bookmark-outline"}
             size={28}
             color={bookmarked ? "gold" : "black"}
             style={{ marginRight: 20 }}
@@ -73,6 +101,17 @@ const SearchDetailScreen = ({ page }) => {
   return (
     //Image library
     <>
+      <Snackbar
+          visible={snackVisible}
+          onDismiss={() => setSnackVisible(false)}
+          duration={3000}
+          action={{
+            label: "Okay",
+            onPress: () => setSnackVisible(false),
+          }}
+        >
+          "{page.title}" added to Bookmarks
+      </Snackbar>
       <View
         style={{
           backgroundColor: "white",
@@ -153,14 +192,13 @@ const SearchDetailScreen = ({ page }) => {
         )}
         ListFooterComponent={() =>
           page.references ? (
-            <View style={{marginTop:10}}>
+            <View style={{ marginTop: 10 }}>
               <Text style={styles.header}>References</Text>
               {page.references.map((ref, index) => (
-                <View
-                  style={{ marginHorizontal: 15, }}
-                  key={ref.text}
-                >
-                  <Text>{index+1}. {ref.text}</Text>
+                <View style={{ marginHorizontal: 15 }} key={ref.text}>
+                  <Text>
+                    {index + 1}. {ref.text}
+                  </Text>
                 </View>
               ))}
             </View>
