@@ -91,7 +91,7 @@ const CasesListScreen = ({ route }) => {
                   fontSize: 12,
                   color: "gray",
                   flexWrap: "wrap",
-                  width: 320,
+                  width: width*0.75,
                 }}
                 numberOfLines={3}
                 ellipsizeMode="tail"

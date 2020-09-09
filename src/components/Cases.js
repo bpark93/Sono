@@ -68,22 +68,24 @@ const Cases = () => {
       {loading ? (
         <ContentLoader
           speed={1.2}
-          width={350}
+          width={width*0.75}
           height={250}
-          viewBox={`0 0 330 250`}
+          viewBox={`0 0 ${width*0.75} 250`}
           backgroundColor="#f5f6f7"
           foregroundColor="#eeeeee"
-          style={{ marginLeft: 15, marginTop: 20 }}
+          style={{ alignSelf:'center', marginTop:15 }}
         >
-          <Rect x="0" y="0" rx="20" ry="20" width="340" height="150" />
+          <Rect x="0" y="0" rx="20" ry="20" width={width*.7} height="150" />
           <Circle cx="30" cy="175" r="15" />
-          <Rect x="55" y="168" rx="0" ry="0" width="270" height="15" />
-          <Rect x="15" y="195" rx="0" ry="0" width="310" height="10" />
-          <Rect x="15" y="210" rx="0" ry="0" width="310" height="10" />
-          <Rect x="15" y="225" rx="0" ry="0" width="310" height="10" />
+          <Rect x="55" y="168" rx="0" ry="0" width={width*.5} height="15" />
+          <Rect x="15" y="195" rx="0" ry="0" width={width*.6} height="10" />
+          <Rect x="15" y="210" rx="0" ry="0" width={width*.6} height="10" />
+          <Rect x="15" y="225" rx="0" ry="0" width={width*.6} height="10" />
         </ContentLoader>
       ) : (
         <Carousel
+          autoplay
+          loop
           data={results}
           renderItem={({ item, index }) => (
             <TouchableOpacity
@@ -94,7 +96,8 @@ const Cases = () => {
             </TouchableOpacity>
           )}
           sliderWidth={width}
-          itemWidth={350}
+          itemWidth={width*0.75}
+          removeClippedSubviews={false}
         />
       )}
     </View>

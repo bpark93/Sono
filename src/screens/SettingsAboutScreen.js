@@ -1,45 +1,92 @@
-import React from 'react'
-import { View, StyleSheet, Image } from 'react-native'
-import {Subheading, Headline, Text, Caption} from 'react-native-paper'
+import React from "react";
+import { View, StyleSheet, Image } from "react-native";
+import {
+  Subheading,
+  Headline,
+  Text,
+  Caption,
+  Avatar,
+} from "react-native-paper";
 
 const SettingsAboutScreen = () => {
-    return (
-        <View style={styles.container}>
-            <Image source={require('../../assets/western-logo.png')}/>
-            <View style={styles.textBox}>
-                <Headline>Credits</Headline>
-                <Subheading>Project Lead and Software Engineer</Subheading>
-                <View style={{flexDirection:'row', justifyContent:'space-around'}}>
-                    <Text>Brian Park</Text><Caption style={{}}> MD 2023 Candidate</Caption>
-                </View>
-                <Subheading>Content and Direction</Subheading>
-                <View style={{flexDirection:'row', justifyContent:'space-around'}}>
-                    <Text>Frank Myslik</Text><Caption> MD, CCFP-EM</Caption>
-                </View>
-                <View style={{flexDirection:'row', justifyContent:'space-around'}}>
-                    <Text>Robert Arntfield</Text><Caption> MD, FRCPC</Caption>
-                </View>
-                <View style={{flexDirection:'row', justifyContent:'space-around'}}>
-                    <Text>Derek Wu</Text><Caption> MD 2021 Candidate</Caption>
-                </View>
-                <Subheading>Licenses</Subheading>
-                <Text>Icons made by Freepik from www.flaticon.com</Text>
-                <Text>Lottie by AirBnB</Text>
-            </View>
+  return (
+    <View style={styles.container}>
+      <Image source={require("../../assets/western-logo.png")} />
+      <View style={styles.textBox}>
+        <Headline>Credits</Headline>
+        <Text style={{ fontFamily: "Raleway-Bold", fontSize: 18 }}>
+          Project Lead and Software Developer
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around",
+            marginVertical: 10,
+          }}
+        >
+          {/* <Avatar.Image source={{}}/> */}
+          <Text>Brian Park</Text>
+          <Text style={{ fontFamily: "Raleway-Light" }}>
+            {" "}
+            MD 2023 Candidate
+          </Text>
         </View>
-    )
-}
+        <Text style={{ fontFamily: "Raleway-Bold", fontSize: 18 }}>
+          Content and Direction
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around",
+            marginVertical: 10,
+          }}
+        >
+          <Text>Frank Myslik</Text>
+          <Text style={{ fontFamily: "Raleway-Light" }}> MD, CCFP-EM</Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around",
+            marginVertical: 10,
+          }}
+        >
+          <Text>Robert Arntfield</Text>
+          <Text style={{ fontFamily: "Raleway-Light" }}> MD, FRCPC</Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-around",
+            marginVertical: 10,
+          }}
+        >
+          <Text>Derek Wu</Text>
+          <Text style={{ fontFamily: "Raleway-Light" }}>
+            {" "}
+            MD 2021 Candidate
+          </Text>
+        </View>
+        <Text style={{ fontFamily: "Raleway-Bold", fontSize: 18 }}>
+          Licenses
+        </Text>
+        <Text>Icons made by Freepik from www.flaticon.com</Text>
+        <Text>Lottie by AirBnB</Text>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#ffffff',
-        flex: 1,
-        alignItems:'center',
-    },
-    textBox:{
-        marginTop:15,
-        alignItems:'flex-start'
-    }
-})
+  container: {
+    backgroundColor: "#ffffff",
+    flex: 1,
+    alignItems: "center",
+  },
+  textBox: {
+    marginTop: 15,
+    alignItems: "flex-start",
+  },
+});
 
 export default SettingsAboutScreen;

@@ -13,7 +13,7 @@ class SnapCarousel extends Component {
                 <ImageModal 
                     resizeMode="contain"
                     imageBackgroundColor="black"
-                    source={{uri: item.source_url}}
+                    source={{uri: item.source_url, cache:"force-cache"}}
                     style={{height:(WIDTH-60)*0.75, width:WIDTH-60}}
                 />
                 {/* <View style={{height:60, backgroundColor:'white', borderWidth:0.5, borderBottomLeftRadius:15, borderBottomRightRadius:15, justifyContent:'center'}} >
@@ -33,6 +33,7 @@ class SnapCarousel extends Component {
                     sliderWidth={WIDTH}
                     itemWidth={WIDTH-60}
                     layout="default"
+                    removeClippedSubviews
                 />
             </>
         )

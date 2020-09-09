@@ -100,18 +100,8 @@ const SearchDetailScreen = ({ page, id }) => {
 
   return (
     //Image library
-    <>
-      <Snackbar
-          visible={snackVisible}
-          onDismiss={() => setSnackVisible(false)}
-          duration={3000}
-          action={{
-            label: "Okay",
-            onPress: () => setSnackVisible(false),
-          }}
-        >
-          "{page.title}" added to Bookmarks
-      </Snackbar>
+    <View style={{flex:1}}> 
+      
       <View
         style={{
           backgroundColor: "white",
@@ -169,7 +159,7 @@ const SearchDetailScreen = ({ page, id }) => {
                   width: width,
                   height: width * 0.75,
                 }}
-                source={{ uri: item.url }}
+                source={{ uri: item.url, cache:"force-cache" }}
               />
             ) : (
               <Video
@@ -205,7 +195,18 @@ const SearchDetailScreen = ({ page, id }) => {
           ) : null
         }
       />
-    </>
+      <Snackbar
+          visible={snackVisible}
+          onDismiss={() => setSnackVisible(false)}
+          duration={3000}
+          action={{
+            label: "Okay",
+            onPress: () => setSnackVisible(false),
+          }}
+        >
+          "{page.title}" added to Bookmarks
+      </Snackbar>
+    </View>
   );
 };
 

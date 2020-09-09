@@ -2,8 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
+const Width = Dimensions.get("window").width;
+
 const CasesCard = ({ item }) => {
-  const Width = Dimensions.get("window").width;
 
   return (
     <View style={styles.container}>
@@ -12,7 +13,7 @@ const CasesCard = ({ item }) => {
         <Image
           style={{
             height: 150,
-            width: 350,
+            width: Width*0.75,
             resizeMode: "cover",
             alignSelf: "center",
           }}
@@ -20,6 +21,7 @@ const CasesCard = ({ item }) => {
             uri:
               item._embedded["wp:featuredmedia"][0].media_details.sizes
                 .course_thumbnail.source_url,
+            cache:"force-cache"
           }}
         />
       ) : null}
@@ -29,7 +31,7 @@ const CasesCard = ({ item }) => {
           alignItems: "center",
           marginHorizontal: 10,
           marginVertical: 5,
-          width: 330,
+          width: Width*0.7,
         }}
       >
         <FontAwesome5 name="user-md" style={styles.iconStyle} />
@@ -42,7 +44,7 @@ const CasesCard = ({ item }) => {
         <Text
           style={{
             marginHorizontal: 15,
-            width: 320,
+            width: Width*0.7,
             fontSize: 12,
             color: "gray",
           }}
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginHorizontal: 15,
     fontFamily: "Raleway-Medium",
-    width: 320,
+    width: Width*0.7,
   },
   iconStyle: {
     fontSize: 18,

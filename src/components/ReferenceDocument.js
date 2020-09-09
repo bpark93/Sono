@@ -12,7 +12,11 @@ import { TextInput, HelperText, Snackbar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import TabButtons from "./TabButtons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import {setBookmark, removeBookmark, getBookmark} from '../components/useBookmark'
+import {
+  setBookmark,
+  removeBookmark,
+  getBookmark,
+} from "../components/useBookmark";
 
 const { width } = Dimensions.get("window");
 
@@ -40,15 +44,14 @@ const ReferenceDocument = ({ page, id }) => {
       headerRight: () => (
         <TouchableOpacity
           onPress={() => {
-            if (!bookmarked){
+            if (!bookmarked) {
               setBookmarked(true);
               setBookmark(id, "lib");
-              setSnackVisible(true)
+              setSnackVisible(true);
             } else {
               setBookmarked(false);
               removeBookmark(id, "lib");
             }
-            
           }}
         >
           <MaterialCommunityIcons
@@ -61,23 +64,11 @@ const ReferenceDocument = ({ page, id }) => {
       ),
     });
   }, [bookmarked]);
-  
 
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <View style={styles.container}>
-      <Snackbar
-          visible={snackVisible}
-          onDismiss={() => setSnackVisible(false)}
-          duration={3000}
-          action={{
-            label: "Okay",
-            onPress: () => setSnackVisible(false),
-          }}
-        >
-          "{page.title}" added to Bookmarks
-      </Snackbar>
       <TabButtons
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
@@ -237,7 +228,20 @@ const ReferenceDocument = ({ page, id }) => {
             ))}
           </View>
         ) : null}
+
+        
       </ScrollView>
+      <Snackbar
+          visible={snackVisible}
+          onDismiss={() => setSnackVisible(false)}
+          duration={3000}
+          action={{
+            label: "Okay",
+            onPress: () => setSnackVisible(false),
+          }}
+        >
+          "{page.title}" added to Bookmarks
+        </Snackbar>
     </View>
   );
 };
@@ -270,10 +274,10 @@ const Calculator = ({ settings }) => {
       formula2 = (var3 / formula1).toFixed(2);
       break;
     case "svri":
-      formula1 = ((var1-var2)*80/var3).toFixed(2);
+      formula1 = (((var1 - var2) * 80) / var3).toFixed(2);
       break;
     case "map":
-      formula1 = ((var1/3)+(var2*2/3)).toFixed(2);
+      formula1 = (var1 / 3 + (var2 * 2) / 3).toFixed(2);
       break;
     default:
       break;
@@ -284,7 +288,7 @@ const Calculator = ({ settings }) => {
       <Text style={{ ...styles.header, fontSize: 20 }}>{settings.title}</Text>
 
       <Image
-        source={{ uri: settings.formulaImage }}
+        source={{ uri: settings.formulaImage, }}
         style={{
           height: (width - 100) * 0.3,
           width: width - 100,
@@ -367,7 +371,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   container: {
-    backgroundColor: "white",
+    backgroundColor: "#F0F0F0",
     flex: 1,
   },
   paragraph: {
@@ -382,6 +386,11 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: "#FDFDFD",
     elevation: 3,
+    shadowOffset:{
+      width:-10,
+      height:10
+    },
+    shadowOpacity:0.1
   },
 });
 

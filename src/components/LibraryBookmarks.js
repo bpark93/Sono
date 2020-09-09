@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 5,
     fontFamily: "Raleway-Regular",
-    width:300
+    width:Width*0.7
   },
   iconStyle: {
     fontSize: 20,

@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Dimensions,
   TouchableWithoutFeedback,
+  KeyboardAvoidingView
 } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -24,6 +25,7 @@ import Constants from "expo-constants";
 import { addNote, getNotes, editNote } from "../components/useLearnNotes";
 import LearnNotes from "../components/LearnNotes";
 import firebase from "../components/firebase";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const LearnDetailScreen = ({ route, navigation }) => {
   const { id, category } = route.params;
@@ -202,9 +204,11 @@ const LearnDetailScreen = ({ route, navigation }) => {
       .get()
       .then(function (doc) {
         setTranscriptText(doc.data().body);
+        setErrorMessage('')
       })
       .catch(function (error) {
         setErrorMessage("The transcript for this page is unavailable.");
+        setTranscriptText("")
       });
   }, [id]);
 
@@ -264,7 +268,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
         </View>
       </View>
       {!transcriptToggled ? (
-        <ScrollView
+        <KeyboardAwareScrollView
           style={styles.container}
           containerStyle={{ justifyContent: "space-between", flex: 1 }}
         >
@@ -347,11 +351,13 @@ const LearnDetailScreen = ({ route, navigation }) => {
                     onChangeText={(text) => setText(text)}
                     multiline={true}
                     numberOfLines={3}
+                    autoCapitalize="none"
+                    autoCorrect={false}
                   />
                   <Button
                     mode="contained"
                     disabled={text ? false : true}
-                    style={{ marginHorizontal: 100, marginVertical: 10 }}
+                    style={{ marginHorizontal: Width*0.2, marginVertical: 10 }}
                     labelStyle={{ fontWeight: "bold" }}
                     onPress={async () => {
                       if (!editing) {
@@ -401,11 +407,11 @@ const LearnDetailScreen = ({ route, navigation }) => {
               </View>
             </View>
           ) : null}
-        </ScrollView>
+        </KeyboardAwareScrollView>
       ) : (
-        <View style={{ ...styles.container, alignItems: "flex-end" }}>
+        <View style={{ ...styles.container, }}>
           <TouchableOpacity
-            style={styles.transcriptButton}
+            style={{...styles.transcriptButton, alignSelf: "flex-end" }}
             onPress={() => {
               setTranscriptToggled(false);
               setNoteVisible(false);
@@ -435,7 +441,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
                 </View>
               )):null}
             {errorMessage ? (
-              <Text style={{ fontSize: 18, marginHorizontal: 30 }}>
+              <Text style={{ fontSize: 18, marginHorizontal: 15 }}>
                 {errorMessage}
               </Text>
             ) : null}

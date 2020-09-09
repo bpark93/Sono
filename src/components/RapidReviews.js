@@ -126,7 +126,7 @@ const RapidReviews = ({ page, id }) => {
   }, [bookmarked]);
 
   return (
-    <View style={{flex:1}}>
+    <View style={{ flex: 1 }}>
       {/* Youtube Video embedded */}
       {page.video ? (
         <View
@@ -232,8 +232,9 @@ const RapidReviews = ({ page, id }) => {
                   <Image
                     source={{ uri: item.image }}
                     style={{
-                      width: Width,
-                      height: 280,
+                      width: Width*0.9,
+                      height: Width*.675,
+                      alignSelf:'center',
                       resizeMode: "contain",
                       backgroundColor: "#ffffff",
                     }}
@@ -274,20 +275,18 @@ const RapidReviews = ({ page, id }) => {
               </View>
             ))
           : null}
-
-        
       </ScrollView>
       <Snackbar
-          visible={snackVisible}
-          onDismiss={() => setSnackVisible(false)}
-          duration={3000}
-          action={{
-            label: "Okay",
-            onPress: () => setSnackVisible(false),
-          }}
-        >
-          "{page.title}" added to Bookmarks
-        </Snackbar>
+        visible={snackVisible}
+        onDismiss={() => setSnackVisible(false)}
+        duration={3000}
+        action={{
+          label: "Okay",
+          onPress: () => setSnackVisible(false),
+        }}
+      >
+        "{page.title}" added to Bookmarks
+      </Snackbar>
     </View>
   );
 };
@@ -301,19 +300,11 @@ const MaterialsItem = ({ material, optional }) => {
       style={{ flexDirection: "row", marginHorizontal: 20 }}
       key={material.text}
     >
-      <View
-        style={{
-          borderWidth: Platform.OS === "ios" ? 1 : 0, // No box in iOS
-          borderRadius: 10,
-          borderColor: "#bdc3c7",
-        }}
-      >
-        <Checkbox
-          status={checked ? "checked" : "unchecked"}
-          onPress={() => setChecked(!checked)}
-          color="#4f2683"
-        />
-      </View>
+      <Checkbox.Android
+        status={checked ? "checked" : "unchecked"}
+        onPress={() => setChecked(!checked)}
+        color="#4f2683"
+      />
       <TouchableWithoutFeedback onPress={() => setChecked(!checked)}>
         <Text
           style={{
