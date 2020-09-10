@@ -1,8 +1,8 @@
-# POCUS App
+# Sono
 
 ## Description
 
-[NAME] is an all-in-one POCUS app that contains screencasts, technique guides, a standard images library, on-going cases of the week, and everything you need to learn and use POCUS! It is meant to supplement in-person training as well as to serve as an on the job guide for acquiring and interpreting ultrasound clips. 
+Sono is an all-in-one POCUS app that contains screencasts, technique guides, a standard images library, on-going cases of the week, and everything you need to learn and use POCUS! It is meant to supplement in-person training as well as to serve as an on the job guide for acquiring and interpreting ultrasound clips. 
 
 
 ### Installation Guide - Try it out on your own phone (Android Only)
@@ -26,7 +26,7 @@ Tab for all your lecture content, neatly organized into applicable organ systems
 
 ![Librarydemo](https://res.cloudinary.com/dwtw3ge2z/image/upload/v1596476197/Misc/Github%20Readme/LibraryDemo_ljjl1k.png)
 
-The main feature of [NAME], the library tab is a vast repository of clips, images and tools to guide you at the point of care. Navigate the categories by clicking on the list or search for what you are looking for in the search bar. 
+The main feature of Sono, the library tab is a vast repository of clips, images and tools to guide you at the point of care. Navigate the categories by clicking on the list or search for what you are looking for in the search bar. 
 
 **Image library**: Holds nearly every possible POCUS finding, both normal and pathological that will aid you in your image interpretation. 
 
