@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Dimensions,
   TouchableWithoutFeedback,
-  KeyboardAvoidingView
 } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { MaterialCommunityIcons } from "@expo/vector-icons";

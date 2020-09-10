@@ -11,12 +11,13 @@ import {
 import { TextInput, HelperText, Snackbar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import TabButtons from "./TabButtons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
 import {
   setBookmark,
   removeBookmark,
   getBookmark,
 } from "../components/useBookmark";
+import { color } from "react-native-reanimated";
 
 const { width } = Dimensions.get("window");
 
@@ -228,28 +229,31 @@ const ReferenceDocument = ({ page, id }) => {
             ))}
           </View>
         ) : null}
-
-        
       </ScrollView>
       <Snackbar
-          visible={snackVisible}
-          onDismiss={() => setSnackVisible(false)}
-          duration={3000}
-          action={{
-            label: "Okay",
-            onPress: () => setSnackVisible(false),
-          }}
-        >
-          "{page.title}" added to Bookmarks
-        </Snackbar>
+        visible={snackVisible}
+        onDismiss={() => setSnackVisible(false)}
+        duration={3000}
+        action={{
+          label: "Okay",
+          onPress: () => setSnackVisible(false),
+        }}
+      >
+        "{page.title}" added to Bookmarks
+      </Snackbar>
     </View>
   );
 };
 
 const Calculator = ({ settings }) => {
   const [var1, setVar1] = useState("");
+  const [multiplier1, setMultiplier1] = useState(1);
+
   const [var2, setVar2] = useState("");
+  const [multiplier2, setMultiplier2] = useState(1);
+
   const [var3, setVar3] = useState("");
+  const [multiplier3, setMultiplier3] = useState(1);
 
   let formula1 = "";
   let formula2 = "";
@@ -264,20 +268,51 @@ const Calculator = ({ settings }) => {
     }
   };
 
+  const validateAnswer = (variable) => {
+    return variable.count === "0"
+      ? var1 && var2
+        ? formula1 < variable.lowerLimit
+          ? "low"
+          : formula1 > variable.upperLimit
+          ? "high"
+          : "good"
+        : "blank"
+      : formula1 && var3
+      ? formula2 < variable.lowerLimit
+        ? "low"
+        : formula2 > variable.upperLimit
+        ? "high"
+        : "good"
+      : "blank";
+  };
+
   switch (settings.id) {
     case "svco":
-      formula1 = (Math.PI * Math.pow(var1 / 20, 2) * var2).toFixed(2);
-      formula2 = ((formula1 * var3) / 1000).toFixed(2);
+      formula1 = (
+        Math.PI *
+        Math.pow((var1 * multiplier1) / 20, 2) *
+        var2 *
+        multiplier2
+      ).toFixed(2);
+      formula2 = ((formula1 * var3 * multiplier3) / 1000).toFixed(2);
       break;
     case "ci":
-      formula1 = Math.sqrt((var1 * var2) / 3600).toFixed(2);
-      formula2 = (var3 / formula1).toFixed(2);
+      formula1 = Math.sqrt(
+        (var1 * multiplier1 * var2 * multiplier2) / 3600
+      ).toFixed(2);
+      formula2 = ((var3 * multiplier3) / formula1).toFixed(2);
       break;
     case "svri":
-      formula1 = (((var1 - var2) * 80) / var3).toFixed(2);
+      formula1 = (
+        (((var1 * multiplier1 - var2 * multiplier2) * 80) / var3) *
+        multiplier3
+      ).toFixed(2);
       break;
     case "map":
-      formula1 = (var1 / 3 + (var2 * 2) / 3).toFixed(2);
+      formula1 = (
+        (var1 * multiplier1) / 3 +
+        (var2 * multiplier2 * 2) / 3
+      ).toFixed(2);
       break;
     default:
       break;
@@ -288,7 +323,7 @@ const Calculator = ({ settings }) => {
       <Text style={{ ...styles.header, fontSize: 20 }}>{settings.title}</Text>
 
       <Image
-        source={{ uri: settings.formulaImage, }}
+        source={{ uri: settings.formulaImage }}
         style={{
           height: (width - 100) * 0.3,
           width: width - 100,
@@ -302,22 +337,29 @@ const Calculator = ({ settings }) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            // justifyContent: "center",
-            marginBottom: 5,
+            justifyContent: "center",
+            marginBottom: 10,
           }}
           key={variable.name}
         >
-          <View style={{ width: (width - 30) / 2, alignItems: "flex-end" }}>
+          <View style={{ width: (width - 30) / 3, alignItems: "flex-end" }}>
             <Text>{variable.name}: </Text>
           </View>
           {variable.type === "measured" ? (
-            <View>
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                marginHorizontal: 10,
+              }}
+            >
               <TextInput
                 style={{
-                  width: 120,
+                  width: 100,
                   height: 40,
                   paddingHorizontal: 5,
                   backgroundColor: "#F7F7F7",
+                  alignSelf: "center",
                 }}
                 value={index === 0 ? var1 : index === 1 ? var2 : var3}
                 onChangeText={(text) =>
@@ -330,19 +372,37 @@ const Calculator = ({ settings }) => {
                 error={validate(index)}
                 keyboardType="phone-pad"
               />
-              <HelperText
-                type="error"
-                visible={validate(index)}
-                style={{ width: 120 }}
-              >
-                Not A Number!
-              </HelperText>
+              {validate(index) && (
+                <HelperText
+                  type="error"
+                  visible={validate(index)}
+                  style={{ width: 120 }}
+                >
+                  Not A Number!
+                </HelperText>
+              )}
             </View>
           ) : (
-            <View style={{ width: 120, height: 40, justifyContent: "center" }}>
+            <View
+              style={{
+                width: 100,
+                marginHorizontal: 10,
+                height: 40,
+                justifyContent: "center",
+                alignItems: "center",
+                borderColor:
+                  validateAnswer(variable) === "high" ||
+                  validateAnswer(variable) === "low"
+                    ? "red"
+                    : validateAnswer(variable) === "good"
+                    ? "green"
+                    : "gray",
+                borderWidth: 1,
+                borderRadius: 10,
+              }}
+            >
               <Text
                 style={{
-                  marginHorizontal: 5,
                   fontSize: 16,
                   fontWeight: "bold",
                 }}
@@ -355,10 +415,68 @@ const Calculator = ({ settings }) => {
                     : ""
                   : ""}
               </Text>
+              {validateAnswer(variable) === "high" ? (
+                <Text style={{ color: "red", fontFamily:"Roboto-Regular", fontSize:12 }}>High</Text>
+              ) : validateAnswer(variable) === "low" ? (
+                <Text style={{ color: "red", fontFamily:"Roboto-Regular", fontSize:12 }}>Low</Text>
+              ) : null}
             </View>
           )}
+          {variable.unit ? (
+            <UnitConverter
+              unitsArray={variable.unit}
+              converter={
+                index === 0
+                  ? (multiplier) => setMultiplier1(multiplier)
+                  : index === 1
+                  ? (multiplier) => setMultiplier2(multiplier)
+                  : (multiplier) => setMultiplier3(multiplier)
+              }
+            />
+          ) : null}
         </View>
       ))}
+    </View>
+  );
+};
+
+const UnitConverter = ({ unitsArray, converter }) => {
+  const [unitIndex, setUnitIndex] = useState(0);
+  const numberOfUnits = unitsArray.length;
+
+  const handlePress = () => {
+    if (unitIndex === numberOfUnits - 1) {
+      converter(unitsArray[0].multiplier);
+      setUnitIndex(0);
+    } else {
+      converter(unitsArray[unitIndex + 1].multiplier);
+      setUnitIndex(unitIndex + 1);
+    }
+  };
+
+  return (
+    <View style={{ width: (width - 30) / 4 }}>
+      <TouchableOpacity
+        onPress={handlePress}
+        style={{
+          width: (width - 30) / 6,
+          flexDirection: "row",
+          borderRadius: 10,
+          backgroundColor: numberOfUnits === 1 ? "white" : "#F0F0F0",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: 5,
+        }}
+      >
+        <Text
+          style={{ fontSize: 14, fontFamily: "Roboto-Regular", marginRight: 5 }}
+        >
+          {unitsArray[unitIndex].name}
+        </Text>
+        {numberOfUnits !== 1 && (
+          <FontAwesome5 name="exchange-alt" size={14} color="green" />
+        )}
+      </TouchableOpacity>
     </View>
   );
 };
@@ -386,11 +504,11 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: "#FDFDFD",
     elevation: 3,
-    shadowOffset:{
-      width:-10,
-      height:10
+    shadowOffset: {
+      width: -10,
+      height: 10,
     },
-    shadowOpacity:0.1
+    shadowOpacity: 0.1,
   },
 });
 
