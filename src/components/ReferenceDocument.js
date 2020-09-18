@@ -74,10 +74,10 @@ const ReferenceDocument = ({ page, id }) => {
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
         settings={[
-          {
+          page.calculator ? {
             name: "Calculator",
             icon: "calculator",
-          },
+          } :null,
           {
             name: "Normal Values",
             icon: "clipboard-check-outline",
@@ -142,6 +142,9 @@ const ReferenceDocument = ({ page, id }) => {
 
                     {section.body.map((step, index) => (
                       <View key={index}>
+                        <Text style={styles.paragraph}>
+                          {index + 1}. {step.stepBody}
+                        </Text>
                         {step.stepImage ? (
                           <Image
                             uri={step.stepImage}
@@ -153,9 +156,6 @@ const ReferenceDocument = ({ page, id }) => {
                             resizeMode="contain"
                           />
                         ) : null}
-                        <Text style={styles.paragraph}>
-                          {index + 1}. {step.stepBody}
-                        </Text>
                       </View>
                     ))}
                     {section.caveats ? (
