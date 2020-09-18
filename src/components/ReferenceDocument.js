@@ -65,7 +65,7 @@ const ReferenceDocument = ({ page, id }) => {
         </TouchableOpacity>
       ),
     });
-  }, [bookmarked]);
+  }, [bookmarked, page]);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [buttonSettings, setButtonSettings] = useState([]);
