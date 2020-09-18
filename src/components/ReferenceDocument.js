@@ -16,8 +16,9 @@ import {
   removeBookmark,
   getBookmark,
 } from "../components/useBookmark";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Image } from "react-native-expo-image-cache";
+import HTML from "react-native-render-html";
 
 const { width } = Dimensions.get("window");
 
@@ -67,30 +68,52 @@ const ReferenceDocument = ({ page, id }) => {
   }, [bookmarked]);
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [buttonSettings, setButtonSettings] = useState([]);
+  useEffect(() => {
+    if (page.calculator) {
+      setButtonSettings([
+        {
+          name: "Calculator",
+          icon: "calculator",
+        },
+        {
+          name: "Normal Values",
+          icon: "clipboard-check-outline",
+        },
+        {
+          name: "Acquisition",
+          icon: "account-search",
+        },
+        {
+          name: "Terminology",
+          icon: "book-open-page-variant",
+        },
+      ]);
+    } else {
+      setButtonSettings([
+        {
+          name: "Normal Values",
+          icon: "clipboard-check-outline",
+        },
+        {
+          name: "Acquisition",
+          icon: "account-search",
+        },
+        {
+          name: "Terminology",
+          icon: "book-open-page-variant",
+        },
+      ]);
+      setActiveIndex(2);
+    }
+  }, [page]);
 
   return (
     <View style={styles.container}>
       <TabButtons
         activeIndex={activeIndex}
         setActiveIndex={setActiveIndex}
-        settings={[
-          page.calculator ? {
-            name: "Calculator",
-            icon: "calculator",
-          } :null,
-          {
-            name: "Normal Values",
-            icon: "clipboard-check-outline",
-          },
-          {
-            name: "Acquisition",
-            icon: "account-search",
-          },
-          {
-            name: "Terminology",
-            icon: "book-open-page-variant",
-          },
-        ]}
+        settings={buttonSettings}
       />
       <KeyboardAwareScrollView keyboardOpeningTime={0}>
         {activeIndex === 0 && page.calculator
@@ -133,18 +156,46 @@ const ReferenceDocument = ({ page, id }) => {
                 {typeof section.body === "string" ? (
                   <View style={styles.card}>
                     <Text style={styles.header}>{section.header}</Text>
-
-                    <Text style={styles.paragraph}>{section.body}</Text>
+                    <HTML
+                      html={section.body}
+                      containerStyle={{ flex: 1, margin:10}}
+                      baseFontStyle={{fontFamily:"Roboto-Regular"}}
+                    />
                   </View>
                 ) : (
                   <View style={styles.card}>
                     <Text style={styles.header}>{section.header}</Text>
 
                     {section.body.map((step, index) => (
-                      <View key={index}>
-                        <Text style={styles.paragraph}>
-                          {index + 1}. {step.stepBody}
-                        </Text>
+                      <View
+                        key={index}
+                        style={{
+                          borderBottomColor: "#E0E0E0",
+                          borderBottomWidth: 0.5,
+                        }}
+                      >
+                        <View
+                          style={{
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            paddingVertical: 10,
+                          }}
+                        >
+                          <Text
+                            style={{
+                              ...styles.paragraph,
+                              alignSelf: "flex-start",
+                              fontSize: 18,
+                            }}
+                          >
+                            {index + 1}.
+                          </Text>
+                          <HTML
+                            html={step.stepBody}
+                            containerStyle={{ flex: 1 }}
+                          />
+                        </View>
                         {step.stepImage ? (
                           <Image
                             uri={step.stepImage}
@@ -164,14 +215,19 @@ const ReferenceDocument = ({ page, id }) => {
                           Caveats
                         </Text>
                         {section.caveats.map((caveat) => (
-                          <Text
+                          // <Text
+                          //   key={caveat}
+                          //   style={{
+                          //     ...styles.paragraph,
+                          //     margin: 0,
+                          //     marginLeft: 10,
+                          //   }}
+                          // >{`\u2022 ${caveat}`}</Text>
+                          <HTML
+                            html={`<li>${caveat}</li>`}
                             key={caveat}
-                            style={{
-                              ...styles.paragraph,
-                              margin: 0,
-                              marginLeft: 10,
-                            }}
-                          >{`\u2022 ${caveat}`}</Text>
+                            containerStyle={{ flex: 1, margin: 10 }}
+                          />
                         ))}
                       </View>
                     ) : null}
@@ -180,6 +236,16 @@ const ReferenceDocument = ({ page, id }) => {
               </View>
             ))
           : null}
+
+        {/* Authors */}
+        {activeIndex===2 && page.authors ? (
+          <View style={styles.card}>
+            <Text style={styles.header}>Authors</Text>
+            {page.authors.map(person => (
+              <Text key={person} style={{fontFamily:'Roboto-Regular', marginHorizontal:20, marginVertical:5, fontSize:16, color:'gray'}}>{person}</Text>
+            ))}
+          </View>
+        ):null}
 
         {/* References */}
         {activeIndex === 2 && page.references ? (
@@ -416,9 +482,25 @@ const Calculator = ({ settings }) => {
                   : ""}
               </Text>
               {validateAnswer(variable) === "high" ? (
-                <Text style={{ color: "red", fontFamily:"Roboto-Regular", fontSize:12 }}>High</Text>
+                <Text
+                  style={{
+                    color: "red",
+                    fontFamily: "Roboto-Regular",
+                    fontSize: 12,
+                  }}
+                >
+                  High
+                </Text>
               ) : validateAnswer(variable) === "low" ? (
-                <Text style={{ color: "red", fontFamily:"Roboto-Regular", fontSize:12 }}>Low</Text>
+                <Text
+                  style={{
+                    color: "red",
+                    fontFamily: "Roboto-Regular",
+                    fontSize: 12,
+                  }}
+                >
+                  Low
+                </Text>
               ) : null}
             </View>
           )}
