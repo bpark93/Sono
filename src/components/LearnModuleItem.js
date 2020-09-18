@@ -4,7 +4,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  useWindowDimensions,
+  Dimensions,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
@@ -13,7 +13,7 @@ import { ProgressBar } from "react-native-paper";
 
 const LearnModuleItem = ({ page, index, category }) => {
   const navigation = useNavigation();
-  const windowWidth = useWindowDimensions().width;
+  const {width} = Dimensions.get('window');
 
   const [pressed, setPressed] = useState(false);
   const handlePress = () => {
@@ -48,9 +48,9 @@ const LearnModuleItem = ({ page, index, category }) => {
           </Text>
           <Text
             style={{
-              fontFamily: "Raleway-Regular",
-              fontSize: 18,
-              width: windowWidth - 100,
+              fontFamily: pressed? "Raleway-Bold":"Raleway-Regular",
+              fontSize: 16,
+              width: width - 100,
             }}
           >
             {page.title}

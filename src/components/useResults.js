@@ -15,7 +15,7 @@ export default (layout) => {
     const flatterLayout = flatLayout.flat()
 
     const searchOptions = {
-        keys: ['title', 'alt', 'category']
+        keys: ['title', 'alt.title', 'category']
     };
     const fuse = new Fuse(flatterLayout, searchOptions);       
     

@@ -25,6 +25,7 @@ import { addNote, getNotes, editNote } from "../components/useLearnNotes";
 import LearnNotes from "../components/LearnNotes";
 import firebase from "../components/firebase";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { StatusBar, setStatusBarTranslucent } from 'expo-status-bar';
 
 const LearnDetailScreen = ({ route, navigation }) => {
   const { id, category } = route.params;
@@ -57,6 +58,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
     };
     const unsubscribe = navigation.addListener("blur", () => {
       updateProgress();
+      setStatusBarTranslucent(true)
     });
     return () => unsubscribe();
   }, []);
@@ -223,7 +225,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
           height: 20 + Height,
         }}
       ></View>
-
+      <StatusBar style="light"/>
       <View
         style={{
           alignItems: "center",

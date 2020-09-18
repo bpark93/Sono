@@ -1,5 +1,5 @@
-import React, {useState, useRef} from 'react'
-import {View, Text, StyleSheet, Image, ScrollView, Animated, TouchableOpacity} from 'react-native'
+import React from 'react'
+import {View, StyleSheet, ScrollView, Animated, TouchableOpacity} from 'react-native'
 import LearnModuleItem from '../components/LearnModuleItem'
 import QuizLink from '../components/QuizLink'
 import { MaterialCommunityIcons } from '@expo/vector-icons';

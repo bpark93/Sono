@@ -7,7 +7,8 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import ImageModal from "react-native-image-modal";
+// import ImageModal from "react-native-image-modal";
+import { Image } from "react-native-expo-image-cache";
 import { Video } from "expo-av";
 import LibraryChip from "../components/LibraryChip";
 import { useNavigation } from "@react-navigation/native";
@@ -52,7 +53,7 @@ const SearchDetailScreen = ({ page, id }) => {
       }
     };
     viewToggleHandler();
-  }, [viewing]);
+  }, [viewing, page]);
 
   const navigation = useNavigation();
 
@@ -96,12 +97,13 @@ const SearchDetailScreen = ({ page, id }) => {
         </TouchableOpacity>
       ),
     });
-  }, [bookmarked]);
+  }, [bookmarked, page]);
+
+  const [hidePressed, setHidePressed] = useState(false)
 
   return (
     //Image library
-    <View style={{flex:1}}> 
-      
+    <View style={{ flex: 1 }}>
       <View
         style={{
           backgroundColor: "white",
@@ -128,22 +130,47 @@ const SearchDetailScreen = ({ page, id }) => {
         keyExtractor={(item) => item.title}
         ListHeaderComponent={() => (
           <View style={{ backgroundColor: "white", paddingHorizontal: 15 }}>
-            <Text
-              style={{
-                fontSize: 20,
-                fontFamily: "Raleway-Medium",
-                marginVertical: 5,
-              }}
-            >
-              Key Features
-            </Text>
-            {page.key_features
-              ? page.key_features.map((tip) => (
-                  <Text
-                    key={tip.text}
-                    style={{ marginVertical: 2 }}
-                  >{`\u2022 ${tip.text}`}</Text>
-                ))
+            <View style={{flexDirection:'row'}}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontFamily: "Raleway-Medium",
+                  marginVertical: 5,
+                }}
+              >
+                Key Features
+              </Text>
+              <TouchableOpacity style={{alignItems:'center', justifyContent:'center', marginHorizontal:20}} onPress={() => setHidePressed(!hidePressed)}>
+                <Text style={{color:'#4f2683'}}>{hidePressed? "Show":"Hide"}</Text>
+              </TouchableOpacity>
+            </View>
+            {page.key_features && !hidePressed
+              ? page.key_features
+                  .filter((tip) => tip.pnp === "Pearl")
+                  .map((tip) => (
+                    <View style={{ flexDirection: "row", marginVertical:3, alignItems:'center'}} key={tip.text}>
+                      <MaterialCommunityIcons
+                        name="plus-circle-outline"
+                        size={24}
+                        color="#2ecc71"
+                      />
+                      <Text style={{flex:1, marginLeft:3, fontFamily:'Roboto-Regular', color:'gray', fontSize:16}}>{tip.text}</Text>
+                    </View>
+                  ))
+              : null}
+              {page.key_features && !hidePressed
+              ? page.key_features
+                  .filter((tip) => tip.pnp === "Pitfall")
+                  .map((tip) => (
+                    <View style={{ flexDirection: "row", justifyContent:'space-between', marginVertical:2, alignItems:'center'}} key={tip.text}>
+                      <MaterialCommunityIcons
+                        name="minus-circle-outline"
+                        size={24}
+                        color="#e74c3c"
+                      />
+                      <Text style={{flex:1, marginLeft:3, fontFamily:'Roboto-Regular', color:'gray', fontSize:16}}>{tip.text}</Text>
+                    </View>
+                  ))
               : null}
           </View>
         )}
@@ -151,15 +178,14 @@ const SearchDetailScreen = ({ page, id }) => {
           <View>
             <Text style={styles.header}>{item.title}</Text>
             {item.format === "Image" ? (
-              <ImageModal
-                swipeToDismiss={true}
+              <Image
                 resizeMode="contain"
                 imageBackgroundColor="#000000"
                 style={{
                   width: width,
                   height: width * 0.75,
                 }}
-                source={{ uri: item.url, cache:"force-cache" }}
+                uri={item.url}
               />
             ) : (
               <Video
@@ -196,15 +222,15 @@ const SearchDetailScreen = ({ page, id }) => {
         }
       />
       <Snackbar
-          visible={snackVisible}
-          onDismiss={() => setSnackVisible(false)}
-          duration={3000}
-          action={{
-            label: "Okay",
-            onPress: () => setSnackVisible(false),
-          }}
-        >
-          "{page.title}" added to Bookmarks
+        visible={snackVisible}
+        onDismiss={() => setSnackVisible(false)}
+        duration={3000}
+        action={{
+          label: "Okay",
+          onPress: () => setSnackVisible(false),
+        }}
+      >
+        "{page.title}" added to Bookmarks
       </Snackbar>
     </View>
   );

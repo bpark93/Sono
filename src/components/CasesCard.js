@@ -1,28 +1,26 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { Image } from "react-native-expo-image-cache";
 
 const Width = Dimensions.get("window").width;
 
 const CasesCard = ({ item }) => {
-
   return (
     <View style={styles.container}>
       {item._embedded["wp:featuredmedia"][0].media_details.sizes
         .course_thumbnail ? (
         <Image
+          resizeMode="cover"
           style={{
             height: 150,
-            width: Width*0.75,
-            resizeMode: "cover",
+            width: Width * 0.75,
             alignSelf: "center",
           }}
-          source={{
-            uri:
-              item._embedded["wp:featuredmedia"][0].media_details.sizes
-                .course_thumbnail.source_url,
-            cache:"force-cache"
-          }}
+          uri={
+            item._embedded["wp:featuredmedia"][0].media_details.sizes
+              .course_thumbnail.source_url
+          }
         />
       ) : null}
       <View
@@ -31,7 +29,7 @@ const CasesCard = ({ item }) => {
           alignItems: "center",
           marginHorizontal: 10,
           marginVertical: 5,
-          width: Width*0.7,
+          width: Width * 0.7,
         }}
       >
         <FontAwesome5 name="user-md" style={styles.iconStyle} />
@@ -44,7 +42,7 @@ const CasesCard = ({ item }) => {
         <Text
           style={{
             marginHorizontal: 15,
-            width: Width*0.7,
+            width: Width * 0.7,
             fontSize: 12,
             color: "gray",
           }}
@@ -65,14 +63,14 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginVertical: 15,
     overflow: "hidden",
-    paddingBottom:15,
+    paddingBottom: 15,
     // elevation:2
   },
   title: {
     fontSize: 16,
     marginHorizontal: 15,
     fontFamily: "Raleway-Medium",
-    width: Width*0.7,
+    width: Width * 0.7,
   },
   iconStyle: {
     fontSize: 18,

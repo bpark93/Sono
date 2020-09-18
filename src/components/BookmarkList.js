@@ -18,7 +18,6 @@ const Width = Dimensions.get("window").width;
 const BookmarkList = ({ sortBy }) => {
   const navigation = useNavigation();
   const [bookmark, setBookmark] = useState([]);
-  const [reversedBookmark, setReversedBookmark] = useState([]);
 
   async function getData() {
     const currentBookmarkArray = await getBookmark("learn");
@@ -47,9 +46,19 @@ const BookmarkList = ({ sortBy }) => {
     return () => unsubscribe();
   }, [navigation]);
 
+  const [reversedBookmark, setReversedBookmark] = useState([]);
   useEffect(() => {
     const reversed = [...bookmark];
     setReversedBookmark(reversed.reverse());
+  }, [bookmark]);
+
+  const [sortedBookmark, setSortedBookmark] = useState([]);
+  useEffect(() => {
+    const copy = [...bookmark];
+    copy.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    setSortedBookmark(copy);
   }, [bookmark]);
 
   const categoryList = learnDatabase.map((item) => [
@@ -59,13 +68,13 @@ const BookmarkList = ({ sortBy }) => {
   ]);
 
   const updateBookmarkList = (id) => {
-    setBookmark(bookmark.filter(item => item.id !== id))
-  }
+    setBookmark(bookmark.filter((item) => item.id !== id));
+  };
 
   return (
     <ScrollView>
       {bookmark.length != 0 ? (
-        sortBy === "newest" ? (
+        sortBy === "all" ? (
           bookmark.map((item) =>
             categoryList
               .filter((mod) => mod[1].toString() === item.id.split(".")[0])
@@ -79,7 +88,7 @@ const BookmarkList = ({ sortBy }) => {
               ))
           )
         ) : (
-          reversedBookmark.map((item) =>
+          sortedBookmark.map((item) =>
             categoryList
               .filter((mod) => mod[1].toString() === item.id.split(".")[0])
               .map((thing) => (
@@ -181,8 +190,8 @@ const LearnBookmarkItem = ({ pageInfo, categoryInfo, updateBookmarkList }) => {
       >
         <Menu.Item
           onPress={async () => {
-            removeBookmark(pageInfo.id, "learn")
-            updateBookmarkList(pageInfo.id)
+            removeBookmark(pageInfo.id, "learn");
+            updateBookmarkList(pageInfo.id);
             setMenuVisible(false);
           }}
           title="Remove Bookmark"
@@ -228,7 +237,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: "Raleway-Regular",
     marginHorizontal: 10,
-    width:250
+    width: 250,
   },
   learnCategoryStyle: {
     width: 40,

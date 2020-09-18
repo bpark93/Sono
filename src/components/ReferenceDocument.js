@@ -5,7 +5,6 @@ import {
   Text,
   ScrollView,
   Dimensions,
-  Image,
   TouchableOpacity,
 } from "react-native";
 import { TextInput, HelperText, Snackbar } from "react-native-paper";
@@ -17,7 +16,8 @@ import {
   removeBookmark,
   getBookmark,
 } from "../components/useBookmark";
-import { color } from "react-native-reanimated";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { Image } from "react-native-expo-image-cache";
 
 const { width } = Dimensions.get("window");
 
@@ -92,7 +92,7 @@ const ReferenceDocument = ({ page, id }) => {
           },
         ]}
       />
-      <ScrollView>
+      <KeyboardAwareScrollView keyboardOpeningTime={0}>
         {activeIndex === 0 && page.calculator
           ? page.calculator.map((item, index) => (
               <Calculator key={index} settings={item} />
@@ -144,7 +144,7 @@ const ReferenceDocument = ({ page, id }) => {
                       <View key={index}>
                         {step.stepImage ? (
                           <Image
-                            source={{ uri: step.stepImage }}
+                            uri={step.stepImage}
                             style={{
                               width: width - 30,
                               height: (width - 30) * 0.75,
@@ -229,7 +229,7 @@ const ReferenceDocument = ({ page, id }) => {
             ))}
           </View>
         ) : null}
-      </ScrollView>
+      </KeyboardAwareScrollView>
       <Snackbar
         visible={snackVisible}
         onDismiss={() => setSnackVisible(false)}
@@ -277,7 +277,7 @@ const Calculator = ({ settings }) => {
           ? "high"
           : "good"
         : "blank"
-      : formula1 && var3
+      : var1 && var2 && var3
       ? formula2 < variable.lowerLimit
         ? "low"
         : formula2 > variable.upperLimit
@@ -323,11 +323,11 @@ const Calculator = ({ settings }) => {
       <Text style={{ ...styles.header, fontSize: 20 }}>{settings.title}</Text>
 
       <Image
-        source={{ uri: settings.formulaImage }}
+        resizeMode="contain"
+        uri={settings.formulaImage}
         style={{
           height: (width - 100) * 0.3,
           width: width - 100,
-          resizeMode: "contain",
           marginVertical: 10,
           alignSelf: "center",
         }}
@@ -370,7 +370,7 @@ const Calculator = ({ settings }) => {
                     : setVar3(text)
                 }
                 error={validate(index)}
-                keyboardType="phone-pad"
+                keyboardType="decimal-pad"
               />
               {validate(index) && (
                 <HelperText

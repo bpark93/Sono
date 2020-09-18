@@ -29,16 +29,16 @@ const BookmarkScreen = () => {
   }, []);
 
   const [viewing, setViewing] = useState("lib");
-  const [viewingPressed, setViewingPressed] = useState(false)
-  const [sortBy, setSortBy] = useState("newest");
-  const [sortyByPressed, setSortByPressed] = useState(false)
+  const [viewingPressed, setViewingPressed] = useState(false);
+  const [sortBy, setSortBy] = useState("all");
+  const [sortyByPressed, setSortByPressed] = useState(false);
 
   return layout.length !== 0 ? (
     <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
       <View
         style={{
           flexDirection: "row",
-          justifyContent: "space-evenly",
+          justifyContent: "space-around",
           marginBottom: 10,
         }}
       >
@@ -77,22 +77,24 @@ const BookmarkScreen = () => {
               </TouchableOpacity>
             }
           >
-              <Menu.Item
-                onPress={() => {
-                    setViewing("lib")
-                    setViewingPressed(false)
-                }}
-                title="Library"
-                titleStyle={{fontSize:14}}
-              />
-              <Menu.Item
-                onPress={() => {
-                    setViewing("learn")
-                    setViewingPressed(false)
-                }}
-                title="Learn"
-                titleStyle={{fontSize:14}}
-              />
+            <Menu.Item
+              onPress={() => {
+                setViewing("lib");
+                setSortBy("all");
+                setViewingPressed(false);
+              }}
+              title="Library"
+              titleStyle={{ fontSize: 14 }}
+            />
+            <Menu.Item
+              onPress={() => {
+                setViewing("learn");
+                setSortBy("all");
+                setViewingPressed(false);
+              }}
+              title="Learn"
+              titleStyle={{ fontSize: 14 }}
+            />
           </Menu>
         </View>
         <View
@@ -121,7 +123,15 @@ const BookmarkScreen = () => {
                     marginRight: 5,
                   }}
                 >
-                  {sortBy === "newest" ? "Newest" : "Oldest"}
+                  {sortBy === "all"
+                    ? "All Pages"
+                    : sortBy === "image"
+                    ? "Images"
+                    : sortBy === "rapidreview"
+                    ? "Videos"
+                    : sortBy === "resource"
+                    ? "Tools"
+                    : "Category"}
                 </Text>
                 <MaterialCommunityIcons
                   name="chevron-down"
@@ -131,27 +141,59 @@ const BookmarkScreen = () => {
               </TouchableOpacity>
             }
           >
+            <Menu.Item
+              onPress={() => {
+                setSortBy("all");
+                setSortByPressed(false);
+              }}
+              title="All Pages"
+              titleStyle={{ fontSize: 14 }}
+            />
+            {viewing === "lib" ? (
+              <>
+                <Menu.Item
+                  onPress={() => {
+                    setSortBy("image");
+                    setSortByPressed(false);
+                  }}
+                  title="Images"
+                  titleStyle={{ fontSize: 14 }}
+                />
+                <Menu.Item
+                  onPress={() => {
+                    setSortBy("rapidreview");
+                    setSortByPressed(false);
+                  }}
+                  title="Videos"
+                  titleStyle={{ fontSize: 14 }}
+                />
+                <Menu.Item
+                  onPress={() => {
+                    setSortBy("resource");
+                    setSortByPressed(false);
+                  }}
+                  title="Tools"
+                  titleStyle={{ fontSize: 14 }}
+                />
+              </>
+            ) : (
               <Menu.Item
                 onPress={() => {
-                    setSortBy("newest")
-                    setSortByPressed(false)
+                  setSortBy("category");
+                  setSortByPressed(false);
                 }}
-                title="Newest"
-                titleStyle={{fontSize:14}}
+                title="Category"
+                titleStyle={{ fontSize: 14 }}
               />
-              <Menu.Item
-                onPress={() => {
-                    setSortBy("oldest")
-                    setSortByPressed(false)
-                }}
-                title="Oldest"
-                titleStyle={{fontSize:14}}
-              />
+            )}
           </Menu>
         </View>
       </View>
-      {viewing === "lib" ? <LibraryBookmarks layout={layout} sortBy={sortBy}/>
-      : <BookmarkList sortBy={sortBy}/>}
+      {viewing === "lib" ? (
+        <LibraryBookmarks layout={layout} sortBy={sortBy} />
+      ) : (
+        <BookmarkList sortBy={sortBy} />
+      )}
     </ScrollView>
   ) : (
     <View

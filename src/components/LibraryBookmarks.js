@@ -18,7 +18,6 @@ const Width = Dimensions.get("window").width;
 const LibraryBookmarks = ({ layout, sortBy }) => {
   const navigation = useNavigation();
   const [bookmark, setBookmark] = useState([]);
-  const [reversedBookmark, setReversedBookmark] = useState([]);
 
   const flatten = () => {
     let flatLayout = [];
@@ -56,22 +55,49 @@ const LibraryBookmarks = ({ layout, sortBy }) => {
     return () => unsubscribe();
   }, [navigation]);
 
-  useEffect(() => {
-    const reversed = [...bookmark];
-    setReversedBookmark(reversed.reverse());
-  }, [bookmark]);
-
   const updateBookmarkList = (id) => {
-    setBookmark(bookmark.filter(item => item.id !== id))
-  }
+    setBookmark(bookmark.filter((item) => item.id !== id));
+  };
 
   return bookmark.length != 0 ? (
     <ScrollView>
-      {sortBy === "newest"
-        ? bookmark.map((item) => <BookmarkItem info={item} key={item.id} updateBookmarkList={updateBookmarkList}/>)
-        : reversedBookmark.map((item) => (
-            <BookmarkItem info={item} key={item.id} updateBookmarkList={updateBookmarkList}/>
-          ))}
+      {sortBy === "all"
+        ? bookmark.map((item) => (
+            <BookmarkItem
+              info={item}
+              key={item.id}
+              updateBookmarkList={updateBookmarkList}
+            />
+          ))
+        : sortBy === "image"
+        ? bookmark
+            .filter((item) => item.type === "image")
+            .map((item) => (
+              <BookmarkItem
+                info={item}
+                key={item.id}
+                updateBookmarkList={updateBookmarkList}
+              />
+            ))
+        : sortBy === "rapidreview"
+        ? bookmark
+            .filter((item) => item.type === "rapidreview")
+            .map((item) => (
+              <BookmarkItem
+                info={item}
+                key={item.id}
+                updateBookmarkList={updateBookmarkList}
+              />
+            ))
+        : bookmark
+            .filter((item) => item.type === "resource")
+            .map((item) => (
+              <BookmarkItem
+                info={item}
+                key={item.id}
+                updateBookmarkList={updateBookmarkList}
+              />
+            ))}
     </ScrollView>
   ) : (
     <View
@@ -122,9 +148,8 @@ const BookmarkItem = ({ info, updateBookmarkList }) => {
         navigation.navigate("Library", {
           screen: "SearchDetail",
           params: { id: info.id },
-        })
-      }
-      }
+        });
+      }}
     >
       <View>
         <Text
@@ -168,8 +193,8 @@ const BookmarkItem = ({ info, updateBookmarkList }) => {
         />
         <Menu.Item
           onPress={async () => {
-            removeBookmark(info.id, "lib")
-            updateBookmarkList(info.id)
+            removeBookmark(info.id, "lib");
+            updateBookmarkList(info.id);
             setMenuVisible(false);
           }}
           title="Remove Bookmark"
@@ -212,7 +237,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 5,
     fontFamily: "Raleway-Regular",
-    width:Width*0.7
+    width: Width * 0.7,
   },
   iconStyle: {
     fontSize: 20,

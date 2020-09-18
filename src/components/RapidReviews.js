@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import {
-  Image,
   View,
   Text,
   StyleSheet,
@@ -24,6 +23,10 @@ import {
   removeBookmark,
   getBookmark,
 } from "../components/useBookmark";
+import {Image} from "react-native-expo-image-cache";
+
+const Width = Dimensions.get("window").width;
+const Height = Dimensions.get("window").height;
 
 const RapidReviews = ({ page, id }) => {
   const navigation = useNavigation();
@@ -39,8 +42,7 @@ const RapidReviews = ({ page, id }) => {
   }, [navigation]);
 
   // Screen orientation
-  const Width = Dimensions.get("window").width;
-  const Height = Dimensions.get("window").height;
+  
   const [OrientationMode, setOrientationMode] = useState({
     width: Width,
     height: (Width * 9) / 16,
@@ -230,12 +232,12 @@ const RapidReviews = ({ page, id }) => {
                 ) : null}
                 {item.image ? (
                   <Image
-                    source={{ uri: item.image }}
+                    resizeMode="contain"
+                    uri={item.image}
                     style={{
                       width: Width*0.9,
                       height: Width*.675,
                       alignSelf:'center',
-                      resizeMode: "contain",
                       backgroundColor: "#ffffff",
                     }}
                   />
@@ -309,6 +311,7 @@ const MaterialsItem = ({ material, optional }) => {
         <Text
           style={{
             ...styles.body,
+            width:Width-80,
             fontWeight: "bold",
             textDecorationLine: checked ? "line-through" : "none",
           }}
@@ -345,7 +348,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   header: {
-    fontSize: 20,
+    fontSize: 24,
     marginHorizontal: 15,
     marginTop: 15,
     marginBottom: 15,
@@ -354,7 +357,9 @@ const styles = StyleSheet.create({
   body: {
     marginHorizontal: 15,
     marginVertical: 10,
-    fontFamily: "Raleway-Regular",
+    fontFamily: "Roboto-Regular",
+    fontSize: 16,
+    color:'gray'
   },
 });
 
