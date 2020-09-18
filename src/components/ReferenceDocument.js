@@ -38,7 +38,7 @@ const ReferenceDocument = ({ page, id }) => {
       }
     }
     bookmarkChecker();
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     navigation.setOptions({
