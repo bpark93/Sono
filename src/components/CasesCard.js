@@ -33,7 +33,7 @@ const CasesCard = ({ item }) => {
         }}
       >
         <FontAwesome5 name="user-md" style={styles.iconStyle} />
-        <Text style={{ fontFamily: "Raleway-Regular", fontSize: 12 }}>
+        <Text style={{ fontFamily: "Raleway-Regular", fontSize: 12, color:"gray" }}>
           By {item._embedded.author[0].name}
         </Text>
       </View>
@@ -58,19 +58,27 @@ const CasesCard = ({ item }) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 0.5,
-    borderColor: "gray",
+    // borderWidth: 0.5,
+    // borderColor: "gray",
     borderRadius: 15,
     marginVertical: 15,
     overflow: "hidden",
     paddingBottom: 15,
-    // elevation:2
+    backgroundColor:'#F0F0F0',
+    elevation:5,
+    shadowOffset:{
+      width:10,
+      height:-10
+    },
+    shadowOpacity:0.2,
+    shadowRadius:1
   },
   title: {
-    fontSize: 16,
+    fontSize: 18,
     marginHorizontal: 15,
-    fontFamily: "Raleway-Medium",
+    fontFamily: "Roboto-Black",
     width: Width * 0.7,
+    color:'black'
   },
   iconStyle: {
     fontSize: 18,
