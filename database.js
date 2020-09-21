@@ -561,19 +561,19 @@ const learnDatabase = [
         headerImage:require('./assets/png/movement.png')
       },
       {
-        title: "Ultrasound Controls",
+        title: "Probe Types",
         id: "1.2",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
       {
-        title: "Probe Types",
+        title: "Probe Movements",
         id: "1.3",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
       {
-        title: "Probe Movements",
+        title: "Controls on LHSC Machines",
         id: "1.4",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
@@ -634,24 +634,24 @@ const learnDatabase = [
         youtube: "y9GIZ_Fonus",
         id: "2.5",
         captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+          "Ultrasound is an increasingly important tool in the diagnosis of pneumothorax. This screencast reviews the major findings you will see on a patient with pneumothorax, as well as the (many) pitfalls to avoid to prevent misinterpretation.",
       },
       {
         title: "Pleural Effusion",
         youtube: "hLhRKo6llMA",
         id: "2.6",
         captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+          "Pleural effusions come with many signs: Spine, Quad, Sinusoid, Plankton and Jellyfish. Take a deep dive and learn what all these signs mean in this 9 minute screencast!",
       },
       {
         title: "Alveolar Interstitial Syndrome and Pneumonia",
         youtube: "m_VxmbIO0Rs",
         id: "2.7",
         captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+          "We now turn our attention away from the pleura to the lung parenchyma. Learn to differentiate between pneumonia, atelectasis, CHF and ARDS, as well as the various sonographic signs that come with lung consolidation.",
       },
       {
-        title: "BLUE Protocol and Cases from Emergency Medicine",
+        title: "Review with Cases from Emergency Medicine",
         youtube: "rzBoRbuc4-0",
         id: "2.8",
         captionText:
@@ -659,11 +659,11 @@ const learnDatabase = [
       },
       {
         title:
-          "Plerual Effusion and Consolidation size - Pneumonia vs. Atelectasis",
+          "Plerual Effusion AND Consolidation - Chicken or the egg?",
         youtube: "l-BX3wVhDIg",
         id: "2.9",
         captionText:
-          "Interpreting a consolidation pattern of the lung with a concomitant pleural effusion can sometimes be challenging. Is it a pneumonia pattern with secondary para-pneumonic effusion, or is there a pleural effusion with secondary compressive atelectasis? Does size of each matter, or help us with the diagnosis? Are there any other secondary signs that will help us rule in an infectious process? The answer is yes!",
+          "Interpreting a consolidation pattern of the lung with a concomitant pleural effusion can sometimes be challenging. Is it a pneumonia pattern with secondary para-pneumonic effusion, or is there a pleural effusion with secondary compressive atelectasis? Does size of each matter, or help us with the diagnosis? Are there any other secondary signs that will help us rule in an infectious process? The answer is yes! Please check out this great screencast by Dr. Yves Landry, critical care fellow (PGY-5) from Western University on comparing pleural effusion to consolidation size, and secondary signs of an infectious process.",
       },
       {
         title: "Common Pitfalls in LUS",
@@ -695,14 +695,14 @@ const learnDatabase = [
           "https://westernsono.ca/wp-content/uploads/2015/08/lung-ultrasonography-in-ards-2015.mp4?_t=1514825036",
         id: "2.13",
         captionText:
-          "Tutorial on the use of point of care ultrasound in acute respiratory syndrome presented by Ann George, MD",
+          "Still puzzled about the different patterns of B-lines? Watch this case-based tutorial on differentiating between the various diffuse parenchymal diseases. Presented by Ann George, MD",
       },
       {
         title: "Respiratory Failure",
         youtube: "q_-F4fHRv5g",
         id: "2.14",
         captionText:
-          "Bedside Lung ultrasound has its place beyond the ED and ICU. Enjoy this case of respiratory failure in the general medicine ward presented by Lucas Ciprietti PGY4 Internal Medicine",
+          "Real-life example of respiratory failure in the general medicine ward, and how a POCUS consultation can help. Presented by Lucas Ciprietti PGY4 Internal Medicine",
       },
     ],
   },
@@ -719,58 +719,65 @@ const learnDatabase = [
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
       {
+        title: "Approach to difficult image acquisition",
+        youtube: "bON-KPiiNCk",
+        id: "3.2",
+        captionText:
+          "The point of care ultrasound revolution has brought a renaissance to providers of resuscitative care: No longer is determination of shock something that requires invasive monitoring (e.g. Swan Ganz) or an ICU admission. Instead, with good image acquisition and image interpretation skills, point of care echo can answer this question anywhere in the hospital – the ED, the ward, the ICU and, the CT scanner or the cafeteria.\n\nAssessing LV function at the point of care is typically used for patients in shock. Compromised LV function may either be the cause or may significantly complicate shock management. Our approach for managing shock based on LV function is shown in this flowsheet.\n\nThe “eyeball” method for addressing LV function is acceptable and even necessary in the point of care setting. Exact determination of ejection fraction (EF) is time consuming and the additional investment in acquiring a more “precise” number does not typically provide incrementally better or more detailed care. A patient with an EF of 20% and one with an EF 25% are typically resuscitated in a similar fashion, for instance.",
+      },
+      {
         title: "Assessment of LV Function",
         youtube: "v2SUfIwdjdI",
-        id: "3.2",
+        id: "3.3",
         captionText:
           "The point of care ultrasound revolution has brought a renaissance to providers of resuscitative care: No longer is determination of shock something that requires invasive monitoring (e.g. Swan Ganz) or an ICU admission. Instead, with good image acquisition and image interpretation skills, point of care echo can answer this question anywhere in the hospital – the ED, the ward, the ICU and, the CT scanner or the cafeteria.\n\nAssessing LV function at the point of care is typically used for patients in shock. Compromised LV function may either be the cause or may significantly complicate shock management. Our approach for managing shock based on LV function is shown in this flowsheet.\n\nThe “eyeball” method for addressing LV function is acceptable and even necessary in the point of care setting. Exact determination of ejection fraction (EF) is time consuming and the additional investment in acquiring a more “precise” number does not typically provide incrementally better or more detailed care. A patient with an EF of 20% and one with an EF 25% are typically resuscitated in a similar fashion, for instance.",
       },
       {
         title: "Assessment of the RV",
         youtube: "bON-KPiiNCk",
-        id: "3.3",
+        id: "3.4",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
       {
         title: "Pericardial Effusion",
         youtube: "bON-KPiiNCk",
-        id: "3.4",
+        id: "3.5",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
       {
         title: "Inferior Vena Cava",
         youtube: "bON-KPiiNCk",
-        id: "3.5",
+        id: "3.6",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
       {
-        title: "Valve assessment",
+        title: "Basic Valve assessment",
         youtube: "bON-KPiiNCk",
-        id: "3.6",
+        id: "3.7",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
       {
         title: "Stroke Volume Determination",
         youtube: "UrQKyURqDBI",
-        id: "3.7",
+        id: "3.8",
         captionText:
           "The eyeball method of LV function determination works. Sometimes, however, you may need a better hemodynamic understanding.  Or maybe you just like numbers and the whole “qualitative LV function” thing isn’t for you? Either way, you can learn the how and the why of stroke volume determination with point of care echo here in 10 minutes.",
       },
       {
         title: "Regional Wall Motion Abnormalities",
         youtube: "TWviIgG2V60",
-        id: "3.8",
+        id: "3.9",
         captionText:
           "Looking for a tool to help stratify your acute coronary syndrome patients? Look no further. Dr. Erica Beatty (PGY4 Emergency Medicine) walks us through the identification of regional wall motion abnormalities (RWMA) using POCUS. Several cardiac views will be presented and their findings will be correlated with a differential diagnosis and put into clinical context.",
       },
       {
         title: "Aortic Stenosis vs. Sclerosis",
         youtube: "RDPaeCqfA2Y",
-        id: "3.9",
+        id: "3.10",
         captionText:
           "A short tutorial by Dr. Katie Wiskar outlining the ultrasound approach to distinguishing aortic stenosis from aortic sclerosis using POCUS and spectral Doppler.",
       },
@@ -782,45 +789,57 @@ const learnDatabase = [
     id: 4,
     pages: [
       {
-        title: "US Guided Peripheral IV Insertion Part 1",
+        title: "Peripheral IV Insertion Part 1",
         youtube: "YVQhpcsmaHM",
         id: "4.1",
         captionText: "",
       },
       {
-        title: "US Guided Peripheral IV Insertion Part 2",
+        title: "Peripheral IV Insertion Part 2",
         youtube: "Z6mOKmZcshI",
         id: "4.2",
         captionText: "",
       },
       {
-        title: "US Guided Vascular Access for ICU Residents",
+        title: "Central Vascular Access",
         youtube: "Z6mOKmZcshI",
         id: "4.3",
         captionText: "",
       },
       {
-        title: "Sterile Technique for US Guided Central Line",
-        youtube: "BIZJdzqgF88",
+        title: "Subclavian and Peripheral Arterial Access",
+        youtube: "Z6mOKmZcshI",
         id: "4.4",
+        captionText: "",
+      },
+      {
+        title: "Sterile Technique for US Guided Procedures",
+        youtube: "BIZJdzqgF88",
+        id: "4.5",
         captionText: "",
       },
       {
         title: "Fracture Management",
         youtube: "9Dd25I1b4_I",
-        id: "4.5",
+        id: "4.6",
         captionText: "",
       },
       {
         title: "Paracentesis",
         video: "bON-KPiiNCk",
-        id: "4.6",
+        id: "4.7",
         captionText: "",
       },
       {
         title: "Thoracentesis",
         video: "bON-KPiiNCk",
-        id: "4.7",
+        id: "4.8",
+        captionText: "",
+      },
+      {
+        title: "Peripheral Nerve Blocks",
+        video: "bON-KPiiNCk",
+        id: "4.9",
         captionText: "",
       },
     ],
@@ -883,6 +902,13 @@ const learnDatabase = [
         title: "Small Bowel Obstruction",
         youtube: "X_Ui91kjfag",
         id: "6.3",
+        captionText:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+      },
+      {
+        title: "Abdominal Aorta",
+        youtube: "HAX7d3EMveg",
+        id: "6.4",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
