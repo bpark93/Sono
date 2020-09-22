@@ -58,7 +58,9 @@ function App() {
         'Raleway-Light': require('./assets/fonts/Raleway/Raleway-Light.ttf'),
         'Raleway-Bold': require('./assets/fonts/Raleway/Raleway-Bold.ttf'),
         'Roboto-Black': require('./assets/fonts/Roboto/Roboto-Black.ttf'),
-        'Roboto-Regular': require('./assets/fonts/Roboto/Roboto-Regular.ttf')
+        'Roboto-Regular': require('./assets/fonts/Roboto/Roboto-Regular.ttf'),
+        'Lora-Regular': require('./assets/fonts/Lora/Lora-Regular.ttf'),
+        'Lora-Bold': require('./assets/fonts/Lora/Lora-Bold.ttf')
       })
       setFontLoaded(true);
     }

@@ -562,26 +562,22 @@ const learnDatabase = [
       {
         title: "Probe Types",
         id: "1.2",
-        captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+        captionText:""
       },
       {
         title: "Probe Movements",
         id: "1.3",
-        captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+        captionText:""
       },
       {
         title: "Controls on LHSC Machines",
         id: "1.4",
-        captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+        captionText:""
       },
       {
         title: "Ultrasound Machine Maintenance",
         id: "1.5",
-        captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+        captionText:""
       },
       {
         title: "Principles of Doppler Ultrasound",
