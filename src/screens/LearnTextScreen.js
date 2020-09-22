@@ -178,7 +178,8 @@ const styles = StyleSheet.create({
   },
   body: {
     margin: 15,
-    fontFamily: "Raleway-Regular",
+    fontFamily: "Roboto-Regular",
+    fontSize:18,
   },
   category: {
     marginHorizontal: 10,

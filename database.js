@@ -537,10 +537,9 @@ const categoryDatabase =
   {
     "Aorta": require("./assets/png/044-blood.png"),
     "Cardiac": require("./assets/png2/040-heart.png"),
-    "Quantitative Assessment": require("./assets/png/geometry.png"),
-    "Lung":require("./assets/png2/042-lungs.png"),
+    "Thoracic":require("./assets/png2/042-lungs.png"),
     "Abdominal":require("./assets/png/029-intestine.png"),
-    "Renal/GU":require("./assets/png2/032-kidney.png"),
+    "Renal":require("./assets/png2/032-kidney.png"),
     "Procedural": require("./assets/png/injection.png"),
     "Pelvic": require("./assets/png/050-fetus.png"),
     "Nervous System": require("./assets/png/016-brain.png"),
@@ -915,8 +914,8 @@ const learnDatabase = [
     ],
   },
   {
-    title: "Gallbladder",
-    thumbnail: require("./assets/png2/005-gallbladder.png"),
+    title: "Biliary",
+    thumbnail: require("./assets/png2/035-liver.png"),
     id: 7,
     pages: [
       {
