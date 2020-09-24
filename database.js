@@ -801,13 +801,13 @@ const learnDatabase = [
       },
       {
         title: "Central Vascular Access",
-        youtube: "Z6mOKmZcshI",
+        youtube: "bON-KPiiNCk",
         id: "4.3",
         captionText: "",
       },
       {
         title: "Subclavian and Peripheral Arterial Access",
-        youtube: "Z6mOKmZcshI",
+        youtube: "bON-KPiiNCk",
         id: "4.4",
         captionText: "",
       },
@@ -825,19 +825,19 @@ const learnDatabase = [
       },
       {
         title: "Paracentesis",
-        video: "bON-KPiiNCk",
+        video: "WuqWGs4Kxr4",
         id: "4.7",
         captionText: "",
       },
       {
         title: "Thoracentesis",
-        video: "bON-KPiiNCk",
+        video: "Zg0d7Y3uPb4",
         id: "4.8",
         captionText: "",
       },
       {
-        title: "Peripheral Nerve Blocks",
-        video: "bON-KPiiNCk",
+        title: "US-guided Nerve Blocks for Hip Fractures",
+        video: "7RKXLAqHaOk",
         id: "4.9",
         captionText: "",
       },
@@ -942,7 +942,7 @@ const learnDatabase = [
     ],
   },
   {
-    title: "Pelvic",
+    title: "Female Pelvis",
     thumbnail: require("./assets/png2/029-pelvic-area.png"),
     id: 8,
     pages: [
@@ -970,28 +970,49 @@ const learnDatabase = [
     ],
   },
   {
+    title: "Male Pelvis",
+    thumbnail: require("./assets/png/028-testicle.png"),
+    id: 9,
+    pages: [
+      {
+        title: "Scrotal Ultrasound",
+        youtube: "xiVnNa2hCjY",
+        id: "9.1",
+        captionText:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+      },
+      {
+        title: "Testicular Torsion and Other Pathologies",
+        youtube: "BXaCUYnM9X0",
+        id: "9.2",
+        captionText:
+          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+      },
+    ],
+  },
+  {
     title: "Vascular",
     thumbnail: require("./assets/png/049-blood.png"),
-    id: 9,
+    id: 10,
     pages: [
       {
         title: "DVT",
         youtube: "kenAPbRVMl0",
-        id: "9.1",
+        id: "10.1",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
       {
         title: "Lower Extremity DVT",
         youtube: "-HERC2yB0Yk",
-        id: "9.2",
+        id: "10.2",
         captionText:
           "Sean Spence (PGY-5 Critical Care Medicine, University of Calgary) explains how to conduct a DVT exam. He covers lower extremity vascular anatomy relevant to the DVT exam and then wraps up by demonstrating a DVT study done by himself. There are examples of both a normal study and a positive finding.",
       },
       {
         title: "Solid Organ Doppler Assessment of Venous Congestion",
         youtube: "e_bIVvFV6jE",
-        id: "9.3",
+        id: "10.3",
         captionText:
           "In this 15-minute video, Dr Katie Wiskar covers an introduction to solid organ doppler assessment of venous congestion - the cool new kid on the POCUS block when it comes to volume status.",
       },
@@ -1000,12 +1021,12 @@ const learnDatabase = [
   {
     title: "Ocular",
     thumbnail: require("./assets/png/006-eye.png"),
-    id: 10,
+    id: 11,
     pages: [
       {
         title: "Common Pathologies",
         youtube: "dW8F_sMojKk",
-        id: "10.1",
+        id: "11.1",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
@@ -1014,14 +1035,14 @@ const learnDatabase = [
   {
     title: "Critical Care Hemodynamics",
     thumbnail: require("./assets/png/044-blood.png"),
-    id: 11,
+    id: 12,
     pages: [
       {
         title: "Hypovolemic Shock",
         youtube: "THJjNqhfi54",
         video:
           "https://westernsono.ca/wp-content/uploads/2015/11/hypovolemia-final.mp4?_t=1514825045",
-        id: "11.1",
+        id: "12.1",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
@@ -1030,7 +1051,7 @@ const learnDatabase = [
         youtube: "OAtiIY_Apco",
         video:
           "https://westernsono.ca/wp-content/uploads/2015/11/vasoplegia-final.mp4?_t=1514825047",
-        id: "11.2",
+        id: "12.2",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
         transcript:
@@ -1041,7 +1062,7 @@ const learnDatabase = [
         youtube: "-sYW0xNLqkA",
         video:
           "https://westernsono.ca/wp-content/uploads/2015/11/cardiogenic-shock-final.mp4?_t=1514825037",
-        id: "11.3",
+        id: "12.3",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
@@ -1050,7 +1071,7 @@ const learnDatabase = [
         youtube: "MiV8lrtdKEU",
         video:
           "https://westernsono.ca/wp-content/uploads/2015/11/sepsis-chf-final.mp4?_t=1514825046",
-        id: "11.4",
+        id: "12.4",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
@@ -1059,7 +1080,7 @@ const learnDatabase = [
         youtube: "dXEGVc-JHxw",
         video:
           "https://westernsono.ca/wp-content/uploads/2015/11/ccb-od-final.mp4?_t=1514825038",
-        id: "11.5",
+        id: "12.5",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
@@ -1068,7 +1089,7 @@ const learnDatabase = [
         youtube: "UFDpp1WtZjQ",
         video:
           "https://westernsono.ca/wp-content/uploads/2015/11/dimensionless-index-final.mp4?_t=1514825042",
-        id: "11.6",
+        id: "12.6",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
@@ -1077,7 +1098,7 @@ const learnDatabase = [
         youtube: "NwmMdyeV8og",
         video:
           "https://westernsono.ca/wp-content/uploads/2015/11/cor-pulmonale-rv-overload-final.mp4?_t=1514825040",
-        id: "11.7",
+        id: "12.7",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
@@ -1086,7 +1107,7 @@ const learnDatabase = [
         youtube: "HH1V6D-TDfo",
         video:
           "https://westernsono.ca/wp-content/uploads/2015/11/hocm-final.mp4?_t=1514825043",
-        id: "11.8",
+        id: "12.8",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
@@ -1095,63 +1116,63 @@ const learnDatabase = [
   {
     title: "Transesophageal Echo (TEE)",
     thumbnail: require("./assets/png2/038-esophagus.png"),
-    id: 12,
+    id: 13,
     pages: [
       {
         title: "How to Scan",
         youtube: "IU3TRfnO7tI",
-        id: "12.1",
+        id: "13.1",
         captionText:
           "Rob Arntfield, MD, FRCPC and Atul Jaidka, MD, PGY2 takes us through the fundamentals of performing a transesophageal echocardiography (TEE). This video uses a live demonstration to introduce probe manipulation, how to obtain different views, and how to landmark for these different views. The techniques being presented will help you in performing goal-directed TEE in critically ill patients, whether it be for visualizing valvular disorders or during a resuscitation. Make sure to check out the image acquisition screencasts afterwards to learn how to interpret your TEE findings!",
       },
       {
         title: "Left Atrial Appendage Thrombus",
         youtube: "0kCCupXD-4g",
-        id: "12.2",
+        id: "13.2",
         captionText:
           "A common question asked when a patient has an embolic event (i.e. stroke, mesenteric ischemia, femoral artery occlusions) is whether there was a cardiac source of embolus. In this screencast done by Dr. Vince Lau, we will go over the principles of left atrial appendage interrogation using TEE, looking for a nidus for clot (spontaneous echo contrast, low flow stasis).",
       },
       {
         title: "Infective Endocarditis",
         youtube: "PbKkBgGjI4E",
-        id: "12.3",
+        id: "13.3",
         captionText:
           "One of the concerns associated with confirmed bacteremia is the presence of endocarditis as a consequence of the bacteremia, or even as the source. This is especially true of the organisms grown on blood cultures have a preponderance to form vegetations on cardiac valves. Please enjoy this screencast by Dr. Vince Lau on infective endocarditis.",
       },
       {
         title: "Veno-Venous ECMO Initiation",
         youtube: "pwaBrjILEFE",
-        id: "12.4",
+        id: "13.4",
         captionText:
           "Veno-venous ECMO use is increasing at many centres.  Seldom an elective procedure and typically done on patients too sick to transport, bedside guidance of ECMO cannula insertion is essential. As this tutorial (by Dr. Vince Lau) highlights, point-of-care TEE can be invaluable in these circumstances in providing real time guidance of guidewire and cannula positioning.  Further, adjustments of the cannula’s outflow port can be done using color Doppler to optimize the yield of the intervention.",
       },
       {
         title: "Shunts and Bubble Study",
         youtube: "i8J1BxGM8wo",
-        id: "12.5",
+        id: "13.5",
         captionText:
           "Do you have a refractory hypoxemic patient who does not respond to increases in FiO2? Worried about a shunt causing said hypoxemia? Or presence of a septal defect causing paradoxical emboli? In this screencast done by Dr. Vince Lau, we will go over the principles of intra-atrial septal interrogation, performance of a bubble study, and calculating a shunt fraction (Qp:Qs).",
       },
       {
         title: "Harlequin Syndrome",
         youtube: "GXTTihsUd8o",
-        id: "12.6",
+        id: "13.6",
         captionText:
           "A visual (no sound to this) tour of an interesting case of ECMO and its complexities managed in the ICU with the assistance of point-of-care transesophageal echo.",
       },
     ],
   },
   {
-    title: "Trans-cranial Doppler",
+    title: "Transcranial Doppler",
     thumbnail: require("./assets/png2/060-brain.png"),
-    id: 13,
+    id: 14,
     pages: [
       {
         title: "Vasospasm and Cerebral Circulatory Arrest",
         youtube: "sWR9a3tBZVY",
         video:
           "https://westernsono.ca/wp-content/uploads/2016/06/tcd-camtasia.mp4?_t=1514825049",
-        id: "13.1",
+        id: "14.1",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
       },
