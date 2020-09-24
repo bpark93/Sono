@@ -218,7 +218,7 @@ const RapidReviews = ({ page, id }) => {
         {/* Table */}
         {activeIndex === 0 && page.orientation ? (
           <View>
-            <Text style={styles.header}>Quick Summary</Text>
+            <Text style={styles.header}>Quick Reference</Text>
             <ShortSummary data={page.orientation} />
           </View>
         ) : null}
@@ -268,12 +268,12 @@ const RapidReviews = ({ page, id }) => {
 
         {/* References */}
         {activeIndex === 3 && page.references
-          ? page.references.map((ref) => (
+          ? page.references.map((ref, index) => (
               <View
                 style={{ marginHorizontal: 15, marginTop: 15 }}
                 key={ref.text}
               >
-                <Text>{ref.text}</Text>
+                <Text style={{fontFamily:'Lora-Regular', }}>{index+1}. {ref.text}</Text>
               </View>
             ))
           : null}
