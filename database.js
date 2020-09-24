@@ -821,19 +821,19 @@ const learnDatabase = [
       },
       {
         title: "Paracentesis",
-        video: "WuqWGs4Kxr4",
+        youtube: "WuqWGs4Kxr4",
         id: "4.7",
         captionText: "",
       },
       {
         title: "Thoracentesis",
-        video: "Zg0d7Y3uPb4",
+        youtube: "Zg0d7Y3uPb4",
         id: "4.8",
         captionText: "",
       },
       {
         title: "US-guided Nerve Blocks for Hip Fractures",
-        video: "7RKXLAqHaOk",
+        youtube: "7RKXLAqHaOk",
         id: "4.9",
         captionText: "",
       },
