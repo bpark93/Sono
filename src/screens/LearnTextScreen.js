@@ -7,7 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
-  LogBox,
+  Dimensions,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { learnDatabase } from "../../database";
@@ -26,6 +26,7 @@ import HTML from 'react-native-render-html';
 
 const LearnTextScreen = ({ route, navigation }) => {
   const { id, category } = route.params;
+  const {width} = Dimensions.get('window')
   
   // Progress
   const [progress, setProgress] = useState(null);
@@ -60,6 +61,7 @@ const LearnTextScreen = ({ route, navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const [content, setContent] = useState('')
+  const [pageImage, setPageImage] = useState('')
   const [none, setNone] = useState(false)
   useEffect(() => {
     firebase
@@ -68,6 +70,7 @@ const LearnTextScreen = ({ route, navigation }) => {
     .doc(''+id.id)
     .get().then(function(doc) {
         setContent(doc.data().html)
+        setPageImage(doc.data().headerImage)
     }).catch(function(error){
         setNone(true)
         setContent("This lesson is not yet ready for prime-time! Please check later for an update.")
@@ -97,7 +100,7 @@ const LearnTextScreen = ({ route, navigation }) => {
               <Text style={styles.category}>{category}</Text>
             </TouchableOpacity>
           </View>
-          {id.headerImage && <Image source={id.headerImage} style={{height:200, width:200, marginVertical:20, alignSelf:'center'}}/>}
+          {pageImage.length != 0 && <Image source={{uri:pageImage}} style={{height:width*0.75, width:width, marginVertical:20, resizeMode:'contain'}}/>}
           <Text style={styles.header}>{id.title}</Text>
           <LearnDetailButtons
             progress={progress}
@@ -117,8 +120,19 @@ const LearnTextScreen = ({ route, navigation }) => {
           ) : (
             <HTML 
               html={content}
-              baseFontStyle={{fontSize:14, fontFamily:'Raleway-Medium'}}
+              baseFontStyle={{fontSize:18, fontFamily:'Lora-Regular'}}
               containerStyle={styles.htmlStyle}
+              imagesMaxWidth={width-50}
+              tagsStyles={{
+                h1:{
+                  fontSize:28,
+                  fontFamily:'Lora-Bold',
+                },
+                figcaption:{
+                  color:'gray',
+                  fontSize:14,
+                },
+              }}
             />
           )
           }
@@ -168,17 +182,18 @@ const LearnTextScreen = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   htmlStyle:{
-    marginHorizontal: 15,
+    marginHorizontal: 20,
+    marginTop:15,
   },
   header: {
     marginHorizontal: 15,
     marginBottom: 5,
     fontSize: 24,
-    fontFamily: "Raleway-Bold",
+    fontFamily: "Lora-Bold",
   },
   body: {
-    margin: 15,
-    fontFamily: "Roboto-Regular",
+    marginHorizontal: 15,
+    fontFamily: "Lora-Regular",
     fontSize:18,
   },
   category: {
