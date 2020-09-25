@@ -54,14 +54,14 @@ const styles = StyleSheet.create({
     color: "#C0C0C0",
     padding: 10,
     alignSelf: "flex-start",
-    fontFamily: "Raleway-Bold",
+    fontFamily: "Roboto-Black",
     width:width*.28,
     borderRadius:10,
   },
   text: {
     alignSelf: "flex-start",
     padding: 10,
-    fontFamily: "Raleway-Bold",
+    fontFamily: "Roboto-Regular",
     color:'black',
     flex:1
   },

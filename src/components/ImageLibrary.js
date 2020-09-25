@@ -6,6 +6,7 @@ import {
   useWindowDimensions,
   FlatList,
   TouchableOpacity,
+  Image as RNImage
 } from "react-native";
 // import ImageModal from "react-native-image-modal";
 import { Image } from "react-native-expo-image-cache";
@@ -20,7 +21,7 @@ import {
 } from "../components/useBookmark";
 import { Snackbar } from "react-native-paper";
 
-const SearchDetailScreen = ({ page, id }) => {
+const ImageLibrary = ({ page, id }) => {
   const width = useWindowDimensions().width;
 
   const [viewing, setViewing] = useState([]);
@@ -99,7 +100,7 @@ const SearchDetailScreen = ({ page, id }) => {
     });
   }, [bookmarked, page]);
 
-  const [hidePressed, setHidePressed] = useState(false)
+  const [hidePressed, setHidePressed] = useState(false);
 
   return (
     //Image library
@@ -130,7 +131,7 @@ const SearchDetailScreen = ({ page, id }) => {
         keyExtractor={(item) => item.title}
         ListHeaderComponent={() => (
           <View style={{ backgroundColor: "white", paddingHorizontal: 15 }}>
-            <View style={{flexDirection:'row'}}>
+            <View style={{ flexDirection: "row" }}>
               <Text
                 style={{
                   fontSize: 20,
@@ -140,35 +141,79 @@ const SearchDetailScreen = ({ page, id }) => {
               >
                 Key Features
               </Text>
-              <TouchableOpacity style={{alignItems:'center', justifyContent:'center', marginHorizontal:20}} onPress={() => setHidePressed(!hidePressed)}>
-                <Text style={{color:'#4f2683'}}>{hidePressed? "Show":"Hide"}</Text>
+              <TouchableOpacity
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginHorizontal: 20,
+                }}
+                onPress={() => setHidePressed(!hidePressed)}
+              >
+                <Text style={{ color: "#4f2683" }}>
+                  {hidePressed ? "Show" : "Hide"}
+                </Text>
               </TouchableOpacity>
             </View>
             {page.key_features && !hidePressed
               ? page.key_features
                   .filter((tip) => tip.pnp === "Pearl")
                   .map((tip) => (
-                    <View style={{ flexDirection: "row", marginVertical:3, alignItems:'center'}} key={tip.text}>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        marginVertical: 3,
+                        alignItems: "center",
+                      }}
+                      key={tip.text}
+                    >
                       <MaterialCommunityIcons
                         name="plus-circle-outline"
                         size={24}
                         color="#2ecc71"
                       />
-                      <Text style={{flex:1, marginLeft:3, fontFamily:'Roboto-Regular', color:'gray', fontSize:16}}>{tip.text}</Text>
+                      <Text
+                        style={{
+                          flex: 1,
+                          marginLeft: 3,
+                          fontFamily: "Roboto-Regular",
+                          color: "gray",
+                          fontSize: 16,
+                        }}
+                      >
+                        {tip.text}
+                      </Text>
                     </View>
                   ))
               : null}
-              {page.key_features && !hidePressed
+            {page.key_features && !hidePressed
               ? page.key_features
                   .filter((tip) => tip.pnp === "Pitfall")
                   .map((tip) => (
-                    <View style={{ flexDirection: "row", justifyContent:'space-between', marginVertical:2, alignItems:'center'}} key={tip.text}>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        marginVertical: 2,
+                        alignItems: "center",
+                      }}
+                      key={tip.text}
+                    >
                       <MaterialCommunityIcons
                         name="minus-circle-outline"
                         size={24}
                         color="#e74c3c"
                       />
-                      <Text style={{flex:1, marginLeft:3, fontFamily:'Roboto-Regular', color:'gray', fontSize:16}}>{tip.text}</Text>
+                      <Text
+                        style={{
+                          flex: 1,
+                          marginLeft: 3,
+                          fontFamily: "Roboto-Regular",
+                          color: "gray",
+                          fontSize: 16,
+                        }}
+                      >
+                        {tip.text}
+                      </Text>
                     </View>
                   ))
               : null}
@@ -206,21 +251,66 @@ const SearchDetailScreen = ({ page, id }) => {
             <Text style={styles.body}>Contributed by {item.contributor}</Text>
           </View>
         )}
-        ListFooterComponent={() =>
-          page.references ? (
-            <View style={{ marginTop: 10 }}>
-              <Text style={styles.header}>References</Text>
-              {page.references.map((ref, index) => (
-                <View style={{ marginHorizontal: 15 }} key={ref.text}>
-                  <Text>
-                    {index + 1}. {ref.text}
-                  </Text>
-                </View>
-              ))}
-            </View>
-          ) : null
-        }
+        ListFooterComponent={() => (
+          <View>
+            {page.references && (
+              <View style={{ marginTop: 10 }}>
+                <Text style={styles.header}>References</Text>
+                {page.references.map((ref) => (
+                  <TouchableOpacity
+                    style={{
+                      marginHorizontal: 15,
+                      flexDirection: "row",
+                      borderBottomWidth: 0.5,
+                      borderColor: "gray",
+                      paddingBottom: 5,
+                    }}
+                    key={ref.text}
+                    onPress={async () => {
+                      const supported = await Linking.canOpenURL(ref.pubmed);
+                      if (supported) {
+                        await Linking.openURL(ref.pubmed);
+                      } else {
+                        Alert.alert("No link exists.");
+                      }
+                    }}
+                  >
+                    <RNImage
+                      source={require("../../assets/ncbi.png")}
+                      style={{ height: 40, width: 30, marginRight: 10 }}
+                    />
+                    <Text
+                      style={{
+                        fontFamily: "Raleway-Regular",
+                        fontSize: 14,
+                        flex: 1,
+                      }}
+                    >
+                      {ref.text}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            )}
+            {page.associated_pages && (
+              <View style={{ marginBottom: 10 }}>
+                <Text style={styles.header}>Associated Pages</Text>
+                {page.associated_pages.map((page) => (
+                  <TouchableOpacity
+                    key={page.id}
+                    onPress={() =>
+                      navigation.push("SearchDetail", { id: page.id })
+                    }
+                  >
+                    <Text style={styles.touchable}>{page.title}</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+            )}
+          </View>
+        )}
       />
+
       <Snackbar
         visible={snackVisible}
         onDismiss={() => setSnackVisible(false)}
@@ -249,6 +339,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontFamily: "Raleway-Light",
   },
+  touchable: {
+    color: "#2b59a2",
+    fontSize: 18,
+    marginHorizontal: 15,
+    marginBottom: 10,
+  },
 });
 
-export default SearchDetailScreen;
+export default ImageLibrary;
