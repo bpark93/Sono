@@ -347,7 +347,8 @@ const SettingsAboutScreen = () => {
             />
           </TouchableOpacity>
         </View>
-        <Text>Icons made by Freepik from www.flaticon.com</Text>
+        <Text>Icons made by Freepik, Vectors Market and SmashIcons from www.flaticon.com</Text>
+        <Text></Text>
       </View>
     </ScrollView>
   );

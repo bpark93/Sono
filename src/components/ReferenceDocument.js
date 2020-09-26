@@ -7,7 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Image as RNImage,
-  Linking
+  Linking,
 } from "react-native";
 import { TextInput, HelperText, Snackbar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
@@ -386,14 +386,14 @@ const Calculator = ({ settings }) => {
 
   const validateAnswer = (variable) => {
     return variable.count === "0"
-      ? var1 && var2
+      ? isFinite(formula1) && var1
         ? formula1 < variable.lowerLimit
           ? "low"
           : formula1 > variable.upperLimit
           ? "high"
           : "good"
         : "blank"
-      : var1 && var2 && var3
+      : isFinite(formula2) && var1
       ? formula2 < variable.lowerLimit
         ? "low"
         : formula2 > variable.upperLimit
@@ -429,6 +429,12 @@ const Calculator = ({ settings }) => {
         (var1 * multiplier1) / 3 +
         (var2 * multiplier2 * 2) / 3
       ).toFixed(2);
+      break;
+    case "mva_pht":
+      formula1 = (220 / var1).toFixed(2);
+      break;
+    case "mva_decel":
+      formula1 = (750 / var1).toFixed(2);
       break;
     default:
       break;
@@ -523,10 +529,12 @@ const Calculator = ({ settings }) => {
                   fontWeight: "bold",
                 }}
               >
-                {var1 && var2
-                  ? variable.count === "0"
+                {variable.count === "0"
+                  ? isFinite(formula1) && var1
                     ? formula1
-                    : variable.count === "1" && var3
+                    : ""
+                  : variable.count === "1"
+                  ? isFinite(formula2) && var1
                     ? formula2
                     : ""
                   : ""}

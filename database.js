@@ -535,15 +535,15 @@ const database = [
 
 const categoryDatabase = 
   {
-    "Aorta": require("./assets/png/044-blood.png"),
     "Cardiac": require("./assets/png2/040-heart.png"),
     "Thoracic":require("./assets/png2/042-lungs.png"),
-    "Abdominal":require("./assets/png/029-intestine.png"),
+    "Abdominal":require("./assets/png/038-abs.png"),
     "Renal":require("./assets/png2/032-kidney.png"),
     "Procedural": require("./assets/png/injection.png"),
-    "Pelvic": require("./assets/png/050-fetus.png"),
-    "Nervous System": require("./assets/png/016-brain.png"),
-    "Musculoskeletal": require("./assets/png/039-elbow.png"),
+    "Pelvic": require("./assets/png2/029-pelvic-area.png"),
+    "Head and Neck": require("./assets/png/043-thyroid.png"),
+    "Soft Tissue": require("./assets/png2/010-ankle.png"),
+    "Trauma": require("./assets/png/injury.png"),
   }
 
 
