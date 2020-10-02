@@ -108,10 +108,10 @@ const ImageLibrary = ({ page, id }) => {
       <View
         style={{
           backgroundColor: "white",
-          padding: 10,
           flexDirection: "row",
-          justifyContent: "space-around",
+          justifyContent: "center",
           flexWrap: "wrap",
+          paddingVertical:5
         }}
       >
         {page.filter_options &&
@@ -145,7 +145,8 @@ const ImageLibrary = ({ page, id }) => {
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
-                  marginHorizontal: 20,
+                  marginHorizontal: 15,
+                  marginVertical:10
                 }}
                 onPress={() => setHidePressed(!hidePressed)}
               >

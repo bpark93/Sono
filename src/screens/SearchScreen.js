@@ -6,6 +6,7 @@ import {
   Keyboard,
   ScrollView,
   AsyncStorage,
+  Image,
 } from "react-native";
 import { Searchbar, Banner, ActivityIndicator } from "react-native-paper";
 import { FontAwesome } from "@expo/vector-icons";
@@ -18,7 +19,6 @@ import firebase from "../components/firebase";
 import LibraryBookmarks from "../components/LibraryBookmarks";
 
 const SearchScreen = () => {
-  
   const [layout, setLayout] = useState([]);
   useEffect(() => {
     firebase
@@ -36,7 +36,7 @@ const SearchScreen = () => {
 
   const [term, setTerm] = useState("");
   const [searchApi, results, errorMessage] = useResults(layout);
-  
+
   const searchbarRef = useRef(null);
 
   const [bannerVisible, setBannerVisible] = useState(false);
@@ -56,50 +56,67 @@ const SearchScreen = () => {
 
   return layout.length !== 0 ? (
     <View style={styles.container}>
-      <Searchbar
-        ref={searchbarRef}
-        // autoFocus
-        autoCapitalize="none"
-        autoCorrect={false}
-        placeholder="Search"
-        value={term}
-        onChangeText={(text) => {
-          searchApi(text);
-          setTerm(text);
-        }}
-        icon={() =>
-          term ? (
-            <FontAwesome name="arrow-left" style={styles.iconStyle} />
-          ) : (
-            <FontAwesome name="search" style={styles.iconStyle} />
-          )
-        }
-        onIconPress={() => {
-          Keyboard.dismiss();
-          setTerm("");
-          // searchbarRef.current.blur()
-        }}
-        inputStyle={styles.inputStyle}
-        style={styles.barStyle}
-        clearIcon={() => <FontAwesome name="remove" style={styles.iconStyle} />}
-      />
-      {/* <Banner
-        visible={bannerVisible}
-        icon="information"
-        actions={[
-          {
-            label: "Got it",
-            onPress: () => {
-              setBannerVisible(false);
-              dismissForever();
-            },
-          },
-        ]}
-      >
-        <Text>{`Welcome to WesternSono! Try searching or navigating to the following pages: \n\nAorta Image Aquisition\nUS-Guided Peripheral IV\nReduced LV Function`}</Text>
-      </Banner> */}
-      {errorMessage ? <Text>{errorMessage}</Text> : null}
-      <ScrollView>
+      <ScrollView stickyHeaderIndices={[1]}>
+        <View
+          style={{
+            flexDirection: "row",
+            marginLeft: 15,
+            marginBottom: 10,
+            alignItems: "center",
+          }}
+        >
+          <Image
+            source={require("../../assets/sono_logo.png")}
+            style={{ height: 45, width: 45 }}
+          />
+          <Text style={{ fontFamily: "Roboto-Black", fontSize: 40 }}>
+            Library
+          </Text>
+        </View>
+
+        {/* <Text
+          style={{
+            marginLeft: 15,
+            marginVertical: 15,
+            fontSize: 18,
+            fontFamily: "Raleway-Bold",
+          }}
+        >
+          Find images, videos, and tools
+        </Text> */}
+        <View style={{ backgroundColor: "white" }}>
+          <Searchbar
+            ref={searchbarRef}
+            // autoFocus
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder="Search"
+            value={term}
+            onChangeText={(text) => {
+              searchApi(text);
+              setTerm(text);
+            }}
+            icon={() =>
+              term ? (
+                <FontAwesome name="arrow-left" style={styles.iconStyle} />
+              ) : (
+                <FontAwesome name="search" style={styles.iconStyle} />
+              )
+            }
+            onIconPress={() => {
+              Keyboard.dismiss();
+              setTerm("");
+              // searchbarRef.current.blur()
+            }}
+            inputStyle={styles.inputStyle}
+            style={styles.barStyle}
+            clearIcon={() => (
+              <FontAwesome name="remove" style={styles.iconStyle} />
+            )}
+          />
+        </View>
+
+        {errorMessage ? <Text>{errorMessage}</Text> : null}
         {term ? (
           <SearchResultsList results={results} />
         ) : (
@@ -138,13 +155,15 @@ const styles = StyleSheet.create({
   },
   barStyle: {
     marginHorizontal: 20,
+    marginVertical: 5,
     height: 60,
-    borderRadius: 10,
+    borderRadius: 30,
+    backgroundColor: "#F0F0F0",
   },
   container: {
     backgroundColor: "#ffffff",
     flex: 1,
-    paddingTop: Constants.statusBarHeight + 10,
+    paddingTop: Constants.statusBarHeight + 15,
   },
   textStyle: {
     fontSize: 18,

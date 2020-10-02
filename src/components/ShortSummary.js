@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     marginVertical:5
   },
   category: {
-    color: "#C0C0C0",
+    color: "#4f2683",
     padding: 10,
     alignSelf: "flex-start",
     fontFamily: "Roboto-Black",

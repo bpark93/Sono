@@ -14,7 +14,7 @@ import { categoryDatabase } from "../../database";
 const CategoriesList = ({ layout }) => {
   return (
     <ScrollView style={{ flex: 1 }}>
-      <Text style={styles.subheaderStyle}>Find images, videos, and tools</Text>
+      <Text style={styles.subheaderStyle}>Categories</Text>
       {layout ? (
         Object.entries(layout).map((category) => (
           <ListAccordion
@@ -40,7 +40,7 @@ const ListAccordion = ({ name, groups }) => {
       titleStyle={{ fontFamily: expanded ? "Raleway-Bold" : "Raleway-Regular" }}
       key={name}
       title={name}
-      left={() => <Avatar.Image source={categoryDatabase[name]} style={styles.image} size={38}/>}
+      left={() => <Avatar.Image source={categoryDatabase[name]} style={styles.image} size={40}/>}
       onPress={() => setExpanded(!expanded)}
     >
       {Object.entries(groups).map((subcategory) => (
@@ -130,8 +130,9 @@ const styles = StyleSheet.create({
     fontFamily: "Raleway-Bold",
   },
   image: {
-    backgroundColor:'#E0E0E0',
+    backgroundColor:'#F0F0F0',
     marginLeft:10,
+    height:50,width:50, justifyContent:'center', alignItems:'center'
   },
 });
 

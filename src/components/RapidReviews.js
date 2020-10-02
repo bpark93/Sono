@@ -84,6 +84,8 @@ const RapidReviews = ({ page, id }) => {
   const [bookmarked, setBookmarked] = useState(false);
   const [snackVisible, setSnackVisible] = useState(false);
 
+  const [videoShowing, setVideoShowing] = useState(true)
+
   useEffect(() => {
     async function bookmarkChecker() {
       const temp = await getBookmark("lib");
@@ -126,7 +128,7 @@ const RapidReviews = ({ page, id }) => {
   return (
     <View style={{ flex: 1 }}>
       {/* Youtube Video embedded */}
-      {page.video ? (
+      {page.video && videoShowing ? (
         <View
           style={{
             backgroundColor: "black",
@@ -174,6 +176,16 @@ const RapidReviews = ({ page, id }) => {
           },
         ]}
       />
+
+      {/* Hide Video Button */}
+      {/* {activeIndex === 1 && ( */}
+          <View style={{alignItems:'center', justifyContent:'center', marginVertical:5}}>
+            <TouchableOpacity style={{flexDirection:'row', padding:5, borderRadius:15, backgroundColor:'#F0F0F0'}} onPress={() => setVideoShowing(!videoShowing)}>
+              <MaterialCommunityIcons name={videoShowing ? "chevron-up" : "chevron-down"} size={24} color="black" />
+              <Text style={{fontSize:16}}>{videoShowing ? "Hide Video" : "Show Video"}</Text>
+            </TouchableOpacity>
+          </View>
+        {/* )} */}
 
       <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
         {/* Materials */}
@@ -248,15 +260,15 @@ const RapidReviews = ({ page, id }) => {
                     resizeMode="contain"
                     uri={item.image}
                     style={{
-                      width: Width*0.9,
-                      height: Width*.675,
+                      width: Width*0.8,
+                      height: Width*.6,
                       alignSelf:'center',
                       backgroundColor: "#ffffff",
                     }}
                   />
                 ) : null}
                 {item.text ? (
-                  <Text style={styles.body}>{item.text}</Text>
+                  <Text style={styles.textContent}>{item.text}</Text>
                 ) : null}
               </View>
             ))
@@ -368,6 +380,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color:'gray'
   },
+  textContent:{
+    fontSize:16, 
+    fontFamily:'Lora-Regular',
+    color:'gray',
+    marginHorizontal:15,
+    marginVertical:10
+  }
 });
 
 export default RapidReviews;
