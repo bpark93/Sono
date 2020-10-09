@@ -6,6 +6,8 @@ import {
   ScrollView,
   Dimensions,
   TouchableOpacity,
+  Image as RNImage,
+  Linking,
 } from "react-native";
 import { TextInput, HelperText, Snackbar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
@@ -158,8 +160,8 @@ const ReferenceDocument = ({ page, id }) => {
                     <Text style={styles.header}>{section.header}</Text>
                     <HTML
                       html={section.body}
-                      containerStyle={{ flex: 1, margin:10}}
-                      baseFontStyle={{fontFamily:"Roboto-Regular"}}
+                      containerStyle={{ flex: 1, margin: 10 }}
+                      baseFontStyle={{ fontFamily: "Roboto-Regular" }}
                     />
                   </View>
                 ) : (
@@ -238,14 +240,40 @@ const ReferenceDocument = ({ page, id }) => {
           : null}
 
         {/* Authors */}
-        {activeIndex===2 && page.authors ? (
+        {activeIndex === 2 && page.authors ? (
           <View style={styles.card}>
             <Text style={styles.header}>Authors</Text>
-            {page.authors.map(person => (
-              <Text key={person} style={{fontFamily:'Roboto-Regular', marginHorizontal:20, marginVertical:5, fontSize:16, color:'gray'}}>{person}</Text>
+            {page.authors.map((person) => (
+              <Text
+                key={person}
+                style={{
+                  fontFamily: "Roboto-Regular",
+                  marginHorizontal: 20,
+                  marginVertical: 5,
+                  fontSize: 16,
+                  color: "gray",
+                }}
+              >
+                {person}
+              </Text>
             ))}
           </View>
-        ):null}
+        ) : null}
+
+        {/* Associated Pages */}
+        {activeIndex === 2 && page.associated_pages ? (
+          <View style={styles.card}>
+            <Text style={styles.header}>Associated Pages</Text>
+            {page.associated_pages.map((page) => (
+              <TouchableOpacity
+                key={page.id}
+                onPress={() => navigation.push("SearchDetail", { id: page.id })}
+              >
+                <Text style={styles.touchable}>{page.title}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        ) : null}
 
         {/* References */}
         {activeIndex === 2 && page.references ? (
@@ -253,17 +281,39 @@ const ReferenceDocument = ({ page, id }) => {
             <Text style={styles.header}>References</Text>
 
             {page.references?.map((ref, index) => (
-              <View
+              <TouchableOpacity
                 style={{
-                  ...styles.paragraph,
+                  marginHorizontal: 15,
+                  marginTop: 20,
                   flexDirection: "row",
-                  marginHorizontal: 20,
+                  borderBottomWidth: 0.5,
+                  borderColor: "gray",
+                  paddingBottom: 5,
                 }}
                 key={ref.text}
+                onPress={async () => {
+                  const supported = await Linking.canOpenURL(ref.pubmed);
+                  if (supported) {
+                    await Linking.openURL(ref.pubmed);
+                  } else {
+                    Alert.alert("No link exists.");
+                  }
+                }}
               >
-                <Text>{index + 1}. </Text>
-                <Text>{ref.text}</Text>
-              </View>
+                <RNImage
+                  source={require("../../assets/ncbi.png")}
+                  style={{ height: 40, width: 30, marginRight: 10 }}
+                />
+                <Text
+                  style={{
+                    fontFamily: "Raleway-Regular",
+                    fontSize: 14,
+                    flex: 1,
+                  }}
+                >
+                  {ref.text}
+                </Text>
+              </TouchableOpacity>
             ))}
           </View>
         ) : null}
@@ -336,14 +386,14 @@ const Calculator = ({ settings }) => {
 
   const validateAnswer = (variable) => {
     return variable.count === "0"
-      ? var1 && var2
+      ? isFinite(formula1) && var1
         ? formula1 < variable.lowerLimit
           ? "low"
           : formula1 > variable.upperLimit
           ? "high"
           : "good"
         : "blank"
-      : var1 && var2 && var3
+      : isFinite(formula2) && var1
       ? formula2 < variable.lowerLimit
         ? "low"
         : formula2 > variable.upperLimit
@@ -379,6 +429,12 @@ const Calculator = ({ settings }) => {
         (var1 * multiplier1) / 3 +
         (var2 * multiplier2 * 2) / 3
       ).toFixed(2);
+      break;
+    case "mva_pht":
+      formula1 = (220 / var1).toFixed(2);
+      break;
+    case "mva_decel":
+      formula1 = (750 / var1).toFixed(2);
       break;
     default:
       break;
@@ -473,10 +529,12 @@ const Calculator = ({ settings }) => {
                   fontWeight: "bold",
                 }}
               >
-                {var1 && var2
-                  ? variable.count === "0"
+                {variable.count === "0"
+                  ? isFinite(formula1) && var1
                     ? formula1
-                    : variable.count === "1" && var3
+                    : ""
+                  : variable.count === "1"
+                  ? isFinite(formula2) && var1
                     ? formula2
                     : ""
                   : ""}
@@ -591,6 +649,12 @@ const styles = StyleSheet.create({
       height: 10,
     },
     shadowOpacity: 0.1,
+  },
+  touchable: {
+    color: "#2b59a2",
+    fontSize: 18,
+    marginHorizontal: 15,
+    marginBottom: 10,
   },
 });
 

@@ -7,7 +7,8 @@ import {
   TouchableWithoutFeedback,
   Dimensions,
   ScrollView,
-  Platform,
+  Linking,
+  Image as RNImage, Alert
 } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 import ShortSummary from "../components/ShortSummary";
@@ -75,11 +76,6 @@ const RapidReviews = ({ page, id }) => {
     }
   };
 
-  const handleOnPress = (id) => {
-    const response = database.filter((item) => item.id === id);
-    const pushAction = StackActions.push("SearchDetail", { id: response[0] });
-    navigation.dispatch(pushAction);
-  };
 
   // Buttons
   const [activeIndex, setActiveIndex] = useState(0);
@@ -87,6 +83,8 @@ const RapidReviews = ({ page, id }) => {
   // Bookmarks
   const [bookmarked, setBookmarked] = useState(false);
   const [snackVisible, setSnackVisible] = useState(false);
+
+  const [videoShowing, setVideoShowing] = useState(true)
 
   useEffect(() => {
     async function bookmarkChecker() {
@@ -130,7 +128,7 @@ const RapidReviews = ({ page, id }) => {
   return (
     <View style={{ flex: 1 }}>
       {/* Youtube Video embedded */}
-      {page.video ? (
+      {page.video && videoShowing ? (
         <View
           style={{
             backgroundColor: "black",
@@ -179,6 +177,16 @@ const RapidReviews = ({ page, id }) => {
         ]}
       />
 
+      {/* Hide Video Button */}
+      {/* {activeIndex === 1 && ( */}
+          <View style={{alignItems:'center', justifyContent:'center', marginVertical:5}}>
+            <TouchableOpacity style={{flexDirection:'row', padding:5, borderRadius:15, backgroundColor:'#F0F0F0'}} onPress={() => setVideoShowing(!videoShowing)}>
+              <MaterialCommunityIcons name={videoShowing ? "chevron-up" : "chevron-down"} size={24} color="black" />
+              <Text style={{fontSize:16}}>{videoShowing ? "Hide Video" : "Show Video"}</Text>
+            </TouchableOpacity>
+          </View>
+        {/* )} */}
+
       <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
         {/* Materials */}
         {activeIndex === 2 ? (
@@ -206,6 +214,7 @@ const RapidReviews = ({ page, id }) => {
                 flex: 1,
                 alignItems: "center",
                 justifyContent: "center",
+                marginVertical:30
               }}
             >
               <Text style={{ fontSize: 20 }}>
@@ -218,8 +227,24 @@ const RapidReviews = ({ page, id }) => {
         {/* Table */}
         {activeIndex === 0 && page.orientation ? (
           <View>
-            <Text style={styles.header}>Quick Summary</Text>
             <ShortSummary data={page.orientation} />
+          </View>
+        ) : null}
+
+        {/* Associated Pages */}
+        {activeIndex === 0 && page.associated_pages ? (
+          <View style={{marginBottom:10}}>
+            <Text style={styles.header}>
+              Associated Pages
+            </Text>
+            {page.associated_pages.map((page) => (
+              <TouchableOpacity
+                key={page.id}
+                onPress={() => navigation.push("SearchDetail", {id:page.id})}
+              >
+                <Text style={styles.touchable}>{page.title}</Text>
+              </TouchableOpacity>
+            ))}
           </View>
         ) : null}
 
@@ -235,46 +260,38 @@ const RapidReviews = ({ page, id }) => {
                     resizeMode="contain"
                     uri={item.image}
                     style={{
-                      width: Width*0.9,
-                      height: Width*.675,
+                      width: Width*0.8,
+                      height: Width*.6,
                       alignSelf:'center',
                       backgroundColor: "#ffffff",
                     }}
                   />
                 ) : null}
                 {item.text ? (
-                  <Text style={styles.body}>{item.text}</Text>
+                  <Text style={styles.textContent}>{item.text}</Text>
                 ) : null}
               </View>
             ))
           : null}
 
-        {/* Associated Pages */}
-        {activeIndex === 1 && page.associated_pages ? (
-          <View style={{ marginLeft: 15, marginTop: 15 }}>
-            <Text style={{ fontWeight: "bold", marginBottom: 5 }}>
-              Associated Pages
-            </Text>
-            {page.associated_pages.map((index) => (
-              <TouchableOpacity
-                key={index.id}
-                onPress={() => handleOnPress(index.id)}
-              >
-                <Text style={styles.touchable}>{index.title}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        ) : null}
-
         {/* References */}
         {activeIndex === 3 && page.references
-          ? page.references.map((ref) => (
-              <View
-                style={{ marginHorizontal: 15, marginTop: 15 }}
+          ? page.references.map((ref, index) => (
+              <TouchableOpacity
+                style={{ marginHorizontal: 15, marginTop: 20, flexDirection:'row', borderBottomWidth:0.5, borderColor:'gray', paddingBottom:5}}
                 key={ref.text}
+                onPress={async () => {
+                  const supported = await Linking.canOpenURL(ref.pubmed)
+                  if (supported){
+                    await Linking.openURL(ref.pubmed)
+                  } else {
+                    Alert.alert("No link exists.")
+                  }
+                }}
               >
-                <Text>{ref.text}</Text>
-              </View>
+                <RNImage source={require('../../assets/ncbi.png')} style={{height:40, width:30, marginRight:10}}/>
+                <Text style={{fontFamily:'Raleway-Regular', fontSize:14, flex:1}}>{ref.text}</Text>
+              </TouchableOpacity>
             ))
           : null}
       </ScrollView>
@@ -345,10 +362,12 @@ const MaterialsItem = ({ material, optional }) => {
 const styles = StyleSheet.create({
   touchable: {
     color: "#2b59a2",
-    fontSize: 14,
+    fontSize: 18,
+    marginHorizontal:15,
+    marginBottom:10
   },
   header: {
-    fontSize: 24,
+    fontSize: 20,
     marginHorizontal: 15,
     marginTop: 15,
     marginBottom: 15,
@@ -361,6 +380,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color:'gray'
   },
+  textContent:{
+    fontSize:16, 
+    fontFamily:'Lora-Regular',
+    color:'gray',
+    marginHorizontal:15,
+    marginVertical:10
+  }
 });
 
 export default RapidReviews;

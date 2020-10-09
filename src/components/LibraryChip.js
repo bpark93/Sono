@@ -14,6 +14,8 @@ const LibraryChip = ({name, handleChipPress}) => {
                 setPressed(!pressed)
                 handleChipPress(name)
             }}
+            style={{marginVertical:2.5, marginHorizontal:2.5}}
+            textStyle={{fontFamily: pressed? 'Raleway-Bold' :'Raleway-Regular',  }}
         >
             {name}
         </Chip>
