@@ -599,6 +599,28 @@ const learnDatabase = [
         id: "2.1",
         captionText:
           "An introduction to the physics involved in ultrasound imaging, some knobology and how to perform an ultrasound exam. The majority of this material will be review from the Fundamentals Module, feel free to skip if you feel you have a solid understanding of the basics! By Dany Burke MD FRCPC Critical Care Western PGY7",
+        quiz:[
+          {
+            question: 'What is 1 + 1?',
+            correct: '2',
+            answers:[
+              '1',
+              '2',
+              '3',
+              '4'
+            ]
+          },
+          {
+            question: 'Hello?',
+            correct: 'hello',
+            answers:[
+              'hi',
+              'hello',
+              'hey',
+              'bye'
+            ]
+          }
+        ]  
       },
       {
         title: "Artefacts",

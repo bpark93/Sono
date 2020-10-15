@@ -276,10 +276,12 @@ const ImageLibrary = ({ page, id }) => {
                       }
                     }}
                   >
-                    <RNImage
-                      source={require("../../assets/ncbi.png")}
-                      style={{ height: 40, width: 30, marginRight: 10 }}
-                    />
+                    {ref.pubmed && (
+                      <RNImage
+                        source={require("../../assets/ncbi.png")}
+                        style={{ height: 40, width: 30, marginRight: 10 }}
+                      />
+                    )}
                     <Text
                       style={{
                         fontFamily: "Raleway-Regular",
