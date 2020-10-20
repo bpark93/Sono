@@ -6,7 +6,8 @@ import {
   Dimensions,
   FlatList,
   TouchableOpacity,
-  Image as RNImage
+  Image as RNImage,
+  Linking
 } from "react-native";
 // import ImageModal from "react-native-image-modal";
 import { Image } from "react-native-expo-image-cache";
@@ -130,9 +131,9 @@ const ImageLibrary = ({ page, id }) => {
         maxToRenderPerBatch={5}
         windowSize={5}
         data={images}
-        keyExtractor={(item) => item.title}
+        keyExtractor={(item) => item.url}
         ListHeaderComponent={() => (
-          <View style={{ backgroundColor: "white", paddingHorizontal: 15, height:height*0.2, overflow:'hidden'}}>
+          <View style={{ backgroundColor: "white", paddingHorizontal: 15}}>
             <View style={{ flexDirection: "row" }}>
               <Text
                 style={{
@@ -256,7 +257,7 @@ const ImageLibrary = ({ page, id }) => {
         )}
         ListFooterComponent={() => (
           <View>
-            {page.references && (
+            {page.references ? (
               <View style={{ marginTop: 10 }}>
                 <Text style={styles.header}>References</Text>
                 {page.references.map((ref) => (
@@ -266,7 +267,7 @@ const ImageLibrary = ({ page, id }) => {
                       flexDirection: "row",
                       borderBottomWidth: 0.5,
                       borderColor: "gray",
-                      paddingBottom: 5,
+                      padding: 8,
                     }}
                     key={ref.text}
                     onPress={async () => {
@@ -278,15 +279,18 @@ const ImageLibrary = ({ page, id }) => {
                       }
                     }}
                   >
-                    {ref.pubmed && (
+                    {ref.pubmed ? (
                       <RNImage
                         source={require("../../assets/ncbi.png")}
                         style={{ height: 40, width: 30, marginRight: 10 }}
                       />
+                    ):(
+                      <View style={{width:30, height:40, marginRight:10}}>
+                        <MaterialCommunityIcons name="link" size={32} color="black" />
+                      </View>
                     )}
                     <Text
                       style={{
-                        fontFamily: "Raleway-Regular",
                         fontSize: 14,
                         flex: 1,
                       }}
@@ -296,8 +300,8 @@ const ImageLibrary = ({ page, id }) => {
                   </TouchableOpacity>
                 ))}
               </View>
-            )}
-            {page.associated_pages && (
+            ):null}
+            {page.associated_pages ? (
               <View style={{ marginBottom: 10 }}>
                 <Text style={styles.header}>Associated Pages</Text>
                 {page.associated_pages.map((page) => (
@@ -311,7 +315,7 @@ const ImageLibrary = ({ page, id }) => {
                   </TouchableOpacity>
                 ))}
               </View>
-            )}
+            ):null}
           </View>
         )}
       />

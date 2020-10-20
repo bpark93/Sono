@@ -1,34 +1,34 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { List } from "react-native-paper";
-import { FontAwesome } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const SettingsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>     
       <List.Item
         title="About"
-        left={() => <FontAwesome name="info-circle" style={styles.iconStyle} />}
+        left={() => <MaterialCommunityIcons name="information" style={styles.iconStyle} />}
         style={styles.listItemStyle}
         onPress={() => navigation.navigate("about")}
       />
       <List.Item
         title="Credits"
-        left={() => <FontAwesome name="hand-peace-o" style={styles.iconStyle} />}
+        left={() => <MaterialCommunityIcons name="account-group" style={styles.iconStyle} />}
         style={styles.listItemStyle}
         onPress={() => navigation.navigate("credits")}
       />
       <List.Item
         title="Help"
         left={() => (
-          <FontAwesome name="question-circle" style={styles.iconStyle} />
+          <MaterialCommunityIcons name="help" style={styles.iconStyle} />
         )}
         style={styles.listItemStyle}
         onPress={() => navigation.navigate("help")}
       />
       <List.Item
         title="Settings"
-        left={() => <FontAwesome name="gear" style={styles.iconStyle} />}
+        left={() => <MaterialCommunityIcons name="settings-outline" style={styles.iconStyle} />}
         style={styles.listItemStyle}
         onPress={() => navigation.navigate("auth")}
       />

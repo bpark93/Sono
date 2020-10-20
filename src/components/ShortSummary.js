@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignSelf: "flex-start",
     fontFamily: "Roboto-Black",
-    width:width*.28,
+    width:width*.3,
     borderRadius:10,
   },
   text: {

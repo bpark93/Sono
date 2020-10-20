@@ -278,7 +278,7 @@ const RapidReviews = ({ page, id }) => {
         {activeIndex === 3 && page.references
           ? page.references.map((ref, index) => (
               <TouchableOpacity
-                style={{ marginHorizontal: 15, marginTop: 20, flexDirection:'row', borderBottomWidth:0.5, borderColor:'gray', paddingBottom:5}}
+                style={{ marginHorizontal: 15, marginTop: 20, flexDirection:'row', borderBottomWidth:0.5, borderColor:'gray', padding:8}}
                 key={ref.text}
                 onPress={async () => {
                   const supported = await Linking.canOpenURL(ref.pubmed)
@@ -289,8 +289,14 @@ const RapidReviews = ({ page, id }) => {
                   }
                 }}
               >
-                <RNImage source={require('../../assets/ncbi.png')} style={{height:40, width:30, marginRight:10}}/>
-                <Text style={{fontFamily:'Raleway-Regular', fontSize:14, flex:1}}>{ref.text}</Text>
+                {ref.pubmed ? (
+                  <RNImage source={require('../../assets/ncbi.png')} style={{height:40, width:30, marginRight:10}}/>
+                ):(
+                  <View style={{width:30, height:40, marginRight:10}}>
+                    <MaterialCommunityIcons name="link" size={32} color="black" />
+                  </View> 
+                )}
+                <Text style={{fontSize:14, flex:1}}>{ref.text}</Text>
               </TouchableOpacity>
             ))
           : null}
