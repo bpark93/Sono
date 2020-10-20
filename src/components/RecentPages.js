@@ -170,8 +170,9 @@ const styles = StyleSheet.create({
   },
   subheaderStyle: {
     marginVertical: 15,
-    fontSize: 18,
-    fontFamily: "Raleway-Bold",
+    fontSize: 20,
+    // fontFamily: "Raleway-Bold",
+    fontWeight:'bold'
   },
   category: {
     fontSize: 14,

@@ -5,12 +5,18 @@ import { FontAwesome } from "@expo/vector-icons";
 
 const SettingsScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container}>     
       <List.Item
-        title="Sign In"
-        left={() => <FontAwesome name="user-o" style={styles.iconStyle} />}
+        title="About"
+        left={() => <FontAwesome name="info-circle" style={styles.iconStyle} />}
         style={styles.listItemStyle}
-        onPress={() => navigation.navigate("auth")}
+        onPress={() => navigation.navigate("about")}
+      />
+      <List.Item
+        title="Credits"
+        left={() => <FontAwesome name="hand-peace-o" style={styles.iconStyle} />}
+        style={styles.listItemStyle}
+        onPress={() => navigation.navigate("credits")}
       />
       <List.Item
         title="Help"
@@ -21,10 +27,10 @@ const SettingsScreen = ({ navigation }) => {
         onPress={() => navigation.navigate("help")}
       />
       <List.Item
-        title="About Application"
-        left={() => <FontAwesome name="info-circle" style={styles.iconStyle} />}
+        title="Settings"
+        left={() => <FontAwesome name="gear" style={styles.iconStyle} />}
         style={styles.listItemStyle}
-        onPress={() => navigation.navigate("about")}
+        onPress={() => navigation.navigate("auth")}
       />
     </View>
   );
@@ -46,6 +52,8 @@ const styles = StyleSheet.create({
   listItemStyle: {
     marginHorizontal: 10,
     marginTop: 10,
+    borderBottomWidth:0.5,
+    borderColor:'#E0E0E0'
   },
 });
 

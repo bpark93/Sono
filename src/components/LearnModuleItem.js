@@ -48,7 +48,8 @@ const LearnModuleItem = ({ page, index, category }) => {
           </Text>
           <Text
             style={{
-              fontFamily: pressed? "Raleway-Bold":"Raleway-Regular",
+              // fontFamily: pressed? "Raleway-Bold":"Raleway-Regular",
+              fontWeight: pressed? "bold":"normal",
               fontSize: 16,
               width: width - 100,
             }}
@@ -141,6 +142,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderBottomWidth: 0.5,
+    borderColor:'#E0E0E0'
   },
   quiz: {
     height: 50,
@@ -165,7 +167,6 @@ const styles = StyleSheet.create({
     color: "white",
   },
   shortText: {
-    fontFamily: "Raleway-Regular",
     color: "gray",
     marginHorizontal: 15,
   },

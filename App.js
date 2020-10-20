@@ -16,6 +16,7 @@ import {LearnScreen,
   SettingsAuthScreen,
   SettingsHelpScreen,
   SettingsAboutScreen,
+  SettingsCreditsScreen,
   LearnTestScreen,
   LearnTextScreen,
 } from './screenIndex'
@@ -168,11 +169,11 @@ function App() {
           }}
         />
         <Main.Screen 
-          name="Settings" 
+          name="More" 
           component={SettingsNav} 
           options={{
             tabBarIcon: ({color}) => (
-              <MaterialCommunityIcons name="settings" color={color} size={23} />
+              <MaterialCommunityIcons name="dots-horizontal" color={color} size={23} />
             ),
           }}
         />
@@ -322,12 +323,12 @@ function SettingsNav() {
       <Settings.Screen 
         name="SettingsMain" 
         component={SettingsScreen}
-        options={{title: 'Settings'}}
+        options={{title: 'More'}}
       />
       <Settings.Screen 
         name="auth" 
         component={SettingsAuthScreen}
-        options={{title: "Sign In / Sign Up"}}
+        options={{title: "Settings"}}
       />
       <Settings.Screen 
         name="help" 
@@ -340,6 +341,11 @@ function SettingsNav() {
         name="about" 
         component={SettingsAboutScreen}
         options={{title: "About Application"}}
+      />
+      <Settings.Screen 
+        name="credits" 
+        component={SettingsCreditsScreen}
+        options={{title: "Meet our Team"}}
       />
     </Settings.Navigator>
   );

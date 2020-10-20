@@ -10,6 +10,7 @@ import SettingsScreen from './src/screens/SettingsScreen'
 import SettingsAuthScreen from './src/screens/SettingsAuthScreen'
 import SettingsHelpScreen from './src/screens/SettingsHelpScreen'
 import SettingsAboutScreen from './src/screens/SettingsAboutScreen'
+import SettingsCreditsScreen from './src/screens/SettingsCreditsScreen'
 import LearnTestScreen from './src/screens/LearnTestScreen'
 import LearnTextScreen from './src/screens/LearnTextScreen'
 
@@ -25,6 +26,7 @@ export {LearnScreen,
     SettingsAuthScreen,
     SettingsHelpScreen,
     SettingsAboutScreen,
+    SettingsCreditsScreen,
     LearnTestScreen,
     LearnTextScreen,
 

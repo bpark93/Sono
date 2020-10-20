@@ -1,10 +1,11 @@
 import React from "react";
-import { View, StyleSheet, Text, ScrollView, Image} from "react-native";
+import { View, StyleSheet, Text, ScrollView, Image } from "react-native";
 import { learnDatabase } from "../../database";
 import LearnItem from "../components/LearnItem";
 import LottieView from "lottie-react-native";
 import Cases from "../components/Cases";
 import Constants from "expo-constants";
+import { FlatList } from "react-native-gesture-handler";
 
 const LearnScreen = () => {
   return (
@@ -19,29 +20,40 @@ const LearnScreen = () => {
         style={styles.logoStyle}
         source={require("../../assets/western-logo.png")}
       /> */}
-      <ScrollView style={{ flex: 1 }}>
-        <View
-          style={{
-            flexDirection: "row",
-            marginLeft: 15,
-            marginBottom: 10,
-            alignItems: "center",
-          }}
-        >
-          <Image
-            source={require("../../assets/sono_logo.png")}
-            style={{ height: 45, width: 45 }}
-          />
-          <Text style={{ fontFamily: "Roboto-Black", fontSize: 40 }}>Sono</Text>
-        </View>
-        <Cases />
-        <Text style={styles.header}>Browse Screencasts</Text>
-        <View style={{ flex: 1 }}>
-          {learnDatabase.map((item) => (
+      {/* <ScrollView style={{ flex: 1 }}> */}
+      <View
+        style={{
+          flexDirection: "row",
+          marginLeft: 15,
+          marginBottom: 10,
+          alignItems: "center",
+        }}
+      >
+        <Image
+          source={require("../../assets/sono_logo.png")}
+          style={{ height: 45, width: 45 }}
+        />
+        <Text style={{ fontFamily: "Roboto-Black", fontSize: 36 }}>Learn</Text>
+      </View>
+      {/* <Cases /> */}
+      <View style={{ flex: 1 }}>
+        {/* {learnDatabase.map((item) => (
             <LearnItem item={item} key={item.id} />
-          ))}
-        </View>
-      </ScrollView>
+          ))} */}
+        <FlatList
+          data={learnDatabase}
+          ListHeaderComponent={() => (
+            <View>
+              <Cases />
+              <Text style={styles.header}>Screencasts</Text>
+            </View>
+          )}
+          renderItem={(item) => <LearnItem item={item.item} />}
+          keyExtractor={(item) => item.id.toString()}
+          numColumns={2}
+        />
+      </View>
+      {/* </ScrollView> */}
     </View>
   );
 };
@@ -60,7 +72,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   header: {
-    fontFamily: "Raleway-Bold",
+    // fontFamily: "Raleway-Bold",
+    fontWeight: "bold",
     fontSize: 22,
     marginHorizontal: 15,
   },

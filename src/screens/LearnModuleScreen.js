@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, StyleSheet, ScrollView, Animated, TouchableOpacity} from 'react-native'
+import {View, StyleSheet, ScrollView, Animated, TouchableOpacity, Text,} from 'react-native'
 import LearnModuleItem from '../components/LearnModuleItem'
 import QuizLink from '../components/QuizLink'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -41,12 +41,14 @@ const LearnModuleScreen = ({route, navigation}) => {
         right:0,
         backgroundColor:'#4f2683',
         height:headerHeight,
-        justifyContent:'flex-end'
+        justifyContent:'flex-end',
+        zIndex:1
       }} >
           <TouchableOpacity style={{flex:1, width:100}} onPress={()=> navigation.navigate("LearnMain")} >
             <MaterialCommunityIcons name="arrow-left" size={24} color="white" style={styles.backIconStyle}/> 
             {/* Not clicking when scrolled up on Android */}
           </TouchableOpacity>
+
           <Animated.Text style={{
             fontFamily:"Raleway-Bold",
             fontSize:textFontSize, 
@@ -56,7 +58,7 @@ const LearnModuleScreen = ({route, navigation}) => {
           }}>{id.title}</Animated.Text>
       </Animated.View>
       <ScrollView 
-        style={{flex:1, marginTop:HEADER_MIN_HEIGHT, paddingTop:HEADER_MAX_HEIGHT-HEADER_MIN_HEIGHT+10}}
+        style={{flex:1, marginTop:HEADER_MIN_HEIGHT, paddingTop:HEADER_MAX_HEIGHT-HEADER_MIN_HEIGHT+10, backgroundColor:'white'}}
         onScroll={Animated.event(
           [{nativeEvent: {contentOffset: {y: scrollY} }}],
           { useNativeDriver: false }
@@ -64,6 +66,9 @@ const LearnModuleScreen = ({route, navigation}) => {
         scrollEventThrottle={16}
       >
         <View style={{flex:1, marginBottom:100, backgroundColor:'white'}}>
+          {id.description ? (
+            <Text style={{paddingHorizontal:15, color:'gray', fontFamily:'Raleway-Regular', borderBottomWidth:0.5, borderBottomColor:'#E0E0E0', paddingBottom:10}}>{id.description}</Text> 
+          ): null}
           {id.pages.map((page, index) => (
           <LearnModuleItem page={page} key={page.title} index={index+1} category={id.title}/>
           ))}

@@ -3,7 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
-  useWindowDimensions,
+  Dimensions,
   FlatList,
   TouchableOpacity,
   Image as RNImage
@@ -21,8 +21,10 @@ import {
 } from "../components/useBookmark";
 import { Snackbar } from "react-native-paper";
 
+const {width, height} = Dimensions.get('window');
+
+
 const ImageLibrary = ({ page, id }) => {
-  const width = useWindowDimensions().width;
 
   const [viewing, setViewing] = useState([]);
   const handleChipPress = (name) => {
@@ -130,12 +132,12 @@ const ImageLibrary = ({ page, id }) => {
         data={images}
         keyExtractor={(item) => item.title}
         ListHeaderComponent={() => (
-          <View style={{ backgroundColor: "white", paddingHorizontal: 15 }}>
+          <View style={{ backgroundColor: "white", paddingHorizontal: 15, height:height*0.2, overflow:'hidden'}}>
             <View style={{ flexDirection: "row" }}>
               <Text
                 style={{
                   fontSize: 20,
-                  fontFamily: "Raleway-Medium",
+                  fontWeight:'bold',
                   marginVertical: 5,
                 }}
               >
@@ -145,7 +147,7 @@ const ImageLibrary = ({ page, id }) => {
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
-                  marginHorizontal: 15,
+                  marginLeft: 15,
                   marginVertical:10
                 }}
                 onPress={() => setHidePressed(!hidePressed)}
@@ -163,7 +165,7 @@ const ImageLibrary = ({ page, id }) => {
                       style={{
                         flexDirection: "row",
                         marginVertical: 3,
-                        alignItems: "center",
+                        // alignItems: "center",
                       }}
                       key={tip.text}
                     >
@@ -176,9 +178,9 @@ const ImageLibrary = ({ page, id }) => {
                         style={{
                           flex: 1,
                           marginLeft: 3,
-                          fontFamily: "Roboto-Regular",
+                          // fontFamily: "Roboto-Regular",
                           color: "gray",
-                          fontSize: 16,
+                          fontSize: 14,
                         }}
                       >
                         {tip.text}
@@ -193,9 +195,9 @@ const ImageLibrary = ({ page, id }) => {
                     <View
                       style={{
                         flexDirection: "row",
-                        justifyContent: "space-between",
+                        // justifyContent: "space-between",
                         marginVertical: 2,
-                        alignItems: "center",
+                        // alignItems: "center",
                       }}
                       key={tip.text}
                     >
@@ -208,9 +210,9 @@ const ImageLibrary = ({ page, id }) => {
                         style={{
                           flex: 1,
                           marginLeft: 3,
-                          fontFamily: "Roboto-Regular",
+                          // fontFamily: "Roboto-Regular",
                           color: "gray",
-                          fontSize: 16,
+                          fontSize: 14,
                         }}
                       >
                         {tip.text}
@@ -221,7 +223,7 @@ const ImageLibrary = ({ page, id }) => {
           </View>
         )}
         renderItem={({ item }) => (
-          <View>
+          <View style={{marginVertical:15}}>
             <Text style={styles.header}>{item.title}</Text>
             {item.format === "Image" ? (
               <Image
@@ -248,8 +250,8 @@ const ImageLibrary = ({ page, id }) => {
                 }}
               />
             )}
-            <Text style={styles.body}>{item.caption}</Text>
-            <Text style={styles.body}>Contributed by {item.contributor}</Text>
+            {item.caption ? <Text style={styles.body}>{item.caption}</Text>:null}
+            {item.contributor ? <Text style={styles.body}>Contributed by {item.contributor}</Text>:null}
           </View>
         )}
         ListFooterComponent={() => (
@@ -335,12 +337,14 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 15,
     marginBottom: 15,
-    fontFamily: "Raleway-Medium",
+    // fontFamily: "Roboto-Black",
+    fontWeight:'bold'
   },
   body: {
     marginHorizontal: 15,
     marginTop: 10,
-    fontFamily: "Raleway-Light",
+    // fontFamily: "Raleway-Light",
+    color:'gray'
   },
   touchable: {
     color: "#2b59a2",

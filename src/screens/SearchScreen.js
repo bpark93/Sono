@@ -69,7 +69,7 @@ const SearchScreen = () => {
             source={require("../../assets/sono_logo.png")}
             style={{ height: 45, width: 45 }}
           />
-          <Text style={{ fontFamily: "Roboto-Black", fontSize: 40 }}>
+          <Text style={{ fontFamily: "Roboto-Black", fontSize: 36 }}>
             Library
           </Text>
         </View>

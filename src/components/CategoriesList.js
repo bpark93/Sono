@@ -126,8 +126,9 @@ const styles = StyleSheet.create({
   subheaderStyle: {
     marginLeft: 15,
     marginVertical: 15,
-    fontSize: 18,
-    fontFamily: "Raleway-Bold",
+    fontSize: 20,
+    // fontFamily: "Raleway-Bold",
+    fontWeight:'bold'
   },
   image: {
     backgroundColor:'#F0F0F0',

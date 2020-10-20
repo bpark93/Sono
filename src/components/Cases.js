@@ -50,7 +50,7 @@ const Cases = () => {
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: "row" }}>
-        <Text style={styles.header}>Cases of the Week</Text>
+        <Text style={styles.header}>Cases</Text>
         {!loading && (
           <TouchableOpacity
             onPress={() =>
@@ -110,7 +110,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    fontFamily: "Raleway-Bold",
+    // fontFamily: "Raleway-Bold",
+    fontWeight:'bold',
     fontSize: 22,
     marginHorizontal: 15,
   },
