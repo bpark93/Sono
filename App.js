@@ -190,9 +190,6 @@ function LearnNav() {
           shadowColor:'transparent',
           elevation:0
         },
-        headerTitleStyle:{
-          fontFamily:'Raleway-Medium'
-        }
       }}
     >
       <Learn.Screen 
@@ -234,7 +231,7 @@ function LearnNav() {
       <Learn.Screen 
         name="CasesDetail" 
         component={CasesDetailScreen}
-        options={({route}) => ({title: route.params.id.title.rendered})}
+        options={({route}) => ({title: route.params.id.title})}
       />
       <Learn.Screen 
         name="CasesList" 

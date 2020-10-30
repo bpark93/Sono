@@ -48,8 +48,8 @@ const BookmarkScreen = () => {
             alignItems: "center",
           }}
         >
-          <Text style={{ fontSize: 16, fontFamily: "Raleway-Regular" }}>
-            Viewing:{" "}
+          <Text style={{ fontSize: 16,fontWeight:'bold' }}>
+            List:{" "}
           </Text>
           <Menu
             visible={viewingPressed}
@@ -63,7 +63,6 @@ const BookmarkScreen = () => {
                   style={{
                     color: "#4f2683",
                     fontSize: 16,
-                    fontFamily: "Raleway-Bold",
                     marginRight: 5,
                   }}
                 >
@@ -103,7 +102,7 @@ const BookmarkScreen = () => {
             alignItems: "center",
           }}
         >
-          <Text style={{ fontSize: 16, fontFamily: "Raleway-Regular" }}>
+          <Text style={{ fontSize: 16, fontWeight:'bold' }}>
             Sort By:{" "}
           </Text>
 
@@ -119,7 +118,6 @@ const BookmarkScreen = () => {
                   style={{
                     color: "#4f2683",
                     fontSize: 16,
-                    fontFamily: "Raleway-Bold",
                     marginRight: 5,
                   }}
                 >

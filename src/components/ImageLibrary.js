@@ -149,13 +149,15 @@ const ImageLibrary = ({ page, id }) => {
                   alignItems: "center",
                   justifyContent: "center",
                   marginLeft: 15,
-                  marginVertical:10
+                  paddingVertical:10,
+                  flexDirection:'row'
                 }}
                 onPress={() => setHidePressed(!hidePressed)}
               >
-                <Text style={{ color: "#4f2683" }}>
+                <Text style={{ color: "#4f2683", fontWeight:'bold' }}>
                   {hidePressed ? "Show" : "Hide"}
                 </Text>
+                <MaterialCommunityIcons name={hidePressed?"chevron-down":"chevron-up"} size={16} color="#4f2683" />
               </TouchableOpacity>
             </View>
             {page.key_features && !hidePressed

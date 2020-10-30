@@ -6,10 +6,23 @@ import { Image } from "react-native-expo-image-cache";
 const Width = Dimensions.get("window").width;
 
 const CasesCard = ({ item }) => {
+
+  const categoryChecker = (category) => {
+    switch (category){
+      case "Emergency Medicine":
+        return "red"
+      case "Critical Care":
+        return "blue"
+      case "Pediatric EM":
+        return "orange"
+      default:
+        break;
+    }
+  }
+
   return (
     <View style={styles.container}>
-      {item._embedded["wp:featuredmedia"][0].media_details.sizes
-        .course_thumbnail ? (
+      {item.image ? (
         <Image
           resizeMode="cover"
           style={{
@@ -17,10 +30,7 @@ const CasesCard = ({ item }) => {
             width: Width * 0.75,
             alignSelf: "center",
           }}
-          uri={
-            item._embedded["wp:featuredmedia"][0].media_details.sizes
-              .course_thumbnail.source_url
-          }
+          uri={item.image}
         />
       ) : null}
       <View
@@ -33,12 +43,13 @@ const CasesCard = ({ item }) => {
         }}
       >
         <FontAwesome5 name="user-md" style={styles.iconStyle} />
-        <Text style={{ fontFamily: "Raleway-Regular", fontSize: 12, color:"gray" }}>
-          By {item._embedded.author[0].name}
+        <Text style={{  fontSize: 12, color:"gray" }}>
+          By {item.author}
         </Text>
       </View>
-      <Text style={styles.title}>{item.title.rendered}</Text>
-      {item.excerpt.rendered ? (
+      <Text style={{marginHorizontal:15, color: categoryChecker(item.category), fontWeight:'bold', textDecorationLine:'underline'}}>{item.category}</Text>
+      <Text style={styles.title}>{item.title}</Text>
+      {item.excerpt ? (
         <Text
           style={{
             marginHorizontal: 15,
@@ -49,7 +60,7 @@ const CasesCard = ({ item }) => {
           numberOfLines={3}
           ellipsizeMode="tail"
         >
-          {item.excerpt.rendered.replace("<p>", "")}
+          {item.excerpt}
         </Text>
       ) : null}
     </View>

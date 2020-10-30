@@ -8,9 +8,9 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import ContentLoader, { Rect, Circle } from "react-content-loader/native";
-import wpServer from "../api/wpServer";
 import CasesCard from "./CasesCard";
 import Carousel from "react-native-snap-carousel";
+import firebase from "../components/firebase";
 
 const Cases = () => {
   const [results, setResults] = useState([]);
@@ -19,30 +19,20 @@ const Cases = () => {
 
   const navigation = useNavigation();
 
-  const getCases = async () => {
-    try {
-      setLoading(true);
-      const url = `/posts?page=1`;
-      const response = await wpServer.get(url, {
-        params: {
-          categories: 195,
-          _fields: "id,title,excerpt,slug,acf,_embedded,_links",
-          _embed: "replies,wp:featuredmedia,author",
-          per_page: 5,
-        },
-      });
-      if (response.data.status === 400) {
-        return;
-      } // No more entries
-      setResults(results.concat(response.data));
-      setLoading(false);
-    } catch (e) {
-      setErrorMessage("Something went wrong! Try again");
-    }
-  };
-
   useEffect(() => {
-    getCases();
+    setLoading(true);
+    firebase
+      .firestore()
+      .collection("cases")
+      .doc("layout")
+      .get()
+      .then(function (doc) {
+        setResults(doc.data().cases);
+        setLoading(false);
+      })
+      .catch(function (error) {
+        console.log("Error getting List", error);
+      });
   }, []);
 
   const { width, height } = Dimensions.get("window");
@@ -54,12 +44,12 @@ const Cases = () => {
         {!loading && (
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate("CasesList", { alreadyLoaded: results })
+              navigation.navigate("CasesList", { list: results })
             }
             activeOpacity={0.8}
             style={styles.next}
           >
-            <Text style={{ fontFamily: "Raleway-Regular", color: "#4f2683" }}>
+            <Text style={{ color: "#4f2683" }}>
               See All Cases
             </Text>
           </TouchableOpacity>
@@ -122,6 +112,7 @@ const styles = StyleSheet.create({
   next: {
     alignItems: "center",
     justifyContent: "center",
+    paddingTop:3,
   },
 });
 

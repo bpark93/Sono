@@ -13,8 +13,8 @@ class SnapCarousel extends Component {
         <Image
           resizeMode="contain"
           imageBackgroundColor="black"
-          uri={item.source_url}
-          style={{ height: (WIDTH - 60) * 0.75, width: WIDTH - 60 }}
+          uri={item.url}
+          style={{ height: (WIDTH - 60) * 0.75, width: WIDTH}}
         />
       </View>
     );
@@ -27,7 +27,7 @@ class SnapCarousel extends Component {
         data={this.props.images}
         renderItem={this._renderItem}
         sliderWidth={WIDTH}
-        itemWidth={WIDTH - 60}
+        itemWidth={WIDTH}
         layout="default"
         removeClippedSubviews
       />
@@ -38,11 +38,10 @@ class SnapCarousel extends Component {
 const styles = StyleSheet.create({
   slide: {
     flex: 1,
-    height: (WIDTH-60)*0.8,
+    height: WIDTH*0.75,
     justifyContent: "center",
     marginVertical: 15,
     backgroundColor: "black",
-    borderRadius: 15,
     overflow:"hidden"
   },
   title: {

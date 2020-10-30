@@ -17,9 +17,7 @@ const SettingsAboutScreen = () => {
       contentContainerStyle={{ alignItems: "center" }}
     >
       <View style={styles.textBox}>
-        <Text
-          style={{ fontFamily: "Raleway-Regular", fontSize: 20,}}
-        >
+        <Text style={{ fontFamily: "Raleway-Regular", fontSize: 20 }}>
           Project Lead and Software Developer
         </Text>
         <View
@@ -37,7 +35,7 @@ const SettingsAboutScreen = () => {
             }}
             style={{ height: 100, width: 100, borderRadius: 20 }}
           />
-          <View style={{ marginLeft: 10, flex:1 }}>
+          <View style={{ marginLeft: 10, flex: 1 }}>
             <Text style={{ fontSize: 16 }}>Brian Park</Text>
             <Text
               style={{
@@ -46,13 +44,14 @@ const SettingsAboutScreen = () => {
                 fontSize: 12,
               }}
             >
-              MD 2023 Candidate, Schulich School of Medicine and Dentistry, Western University
+              MD 2023 Candidate, Schulich School of Medicine and Dentistry,
+              Western University
             </Text>
           </View>
         </View>
 
         <Text style={{ fontFamily: "Raleway-Regular", fontSize: 20 }}>
-          Direction
+          Project Supervisors
         </Text>
         <View
           style={{
@@ -84,6 +83,35 @@ const SettingsAboutScreen = () => {
             </Text>
           </View>
         </View>
+        {/* <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            marginBottom: 20,
+          }}
+        >
+          <Image
+            source={{
+              uri:
+                "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_1000,h_1000/v1603318543/avatars/drew-thompson-2-e1533238732547_fkmbsk.jpg"
+            }}
+            style={{ height: 100, width: 100, borderRadius: 20 }}
+          />
+          <View style={{ marginLeft: 10, flex: 1 }}>
+            <Text style={{ fontSize: 16 }}>Dr. Drew Thompson</Text>
+            <Text
+              style={{
+                fontFamily: "Roboto-Regular",
+                color: "gray",
+                fontSize: 12,
+              }}
+            >
+              MD, FRCPC, Associate Professor of Medicine, Department of
+              Emergency Medicine, Western University
+            </Text>
+          </View>
+        </View> */}
         <View
           style={{
             flexDirection: "row",
@@ -198,7 +226,8 @@ const SettingsAboutScreen = () => {
                 fontSize: 12,
               }}
             >
-              MD 2021 Candidate, Schulich School of Medicine and Dentistry, Western University
+              MD 2021 Candidate, Schulich School of Medicine and Dentistry,
+              Western University
             </Text>
           </View>
         </View>
@@ -347,8 +376,6 @@ const SettingsAboutScreen = () => {
             </Text>
           </View>
         </View>
-
-        
       </View>
     </ScrollView>
   );
@@ -362,7 +389,7 @@ const styles = StyleSheet.create({
   textBox: {
     alignItems: "flex-start",
     marginHorizontal: 20,
-    marginVertical:20
+    marginVertical: 20,
   },
 });
 

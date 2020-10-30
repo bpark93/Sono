@@ -12,50 +12,19 @@ import wpServer from "../api/wpServer";
 import { useNavigation } from "@react-navigation/native";
 
 const CasesListScreen = ({ route }) => {
-  const { alreadyLoaded } = route.params;
+  const { list } = route.params;
   const navigation = useNavigation();
-  const [results, setResults] = useState(alreadyLoaded);
   const [errorMessage, setErrorMessage] = useState("");
   const [page, setPage] = useState(2);
   const [loading, setLoading] = useState(false);
-
-  const getCases = async () => {
-    try {
-      setLoading(true);
-      const url = `/posts?page=${page}`;
-      const response = await wpServer.get(url, {
-        params: {
-          categories: 195,
-          _fields: "id,title,excerpt,slug,acf,_embedded,_links",
-          _embed: "replies,wp:featuredmedia,author",
-          per_page: 5,
-        },
-      });
-      if (response.data.status === 400) {
-        return;
-      } // No more entries
-      setResults(results.concat(response.data));
-      setLoading(false);
-    } catch (e) {
-      setErrorMessage("Something went wrong! Try again");
-    }
-  };
-
-  useEffect(() => {
-    getCases();
-  }, [page]);
-
-  const handleLoadMore = () => {
-    setPage((page) => page + 1);
-  };
 
   const { width, height } = Dimensions.get("window");
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={results}
-        keyExtractor={(item) => item.slug}
+        data={list}
+        keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => navigation.navigate("CasesDetail", { id: item })}
@@ -69,11 +38,7 @@ const CasesListScreen = ({ route }) => {
             }}
           >
             <Avatar.Image
-              source={{
-                uri:
-                  item._embedded["wp:featuredmedia"][0].media_details.sizes
-                    .course_thumbnail.source_url,
-              }}
+              source={{uri:item.image}}
               style={{
                 backgroundColor: "#E0E0E0",
                 marginRight: 15,
@@ -82,12 +47,11 @@ const CasesListScreen = ({ route }) => {
               size={45}
             />
             <View>
-              <Text style={{ fontFamily: "Raleway-Bold", fontSize: 16 }}>
-                {item.title.rendered}
+              <Text style={{ fontSize: 17, fontWeight:'bold' }}>
+                {item.title}
               </Text>
               <Text
                 style={{
-                  fontFamily: "Raleway-Regular",
                   fontSize: 12,
                   color: "gray",
                   flexWrap: "wrap",
@@ -96,10 +60,7 @@ const CasesListScreen = ({ route }) => {
                 numberOfLines={3}
                 ellipsizeMode="tail"
               >
-                {item.excerpt.rendered
-                  .replace("<p>", "")
-                  .replace("</p>", "")
-                  .replace("&#8217;", "'")}
+                {item.excerpt}
               </Text>
             </View>
           </TouchableOpacity>
@@ -122,12 +83,11 @@ const CasesListScreen = ({ route }) => {
           ) : (
             <View style={{ alignItems: "flex-end", marginHorizontal: 15 }}>
               <TouchableOpacity
-                onPress={() => handleLoadMore()}
                 activeOpacity={0.8}
                 style={styles.next}
               >
                 <Text
-                  style={{ fontFamily: "Raleway-Regular", color: "#4f2683" }}
+                  style={{ color: "white", }}
                 >
                   Load More
                 </Text>
@@ -156,10 +116,12 @@ const styles = StyleSheet.create({
   },
   next: {
     height: 50,
-    width: 120,
+    width: 100,
     alignItems: "center",
     justifyContent: "center",
     marginVertical: 10,
+    borderRadius:20,
+    backgroundColor:'#E0E0E0'
   },
 });
 
