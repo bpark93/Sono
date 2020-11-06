@@ -27,7 +27,7 @@ const Cases = () => {
       .doc("layout")
       .get()
       .then(function (doc) {
-        setResults(doc.data().cases);
+        setResults(doc.data().cases.reverse());
         setLoading(false);
       })
       .catch(function (error) {
@@ -49,7 +49,7 @@ const Cases = () => {
             activeOpacity={0.8}
             style={styles.next}
           >
-            <Text style={{ color: "#4f2683" }}>
+            <Text style={{ fontWeight:'bold',backgroundColor:'#E0E0E0', padding:5, borderRadius:10 }}>
               See All Cases
             </Text>
           </TouchableOpacity>
@@ -74,8 +74,7 @@ const Cases = () => {
         </ContentLoader>
       ) : (
         <Carousel
-          autoplay
-          loop
+        // layout="stack"
           data={results}
           renderItem={({ item, index }) => (
             <TouchableOpacity

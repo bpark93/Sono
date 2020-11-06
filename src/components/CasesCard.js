@@ -47,7 +47,7 @@ const CasesCard = ({ item }) => {
           By {item.author}
         </Text>
       </View>
-      <Text style={{marginHorizontal:15, color: categoryChecker(item.category), fontWeight:'bold', textDecorationLine:'underline'}}>{item.category}</Text>
+      <Text style={{marginHorizontal:15, color: categoryChecker(item.category), fontWeight:'bold',}}>{item.category}</Text>
       <Text style={styles.title}>{item.title}</Text>
       {item.excerpt ? (
         <Text

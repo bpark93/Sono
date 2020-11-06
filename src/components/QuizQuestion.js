@@ -15,10 +15,10 @@ const QuizQuestion = ({ question }) => {
         value={selected}
       >
         {question.answers.map((item) => (
-          <View key={item} style={{ alignItems: "center", marginTop: 5 }}>
+          <View key={item.text} style={{ alignItems: "center", marginTop: 5 }}>
             <RadioButton.Item
-              value={item}
-              label={item}
+              value={item.text}
+              label={item.text}
               labelStyle={{ fontSize: 14 }}
             />
             {/* <Text>{item}</Text> */}
@@ -44,18 +44,20 @@ const QuizQuestion = ({ question }) => {
         value={selected}
       >
         {question.answers.map((item) => (
-          <View key={item} style={{ alignItems: "center", marginTop: 5 }}>
+          <View key={item.text} style={{ alignItems: "center", marginTop: 5 }}>
             <RadioButton.Item
-              value={item}
-              label={item}
+              value={item.text}
+              label={item.text}
               labelStyle={{ fontSize: 14 }}
               disabled
               style={{
                 borderWidth:
-                  item === question.correct || item === selected ? 2 : 0,
+                  item.text === question.correct || item.text === selected
+                    ? 2
+                    : 0,
                 borderColor:
-                  item === question.correct || item === selected
-                    ? item === question.correct
+                  item.text === question.correct || item.text === selected
+                    ? item.text === question.correct
                       ? "green"
                       : "red"
                     : null,
@@ -69,8 +71,8 @@ const QuizQuestion = ({ question }) => {
         style={{
           alignSelf: "center",
           color: selected === question.correct ? "green" : "red",
-          marginVertical:10,
-          fontSize:16
+          marginVertical: 10,
+          fontSize: 16,
         }}
       >
         {selected === question.correct ? "Correct!" : "Incorrect"}
