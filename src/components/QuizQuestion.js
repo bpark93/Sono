@@ -15,7 +15,7 @@ const QuizQuestion = ({ question }) => {
         value={selected}
       >
         {question.answers.map((item) => (
-          <View key={item.text} style={{ alignItems: "center", marginTop: 5 }}>
+          <View key={item.text} style={{ alignItems: "center", marginTop: 5, backgroundColor:'#F0F0F0' }}>
             <RadioButton.Item
               value={item.text}
               label={item.text}
@@ -44,7 +44,7 @@ const QuizQuestion = ({ question }) => {
         value={selected}
       >
         {question.answers.map((item) => (
-          <View key={item.text} style={{ alignItems: "center", marginTop: 5 }}>
+          <View key={item.text} style={{ alignItems: "center", marginTop: 5, backgroundColor:'#F0F0F0' }}>
             <RadioButton.Item
               value={item.text}
               label={item.text}
