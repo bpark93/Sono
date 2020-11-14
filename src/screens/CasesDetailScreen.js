@@ -6,7 +6,7 @@ import {
   StyleSheet,
   useWindowDimensions,
   TouchableOpacity,
-  Linking
+  Linking,
 } from "react-native";
 import { Card, ActivityIndicator } from "react-native-paper";
 import HTML from "react-native-render-html";
@@ -14,9 +14,8 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import SnapCarousel from "../components/SnapCarousel";
 import { Image } from "react-native-expo-image-cache";
 import firebase from "../components/firebase";
-import QuizQuestion from '../components/QuizQuestion'
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
-
+import QuizQuestion from "../components/QuizQuestion";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const CasesDetailScreen = ({ route }) => {
   const { id } = route.params;
@@ -50,6 +49,7 @@ const CasesDetailScreen = ({ route }) => {
       <Card style={styles.cardStyle}>
         <Card.Content>
           <Text style={styles.headerStyle}>Background</Text>
+          <Text style={{marginHorizontal:10, color:"gray",}}>By {results.author}</Text> 
           {results.initial ? (
             <HTML html={results.initial} containerStyle={styles.htmlStyle} />
           ) : null}
@@ -88,21 +88,21 @@ const CasesDetailScreen = ({ route }) => {
       </View>
 
       {/* Questions Card */}
-      {results.questions? 
+      {results.questions ? (
         <View
           style={{
             backgroundColor: "white",
             borderRadius: 15,
             marginVertical: 5,
-            padding:15
+            padding: 15,
           }}
         >
           <Text style={styles.headerStyle}>Questions</Text>
-          {results.questions.map(item => (
-            <QuizQuestion question={item} key={item.question}/>
+          {results.questions.map((item) => (
+            <QuizQuestion question={item} key={item.question} />
           ))}
         </View>
-      :null}
+      ) : null}
 
       {/* Answer Card */}
       {results.answer ? (
@@ -113,7 +113,7 @@ const CasesDetailScreen = ({ route }) => {
             marginVertical: 5,
           }}
         >
-          <View style={{padding:15}}>
+          <View style={{ padding: 15 }}>
             <TouchableOpacity
               onPress={() => toggleAnswer()}
               style={{
@@ -141,7 +141,7 @@ const CasesDetailScreen = ({ route }) => {
           </View>
           {answerToggle
             ? results.answer.map((paragraph) => (
-                <View key={paragraph.text} style={{marginBottom:10}}>
+                <View key={paragraph.text} style={{ marginBottom: 10 }}>
                   {paragraph.image ? (
                     <Image
                       style={{
@@ -155,7 +155,10 @@ const CasesDetailScreen = ({ route }) => {
                   ) : null}
                   <HTML
                     html={paragraph.text}
-                    containerStyle={{...styles.htmlStyle, paddingHorizontal:15}}
+                    containerStyle={{
+                      ...styles.htmlStyle,
+                      paddingHorizontal: 15,
+                    }}
                   />
                 </View>
               ))
@@ -164,32 +167,45 @@ const CasesDetailScreen = ({ route }) => {
       ) : null}
 
       {/* References Card */}
-      <Card style={styles.cardStyle}>
-        <Card.Content>
-          <Text style={styles.headerStyle}>References</Text>
-          {results.references
-          ? results.references.map((ref, index) => (
-              <TouchableOpacity
-                style={{ marginHorizontal: 15, marginTop: 20, flexDirection:'row', borderBottomWidth:0.5, borderColor:'gray', padding:8}}
-                key={ref.text}
-                onPress={async () => {
-                  const supported = await Linking.canOpenURL(ref.link)
-                  if (supported){
-                    await Linking.openURL(ref.link)
-                  } else {
-                    return;
-                  }
-                }}
-              >
-                <View style={{width:30, height:40, marginRight:10}}>
-                    <MaterialCommunityIcons name="link" size={32} color="black" />
-                </View> 
-                <Text style={{fontSize:14, flex:1}}>{ref.text}</Text>
-              </TouchableOpacity>
-            ))
-          : null}
-        </Card.Content>
-      </Card>
+      {results.references ? (
+        <Card style={styles.cardStyle}>
+          <Card.Content>
+            <Text style={styles.headerStyle}>References</Text>
+            {results.references
+              ? results.references.map((ref, index) => (
+                  <TouchableOpacity
+                    style={{
+                      marginHorizontal: 15,
+                      marginTop: 20,
+                      flexDirection: "row",
+                      borderBottomWidth: 0.5,
+                      borderColor: "gray",
+                      padding: 8,
+                    }}
+                    key={ref.text}
+                    onPress={async () => {
+                      const supported = await Linking.canOpenURL(ref.link);
+                      if (supported) {
+                        await Linking.openURL(ref.link);
+                      } else {
+                        return;
+                      }
+                    }}
+                  >
+                    <View style={{ width: 30, height: 40, marginRight: 10 }}>
+                      <MaterialCommunityIcons
+                        name="link"
+                        size={32}
+                        color="black"
+                      />
+                    </View>
+                    <Text style={{ fontSize: 14, flex: 1 }}>{ref.text}</Text>
+                  </TouchableOpacity>
+                ))
+              : null}
+          </Card.Content>
+        </Card>
+      ) : null}
     </ScrollView>
   ) : null;
 };
@@ -201,8 +217,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   imageHeaderStyle: {
-    paddingTop:15,
-    paddingHorizontal:25,
+    paddingTop: 15,
+    paddingHorizontal: 25,
     fontSize: 24,
     fontWeight: "bold",
   },

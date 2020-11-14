@@ -237,7 +237,7 @@ function LearnNav() {
         name="CasesList" 
         component={CasesListScreen}
         options={{
-          title: "Cases of the Week",
+          title: "Cases",
           headerBackTitle:"Back"
         }}
       />

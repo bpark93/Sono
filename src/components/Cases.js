@@ -9,7 +9,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import ContentLoader, { Rect, Circle } from "react-content-loader/native";
 import CasesCard from "./CasesCard";
-import Carousel from "react-native-snap-carousel";
+import Carousel, { Pagination } from "react-native-snap-carousel";
 import firebase from "../components/firebase";
 
 const Cases = () => {
@@ -27,7 +27,7 @@ const Cases = () => {
       .doc("layout")
       .get()
       .then(function (doc) {
-        setResults(doc.data().cases.reverse());
+        setResults(doc.data().cases.reverse().slice(0,10));
         setLoading(false);
       })
       .catch(function (error) {
@@ -37,19 +37,19 @@ const Cases = () => {
 
   const { width, height } = Dimensions.get("window");
 
+  // const [activeSlide, setActiveSlide] = useState(0);
+
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: "row" }}>
         <Text style={styles.header}>Cases</Text>
         {!loading && (
           <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("CasesList", { list: results })
-            }
+            onPress={() => navigation.navigate("CasesList", { list: results })}
             activeOpacity={0.8}
             style={styles.next}
           >
-            <Text style={{ fontWeight:'bold',backgroundColor:'#E0E0E0', padding:5, borderRadius:10 }}>
+            <Text style={{ fontWeight: "bold", padding: 5, }}>
               See All Cases
             </Text>
           </TouchableOpacity>
@@ -58,36 +58,43 @@ const Cases = () => {
       {loading ? (
         <ContentLoader
           speed={1.2}
-          width={width*0.75}
+          width={width * 0.75}
           height={250}
-          viewBox={`0 0 ${width*0.75} 250`}
+          viewBox={`0 0 ${width * 0.75} 250`}
           backgroundColor="#f5f6f7"
           foregroundColor="#eeeeee"
-          style={{ alignSelf:'center', marginTop:15 }}
+          style={{ alignSelf: "center", marginTop: 15 }}
         >
-          <Rect x="0" y="0" rx="20" ry="20" width={width*.7} height="150" />
+          <Rect x="0" y="0" rx="20" ry="20" width={width * 0.7} height="150" />
           <Circle cx="30" cy="175" r="15" />
-          <Rect x="55" y="168" rx="0" ry="0" width={width*.5} height="15" />
-          <Rect x="15" y="195" rx="0" ry="0" width={width*.6} height="10" />
-          <Rect x="15" y="210" rx="0" ry="0" width={width*.6} height="10" />
-          <Rect x="15" y="225" rx="0" ry="0" width={width*.6} height="10" />
+          <Rect x="55" y="168" rx="0" ry="0" width={width * 0.5} height="15" />
+          <Rect x="15" y="195" rx="0" ry="0" width={width * 0.6} height="10" />
+          <Rect x="15" y="210" rx="0" ry="0" width={width * 0.6} height="10" />
+          <Rect x="15" y="225" rx="0" ry="0" width={width * 0.6} height="10" />
         </ContentLoader>
       ) : (
-        <Carousel
-        // layout="stack"
-          data={results}
-          renderItem={({ item, index }) => (
-            <TouchableOpacity
-              onPress={() => navigation.navigate("CasesDetail", { id: item })}
-              activeOpacity={0.8}
-            >
-              <CasesCard item={item} />
-            </TouchableOpacity>
-          )}
-          sliderWidth={width}
-          itemWidth={width*0.75}
-          removeClippedSubviews={false}
-        />
+        <View>
+          <Carousel
+            // layout="stack"
+            data={results}
+            renderItem={({ item, index }) => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate("CasesDetail", { id: item })}
+                activeOpacity={0.8}
+              >
+                <CasesCard item={item} />
+              </TouchableOpacity>
+            )}
+            sliderWidth={width}
+            itemWidth={width * 0.85}
+            removeClippedSubviews={false}
+            // onSnapToItem={(index) => setActiveSlide(index)}
+          />
+          {/* <Pagination
+            dotsLength={results.length}
+            activeDotIndex={activeSlide}
+          /> */}
+        </View>
       )}
     </View>
   );
@@ -100,9 +107,11 @@ const styles = StyleSheet.create({
   },
   header: {
     // fontFamily: "Raleway-Bold",
-    fontWeight:'bold',
+    fontWeight: "bold",
     fontSize: 22,
-    marginHorizontal: 15,
+    marginLeft: 15,
+    marginRight:1,
+    width:75
   },
   loadingContainer: {
     alignItems: "center",
@@ -111,7 +120,8 @@ const styles = StyleSheet.create({
   next: {
     alignItems: "center",
     justifyContent: "center",
-    paddingTop:3,
+    borderRadius: 20,
+    backgroundColor: "#E0E0E0",
   },
 });
 

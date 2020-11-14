@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { RadioButton } from "react-native-paper";
 
-const QuizQuestion = ({ question }) => {
+const QuizQuestion = ({ question, checker }) => {
   const [selected, setSelected] = useState("");
   const [submitPressed, setSubmitPressed] = useState(false);
   const [correct, setCorrect] = useState(false);
@@ -30,7 +30,12 @@ const QuizQuestion = ({ question }) => {
           ...styles.button,
           backgroundColor: selected.length != 0 ? "#4f2683" : "#E0E0E0",
         }}
-        onPress={() => setSubmitPressed(true)}
+        onPress={() => {
+          setSubmitPressed(true)
+          if (checker && selected === question.correct){
+            checker();
+          }
+        }}
         disabled={selected.length != 0 ? false : true}
       >
         <Text style={{ color: "white", fontWeight: "bold" }}>Submit</Text>

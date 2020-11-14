@@ -18,14 +18,20 @@ import {
   setLearnProgress,
   getLearnProgress,
 } from "../components/getLearnDatabase";
-import { Snackbar, TextInput, Button } from "react-native-paper";
+import {
+  Snackbar,
+  TextInput,
+  Button,
+  ActivityIndicator,
+} from "react-native-paper";
 import * as ScreenOrientation from "expo-screen-orientation";
 import Constants from "expo-constants";
 import { addNote, getNotes, editNote } from "../components/useLearnNotes";
 import LearnNotes from "../components/LearnNotes";
 import firebase from "../components/firebase";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { StatusBar, setStatusBarTranslucent } from 'expo-status-bar';
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { StatusBar, setStatusBarTranslucent } from "expo-status-bar";
+import QuizQuestion from "../components/QuizQuestion";
 
 const LearnDetailScreen = ({ route, navigation }) => {
   const { id, category } = route.params;
@@ -58,7 +64,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
     };
     const unsubscribe = navigation.addListener("blur", () => {
       updateProgress();
-      setStatusBarTranslucent(true)
+      setStatusBarTranslucent(true);
     });
     return () => unsubscribe();
   }, []);
@@ -205,11 +211,29 @@ const LearnDetailScreen = ({ route, navigation }) => {
       .get()
       .then(function (doc) {
         setTranscriptText(doc.data().body);
-        setErrorMessage('')
+        setErrorMessage("");
       })
       .catch(function (error) {
         setErrorMessage("The transcript for this page is unavailable.");
-        setTranscriptText("")
+        setTranscriptText("");
+      });
+  }, [id]);
+
+  const [quizStarted, setQuizStarted] = useState(false);
+  const [quizQuestions, setQuizQuestions] = useState(null);
+  const [questionsCorrect, setQuestionsCorrect] = useState(0)
+  const [noQuizError, setNoQuizError] = useState("")
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("learnQuizzes")
+      .doc("" + id.id)
+      .get()
+      .then(function (doc) {
+        setQuizQuestions(doc.data().questions);
+      })
+      .catch(function (error) {
+        setNoQuizError("This quiz is being developed. Stay tuned!");
       });
   }, [id]);
 
@@ -225,7 +249,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
           height: 20 + Height,
         }}
       ></View>
-      <StatusBar style="light"/>
+      <StatusBar style="light" />
       <View
         style={{
           alignItems: "center",
@@ -358,7 +382,10 @@ const LearnDetailScreen = ({ route, navigation }) => {
                   <Button
                     mode="contained"
                     disabled={text ? false : true}
-                    style={{ marginHorizontal: Width*0.2, marginVertical: 10 }}
+                    style={{
+                      marginHorizontal: Width * 0.2,
+                      marginVertical: 10,
+                    }}
                     labelStyle={{ fontWeight: "bold" }}
                     onPress={async () => {
                       if (!editing) {
@@ -410,9 +437,9 @@ const LearnDetailScreen = ({ route, navigation }) => {
           ) : null}
         </KeyboardAwareScrollView>
       ) : (
-        <View style={{ ...styles.container, }}>
+        <View style={{ ...styles.container }}>
           <TouchableOpacity
-            style={{...styles.transcriptButton, alignSelf: "flex-end" }}
+            style={{ ...styles.transcriptButton, alignSelf: "flex-end" }}
             onPress={() => {
               setTranscriptToggled(false);
               setNoteVisible(false);
@@ -421,26 +448,27 @@ const LearnDetailScreen = ({ route, navigation }) => {
             <MaterialCommunityIcons name="close" size={24} color="black" />
           </TouchableOpacity>
           <ScrollView>
-            {transcriptText && !errorMessage ? 
-              transcriptText.map((paragraph) => (
-                <View key={paragraph.timestamp}>
-                  <TouchableWithoutFeedback
-                    onPress={() => youtubeSeek(paragraph.timestamp)}
-                  >
-                    <Text
-                      style={{
-                        fontFamily: "Raleway-Regular",
-                        textDecorationLine: "underline",
-                        marginHorizontal: 15,
-                        color: "#03a9f4",
-                      }}
+            {transcriptText && !errorMessage
+              ? transcriptText.map((paragraph) => (
+                  <View key={paragraph.timestamp}>
+                    <TouchableWithoutFeedback
+                      onPress={() => youtubeSeek(paragraph.timestamp)}
                     >
-                      {formatTime(paragraph.timestamp)}
-                    </Text>
-                  </TouchableWithoutFeedback>
-                  <Text style={styles.body}>{paragraph.body}</Text>
-                </View>
-              )):null}
+                      <Text
+                        style={{
+                          fontFamily: "Raleway-Regular",
+                          textDecorationLine: "underline",
+                          marginHorizontal: 15,
+                          color: "#03a9f4",
+                        }}
+                      >
+                        {formatTime(paragraph.timestamp)}
+                      </Text>
+                    </TouchableWithoutFeedback>
+                    <Text style={styles.body}>{paragraph.body}</Text>
+                  </View>
+                ))
+              : null}
             {errorMessage ? (
               <Text style={{ fontSize: 18, marginHorizontal: 15 }}>
                 {errorMessage}
@@ -466,24 +494,83 @@ const LearnDetailScreen = ({ route, navigation }) => {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
-        <View style={styles.modalView}>
-          <Text style={styles.header}>{id.title}: Lesson Quiz</Text>
-          <TouchableOpacity
-            style={{ ...styles.modalButton, backgroundColor: "#2ecc71" }}
-          >
-            <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
-              Start
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{ ...styles.modalButton, backgroundColor: "#2980b9" }}
-            onPress={() => setModalVisible(false)}
-          >
-            <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
-              Dismiss
-            </Text>
-          </TouchableOpacity>
-        </View>
+        {quizStarted ? (
+          quizQuestions ? (
+            <View style={{ justifyContent: "center", flex: 1, alignItems:'center' }}>
+              {quizQuestions.map((item,index) => (
+                <View key={item.question} style={{width:Width-30,}}>
+                  <Text style={{alignSelf:'center'}}>{`Question ${index+1}`}</Text>
+                  <QuizQuestion question={item} checker={() => setQuestionsCorrect(questionsCorrect+1)}/>
+                </View>
+              ))}
+              <TouchableOpacity
+                style={{ ...styles.modalButton, backgroundColor: questionsCorrect === quizQuestions.length ? "#2ecc71" : "#E0E0E0" }}
+                onPress={() => {
+                  setModalVisible(false)
+                  setQuizStarted(false)
+                  setLearnProgress(id.id, '100')
+                  setProgress('100')
+                  setQuestionsCorrect(0)
+                }}
+                disabled={questionsCorrect === quizQuestions.length ? false : true}
+              >
+                <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                  Save and Exit
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{ ...styles.modalButton, backgroundColor: "#2980b9" }}
+                onPress={() => {
+                  setModalVisible(false)
+                  setQuizStarted(false)
+                }}
+              >
+                <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                  Exit Quiz
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ) : noQuizError ? (
+            <View style={styles.modalView}>
+              <Text>{noQuizError}</Text>
+              <TouchableOpacity
+                style={{ ...styles.modalButton, backgroundColor: "#2980b9" }}
+                onPress={() => {
+                  setModalVisible(false)
+                  setQuizStarted(false)
+                }}
+              >
+                <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                  Exit Quiz
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ):(
+            <View style={styles.modalView}>
+              <ActivityIndicator size="large" />
+            </View>
+          )
+        ) : (
+          <View style={styles.modalView}>
+            <Text style={styles.header}>{id.title}: Lesson Quiz</Text>
+            <TouchableOpacity
+              style={{ ...styles.modalButton, backgroundColor: "#2ecc71" }}
+              onPress={() => setQuizStarted(true)}
+            >
+              <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                Start
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{ ...styles.modalButton, backgroundColor: "#2980b9" }}
+              onPress={() => setModalVisible(false)}
+            >
+              <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                Dismiss
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </Modal>
     </View>
   );

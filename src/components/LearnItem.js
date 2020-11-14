@@ -31,18 +31,18 @@ const styles = StyleSheet.create({
   moduleStyle: {
     alignItems: "center",
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#F0F0F0",
     borderRadius:30,
     height:120,
-    width:150,
+    // width:120,
     margin: 10,
     alignItems:'center',
     justifyContent:'center',
-    shadowOpacity:0.1,
-    shadowOffset:{
-      width:2,
-      height:2
-    }
+    // shadowOpacity:0.1,
+    // shadowOffset:{
+    //   width:2,
+    //   height:2
+    // },
   },
   iconStyle: {
     width: 75,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   textStyle: {
     fontFamily: "Raleway-Regular",
     fontSize: 14,
-    // fontWeight:'bold'
+    // fontWeight:'bold',
     marginTop:5
   },
 });

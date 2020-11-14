@@ -231,7 +231,7 @@ const SettingsAboutScreen = () => {
             </Text>
           </View>
         </View>
-        <View
+        {/* <View
           style={{
             flexDirection: "row",
             justifyContent: "space-evenly",
@@ -314,8 +314,8 @@ const SettingsAboutScreen = () => {
               MBBS, MPH, Department of Critical Care, Western University
             </Text>
           </View>
-        </View>
-        <View
+        </View> */}
+        {/* <View
           style={{
             flexDirection: "row",
             justifyContent: "space-evenly",
@@ -342,7 +342,7 @@ const SettingsAboutScreen = () => {
               MD, PGY-5, Department of Internal Medicine, Western University
             </Text>
           </View>
-        </View>
+        </View> */}
 
         <Text style={{ fontFamily: "Raleway-Regular", fontSize: 20 }}>
           Graphic Design
