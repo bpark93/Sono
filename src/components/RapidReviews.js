@@ -178,14 +178,12 @@ const RapidReviews = ({ page, id }) => {
       />
 
       {/* Hide Video Button */}
-      {/* {activeIndex === 1 && ( */}
-          <View style={{alignItems:'center', justifyContent:'center', marginVertical:5}}>
-            <TouchableOpacity style={{flexDirection:'row', padding:5, borderRadius:15, backgroundColor:'#F0F0F0'}} onPress={() => setVideoShowing(!videoShowing)}>
-              <MaterialCommunityIcons name={videoShowing ? "chevron-up" : "chevron-down"} size={24} color="black" />
-              <Text style={{fontSize:16}}>{videoShowing ? "Hide Video" : "Show Video"}</Text>
+      {/* {activeIndex === 1 && (
+            <TouchableOpacity style={{ flexDirection:'row', backgroundColor:'#F0F0F0', padding:5, alignItems:'center', justifyContent:'center'}} onPress={() => setVideoShowing(!videoShowing)}>
+                <MaterialCommunityIcons name={videoShowing ? "chevron-up" : "chevron-down"} size={24} color="black" />
+                <Text style={{fontSize:16}}>{videoShowing ? "Hide Video" : "Show Video"}</Text>
             </TouchableOpacity>
-          </View>
-        {/* )} */}
+         )} */}
 
       <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
         {/* Materials */}
@@ -377,7 +375,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     marginTop: 15,
     marginBottom: 15,
-    fontFamily: "Raleway-Medium",
+    fontWeight:'bold'
   },
   body: {
     marginHorizontal: 15,
@@ -387,8 +385,8 @@ const styles = StyleSheet.create({
     color:'gray'
   },
   textContent:{
-    fontSize:16, 
-    fontFamily:'Lora-Regular',
+    fontSize:14, 
+    // fontFamily:'Lora-Regular',
     color:'gray',
     marginHorizontal:15,
     marginVertical:10

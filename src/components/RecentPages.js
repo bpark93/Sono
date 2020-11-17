@@ -131,23 +131,23 @@ const setList = async (id) => {
 const PrettyTag = ({ category }) => {
   let picker = "#4f2683";
   switch (category) {
-    case "Aorta":
+    case "Trauma":
       picker = "#e51c23"; // Material Red
       break;
     case "Cardiac":
-      picker = "#ff5722"; // Material Deep Orange
+      picker = "#E887D4"; // Material Deep Orange
       break;
-    case "Lung":
-      picker = "#3f51b5"; // Material Indigo
+    case "Thoracic":
+      picker = "#33539E"; // Material Indigo
       break;
     case "Abdominal":
-      picker = "#5677fc"; // Material Bluen
+      picker = "#7FACD6"; // Material Blue
       break;
-    case "Renal/GU":
-      picker = "#259b24"; // Material Green
+    case "Renal":
+      picker = "#BFB8DA"; // Material Green
       break;
     case "Procedural":
-      picker = "#00bcd4"; // Material Cyan
+      picker = "#A5678E"; // Material Cyan
       break;
     case "Pelvic":
       picker = "#e91e63"; // Material Pink
@@ -156,8 +156,8 @@ const PrettyTag = ({ category }) => {
       break;
   }
   return (
-    <View style={{ ...styles.categoryView, borderColor: picker }}>
-      <Text style={{ ...styles.category, color: picker }}>{category}</Text>
+    <View style={{ ...styles.categoryView, backgroundColor: picker }}>
+      <Text style={{ ...styles.category,  }}>{category}</Text>
     </View>
   );
 };
@@ -176,28 +176,27 @@ const styles = StyleSheet.create({
   },
   category: {
     fontSize: 14,
-    fontFamily: "Raleway-Bold",
-    color: "#4f2683",
+    fontWeight:'bold',
+    color: "white",
   },
   categoryView: {
-    borderColor: "#4f2683",
-    borderWidth: 2,
+    // borderColor: "#4f2683",
+    // borderWidth: 2,
     borderRadius: 5,
-    // backgroundColor:'#4f2683',
+    backgroundColor:'#4f2683',
     padding: 5,
     width: 90,
     justifyContent: "center",
     alignItems: "center",
   },
   text: {
-    fontFamily: "Raleway-Regular",
     fontSize: 14,
     margin: 5,
   },
   pageInfo: {
     flexDirection: "row",
     borderBottomWidth: 0.5,
-    borderColor: "gray",
+    borderColor: "#F0F0F0",
     marginHorizontal: 10,
     flex: 1,
     alignItems: "center",

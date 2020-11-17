@@ -329,7 +329,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
               <Text
                 style={{
                   fontSize: 18,
-                  fontFamily: "Raleway-Bold",
+                  fontWeight: "bold",
                   marginBottom: 5,
                 }}
               >
@@ -355,16 +355,18 @@ const LearnDetailScreen = ({ route, navigation }) => {
                   }
                 }}
               >
-                <MaterialCommunityIcons
-                  name={
-                    newNoteButtonPressed ? "cancel" : "comment-plus-outline"
-                  }
-                  size={16}
-                  style={{ marginRight: 5, marginTop: 3 }}
-                />
-                <Text style={{ fontSize: 14, textDecorationLine: "underline" }}>
-                  {newNoteButtonPressed ? "Cancel" : "Add a new note"}
-                </Text>
+                <View style={{backgroundColor:'#E0E0E0', flexDirection:'row', padding:10, borderRadius:10}}>
+                  <MaterialCommunityIcons
+                    name={
+                      newNoteButtonPressed ? "cancel" : "comment-plus-outline"
+                    }
+                    size={16}
+                    style={{ marginRight: 5,}}
+                  />
+                  <Text style={{ fontSize: 14, }}>
+                    {newNoteButtonPressed ? "Cancel" : "Add a new note"}
+                  </Text>
+                </View>
               </TouchableOpacity>
               {newNoteButtonPressed && (
                 <View>
@@ -456,7 +458,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
                     >
                       <Text
                         style={{
-                          fontFamily: "Raleway-Regular",
+                          // fontFamily: "Raleway-Regular",
                           textDecorationLine: "underline",
                           marginHorizontal: 15,
                           color: "#03a9f4",
@@ -585,7 +587,6 @@ const styles = StyleSheet.create({
   },
   body: {
     margin: 15,
-    fontFamily: "Raleway-Regular",
   },
   category: {
     marginHorizontal: 10,

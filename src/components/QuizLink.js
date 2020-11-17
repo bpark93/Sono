@@ -7,11 +7,11 @@ const QuizLink = ({ name, id }) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: "row", width: 300, alignItems: "center" }}>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
         <MaterialCommunityIcons
           name="crown"
           size={24}
-          style={{ marginRight: 10 }}
+          style={{ marginHorizontal: 5 }}
         />
         <Text style={styles.text}>{name}: Module Test</Text>
       </View>
@@ -19,7 +19,7 @@ const QuizLink = ({ name, id }) => {
         style={styles.button}
         onPress={() => navigation.push("Test", { id: id })}
       >
-        <Text style={styles.buttonText}>Start</Text>
+        <Text style={styles.buttonText}>Take The Test</Text>
       </TouchableOpacity>
     </View>
   );
@@ -27,26 +27,30 @@ const QuizLink = ({ name, id }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     justifyContent: "center",
     alignItems: "center",
     margin: 15,
+    padding:10,
+    // borderWidth:1,
+    borderRadius:30,
+    // backgroundColor:'#E0E0E0'
   },
   button: {
-    height: 50,
-    width: 150,
-    borderRadius: 30,
+    padding:15,
+    borderRadius: 15,
     backgroundColor: "#2980b9",
     alignItems: "center",
     justifyContent: "center",
     margin: 15,
   },
   text: {
-    fontFamily: "Raleway-Regular",
+    fontWeight:"bold",
     fontSize: 20,
+    // color:'white'
   },
   buttonText: {
-    fontFamily: "Raleway-Bold",
+    fontWeight:'bold',
     fontSize: 20,
     color: "white",
   },

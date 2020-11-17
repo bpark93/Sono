@@ -108,7 +108,6 @@ const LearnTestScreen = ({ route }) => {
           <>
             <Text
               style={{
-                fontFamily: "Raleway-Regular",
                 fontSize: 18,
               }}
             >
@@ -146,7 +145,6 @@ const LearnTestScreen = ({ route }) => {
           <>
             <Text
               style={{
-                fontFamily: "Raleway-Regular",
                 fontSize: 28,
                 alignSelf: "center",
                 marginBottom: reviewPressed ? 5 : 20,
@@ -299,7 +297,7 @@ const QuizQuestions = ({
     >
       <Text
         style={{
-          fontFamily: "Raleway-Bold",
+          fontWeight:'bold',
           fontSize: 24,
           color: "#4f2683",
           marginVertical: 20,
@@ -399,7 +397,7 @@ const QuizQuestions = ({
             <>
               <Text
                 style={{
-                  fontFamily: "Raleway-Bold",
+                  fontWeight:'bold',
                   fontSize: 24,
                   color: "#4f2683",
                   marginVertical: 20,
@@ -432,7 +430,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingHorizontal: 10,
     paddingTop: Constants.statusBarHeight + 20,
-    fontFamily: "Raleway-Regular",
   },
   header: {
     fontSize: 24,
@@ -441,7 +438,6 @@ const styles = StyleSheet.create({
   },
   caption: {
     fontSize: 18,
-    fontFamily: "Raleway-Regular",
     marginBottom: 20,
     marginHorizontal: 20,
   },

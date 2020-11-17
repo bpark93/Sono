@@ -41,21 +41,7 @@ const LearnModuleItem = ({ page, index, category }) => {
         // activeOpacity={0.8}
       >
         <View style={styles.moduleStyle}>
-          <Text
-            style={{ fontFamily: "Raleway-Light", fontSize: 14, width: 50 }}
-          >
-            {index}.{" "}
-          </Text>
-          <Text
-            style={{
-              // fontFamily: pressed? "Raleway-Bold":"Raleway-Regular",
-              fontWeight: pressed? "bold":"normal",
-              fontSize: 16,
-              width: width - 100,
-            }}
-          >
-            {page.title}
-          </Text>
+        
           <FontAwesome
             name={
               !page.video && !page.youtube
@@ -73,6 +59,18 @@ const LearnModuleItem = ({ page, index, category }) => {
                 : "#2980b9"
             }
           />
+          <Text
+            style={{
+              // fontFamily: pressed? "Raleway-Bold":"Raleway-Regular",
+              fontWeight: pressed? "bold":"normal",
+              fontSize: 16,
+              // width: width*.85,
+              marginHorizontal:20
+            }}
+          >
+            {page.title}
+          </Text>
+          
         </View>
       </TouchableOpacity>
 

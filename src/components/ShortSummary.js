@@ -48,20 +48,21 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     flex: 1,
-    marginVertical:5
+    marginVertical:5,
+    borderBottomWidth:1,
+    borderColor:'#F0F0F0'
   },
   category: {
     color: "#4f2683",
     padding: 10,
     alignSelf: "flex-start",
-    fontFamily: "Roboto-Black",
-    width:width*.3,
+    fontWeight:'bold',
+    width:width*.32,
     borderRadius:10,
   },
   text: {
     alignSelf: "flex-start",
-    padding: 10,
-    fontFamily: "Roboto-Regular",
+    paddingVertical: 10,
     color:'black',
     flex:1
   },

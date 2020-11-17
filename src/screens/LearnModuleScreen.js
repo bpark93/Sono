@@ -69,8 +69,13 @@ const LearnModuleScreen = ({route, navigation}) => {
           {id.description ? (
             <Text style={{paddingHorizontal:15, color:'gray', fontFamily:'Raleway-Regular', borderBottomWidth:0.5, borderBottomColor:'#E0E0E0', paddingBottom:10}}>{id.description}</Text> 
           ): null}
-          {id.pages.map((page, index) => (
-          <LearnModuleItem page={page} key={page.title} index={index+1} category={id.title}/>
+          {Object.entries(id.pages).map((section) => (
+            <View key={section[0]} style={{marginVertical:15}}>
+              {section[0] ? <Text style={{fontWeight:'bold', fontSize:24, marginHorizontal:15, marginVertical:10, }}>{section[0]}</Text>:null}
+              {section[1].map((item, index) => (
+                <LearnModuleItem page={item} index={index+1} category={id.title} key={item.title}/>
+              ))}
+            </View>
           ))}
           <QuizLink name={id.title} id={id.id}/>
         </View>
