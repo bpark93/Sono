@@ -160,7 +160,7 @@ const PrettyTag = ({ category }) => {
   }
   return (
     <View style={{ ...styles.categoryView, backgroundColor: picker }}>
-      <Text style={{ ...styles.category,  }}>{category+"  "}</Text>
+      <Text style={{ ...styles.category,  }}>{category}</Text>
     </View>
   );
 };
