@@ -356,11 +356,11 @@ const theme = {
     primary: '#4f2683',
     background: '#ffffff',
   },
-  fonts: {
-    regular: {
-      fontFamily: 'Raleway-Regular',
-    }
-  }
+  // fonts: {
+  //   regular: {
+  //     fontFamily: 'Raleway-Regular',
+  //   }
+  // }
 };
 
 export default () => {

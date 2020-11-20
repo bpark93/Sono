@@ -5,10 +5,14 @@ const categoryDatabase =
     "Abdominal":require("./assets/png/038-abs.png"),
     "Renal":require("./assets/png2/032-kidney.png"),
     "Procedural": require("./assets/png/injection.png"),
-    "Pelvic": require("./assets/png2/029-pelvic-area.png"),
+    "OB/Gyn": require("./assets/png2/029-pelvic-area.png"),
     "Head and Neck": require("./assets/png/043-thyroid.png"),
-    "Soft Tissue": require("./assets/png2/010-ankle.png"),
+    "Musculoskeletal": require("./assets/png2/010-ankle.png"),
+    "Skin":require("./assets/png2/056-dermis.png"),
     "Trauma": require("./assets/png/injury.png"),
+    "Testicular":require("./assets/png/028-testicle.png"),
+    "Pediatric":require("./assets/png/brothers.png"),
+    "Vascular":require("./assets/png/049-blood.png")
   }
 
 
@@ -73,7 +77,7 @@ const learnDatabase = [
             "An introduction to the physics involved in ultrasound imaging, some knobology and how to perform an ultrasound exam. The majority of this material will be review from the Fundamentals Module, feel free to skip if you feel you have a solid understanding of the basics! By Dany Burke MD FRCPC Critical Care Western PGY7",
         },
         {
-          title: "Artefacts",
+          title: "Artifacts",
           youtube: "bXi2ywmQHzg",
           id: "2.2",
           captionText:
@@ -90,8 +94,8 @@ const learnDatabase = [
         },
         {
           title: "Image Interpretation",
-          youtube: "Y9Hv84m3kOM",
-          altVideo: "uv6zI4QHYss",
+          youtube: "uv6zI4QHYss",
+          altVideo: "Y9Hv84m3kOM",
           id: "2.4",
           captionText:
             "Are you able to find the lungs and pleura on ultrasound but need a refresher on how to decode the various findings that you might see?  Lung ultrasound (more than pleural) is an artifact driven field and this tutorial seeks to educate and demystify the lung findings of A lines, B lines and sliding lung as well as the classic pleural findings of consolidation and effusion. By Dany Burke MD FRCPC Critical Care Western PGY7",
@@ -124,13 +128,13 @@ const learnDatabase = [
           youtube: "rzBoRbuc4-0",
           id: "2.8",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "This module will briefly review the BLUE protocol then test your skills with 5 highly informative cases from Emergency Medicine. ",
         },
       ],
       "Advanced Applications":[
         {
           title:
-            "Plerual Effusion AND Consolidation - Chicken or the egg?",
+            "Plerual Effusion and Consolidation - Chicken or the egg?",
           youtube: "l-BX3wVhDIg",
           id: "2.9",
           captionText:
@@ -141,7 +145,7 @@ const learnDatabase = [
           youtube: "58kS_jrxiMI",
           id: "2.10",
           captionText:
-            "This 15-minute screencast reviews common mistakes in lung ultrasound image acquisition, interpretation, and clinical integration. It aims to sharpen your lung POCUS skills and help you unlock the true potential of this powerful diagnostic modality.",
+            "This screencast reviews common mistakes in lung ultrasound image acquisition, interpretation, and clinical integration. It aims to sharpen your lung POCUS skills and help you unlock the true potential of this powerful diagnostic modality. By Dr. Katie Wiskar, Internal Medicine.",
         },
         {
           title: "Alveolar Consolidation and Shred Sign",
@@ -173,7 +177,7 @@ const learnDatabase = [
           youtube: "q_-F4fHRv5g",
           id: "2.14",
           captionText:
-            "Real-life example of respiratory failure in the general medicine ward, and how a POCUS consultation can help. Presented by Lucas Ciprietti PGY4 Internal Medicine",
+            "Real-life example of respiratory failure in the general medicine ward, and how a POCUS consultation can help. Presented by Dr. Lucas Ciprietti, Internal Medicine",
         },
       ]
     },

@@ -61,14 +61,14 @@ const LearnModuleItem = ({ page, index, category }) => {
           />
           <Text
             style={{
-              // fontFamily: pressed? "Raleway-Bold":"Raleway-Regular",
+              // fontFamily: "Roboto-Regular",
               fontWeight: pressed? "bold":"normal",
               fontSize: 16,
               // width: width*.85,
               marginHorizontal:20
             }}
           >
-            {page.title}
+            {page.title+"  "}
           </Text>
           
         </View>

@@ -131,14 +131,14 @@ const setList = async (id) => {
 const PrettyTag = ({ category }) => {
   let picker = "#4f2683";
   switch (category) {
-    case "Trauma":
+    case "Trauma"||"Musculoskeletal"||"Skin":
       picker = "#e51c23"; // Material Red
       break;
-    case "Cardiac":
-      picker = "#E887D4"; // Material Deep Orange
+    case "Cardiac"||"Vascular":
+      picker = "#e36387"; // Material Deep Orange
       break;
     case "Thoracic":
-      picker = "#33539E"; // Material Indigo
+      picker = "#a6dcef"; // Material Indigo
       break;
     case "Abdominal":
       picker = "#7FACD6"; // Material Blue
@@ -149,15 +149,18 @@ const PrettyTag = ({ category }) => {
     case "Procedural":
       picker = "#A5678E"; // Material Cyan
       break;
-    case "Pelvic":
-      picker = "#e91e63"; // Material Pink
+    case "OB/Gyn"||"Testicular":
+      picker = "#f2aaaa"; // Material Pink
+      break;
+    case "Pediatric":
+      picker = "#ddf3f5"; // Material Pink
       break;
     default:
       break;
   }
   return (
     <View style={{ ...styles.categoryView, backgroundColor: picker }}>
-      <Text style={{ ...styles.category,  }}>{category}</Text>
+      <Text style={{ ...styles.category,  }}>{category+"  "}</Text>
     </View>
   );
 };
