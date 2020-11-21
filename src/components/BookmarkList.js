@@ -22,7 +22,11 @@ const BookmarkList = ({ sortBy }) => {
   async function getData() {
     const currentBookmarkArray = await getBookmark("learn");
     const modulesArray = learnDatabase.map((item) => item.pages);
-    const pagesArray = [].concat.apply([], modulesArray);
+
+    const categoryArray = modulesArray.map(item => Object.entries(item).map(page => page[1]))
+    const sectionArray = [].concat.apply([], categoryArray)
+    const pagesArray = [].concat.apply([], sectionArray)
+
     const idArray = pagesArray.map((item) => item.id);
     let finalList = [];
     for (let i = 0; i < currentBookmarkArray.length; i++) {
@@ -235,14 +239,15 @@ const styles = StyleSheet.create({
   },
   page: {
     fontSize: 20,
-    fontFamily: "Raleway-Regular",
+    // fontFamily: "Raleway-Regular",
     marginHorizontal: 10,
     width: 250,
   },
   learnCategoryStyle: {
-    width: 40,
-    height: 40,
+    width: 30,
+    height: 30,
     resizeMode: "contain",
+    alignSelf:'center'
   },
 });
 
