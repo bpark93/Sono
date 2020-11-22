@@ -127,55 +127,7 @@ const RapidReviews = ({ page, id }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      {/* Youtube Video embedded */}
-      {page.video && videoShowing ? (
-        <View
-          style={{
-            backgroundColor: "black",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <YoutubePlayer
-            ref={playerRef}
-            height={OrientationMode.height}
-            width={OrientationMode.width}
-            videoId={page.video}
-            play={playing}
-            volume={50}
-            playbackRate={1}
-            onFullScreenChange={(status) => handleFullScreenYoutube(status)}
-            playerParams={{
-              cc_lang_pref: "us",
-              showClosedCaptions: false,
-            }}
-          />
-        </View>
-      ) : null}
-
-      {/* Buttons */}
-      <TabButtons
-        activeIndex={activeIndex}
-        setActiveIndex={setActiveIndex}
-        settings={[
-          {
-            name: "Orientation",
-            icon: "table",
-          },
-          {
-            name: "Details",
-            icon: "clipboard-text-outline",
-          },
-          {
-            name: "Materials",
-            icon: "format-list-checkbox",
-          },
-          {
-            name: "References",
-            icon: "book-open-outline",
-          },
-        ]}
-      />
+      
 
       {/* Hide Video Button */}
       {/* {activeIndex === 1 && (
@@ -186,6 +138,56 @@ const RapidReviews = ({ page, id }) => {
          )} */}
 
       <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
+        {/* Youtube Video embedded */}
+        {page.video && videoShowing ? (
+          <View
+            style={{
+              backgroundColor: "black",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <YoutubePlayer
+              ref={playerRef}
+              height={OrientationMode.height}
+              width={OrientationMode.width}
+              videoId={page.video}
+              play={playing}
+              volume={50}
+              playbackRate={1}
+              onFullScreenChange={(status) => handleFullScreenYoutube(status)}
+              playerParams={{
+                cc_lang_pref: "us",
+                showClosedCaptions: false,
+              }}
+            />
+          </View>
+        ) : null}
+
+        {/* Buttons */}
+        <TabButtons
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+          settings={[
+            {
+              name: "Orientation",
+              icon: "table",
+            },
+            {
+              name: "Details",
+              icon: "clipboard-text-outline",
+            },
+            {
+              name: "Materials",
+              icon: "format-list-checkbox",
+            },
+            {
+              name: "References",
+              icon: "book-open-outline",
+            },
+          ]}
+        />
+        
         {/* Materials */}
         {activeIndex === 2 ? (
           page.required_materials ? (
