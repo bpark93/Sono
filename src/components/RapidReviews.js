@@ -127,17 +127,7 @@ const RapidReviews = ({ page, id }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      
-
-      {/* Hide Video Button */}
-      {/* {activeIndex === 1 && (
-            <TouchableOpacity style={{ flexDirection:'row', backgroundColor:'#F0F0F0', padding:5, alignItems:'center', justifyContent:'center'}} onPress={() => setVideoShowing(!videoShowing)}>
-                <MaterialCommunityIcons name={videoShowing ? "chevron-up" : "chevron-down"} size={24} color="black" />
-                <Text style={{fontSize:16}}>{videoShowing ? "Hide Video" : "Show Video"}</Text>
-            </TouchableOpacity>
-         )} */}
-
-      <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
+      <ScrollView style={{ flex: 1, backgroundColor: "white" }} stickyHeaderIndices={[1]}>
         {/* Youtube Video embedded */}
         {page.video && videoShowing ? (
           <View

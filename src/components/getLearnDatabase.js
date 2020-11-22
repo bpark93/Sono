@@ -8,8 +8,10 @@ const learnProgressInitialized = async () => {
         const hasSynced = await AsyncStorage.getItem(LEARN_PROGRESS_SYNCED)
         if (hasSynced === null){
             learnDatabase.forEach(item => {
-                item.pages.forEach(page => {
-                    AsyncStorage.setItem(`learn_progress_${page.id}`,"0")
+                Object.entries(item.pages).forEach(section => { // ["name", [obj, obj...]]
+                    section[1].forEach(page => {
+                        AsyncStorage.setItem(`learn_progress_${page.id}`,"0")
+                    })
                 })
             });
             await AsyncStorage.setItem('learn_progress_synced',"true")
