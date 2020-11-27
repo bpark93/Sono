@@ -1,15 +1,45 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
 import { RadioButton } from "react-native-paper";
+import {Image} from "react-native-expo-image-cache"
+import {Video} from 'expo-av'
 
 const QuizQuestion = ({ question, checker }) => {
   const [selected, setSelected] = useState("");
   const [submitPressed, setSubmitPressed] = useState(false);
   const [correct, setCorrect] = useState(false);
+  const {width} = Dimensions.get('window')
 
   return !submitPressed ? (
     <View style={styles.container}>
       <Text style={styles.question}>{question.question}</Text>
+      {question.image? 
+        <Image 
+          uri={question.image}
+          resizeMode="contain"
+          imageBackgroundColor="#000000"
+          style={{
+            width: width-50,
+            height: (width-50) * 0.75,
+            marginVertical:5
+          }}
+        />
+      :null}
+      {question.video?
+        <Video
+          source={{ uri: question.video }}
+          rate={1.0}
+          volume={1.0}
+          useNativeControls={false}
+          shouldPlay={true}
+          isLooping
+          resizeMode="contain"
+          style={{
+            width: width-50,
+            height: (width-50) * 0.75,
+          }}
+        />
+      :null}
       <RadioButton.Group
         onValueChange={(value) => setSelected(value)}
         value={selected}
@@ -19,7 +49,8 @@ const QuizQuestion = ({ question, checker }) => {
             <RadioButton.Item
               value={item.text}
               label={item.text}
-              labelStyle={{ fontSize: 14 }}
+              labelStyle={{ fontSize: 14, width:width-120}}
+              style={{width:width-60}}
             />
             {/* <Text>{item}</Text> */}
           </View>
@@ -44,6 +75,33 @@ const QuizQuestion = ({ question, checker }) => {
   ) : (
     <View style={styles.container}>
       <Text style={styles.question}>{question.question}</Text>
+      {question.image? 
+        <Image 
+          uri={question.image}
+          resizeMode="contain"
+          imageBackgroundColor="#000000"
+          style={{
+            width: width-50,
+            height: (width-50) * 0.75,
+            marginVertical:5
+          }}
+        />
+      :null}
+      {question.video?
+        <Video
+          source={{ uri: question.video }}
+          rate={1.0}
+          volume={1.0}
+          useNativeControls={false}
+          shouldPlay={true}
+          isLooping
+          resizeMode="contain"
+          style={{
+            width: width-50,
+            height: (width-50) * 0.75,
+          }}
+        />
+      :null}
       <RadioButton.Group
         onValueChange={(value) => setSelected(value)}
         value={selected}
@@ -53,7 +111,7 @@ const QuizQuestion = ({ question, checker }) => {
             <RadioButton.Item
               value={item.text}
               label={item.text}
-              labelStyle={{ fontSize: 14 }}
+              labelStyle={{ fontSize: 14, width:width-120 }}
               disabled
               style={{
                 borderWidth:
@@ -67,6 +125,7 @@ const QuizQuestion = ({ question, checker }) => {
                       : "red"
                     : null,
                 borderRadius: 20,
+                width:width-60
               }}
             />
           </View>
@@ -104,6 +163,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     alignSelf: "center",
     marginHorizontal: 10,
+    marginVertical:10
   },
 });
 

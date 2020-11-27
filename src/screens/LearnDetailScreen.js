@@ -498,30 +498,14 @@ const LearnDetailScreen = ({ route, navigation }) => {
       >
         {quizStarted ? (
           quizQuestions ? (
-            <View style={{ justifyContent: "center", flex: 1, alignItems:'center' }}>
-              {quizQuestions.map((item,index) => (
-                <View key={item.question} style={{width:Width-30,}}>
-                  <Text style={{alignSelf:'center'}}>{`Question ${index+1}`}</Text>
-                  <QuizQuestion question={item} checker={() => setQuestionsCorrect(questionsCorrect+1)}/>
-                </View>
-              ))}
+            <ScrollView style={{ flex: 1, marginVertical:50 }} contentContainerStyle={{justifyContent: "center", alignItems:'center',}}> 
+              <View style={{marginVertical:20}}>
+                <Text style={{fontSize:24}}>{id.title} Lesson Quiz</Text>
+                <Text style={{color:'#BBBBBB'}}>Get 80% or higher to complete the lesson.</Text>
+              </View>
+              
               <TouchableOpacity
-                style={{ ...styles.modalButton, backgroundColor: questionsCorrect === quizQuestions.length ? "#2ecc71" : "#E0E0E0" }}
-                onPress={() => {
-                  setModalVisible(false)
-                  setQuizStarted(false)
-                  setLearnProgress(id.id, '100')
-                  setProgress('100')
-                  setQuestionsCorrect(0)
-                }}
-                disabled={questionsCorrect === quizQuestions.length ? false : true}
-              >
-                <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
-                  Save and Exit
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ ...styles.modalButton, backgroundColor: "#2980b9" }}
+                style={{ ...styles.modalButton, backgroundColor: "#ff6961", marginBottom:10, marginTop:0 }}
                 onPress={() => {
                   setModalVisible(false)
                   setQuizStarted(false)
@@ -531,7 +515,29 @@ const LearnDetailScreen = ({ route, navigation }) => {
                   Exit Quiz
                 </Text>
               </TouchableOpacity>
-            </View>
+              
+              {quizQuestions.map((item,index) => (
+                <View key={item.question} style={{width:Width-30,}}>
+                  <Text style={{alignSelf:'center', fontSize:18}}>{`Question ${index+1}`}</Text>
+                  <QuizQuestion question={item} checker={() => setQuestionsCorrect(questionsCorrect+1)}/>
+                </View>
+              ))}
+              <TouchableOpacity
+                style={{ ...styles.modalButton, backgroundColor: (questionsCorrect / quizQuestions.length)>0.8 ? "#2ecc71" : "#E0E0E0" }}
+                onPress={() => {
+                  setModalVisible(false)
+                  setQuizStarted(false)
+                  setLearnProgress(id.id, '100')
+                  setProgress('100')
+                  setQuestionsCorrect(0)
+                }}
+                disabled={(questionsCorrect / quizQuestions.length)>0.8  ? false : true}
+              >
+                <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                  Save and Exit
+                </Text>
+              </TouchableOpacity>
+            </ScrollView>
           ) : noQuizError ? (
             <View style={styles.modalView}>
               <Text>{noQuizError}</Text>

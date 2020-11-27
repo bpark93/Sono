@@ -65,7 +65,7 @@ const learnDatabase = [
   {
     title: "Lung and Pleura",
     thumbnail: require("./assets/png2/042-lungs.png"),
-    description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',
+    description:'Still using the Chest X-ray to look for acute causes of dyspnea? Screencasts in this section will address topics of lung and pleural ultrasound including assessment for pneumothorax, A lines, B lines and pleural effusions.',
     id: 2,
     pages: {
       "Fundamentals":[
@@ -74,14 +74,14 @@ const learnDatabase = [
           youtube: "1V1r3MMcjQU",
           id: "2.1",
           captionText:
-            "An introduction to the physics involved in ultrasound imaging, some knobology and how to perform an ultrasound exam. The majority of this material will be review from the Fundamentals Module, feel free to skip if you feel you have a solid understanding of the basics! By Dany Burke MD FRCPC Critical Care Western PGY7",
+            "An introduction to the physics involved in ultrasound imaging, some knobology and how to perform an ultrasound exam. The majority of this material will be review from the Fundamentals Module, within the added context of the lung ultrasound examination. By Dany Burke MD FRCPC Critical Care Western",
         },
         {
           title: "Artifacts",
           youtube: "bXi2ywmQHzg",
           id: "2.2",
           captionText:
-            "Lung Ultrasound is an artefact driven study. This screencast offers a description and explanation of the common artefacts seen and used in lung ultrasound. By Dany Burke MD FRCPC Critical Care Western PGY7",
+            "A normal lung is filled with air and cannot be visualized anatomically using ultrasound. However, the distinct ways ultrasound beams interact with air and pulmonary structures gives us a ton of insight on the underlying anatomy and pathophysiology. This screencast offers a description and explanation of the common artifacts seen and used in lung ultrasound. By Dany Burke MD FRCPC Critical Care.",
         },
         {
           title: "Image Acquisition",
@@ -90,7 +90,7 @@ const learnDatabase = [
             "https://westernsono.ca/wp-content/uploads/2013/06/lung-acquisition.mp4?_t=1514825028",
           id: "2.3",
           captionText:
-            "The standard views for image acquisition of solid organs are typically dictated by what windows are possible based on external anatomy and surrounding structures.  The lungs, however, can be imaged from anywhere on the thorax.  This boundless opportunity can create confusion and, possibly, crippling anxiety as to which portions of the lungs deserve to be imaged.  The idea is, much like the way we auscultate, to take a representative sample from major lung zones and then synthesize a conclusion – clear lungs, unilateral lung disease, bilateral lung disease, etc that permits a rapid differential diagnosis for the respiratory failure that confronts you.  Efficiency and accuracy are essential. By Dr. Rob Arntfield",
+            "The standard views for image acquisition of solid organs are typically dictated by what windows are possible based on external anatomy and surrounding structures.  The lungs, however, can be imaged from anywhere on the thorax.  This boundless opportunity can create confusion and, possibly, crippling anxiety as to which portions of the lungs deserve to be imaged.  The idea is, much like the way we auscultate, to take a representative sample from major lung zones and then synthesize a conclusion – clear lungs, unilateral lung disease, bilateral lung disease, etc that permits a rapid differential diagnosis for the respiratory failure that confronts you.  Efficiency and accuracy are essential. By Dr. Robert Arntfield MD FRCPC",
         },
         {
           title: "Image Interpretation",
@@ -98,7 +98,7 @@ const learnDatabase = [
           altVideo: "Y9Hv84m3kOM",
           id: "2.4",
           captionText:
-            "Are you able to find the lungs and pleura on ultrasound but need a refresher on how to decode the various findings that you might see?  Lung ultrasound (more than pleural) is an artifact driven field and this tutorial seeks to educate and demystify the lung findings of A lines, B lines and sliding lung as well as the classic pleural findings of consolidation and effusion. By Dany Burke MD FRCPC Critical Care Western PGY7",
+            "Are you able to find the lungs and pleura on ultrasound but need a refresher on how to decode the various findings that you might see?  Lung ultrasound (more than pleural) is an artifact driven field and this tutorial seeks to educate and demystify the lung findings of A lines, B lines and sliding lung as well as the classic pleural findings of consolidation and effusion. By Dr. Robert Arntfield MD FRCPC.",
         },
       ],
       "Pathologies":[
@@ -138,7 +138,7 @@ const learnDatabase = [
           youtube: "l-BX3wVhDIg",
           id: "2.9",
           captionText:
-            "Interpreting a consolidation pattern of the lung with a concomitant pleural effusion can sometimes be challenging. Is it a pneumonia pattern with secondary para-pneumonic effusion, or is there a pleural effusion with secondary compressive atelectasis? Does size of each matter, or help us with the diagnosis? Are there any other secondary signs that will help us rule in an infectious process? The answer is yes! Please check out this great screencast by Dr. Yves Landry, critical care fellow (PGY-5) from Western University on comparing pleural effusion to consolidation size, and secondary signs of an infectious process.",
+            "Interpreting a consolidation pattern of the lung with a concomitant pleural effusion can sometimes be challenging. Is it a pneumonia pattern with secondary para-pneumonic effusion, or is there a pleural effusion with secondary compressive atelectasis? Does size of each matter, or help us with the diagnosis? Are there any other secondary signs that will help us rule in an infectious process? The answer is yes! Please check out this great screencast by Dr. Yves Landry, former critical care fellow from Western University on comparing pleural effusion to consolidation size, and secondary signs of an infectious process.",
         },
         {
           title: "Common Pitfalls in LUS",
