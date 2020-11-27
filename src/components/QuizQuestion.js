@@ -4,7 +4,7 @@ import { RadioButton } from "react-native-paper";
 import {Image} from "react-native-expo-image-cache"
 import {Video} from 'expo-av'
 
-const QuizQuestion = ({ question, checker }) => {
+const QuizQuestion = ({ question, checker, answered }) => {
   const [selected, setSelected] = useState("");
   const [submitPressed, setSubmitPressed] = useState(false);
   const [correct, setCorrect] = useState(false);
@@ -63,6 +63,7 @@ const QuizQuestion = ({ question, checker }) => {
         }}
         onPress={() => {
           setSubmitPressed(true)
+          answered();
           if (checker && selected === question.correct){
             checker();
           }

@@ -185,7 +185,7 @@ const learnDatabase = [
   {
     title: "Echocardiography",
     thumbnail: require("./assets/png2/040-heart.png"),
-    description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',
+    description:'The point of care ultrasound revolution has brought a renaissance to providers of resuscitative care: No longer is determination of shock something that requires invasive monitoring (e.g. Swan Ganz) or an ICU admission. Instead, with good image acquisition and image interpretation skills, point of care echo can answer this question anywhere in the hospital – the ED, the ward, the ICU and, the CT scanner or the cafeteria.',
     id: 3,
     pages: {
       "Basic Echo":[
@@ -201,14 +201,14 @@ const learnDatabase = [
           youtube: "bON-KPiiNCk",
           id: "3.2",
           captionText:
-            "The point of care ultrasound revolution has brought a renaissance to providers of resuscitative care: No longer is determination of shock something that requires invasive monitoring (e.g. Swan Ganz) or an ICU admission. Instead, with good image acquisition and image interpretation skills, point of care echo can answer this question anywhere in the hospital – the ED, the ward, the ICU and, the CT scanner or the cafeteria.\n\nAssessing LV function at the point of care is typically used for patients in shock. Compromised LV function may either be the cause or may significantly complicate shock management. Our approach for managing shock based on LV function is shown in this flowsheet.\n\nThe “eyeball” method for addressing LV function is acceptable and even necessary in the point of care setting. Exact determination of ejection fraction (EF) is time consuming and the additional investment in acquiring a more “precise” number does not typically provide incrementally better or more detailed care. A patient with an EF of 20% and one with an EF 25% are typically resuscitated in a similar fashion, for instance.",
+            "",
         },
         {
           title: "Assessment of LV Function",
-          youtube: "v2SUfIwdjdI",
+          youtube: "YB0oQz1myC4",
           id: "3.3",
           captionText:
-            "The point of care ultrasound revolution has brought a renaissance to providers of resuscitative care: No longer is determination of shock something that requires invasive monitoring (e.g. Swan Ganz) or an ICU admission. Instead, with good image acquisition and image interpretation skills, point of care echo can answer this question anywhere in the hospital – the ED, the ward, the ICU and, the CT scanner or the cafeteria.\n\nAssessing LV function at the point of care is typically used for patients in shock. Compromised LV function may either be the cause or may significantly complicate shock management. Our approach for managing shock based on LV function is shown in this flowsheet.\n\nThe “eyeball” method for addressing LV function is acceptable and even necessary in the point of care setting. Exact determination of ejection fraction (EF) is time consuming and the additional investment in acquiring a more “precise” number does not typically provide incrementally better or more detailed care. A patient with an EF of 20% and one with an EF 25% are typically resuscitated in a similar fashion, for instance.",
+            "Assessing LV function at the point of care is typically used for patients in shock. Compromised LV function may either be the cause or may significantly complicate shock management. The “eyeball” method for addressing LV function is acceptable and even necessary in the point of care setting. Exact determination of ejection fraction (EF) is time consuming and the additional investment in acquiring a more “precise” number does not typically provide incrementally better or more detailed care. ",
         },
         {
           title: "Assessment of the RV",
@@ -317,7 +317,7 @@ const learnDatabase = [
         },
         
       ],
-      "Peripheral Nerve Blocks":[
+      "Nerve Blocks":[
         {
           title: "Nerve Blocks for Hip Fractures",
           youtube: "7RKXLAqHaOk",
@@ -371,20 +371,26 @@ const learnDatabase = [
         },
       ],
       "Bladder":[
-
+        {
+          title: "Bladder Scanning",
+          youtube: "oun74cJR6QE",
+          id: "5.5",
+          captionText:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+        },
       ],
       "Testicular":[
         {
           title: "Scrotal Ultrasound",
           youtube: "xiVnNa2hCjY",
-          id: "5.5",
+          id: "5.6",
           captionText:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
         },
         {
           title: "Testicular Torsion and Other Pathologies",
           youtube: "BXaCUYnM9X0",
-          id: "5.6",
+          id: "5.7",
           captionText:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
         },
