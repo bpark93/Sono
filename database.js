@@ -65,7 +65,7 @@ const learnDatabase = [
   {
     title: "Lung and Pleura",
     thumbnail: require("./assets/png2/042-lungs.png"),
-    description:'Still using the Chest X-ray to look for acute causes of dyspnea? Screencasts in this section will address topics of lung and pleural ultrasound including assessment for pneumothorax, A lines, B lines and pleural effusions.',
+    description:'Still using the Chest X-ray to look for acute causes of dyspnea? Lung ultrasound (or LUS) has been shown to have a diagnostic accurary that is not only higher than traditional chest radiography, but similar to chest CT scans. LUS can be used to rapidly identify pneumonia, pulmonary edema, pneomothorax, characterize pleural effusions and even guide therapy by locating a safe needle site for drainage. This section will address the main topics of lung and pleural ultrasound including relevant physics, signs of thoracic pathology, A lines, B lines and much more.',
     id: 2,
     pages: {
       "Fundamentals":[
@@ -107,14 +107,14 @@ const learnDatabase = [
           youtube: "y9GIZ_Fonus",
           id: "2.5",
           captionText:
-            "Ultrasound is an increasingly important tool in the diagnosis of pneumothorax. This screencast reviews the major findings you will see on a patient with pneumothorax, as well as the (many) pitfalls to avoid to prevent misinterpretation.",
+            "Ultrasound plays a pivotal role in the diagnosis of pneumothorax. This screencast reviews the major findings you will see on a patient with pneumothorax, as well as the (many) pitfalls to avoid to prevent misinterpretation.",
         },
         {
           title: "Pleural Effusion",
           youtube: "hLhRKo6llMA",
           id: "2.6",
           captionText:
-            "Pleural effusions come with many signs: Spine, Quad, Sinusoid, Plankton and Jellyfish. Take a deep dive and learn what all these signs mean in this 9 minute screencast!",
+            "Lung ultrasound is a useful tool that can characterize the echogenicity and volume of pleural effusions, thereby guiding therapy. Pleural effusions come with many signs: Spine, Quad, Sinusoid, Plankton and Jellyfish. Take a deep dive and learn what all these signs mean in this comprehensive screencast!",
         },
         {
           title: "Alveolar Interstitial Syndrome and Pneumonia",
@@ -128,7 +128,7 @@ const learnDatabase = [
           youtube: "rzBoRbuc4-0",
           id: "2.8",
           captionText:
-            "This module will briefly review the BLUE protocol then test your skills with 5 highly informative cases from Emergency Medicine. ",
+            "This lesson will briefly review the BLUE protocol then test your skills with 5 highly informative cases from Emergency Medicine. ",
         },
       ],
       "Advanced Applications":[
@@ -147,22 +147,22 @@ const learnDatabase = [
           captionText:
             "This screencast reviews common mistakes in lung ultrasound image acquisition, interpretation, and clinical integration. It aims to sharpen your lung POCUS skills and help you unlock the true potential of this powerful diagnostic modality. By Dr. Katie Wiskar, Internal Medicine.",
         },
-        {
-          title: "Alveolar Consolidation and Shred Sign",
-          youtube: "0qY9AghmFUs",
-          id: "2.11",
-          captionText:
-            "Sliding lung, A lines and B lines – easy enough, right?  But what about the spectrum of alveolar consolidation and the so called “shred” sign.  This review by Yogesh Lala, MD, FRCPC – alumnus of our critical care program, has got YOU covered.",
-        },
-        {
-          title: "Loss of Lung Sliding: Beyond Pneumothorax",
-          youtube: "2AulDYEjLZs",
-          video:
-            "https://westernsono.ca/wp-content/uploads/2015/12/untitled.mp4?_t=1514825048",
-          id: "2.12",
-          captionText:
-            "All that slides is NOT pneumothorax – we know this. When lung sliding is lost, however, the importance of this and what this could mean, is less certain. To better understand loss of lung sliding, please enjoy this excellent screencast by Dr. Paul Lee from the internal medicine program at Western University.",
-        },
+        // {
+        //   title: "Alveolar Consolidation and Shred Sign",
+        //   youtube: "0qY9AghmFUs",
+        //   id: "2.11",
+        //   captionText:
+        //     "Sliding lung, A lines and B lines – easy enough, right?  But what about the spectrum of alveolar consolidation and the so called “shred” sign.  This review by Yogesh Lala, MD, FRCPC – alumnus of our critical care program, has got YOU covered.",
+        // },
+        // {
+        //   title: "Loss of Lung Sliding: Beyond Pneumothorax",
+        //   youtube: "2AulDYEjLZs",
+        //   video:
+        //     "https://westernsono.ca/wp-content/uploads/2015/12/untitled.mp4?_t=1514825048",
+        //   id: "2.12",
+        //   captionText:
+        //     "All that slides is NOT pneumothorax – we know this. When lung sliding is lost, however, the importance of this and what this could mean, is less certain. To better understand loss of lung sliding, please enjoy this excellent screencast by Dr. Paul Lee from the internal medicine program at Western University.",
+        // },
         {
           title: "Acute Respiratory Distress Syndrome",
           youtube: "rAC9Y28zpG8",
@@ -170,14 +170,14 @@ const learnDatabase = [
             "https://westernsono.ca/wp-content/uploads/2015/08/lung-ultrasonography-in-ards-2015.mp4?_t=1514825036",
           id: "2.13",
           captionText:
-            "Still puzzled about the different patterns of B-lines? Watch this case-based tutorial on differentiating between the various diffuse parenchymal diseases. Presented by Ann George, MD",
+            "Still puzzled about the different patterns of B-lines and consolidation? Watch this case-based tutorial on differentiating between the various diffuse parenchymal diseases. Presented by Ann George, MD",
         },
         {
           title: "Respiratory Failure",
           youtube: "q_-F4fHRv5g",
           id: "2.14",
           captionText:
-            "Real-life example of respiratory failure in the general medicine ward, and how a POCUS consultation can help. Presented by Dr. Lucas Ciprietti, Internal Medicine",
+            "Real-life example of respiratory failure in the general medicine ward, and how a POCUS consultation can help. Dr. Lucas Ciprietti, Internal Medicine, takes you through how a POCUS consult influenced the formation of a differential diagnosis, choice of imaging, and choice of treatment in a patient initially presenting as CHF exacerbation.",
         },
       ]
     },

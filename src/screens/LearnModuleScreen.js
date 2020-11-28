@@ -67,7 +67,7 @@ const LearnModuleScreen = ({route, navigation}) => {
       >
         <View style={{flex:1, marginBottom:100, backgroundColor:'white'}}>
           {id.description ? (
-            <Text style={{paddingHorizontal:15, color:'gray', fontFamily:'Raleway-Regular', borderBottomWidth:0.5, borderBottomColor:'#E0E0E0', paddingBottom:10}}>{id.description}</Text> 
+            <Text style={{paddingHorizontal:20, color:'gray', borderBottomWidth:0.5, borderBottomColor:'#E0E0E0', paddingBottom:10,}}>{id.description}</Text> 
           ): null}
           {Object.entries(id.pages).map((section) => (
             <View key={section[0]} style={{marginVertical:15}}>

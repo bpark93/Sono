@@ -13,13 +13,13 @@ const QuizLink = ({ name, id }) => {
           size={24}
           style={{ marginHorizontal: 5 }}
         />
-        <Text style={styles.text}>{name}: Module Test</Text>
+        <Text style={styles.text}>{name}: Module Challenge</Text>
       </View>
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.push("Test", { id: id })}
       >
-        <Text style={styles.buttonText}>Take The Test</Text>
+        <Text style={styles.buttonText}>Take The Challenge</Text>
       </TouchableOpacity>
     </View>
   );

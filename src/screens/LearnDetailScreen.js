@@ -499,8 +499,8 @@ const LearnDetailScreen = ({ route, navigation }) => {
       >
         {quizStarted ? (
           quizQuestions ? (
-            <ScrollView style={{ flex: 1, marginVertical:50 }} contentContainerStyle={{justifyContent: "center", alignItems:'center',}}> 
-              <View style={{marginVertical:20}}>
+            <ScrollView style={{ flex: 1, marginVertical:50, }} contentContainerStyle={{justifyContent: "center", alignItems:'center',}}> 
+              <View style={{marginVertical:20, marginHorizontal:15}}>
                 <Text style={{fontSize:24}}>{id.title} Lesson Quiz</Text>
                 <Text style={{color:'#BBBBBB'}}>Get 80% or higher to complete the lesson.</Text>
               </View>
@@ -520,8 +520,8 @@ const LearnDetailScreen = ({ route, navigation }) => {
               
               {quizQuestions.map((item,index) => (
                 <View key={item.question} style={{width:Width-30,}}>
-                  <Text style={{alignSelf:'center', fontSize:18}}>{`Question ${index+1}`}</Text>
-                  <QuizQuestion question={item} checker={() => setQuestionsCorrect(questionsCorrect+1)} answered={() => setQuestionsAnswered(questionsAnswered+1)}/>
+                  {/* <Text style={{alignSelf:'center', fontSize:18}}>{`Question ${index+1}`}</Text> */}
+                  <QuizQuestion index={index} question={item} checker={() => setQuestionsCorrect(questionsCorrect+1)} answered={() => setQuestionsAnswered(questionsAnswered+1)}/>
                 </View>
               ))}
               {questionsAnswered === quizQuestions.length ?
