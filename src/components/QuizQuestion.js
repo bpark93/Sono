@@ -12,7 +12,7 @@ const QuizQuestion = ({ question, checker, answered, index }) => {
 
   return !submitPressed ? (
     <View style={styles.container}>
-      <Text style={{alignSelf:'center', fontSize:18}}>{`Question ${index+1}`}</Text>
+      {index ? <Text style={{alignSelf:'center', fontSize:18}}>{`Question ${index+1}`}</Text> : null}
       <Text style={styles.question}>{question.question}</Text>
       {question.image? 
         <Image 
@@ -64,7 +64,7 @@ const QuizQuestion = ({ question, checker, answered, index }) => {
         }}
         onPress={() => {
           setSubmitPressed(true)
-          answered();
+          if (answered) {answered();}
           if (checker && selected === question.correct){
             checker();
           }

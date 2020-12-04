@@ -99,7 +99,7 @@ const LearnTestScreen = ({ route }) => {
           <Text style={{ color: "white" }}>START</Text>
         </TouchableOpacity>
         <Text style={{ marginTop: 10 }}>
-          {`Total number of questions: ${pageInfo.count}\nEstimated length: ${pageInfo.eta} minutes`}
+          {`Total number of questions: ${pageInfo.count}\nEstimated time required: ${pageInfo.eta} minutes`}
         </Text>
       </View>
     ) : (

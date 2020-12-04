@@ -238,6 +238,8 @@ const LearnDetailScreen = ({ route, navigation }) => {
       });
   }, [id]);
 
+  const [toggle, setToggle] = useState(false)
+
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -323,7 +325,8 @@ const LearnDetailScreen = ({ route, navigation }) => {
             noteToggle={(bool) => setNoteVisible(bool)}
             youtubeToggle={() => setYoutubePlaying(false)}
           />
-          <Text style={styles.body}>{id.captionText}</Text>
+          <Text style={styles.body} numberOfLines={toggle ? null : 5}>{id.captionText}</Text>
+          <TouchableOpacity onPress={() => setToggle(!toggle)} style={{marginHorizontal:15}}><Text style={{fontWeight:'bold', color:'gray'}}>{toggle ? "Show Less" : "Show More"}</Text></TouchableOpacity>
 
           {noteVisible ? (
             <View style={{ margin: 15, flex: 1 }}>

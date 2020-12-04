@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
   },
   htmlStyle: {
     marginHorizontal: 10,
-    marginTop: 10,
+    marginVertical: 10,
   },
   nameStyle: {
     fontSize: 16,

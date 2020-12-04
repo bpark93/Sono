@@ -39,7 +39,7 @@ const SettingsAboutScreen = () => {
           />
         </View>
         <Text style={{color:'gray', marginBottom:10}}>Sono is a free, open source project developed by medical students, residents and faculty of Schulich School of Medicine, London, ON.</Text>
-        <Text style={{color:'gray'}}>Screencasts, cases and resources on the Learn Tab are from WesternSono.ca, adapted to a mobile platform. WesternSono is the hub of Point-Of-Care Ultrasound training, education and research at Western University.</Text>
+        <Text style={{color:'gray'}}>Screencasts, cases and resources on the Learn Tab are from WesternSono.ca adapted to a mobile platform. Ultrasound clips in the Library section are sourced from the ultrasound archives at the London Health Sciences Centre. WesternSono is the hub of Point-Of-Care Ultrasound training, education and research at Western University.</Text>
       </View>
 
       <View

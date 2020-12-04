@@ -272,34 +272,28 @@ const learnDatabase = [
     pages: {
       "Vascular Access":[
         {
-          title: "Peripheral IV Insertion Part 1",
-          youtube: "YVQhpcsmaHM",
+          title: "Peripheral IV Insertion",
+          youtube: "hlGFZJYWIgw",
           id: "4.1",
-          captionText: "",
-        },
-        {
-          title: "Peripheral IV Insertion Part 2",
-          youtube: "Z6mOKmZcshI",
-          id: "4.2",
-          captionText: "",
+          captionText: "How many times have you had a patient that needs IV access, but none can be obtained by traditional visualization or even blind technique, even by the most experienced operators (i.e. the IV team)? What do you do next? Attempt a central line instead? Not necessarily! Instead, much like arterial lines, you can use ultrasound (US) to help with venous cannulation.",
         },
         {
           title: "Central Vascular Access",
           youtube: "bON-KPiiNCk",
-          id: "4.3",
+          id: "4.2",
           captionText: "",
         },
         {
           title: "Subclavian and Peripheral Arterial Access",
           youtube: "bON-KPiiNCk",
-          id: "4.4",
+          id: "4.3",
           captionText: "",
         },
         {
           title: "Sterile Technique for US Guided Procedures",
           youtube: "BIZJdzqgF88",
-          id: "4.5",
-          captionText: "",
+          id: "4.4",
+          captionText: "Dr Jeff Granton (Critical Care/Anesthesia) demonstrates the technique and pointers on becoming maximally sterile for an invasive procedure (such as an ultrasound guided central venous catheter insertion)",
         },
       ],
       "Free Fluid Drainage":[
@@ -552,6 +546,7 @@ const learnDatabase = [
  {
     title: "Critical Care Hemodynamics",
     thumbnail: require("./assets/png/044-blood.png"),
+    description:"The beauty of point-of-care echo is that we can generally answer our most pressing clinical questions (such as: gross LV function, RV size, IVC size and variability and pericardial effusion) rapidly without relying on measurements, or advanced “knobs” related to spectral Doppler.  The literature and our clinical experience reflect that this approach is accurate and improves confidence and speed to diagnosis.\n\nThere ARE however times when the extensive additional training and commitment to learning these skills does pay off at the point-of-care.  This could be in the resus bay in the ED, the peri-operative milieu or in the ICU. In this series of case presentations, Dr. Vincent Lau, PGY5 in critical care at Western University, articulately and visually takes us through several superb cases where one can only be inspired to possess these advanced skills.  The cases are presented in order of increasing complexity and frequently refer to the use of stroke volume determination.",
     id: 9,
     pages: {
       "":[
@@ -572,8 +567,6 @@ const learnDatabase = [
         id: "9.2",
         captionText:
           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
-        transcript:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. \n\nLorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing\n\n  and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.",
       },
       {
         title: "Cardiogenic Shock",
@@ -634,6 +627,7 @@ const learnDatabase = [
   {
     title: "Transesophageal Echo",
     thumbnail: require("./assets/png2/038-esophagus.png"),
+    description:"For most point-of-care needs, one can do both basic and more advanced applications of echocardiography with transthoracic scanning. However, there ARE times whereby having ability to perform transesophageal echocardiography (TEE) can be extremely helpful in the point-of-care. This is especially true when windows are hard to obtain in transthoracic echo (TTE) during a technically difficult study, or when a more sensitive and specific modality is required to help with various diagnoses (i.e. endocarditis, cardiac source of emboli, shunts, dissection), or during procedural guidance (i.e. veno-venous extracorporeal membrane oxygenation insertion). In this series of case presentations Dr. Rob Arntfield, MD, FRCPC and Dr. Vincent Lau, critical care medicine alumnus and critical care ultrasound fellow at Western University, introduces various advanced concepts with regards to performing critical care TEEs.",
     id: 10,
     pages: {
       "":[
