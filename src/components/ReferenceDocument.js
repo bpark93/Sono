@@ -306,9 +306,9 @@ const ReferenceDocument = ({ page, id }) => {
                 />
                 <Text
                   style={{
-                    fontFamily: "Raleway-Regular",
                     fontSize: 14,
                     flex: 1,
+                    color:"gray"
                   }}
                 >
                   {ref.text}
@@ -623,7 +623,7 @@ const UnitConverter = ({ unitsArray, converter }) => {
 
 const styles = StyleSheet.create({
   header: {
-    fontFamily: "Raleway-Bold",
+    fontWeight: "bold",
     fontSize: 24,
     marginVertical: 10,
     marginHorizontal: 10,
@@ -645,14 +645,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#FDFDFD",
     elevation: 3,
     shadowOffset: {
-      width: -10,
-      height: 10,
+      width: -3,
+      height: 3,
     },
     shadowOpacity: 0.1,
   },
   touchable: {
     color: "#2b59a2",
-    fontSize: 18,
+    fontSize: 16,
     marginHorizontal: 15,
     marginBottom: 10,
   },

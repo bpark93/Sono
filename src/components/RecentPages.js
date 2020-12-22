@@ -149,7 +149,7 @@ const PrettyTag = ({ category }) => {
     case "Vascular":
       picker = "#e36387"; // Material Deep Orange
       break;
-    case "Thoracic":
+    case "Lung and Pleura":
       picker = "#a6dcef"; // Material Indigo
       break;
     case "Abdominal":

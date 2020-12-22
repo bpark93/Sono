@@ -1,7 +1,7 @@
 const categoryDatabase = 
   {
     "Cardiac": require("./assets/png2/040-heart.png"),
-    "Thoracic":require("./assets/png2/042-lungs.png"),
+    "Lung and Pleura":require("./assets/png2/042-lungs.png"),
     "Abdominal":require("./assets/png/038-abs.png"),
     "Renal":require("./assets/png2/032-kidney.png"),
     "Procedural": require("./assets/png/injection.png"),
