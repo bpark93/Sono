@@ -131,10 +131,22 @@ const setList = async (id) => {
 const PrettyTag = ({ category }) => {
   let picker = "#4f2683";
   switch (category) {
-    case "Trauma"||"Musculoskeletal"||"Skin":
+    case "Trauma":
       picker = "#e51c23"; // Material Red
       break;
-    case "Cardiac"||"Vascular":
+    case "Musculoskeletal":
+      picker = "#d2d4dc"; // Material Red
+      break;
+    case "Skin":
+      picker = "#fce9db"; // Material Red
+      break;
+    case "Head and Neck":
+      picker = "#a8e6cf"; // Material Red
+      break;
+    case "Cardiac":
+      picker = "#e36387"; // Material Deep Orange
+      break;
+    case "Vascular":
       picker = "#e36387"; // Material Deep Orange
       break;
     case "Thoracic":
@@ -149,18 +161,21 @@ const PrettyTag = ({ category }) => {
     case "Procedural":
       picker = "#A5678E"; // Material Cyan
       break;
-    case "OB/Gyn"||"Testicular":
+    case "OB/Gyn":
+      picker = "#f2aaaa"; // Material Pink
+      break;
+    case "Testicular":
       picker = "#f2aaaa"; // Material Pink
       break;
     case "Pediatric":
-      picker = "#ddf3f5"; // Material Pink
+      picker = "#ff99cc"; // Material Pink
       break;
     default:
       break;
   }
   return (
     <View style={{ ...styles.categoryView, backgroundColor: picker }}>
-      <Text style={{ ...styles.category,  }}>{category}</Text>
+      <Text style={{ ...styles.category }}>{category}</Text>
     </View>
   );
 };
@@ -175,18 +190,18 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     fontSize: 20,
     // fontFamily: "Raleway-Bold",
-    fontWeight:'bold'
+    fontWeight: "bold",
   },
   category: {
     fontSize: 14,
-    fontWeight:'bold',
+    fontWeight: "bold",
     color: "white",
   },
   categoryView: {
     // borderColor: "#4f2683",
     // borderWidth: 2,
     borderRadius: 5,
-    backgroundColor:'#4f2683',
+    backgroundColor: "#4f2683",
     padding: 5,
     width: 90,
     justifyContent: "center",

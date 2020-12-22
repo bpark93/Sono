@@ -9,8 +9,7 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
-
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const SettingsAboutScreen = () => {
   return (
@@ -18,16 +17,32 @@ const SettingsAboutScreen = () => {
       style={styles.container}
       contentContainerStyle={{ alignItems: "center" }}
     >
-      <View style={{alignItems:'center', marginHorizontal:20, }}>
+      <View style={{ alignItems: "center", marginHorizontal: 20 }}>
         <Image
           source={require("../../assets/sono_logo.png")}
           style={{ height: 120, width: 120, resizeMode: "contain" }}
         />
-        <Text style={{fontFamily:'Raleway-Regular', fontSize:36, }}>SONO</Text>
-        <Text style={{fontFamily:'Raleway-Regular', color:'gray', marginBottom:10}}>Version 0.1.0</Text>
-        <Text style={{fontFamily:'Raleway-Regular', marginBottom:5}}>Powered By:</Text>
-        <View style={{flexDirection:'row', marginBottom:10}}>
-          <TouchableOpacity onPress={async () => await Linking.openURL('https://westernsono.ca/')}>
+        <Text style={{ fontFamily: "Raleway-Regular", fontSize: 36 }}>
+          SONO
+        </Text>
+        <Text
+          style={{
+            fontFamily: "Raleway-Regular",
+            color: "gray",
+            marginBottom: 10,
+          }}
+        >
+          Version 0.1.0
+        </Text>
+        <Text style={{ fontFamily: "Raleway-Regular", marginBottom: 5 }}>
+          Powered By:
+        </Text>
+        <View style={{ flexDirection: "row", marginBottom: 10 }}>
+          <TouchableOpacity
+            onPress={async () =>
+              await Linking.openURL("https://westernsono.ca/")
+            }
+          >
             <Image
               source={require("../../assets/western-logo.png")}
               style={{ height: 50, width: 150, resizeMode: "contain" }}
@@ -38,84 +53,114 @@ const SettingsAboutScreen = () => {
             style={{ height: 50, width: 150, resizeMode: "contain" }}
           />
         </View>
-        <Text style={{color:'gray', marginBottom:10}}>Sono is a free, open source project developed by medical students, residents and faculty of Schulich School of Medicine, London, ON.</Text>
-        <Text style={{color:'gray'}}>Screencasts, cases and resources on the Learn Tab are from WesternSono.ca adapted to a mobile platform. Ultrasound clips in the Library section are sourced from the ultrasound archives at the London Health Sciences Centre. WesternSono is the hub of Point-Of-Care Ultrasound training, education and research at Western University.</Text>
+        <Text style={{ color: "gray", marginBottom: 10 }}>
+          Sono is a free, open source project developed by medical students,
+          residents and faculty of Schulich School of Medicine, London, ON.
+        </Text>
+        <Text style={{ color: "gray" }}>
+          Screencasts, cases and resources on the Learn Tab are from
+          WesternSono.ca adapted to a mobile platform. Ultrasound clips in the
+          Library section are sourced from the ultrasound archives within London
+          Health Sciences Centre. WesternSono is the hub of Point-Of-Care
+          Ultrasound training, education and research at Western University.
+        </Text>
       </View>
 
       <View
+        style={{
+          alignSelf: "center",
+          paddingHorizontal: 20,
+          marginTop: 20,
+          borderTopWidth: 0.5,
+          borderBottomWidth: 0.2,
+          borderColor: "#E0E0E0",
+        }}
+      >
+        <Text
           style={{
+            fontSize: 24,
+            marginVertical: 30,
+            // fontFamily: "Raleway-Regular",
+            // fontWeight:'bold',
             alignSelf: "center",
-            paddingHorizontal: 20,
-            marginTop:20,
-            borderTopWidth:0.5,
-            borderBottomWidth:0.2,
-            borderColor:'#E0E0E0'
-
           }}
         >
-          <Text
+          Help us improve Sono!
+        </Text>
+        <View style={{ marginBottom: 10 }}>
+          <Text style={{ marginBottom: 20, color: "gray" }}>
+            We are always looking for more collaborators and ideas. Help us
+            improve by:
+          </Text>
+
+          <TouchableOpacity
+            onPress={async () => {
+              await Linking.openURL("mailto:spark2023@meds.uwo.ca");
+            }}
             style={{
-              fontSize: 24,
-              marginVertical: 30,
-              fontFamily: "Raleway-Regular",
-              // fontWeight:'bold',
-              alignSelf:'center'
+              flexDirection: "row",
+              alignItems: "center",
+              marginVertical: 2,
             }}
           >
-            Help us improve Sono!
-          </Text>
-          <View style={{ marginBottom: 10, alignItems:'center' }}>
-            <Text style={{marginBottom:20, color:'gray'}}>We are always looking for more collaborators and ideas. Help us improve by:</Text>
-            
-            <Text style={{color:'gray'}}>Emailing us your feedback:</Text>
-            <TouchableOpacity
-              onPress={async () => {
-                await Linking.openURL("mailto:spark2023@meds.uwo.ca");
-              }}
-              style={{marginBottom:10, flexDirection:'row', alignItems:'center'}}
-            >
-              <MaterialCommunityIcons name="email-check-outline" size={50} color="black" />
-            </TouchableOpacity>
+            <MaterialCommunityIcons
+              name="email-check-outline"
+              size={40}
+              color="black"
+            />
+            <Text style={{ color: "gray", fontSize: 16 }}>
+              Emailing us your feedback
+            </Text>
+          </TouchableOpacity>
 
-            <Text style={{color:'gray'}}>Making a pull request:</Text>
-            <TouchableOpacity
-              onPress={async () => {
-                await Linking.openURL("https://github.com/bpark93/pocus");
-              }}
-              style={{marginBottom:10, flexDirection:'row', alignItems:'center'}}
-              // style={{borderWidth:1, borderRadius:10, alignItems:'center', marginVertical:5}}
-            >
-              <MaterialCommunityIcons name="github-box" size={50} color="black" />
-            </TouchableOpacity>
-            <Text style={{color:'gray'}}>Contributing your clips and images:</Text>
-            <TouchableOpacity
-              onPress={async () => {
-                await Linking.openURL("https://westernsono-library.web.app/");
-              }}
-              style={{marginBottom:10, flexDirection:'row', alignItems:'center'}}
-              // style={{borderWidth:1, borderRadius:10, overflow:'hidden', alignItems:'center', marginVertical:5}}
-            >
-              <MaterialCommunityIcons name="database" size={50} color="black" />
-              <Text style={{fontSize:20}}>Sono Database</Text>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity
+            onPress={async () => {
+              await Linking.openURL("https://github.com/bpark93/pocus");
+            }}
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginVertical: 2,
+            }}
+          >
+            <MaterialCommunityIcons name="github-box" size={40} color="black" />
+            <Text style={{ color: "gray", fontSize: 16 }}>
+              Making a pull request
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={async () => {
+              await Linking.openURL("https://westernsono-library.web.app/");
+            }}
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginVertical: 2,
+            }}
+          >
+            <MaterialCommunityIcons name="database" size={40} color="black" />
+            <Text style={{ color: "gray", fontSize: 16 }}>
+              Contributing your clips and images
+            </Text>
+          </TouchableOpacity>
         </View>
+      </View>
 
       <View style={styles.textBox}>
         <Text
           style={{
             fontSize: 24,
             marginVertical: 30,
-            fontFamily: "Raleway-Regular",
-            alignSelf:'center'
+            alignSelf: "center",
           }}
         >
           Licenses
         </Text>
-        <Text style={{ marginBottom: 10, color:'gray'  }}>
+        <Text style={{ marginBottom: 10, color: "gray" }}>
           Sono is licensed under the GNU Affero General Public License v3.0
         </Text>
-        <Text style={{ marginBottom: 10, color:'gray' }}>
+        <Text style={{ marginBottom: 10, color: "gray" }}>
           Permissions of this strongest copyleft license are conditioned on
           making available complete source code of licensed works and
           modifications, which include larger works using a licensed work, under
@@ -124,23 +169,22 @@ const SettingsAboutScreen = () => {
           modified version is used to provide a service over a network, the
           complete source code of the modified version must be made available.
         </Text>
-        <Text>Icons made by Freepik, Vectors Market and SmashIcons from www.flaticon.com</Text>
+        <Text style={{ marginBottom: 10, color: "gray" }}>
+          Icons made by Freepik, Vectors Market and SmashIcons from
+          www.flaticon.com
+        </Text>
 
         <Text
           style={{
             fontSize: 24,
             marginVertical: 30,
-            fontFamily: "Raleway-Regular",
-            alignSelf:'center'
+            alignSelf: "center",
           }}
         >
           Privacy Policy
         </Text>
-        <Text style={{ marginBottom: 10, color:'gray'  }}>
-          Coming soon
-        </Text>
+        <Text style={{ marginBottom: 10, color: "gray" }}>We don't collect any personal data. Period. The server only knows how many users are accessing its content, from which region access calls are being made and how many users have crashes, but there is no way to tie this information back to individual users.</Text>
       </View>
-      
     </ScrollView>
   );
 };
