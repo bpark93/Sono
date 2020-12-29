@@ -69,44 +69,47 @@ const ReferenceDocument = ({ page, id }) => {
     });
   }, [bookmarked, page]);
 
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState("");
   const [buttonSettings, setButtonSettings] = useState([]);
   useEffect(() => {
+    let newArray = []
     if (page.calculator) {
-      setButtonSettings([
+      newArray.push(
         {
           name: "Calculator",
           icon: "calculator",
-        },
+        }
+      )
+    }
+    if (page.normalValues) {
+      newArray.push(
         {
           name: "Normal Values",
           icon: "clipboard-check-outline",
-        },
+        }
+      )
+    }
+    if (page.content) {
+      newArray.push(
         {
           name: "Acquisition",
           icon: "account-search",
-        },
+        }
+      )
+    }
+    if (page.terminology){
+      newArray.push(
         {
           name: "Terminology",
           icon: "book-open-page-variant",
-        },
-      ]);
+        }
+      )
+    }
+    setButtonSettings(newArray)
+    if (page.activeIndex){
+      setActiveIndex(page.activeIndex)
     } else {
-      setButtonSettings([
-        {
-          name: "Normal Values",
-          icon: "clipboard-check-outline",
-        },
-        {
-          name: "Acquisition",
-          icon: "account-search",
-        },
-        {
-          name: "Terminology",
-          icon: "book-open-page-variant",
-        },
-      ]);
-      setActiveIndex(2);
+      setActiveIndex("Acquisition")
     }
   }, [page]);
 
@@ -118,14 +121,14 @@ const ReferenceDocument = ({ page, id }) => {
         settings={buttonSettings}
       />
       <KeyboardAwareScrollView keyboardOpeningTime={0}>
-        {activeIndex === 0 && page.calculator
+        {activeIndex === "Calculator" && page.calculator
           ? page.calculator.map((item, index) => (
               <Calculator key={index} settings={item} />
             ))
           : null}
 
         {/* Normal Values  */}
-        {activeIndex === 1 && page.normalValues ? (
+        {activeIndex === "Normal Values" && page.normalValues ? (
           <View style={styles.card}>
             <Text style={styles.header}>Normal Values</Text>
 
@@ -152,7 +155,7 @@ const ReferenceDocument = ({ page, id }) => {
         ) : null}
 
         {/* Text Content */}
-        {activeIndex === 2 && page.content
+        {activeIndex === "Acquisition" && page.content
           ? page.content.map((section) => (
               <View key={section.header}>
                 {typeof section.body === "string" ? (
@@ -162,6 +165,7 @@ const ReferenceDocument = ({ page, id }) => {
                       html={section.body}
                       containerStyle={{ flex: 1, margin: 10 }}
                       baseFontStyle={{ fontFamily: "Roboto-Regular" }}
+                      imagesMaxWidth={width-100}
                     />
                   </View>
                 ) : (
@@ -217,14 +221,6 @@ const ReferenceDocument = ({ page, id }) => {
                           Caveats
                         </Text>
                         {section.caveats.map((caveat) => (
-                          // <Text
-                          //   key={caveat}
-                          //   style={{
-                          //     ...styles.paragraph,
-                          //     margin: 0,
-                          //     marginLeft: 10,
-                          //   }}
-                          // >{`\u2022 ${caveat}`}</Text>
                           <HTML
                             html={`<li>${caveat}</li>`}
                             key={caveat}
@@ -240,7 +236,7 @@ const ReferenceDocument = ({ page, id }) => {
           : null}
 
         {/* Authors */}
-        {activeIndex === 2 && page.authors ? (
+        {activeIndex === "Acquisition" && page.authors ? (
           <View style={styles.card}>
             <Text style={styles.header}>Authors</Text>
             {page.authors.map((person) => (
@@ -261,7 +257,7 @@ const ReferenceDocument = ({ page, id }) => {
         ) : null}
 
         {/* Associated Pages */}
-        {activeIndex === 2 && page.associated_pages ? (
+        {activeIndex === "Acquisition" && page.associated_pages ? (
           <View style={styles.card}>
             <Text style={styles.header}>Associated Pages</Text>
             {page.associated_pages.map((page) => (
@@ -276,7 +272,7 @@ const ReferenceDocument = ({ page, id }) => {
         ) : null}
 
         {/* References */}
-        {activeIndex === 2 && page.references ? (
+        {activeIndex === "Acquisition" && page.references ? (
           <View style={styles.card}>
             <Text style={styles.header}>References</Text>
 
@@ -319,7 +315,7 @@ const ReferenceDocument = ({ page, id }) => {
         ) : null}
 
         {/* Terminology */}
-        {activeIndex === 3 && page.terminology ? (
+        {activeIndex === "Terminology" && page.terminology ? (
           <View style={styles.card}>
             <Text style={styles.header}>Terminology</Text>
 
@@ -436,6 +432,24 @@ const Calculator = ({ settings }) => {
     case "mva_decel":
       formula1 = (750 / var1).toFixed(2);
       break;
+    case "rvsp":
+      formula1 = (parseInt(4*var1*var1)+parseInt(var2));
+      break;
+    case "rap":
+      if (var1 === "> 2.1 cm" && var2 === "< 50%"){
+        formula1 = "15"
+      } else if (var1 === "< 2.1 cm" && var2 === "> 50%"){
+        formula1 = "3"
+      } else {
+        formula1 = "8"
+      }
+      break;
+    case "tv_inflow":
+      formula1 = ((var1-var2)/var1*-100).toFixed(2)
+      break;
+    case "mv_inflow":
+      formula1 = ((var1-var2)/var1*100).toFixed(2)
+      break;
     default:
       break;
   }
@@ -444,7 +458,7 @@ const Calculator = ({ settings }) => {
     <View style={styles.card}>
       <Text style={{ ...styles.header, fontSize: 20 }}>{settings.title}</Text>
 
-      <Image
+      {settings.formulaImage ? <Image
         resizeMode="contain"
         uri={settings.formulaImage}
         style={{
@@ -453,7 +467,8 @@ const Calculator = ({ settings }) => {
           marginVertical: 10,
           alignSelf: "center",
         }}
-      />
+      /> : null}
+
       {settings.variables.map((variable, index) => (
         <View
           style={{
@@ -467,101 +482,107 @@ const Calculator = ({ settings }) => {
           <View style={{ width: (width - 30) / 3, alignItems: "flex-end" }}>
             <Text>{variable.name}: </Text>
           </View>
-          {variable.type === "measured" ? (
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                marginHorizontal: 10,
-              }}
-            >
-              <TextInput
+
+          {variable.type === "select" ? (
+            <PickerElement valuesArray={variable.selections} setVar1={setVar1} setVar2={setVar2} setVar3={setVar3} elementIndex={index}/> 
+            ) :
+            variable.type === "measured" ? (
+              <View
                 style={{
-                  width: 100,
-                  height: 40,
-                  paddingHorizontal: 5,
-                  backgroundColor: "#F7F7F7",
-                  alignSelf: "center",
-                }}
-                value={index === 0 ? var1 : index === 1 ? var2 : var3}
-                onChangeText={(text) =>
-                  index === 0
-                    ? setVar1(text)
-                    : index === 1
-                    ? setVar2(text)
-                    : setVar3(text)
-                }
-                error={validate(index)}
-                keyboardType="decimal-pad"
-              />
-              {validate(index) && (
-                <HelperText
-                  type="error"
-                  visible={validate(index)}
-                  style={{ width: 120 }}
-                >
-                  Not A Number!
-                </HelperText>
-              )}
-            </View>
-          ) : (
-            <View
-              style={{
-                width: 100,
-                marginHorizontal: 10,
-                height: 40,
-                justifyContent: "center",
-                alignItems: "center",
-                borderColor:
-                  validateAnswer(variable) === "high" ||
-                  validateAnswer(variable) === "low"
-                    ? "red"
-                    : validateAnswer(variable) === "good"
-                    ? "green"
-                    : "gray",
-                borderWidth: 1,
-                borderRadius: 10,
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 16,
-                  fontWeight: "bold",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginHorizontal: 10,
                 }}
               >
-                {variable.count === "0"
-                  ? isFinite(formula1) && var1
-                    ? formula1
-                    : ""
-                  : variable.count === "1"
-                  ? isFinite(formula2) && var1
-                    ? formula2
-                    : ""
-                  : ""}
-              </Text>
-              {validateAnswer(variable) === "high" ? (
+                <TextInput
+                  style={{
+                    width: 100,
+                    height: 40,
+                    paddingHorizontal: 5,
+                    backgroundColor: "#F7F7F7",
+                    alignSelf: "center",
+                  }}
+                  value={index === 0 ? var1 : index === 1 ? var2 : var3}
+                  onChangeText={(text) =>
+                    index === 0
+                      ? setVar1(text)
+                      : index === 1
+                      ? setVar2(text)
+                      : setVar3(text)
+                  }
+                  error={validate(index)}
+                  keyboardType="decimal-pad"
+                />
+                {validate(index) && (
+                  <HelperText
+                    type="error"
+                    visible={validate(index)}
+                    style={{ width: 120 }}
+                  >
+                    Not A Number!
+                  </HelperText>
+                )}
+              </View>
+            ) : (
+              <View
+                style={{
+                  width: 100,
+                  marginHorizontal: 10,
+                  height: 40,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  borderColor:
+                    validateAnswer(variable) === "high" ||
+                    validateAnswer(variable) === "low"
+                      ? "red"
+                      : validateAnswer(variable) === "good"
+                      ? "green"
+                      : "gray",
+                  borderWidth: 1,
+                  borderRadius: 10,
+                }}
+              >
                 <Text
                   style={{
-                    color: "red",
-                    fontFamily: "Roboto-Regular",
-                    fontSize: 12,
+                    fontSize: 16,
+                    fontWeight: "bold",
                   }}
                 >
-                  High
+                  {variable.count === "0"
+                    ? isFinite(formula1) && var1
+                      ? formula1
+                      : ""
+                    : variable.count === "1"
+                    ? isFinite(formula2) && var1
+                      ? formula2
+                      : ""
+                    : ""}
                 </Text>
-              ) : validateAnswer(variable) === "low" ? (
-                <Text
-                  style={{
-                    color: "red",
-                    fontFamily: "Roboto-Regular",
-                    fontSize: 12,
-                  }}
-                >
-                  Low
-                </Text>
-              ) : null}
-            </View>
-          )}
+                {validateAnswer(variable) === "high" ? (
+                  <Text
+                    style={{
+                      color: "red",
+                      fontFamily: "Roboto-Regular",
+                      fontSize: 12,
+                    }}
+                  >
+                    High
+                  </Text>
+                ) : validateAnswer(variable) === "low" ? (
+                  <Text
+                    style={{
+                      color: "red",
+                      fontFamily: "Roboto-Regular",
+                      fontSize: 12,
+                    }}
+                  >
+                    Low
+                  </Text>
+                ) : null}
+              </View>
+            )
+          }
+
           {variable.unit ? (
             <UnitConverter
               unitsArray={variable.unit}
@@ -574,6 +595,7 @@ const Calculator = ({ settings }) => {
               }
             />
           ) : null}
+
         </View>
       ))}
     </View>
@@ -620,6 +642,40 @@ const UnitConverter = ({ unitsArray, converter }) => {
     </View>
   );
 };
+
+const PickerElement = ({valuesArray, setVar1, setVar2, setVar3, elementIndex}) => {
+  const [selected, setSelected] = useState(null)
+
+  return (
+    <View 
+      style={{
+        alignItems: "center",
+        justifyContent: "center",
+        marginHorizontal: 10,
+        flexDirection: "row"
+    }}>
+      {valuesArray.map((value, index) => (
+      <TouchableOpacity 
+        key={value} 
+        style={{padding:10, borderWidth:1.2, marginHorizontal:5, borderRadius:10, borderColor:selected === index ? "#3b5998":'gray', backgroundColor: selected === index ? '#E0E0E0':null}}
+        onPress={() => {
+          setSelected(index)
+          if (elementIndex === 0){
+            setVar1(value)
+          } else if (elementIndex === 1){
+            setVar2(value)
+          } else {
+            setVar3(value)
+          }
+        }}
+      >
+        <Text style={{fontWeight:'bold', color:selected === index ? '#3b5998':'gray'}}>{value}</Text>
+      </TouchableOpacity>))}
+              {/* <Text>{JSON.stringify(valuesArray)}</Text> */}
+
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   header: {

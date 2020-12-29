@@ -23,6 +23,35 @@ import HTML from "react-native-render-html";
 
 const { width } = Dimensions.get("window");
 
+const dummyData = {
+    nodes:[
+        {
+            id:0,
+            question: "Is the patient stable?",
+            answers:[
+                {
+                    text:"Unstable",
+                    id:1                    
+                },
+                {
+                    text:"Stable",
+                    id:2
+                }
+            ]
+        },
+        {
+            id:1,
+            question:"More likely etiology?",
+            answers:"Answer 1"
+        },
+        {
+            id:2,
+            question:"What best fits the patient profile?",
+            answers:"Answer 2"
+        }
+    ]
+}
+
 const DiagnosticAlgorithm = ({ page, id }) => {
   const navigation = useNavigation();
 
@@ -72,9 +101,27 @@ const DiagnosticAlgorithm = ({ page, id }) => {
 
   return (
     <View>
+
     </View>
   );
 };
+
+const Node = (info) => {
+    return (
+        <View>
+            <View>
+                <Text>{info.question}</Text>
+            </View>
+            {info.answers.map(answer => (
+                <View key={answer.id}>
+                    <Text>{answer.text}</Text>
+                </View>
+            ))}
+            <View>
+            </View>
+        </View>
+    )
+}
 
 const styles = StyleSheet.create({
   

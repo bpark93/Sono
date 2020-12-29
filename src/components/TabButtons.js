@@ -14,61 +14,33 @@ const TabButtons = ({ activeIndex, setActiveIndex, settings }) => {
         // Need to add for iOS
       }}
     >
-      {settings.length != 3
-        ? settings.map((item, index) => (
-            <TouchableOpacity
-              style={{
-                alignItems: "center",
-                flex: 1,
-                borderBottomWidth: activeIndex === index ? 2 : 0,
-                borderBottomColor: "#4f2683",
-              }}
-              onPress={() => setActiveIndex(index)}
-              key={item.name}
-            >
-              <MaterialCommunityIcons
-                name={item.icon}
-                size={30}
-                color={activeIndex === index ? "#4f2683" : "gray"}
-              />
-              <Text
-                style={{
-                  fontSize: 11,
-                  color: activeIndex === index ? "#4f2683" : "gray",
-                  marginBottom: 5,
-                }}
-              >
-                {item.name}
-              </Text>
-            </TouchableOpacity>
-          ))
-        : settings.map((item, index) => (
-            <TouchableOpacity
-              style={{
-                alignItems: "center",
-                flex: 1,
-                borderBottomWidth: activeIndex === index+1 ? 2 : 0,
-                borderBottomColor: "#4f2683",
-              }}
-              onPress={() => setActiveIndex(index+1)}
-              key={item.name}
-            >
-              <MaterialCommunityIcons
-                name={item.icon}
-                size={30}
-                color={activeIndex === index+1 ? "#4f2683" : "gray"}
-              />
-              <Text
-                style={{
-                  fontSize: 11,
-                  color: activeIndex === index+1 ? "#4f2683" : "gray",
-                  marginBottom: 5,
-                }}
-              >
-                {item.name}
-              </Text>
-            </TouchableOpacity>
-          ))}
+      {settings.map((item) => (
+        <TouchableOpacity
+          style={{
+            alignItems: "center",
+            flex: 1,
+            borderBottomWidth: activeIndex === item.name ? 2 : 0,
+            borderBottomColor: "#4f2683",
+          }}
+          onPress={() => setActiveIndex(item.name)}
+          key={item.name}
+        >
+          <MaterialCommunityIcons
+            name={item.icon}
+            size={30}
+            color={activeIndex === item.name ? "#4f2683" : "gray"}
+          />
+          <Text
+            style={{
+              fontSize: 11,
+              color: activeIndex === item.name ? "#4f2683" : "gray",
+              marginBottom: 5,
+            }}
+          >
+            {item.name}
+          </Text>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 };
