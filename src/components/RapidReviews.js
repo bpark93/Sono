@@ -78,7 +78,7 @@ const RapidReviews = ({ page, id }) => {
 
 
   // Buttons
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState("Orientation");
 
   // Bookmarks
   const [bookmarked, setBookmarked] = useState(false);
