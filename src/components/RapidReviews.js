@@ -179,7 +179,7 @@ const RapidReviews = ({ page, id }) => {
         />
         
         {/* Materials */}
-        {activeIndex === 2 ? (
+        {activeIndex === "Materials" ? (
           page.required_materials ? (
             <View>
               <Text style={styles.header}>Required Materials</Text>
@@ -215,14 +215,14 @@ const RapidReviews = ({ page, id }) => {
         ) : null}
 
         {/* Table */}
-        {activeIndex === 0 && page.orientation ? (
+        {activeIndex === "Orientation" && page.orientation ? (
           <View>
             <ShortSummary data={page.orientation} />
           </View>
         ) : null}
 
         {/* Associated Pages */}
-        {activeIndex === 0 && page.associated_pages ? (
+        {activeIndex === "Orientation" && page.associated_pages ? (
           <View style={{marginBottom:10}}>
             <Text style={styles.header}>
               Associated Pages
@@ -239,7 +239,7 @@ const RapidReviews = ({ page, id }) => {
         ) : null}
 
         {/* Text Content */}
-        {activeIndex === 1 && page.details
+        {activeIndex === "Details" && page.details
           ? page.details.map((item, index) => (
               <View key={index}>
                 {item.header ? (
@@ -265,7 +265,7 @@ const RapidReviews = ({ page, id }) => {
           : null}
 
         {/* References */}
-        {activeIndex === 3 && page.references
+        {activeIndex === "References" && page.references
           ? page.references.map((ref, index) => (
               <TouchableOpacity
                 style={{ marginHorizontal: 15, marginTop: 20, flexDirection:'row', borderBottomWidth:0.5, borderColor:'gray', padding:8}}
