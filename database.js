@@ -191,14 +191,14 @@ const learnDatabase = [
       "Basic Echo":[
         {
           title: "Essential Views and Techniques",
-          youtube: "bON-KPiiNCk",
+          youtube: "pending",
           id: "3.1",
           captionText:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
         },
         {
           title: "Approach to difficult image acquisition",
-          youtube: "bON-KPiiNCk",
+          youtube: "pending",
           id: "3.2",
           captionText:
             "",
@@ -212,28 +212,28 @@ const learnDatabase = [
         },
         {
           title: "Assessment of the RV",
-          youtube: "bON-KPiiNCk",
+          youtube: "pending",
           id: "3.4",
           captionText:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
         },
         {
           title: "Pericardial Effusion",
-          youtube: "bON-KPiiNCk",
+          youtube: "pending",
           id: "3.5",
           captionText:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
         },
         {
           title: "Inferior Vena Cava",
-          youtube: "bON-KPiiNCk",
+          youtube: "pending",
           id: "3.6",
           captionText:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
         },
         {
           title: "Basic Valve assessment",
-          youtube: "bON-KPiiNCk",
+          youtube: "pending",
           id: "3.7",
           captionText:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
@@ -279,13 +279,13 @@ const learnDatabase = [
         },
         {
           title: "Central Vascular Access",
-          youtube: "bON-KPiiNCk",
+          youtube: "pending",
           id: "4.2",
           captionText: "",
         },
         {
           title: "Subclavian and Peripheral Arterial Access",
-          youtube: "bON-KPiiNCk",
+          youtube: "pending",
           id: "4.3",
           captionText: "",
         },
@@ -332,9 +332,10 @@ const learnDatabase = [
   {
     title: "Genitourinary",
     thumbnail: require("./assets/png2/031-kidney-1.png"),
+    description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',
     id: 5,
     pages: {
-      "Kidney":[
+      "Renal":[
         {
           title: "Anatomy and Sono-Anatomy",
           youtube: "llUZeU-NUQo",
@@ -464,7 +465,7 @@ const learnDatabase = [
   //   ],
   // },
   {
-    title: "Pelvis",
+    title: "OB/Gyn",
     thumbnail: require("./assets/png2/029-pelvic-area.png"),
     id: 7,
     pages:{

@@ -218,7 +218,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   text: {
-    fontFamily: "Raleway-Regular",
     fontSize: 14,
     marginHorizontal: 10,
     marginBottom: 5,
@@ -233,7 +232,6 @@ const styles = StyleSheet.create({
   },
   category: {
     fontSize: 14,
-    fontFamily: "Raleway-Regular",
     marginHorizontal: 10,
     color: "gray",
   },

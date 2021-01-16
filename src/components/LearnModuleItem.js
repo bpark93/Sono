@@ -11,9 +11,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import { getLearnProgress } from "../components/getLearnDatabase";
 import { ProgressBar } from "react-native-paper";
 
-const LearnModuleItem = ({ page, index, category }) => {
+const LearnModuleItem = ({ page, category }) => {
   const navigation = useNavigation();
-  const {width} = Dimensions.get('window');
 
   const [pressed, setPressed] = useState(false);
   const handlePress = () => {
@@ -41,7 +40,6 @@ const LearnModuleItem = ({ page, index, category }) => {
         // activeOpacity={0.8}
       >
         <View style={styles.moduleStyle}>
-        
           <FontAwesome
             name={
               !page.video && !page.youtube
@@ -62,15 +60,14 @@ const LearnModuleItem = ({ page, index, category }) => {
           <Text
             style={{
               // fontFamily: "Roboto-Regular",
-              fontWeight: pressed? "bold":"normal",
+              fontWeight: pressed ? "bold" : "normal",
               fontSize: 16,
               // width: width*.85,
-              marginHorizontal:20
+              marginHorizontal: 20,
             }}
           >
-            {page.title+"  "}
+            {page.title + "  "}
           </Text>
-          
         </View>
       </TouchableOpacity>
 
@@ -101,6 +98,7 @@ const LearnModuleItem = ({ page, index, category }) => {
               {progress}%
             </Text>
             <TouchableOpacity
+              disabled={page.youtube === "pending"}
               onPress={() => {
                 if (!page.video && !page.youtube) {
                   navigation.replace("LearnText", { id: page, category });
@@ -109,7 +107,9 @@ const LearnModuleItem = ({ page, index, category }) => {
                 }
               }}
               style={
-                progress === "0"
+                page.youtube === "pending"
+                  ? { ...styles.button, backgroundColor: "#D0D0D0" }
+                  : progress === "0"
                   ? { ...styles.button, backgroundColor: "#2ecc71" }
                   : progress === "100"
                   ? { ...styles.button, backgroundColor: "#FECB2E" }
@@ -117,7 +117,9 @@ const LearnModuleItem = ({ page, index, category }) => {
               }
             >
               <Text style={styles.buttonText}>
-                {progress === "0"
+                {page.youtube === "pending"
+                  ? "Coming Soon"
+                  : progress === "0"
                   ? "Start"
                   : progress === "100"
                   ? "Complete"
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     borderBottomWidth: 0.5,
-    borderColor:'#E0E0E0'
+    borderColor: "#E0E0E0",
   },
   quiz: {
     height: 50,

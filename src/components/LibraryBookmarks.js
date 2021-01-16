@@ -160,15 +160,39 @@ const BookmarkItem = ({ info, updateBookmarkList }) => {
             flexDirection: "row",
             marginHorizontal: 5,
             marginTop: 5,
+            alignItems: "center",
           }}
         >
-          {info.type === "rapidreview" ? (
-            <FontAwesome5 name="play-circle" style={styles.iconStyle} />
-          ) : info.type === "image" ? (
-            <FontAwesome5 name="images" style={styles.iconStyle} />
-          ) : (
-            <FontAwesome5 name="tools" style={styles.iconStyle} />
-          )}
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent:'center',
+              backgroundColor:
+                info.type === "rapidreview"
+                  ? "#d62d20"
+                  : info.type === "image"
+                  ? "#3b5998"
+                  : "#2a4d69",
+              borderRadius: 10,
+              padding: 5,
+              marginVertical: 2.5,
+              width: Width*0.2
+            }}
+          >
+            <FontAwesome5
+              name={info.type === "rapidreview"
+              ? "play-circle"
+              : info.type === "image"
+              ? "images"
+              : "tools"}
+              size={14}
+              style={{ color: "white" }}
+            />
+            <Text style={{ marginLeft: 3, color: "white", fontSize: 12 }}>
+              {info.type === "rapidreview" ? "Video" : info.type === "image" ? "Images" : "Tools"}
+            </Text>
+          </View>
           <Text style={styles.page}>{info.title}</Text>
         </View>
       </View>
@@ -183,14 +207,6 @@ const BookmarkItem = ({ info, updateBookmarkList }) => {
           />
         }
       >
-        <Menu.Item
-          onPress={() => {
-            setMenuVisible(false);
-          }}
-          title="Download"
-          icon="arrow-collapse-down"
-          titleStyle={{ fontSize: 14 }}
-        />
         <Menu.Item
           onPress={async () => {
             removeBookmark(info.id, "lib");
@@ -213,32 +229,24 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     marginVertical: 10,
   },
-  text: {
-    fontFamily: "Raleway-Regular",
-    fontSize: 14,
-    marginHorizontal: 10,
-    marginBottom: 5,
-  },
   touchable: {
     marginHorizontal: 15,
     backgroundColor: "white",
     borderBottomWidth: 0.5,
-    borderColor:'#E0E0E0',
+    borderColor: "#E0E0E0",
     paddingVertical: 10,
     flexDirection: "row",
     justifyContent: "space-between",
   },
   category: {
-    fontSize: 12,
-    fontFamily: "Raleway-Regular",
+    fontSize: 14,
     marginHorizontal: 10,
     color: "gray",
   },
   page: {
-    fontSize: 16,
-    marginLeft: 5,
-    fontFamily: "Raleway-Regular",
-    width: Width * 0.7,
+    fontSize: 14,
+    marginLeft: 15,
+    width: Width * 0.6,
   },
   iconStyle: {
     fontSize: 20,

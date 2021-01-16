@@ -63,8 +63,10 @@ const LearnDetailScreen = ({ route, navigation }) => {
       }
     };
     const unsubscribe = navigation.addListener("blur", () => {
-      updateProgress();
-      setStatusBarTranslucent(true);
+      if (id.youtube != "pending"){
+        updateProgress();
+      }
+        setStatusBarTranslucent(true);
     });
     return () => unsubscribe();
   }, []);
@@ -82,27 +84,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
   const portrait = () => {
     setOrientationMode({ width: Width, height: (Width * 9) / 16 });
   };
-  const handleFullscreenVideo = async (event) => {
-    if (event.fullscreenUpdate === 0) {
-      try {
-        landscape();
-        await ScreenOrientation.lockAsync(
-          ScreenOrientation.OrientationLock.LANDSCAPE
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    } else if (event.fullscreenUpdate === 2) {
-      try {
-        portrait();
-        await ScreenOrientation.lockAsync(
-          ScreenOrientation.OrientationLock.PORTRAIT_UP
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
+  
   const handleFullScreenYoutube = async (status) => {
     if (status === true) {
       try {
@@ -261,7 +243,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
         }}
       >
         <View>
-          {id.youtube ? (
+          {id.youtube != "pending" ? (
             <YoutubePlayer
               ref={youtubeRef}
               height={OrientationMode.height}
@@ -277,21 +259,15 @@ const LearnDetailScreen = ({ route, navigation }) => {
               }}
             />
           ) : (
-            <Video
-              ref={videoRef}
-              source={{ uri: id.video }}
-              rate={1.0}
-              volume={1.0}
-              isMuted={false}
-              resizeMode="contain"
-              shouldPlay
-              useNativeControls
-              onFullscreenUpdate={(event) => handleFullscreenVideo(event)}
-              style={{
-                width: OrientationMode.width,
-                height: OrientationMode.height,
-              }}
-            />
+            <View style={{
+              height: OrientationMode.height,
+              width: OrientationMode.width,
+              backgroundColor:'black',
+              alignItems:'center',
+              justifyContent:'center'
+            }}>
+              <Text style={{color:'white'}}>Video Unavailable</Text>
+            </View>
           )}
         </View>
       </View>

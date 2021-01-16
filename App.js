@@ -286,9 +286,7 @@ function BookmarkNav() {
           shadowColor:'transparent',
           elevation:0
         },
-        headerTitleStyle:{
-          fontFamily:'Raleway-Medium'
-        }
+        
       }}
     >
       <Bookmark.Screen 
@@ -356,11 +354,6 @@ const theme = {
     primary: '#4f2683',
     background: '#ffffff',
   },
-  // fonts: {
-  //   regular: {
-  //     fontFamily: 'Raleway-Regular',
-  //   }
-  // }
 };
 
 export default () => {

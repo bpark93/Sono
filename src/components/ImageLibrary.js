@@ -5,9 +5,10 @@ import {
   StyleSheet,
   Dimensions,
   FlatList,
+  ScrollView,
   TouchableOpacity,
   Image as RNImage,
-  Linking
+  Linking,
 } from "react-native";
 // import ImageModal from "react-native-image-modal";
 import { Image } from "react-native-expo-image-cache";
@@ -22,11 +23,9 @@ import {
 } from "../components/useBookmark";
 import { Snackbar } from "react-native-paper";
 
-const {width, height} = Dimensions.get('window');
-
+const { width, height } = Dimensions.get("window");
 
 const ImageLibrary = ({ page, id }) => {
-
   const [viewing, setViewing] = useState([]);
   const handleChipPress = (name) => {
     const alreadyInList = viewing.filter((item) => item === name);
@@ -114,9 +113,10 @@ const ImageLibrary = ({ page, id }) => {
           flexDirection: "row",
           justifyContent: "center",
           flexWrap: "wrap",
-          paddingVertical:5
+          paddingVertical: 5,
         }}
       >
+        {page.filter_options && <Text style={{alignSelf:'center', justifyContent:'center', fontSize:12, color:"gray"}}>Filter By: </Text>}
         {page.filter_options &&
           page.filter_options.map((item) => (
             <LibraryChip
@@ -133,12 +133,12 @@ const ImageLibrary = ({ page, id }) => {
         data={images}
         keyExtractor={(item) => item.url}
         ListHeaderComponent={() => (
-          <View style={{ backgroundColor: "white", paddingHorizontal: 15}}>
+          <View style={{ backgroundColor: "white", paddingHorizontal: 15 }}>
             <View style={{ flexDirection: "row" }}>
               <Text
                 style={{
                   fontSize: 20,
-                  fontWeight:'bold',
+                  fontWeight: "bold",
                   marginVertical: 5,
                 }}
               >
@@ -149,15 +149,19 @@ const ImageLibrary = ({ page, id }) => {
                   alignItems: "center",
                   justifyContent: "center",
                   marginLeft: 15,
-                  paddingVertical:10,
-                  flexDirection:'row'
+                  paddingVertical: 10,
+                  flexDirection: "row",
                 }}
                 onPress={() => setHidePressed(!hidePressed)}
               >
-                <Text style={{ color: "#4f2683", fontWeight:'bold' }}>
+                <Text style={{ color: "#4f2683", fontWeight: "bold" }}>
                   {hidePressed ? "Show" : "Hide"}
                 </Text>
-                <MaterialCommunityIcons name={hidePressed?"chevron-down":"chevron-up"} size={16} color="#4f2683" />
+                <MaterialCommunityIcons
+                  name={hidePressed ? "chevron-down" : "chevron-up"}
+                  size={16}
+                  color="#4f2683"
+                />
               </TouchableOpacity>
             </View>
             {page.key_features && !hidePressed
@@ -173,16 +177,16 @@ const ImageLibrary = ({ page, id }) => {
                       key={tip.text}
                     >
                       <MaterialCommunityIcons
-                        name="plus-circle-outline"
+                        name="plus-circle"
                         size={24}
                         color="#2ecc71"
                       />
                       <Text
                         style={{
                           flex: 1,
-                          marginLeft: 3,
+                          marginLeft: 6,
                           // fontFamily: "Roboto-Regular",
-                          color: "gray",
+                          // color: "gray",
                           fontSize: 14,
                         }}
                       >
@@ -205,16 +209,16 @@ const ImageLibrary = ({ page, id }) => {
                       key={tip.text}
                     >
                       <MaterialCommunityIcons
-                        name="minus-circle-outline"
+                        name="minus-circle"
                         size={24}
                         color="#e74c3c"
                       />
                       <Text
                         style={{
                           flex: 1,
-                          marginLeft: 3,
+                          marginLeft: 6,
                           // fontFamily: "Roboto-Regular",
-                          color: "gray",
+                          // color: "gray",
                           fontSize: 14,
                         }}
                       >
@@ -226,9 +230,47 @@ const ImageLibrary = ({ page, id }) => {
           </View>
         )}
         renderItem={({ item }) => (
-          <View style={{marginVertical:15}}>
+          <View style={{ marginVertical: 15 }}>
             <Text style={styles.header}>{item.title}</Text>
-            {item.format === "Image" ? (
+            {Array.isArray(item.url) ? (
+              <ScrollView
+                horizontal={true}
+                snapToInterval={width}
+                decelerationRate="fast"
+                showsHorizontalScrollIndicator={true}
+                pagingEnabled={true}
+              >
+                {item.url.map((imageArrayItem) => (
+                  <View key={imageArrayItem.url}>
+                    {imageArrayItem.format === "Image" ? (
+                      <Image
+                        resizeMode="contain"
+                        imageBackgroundColor="#000000"
+                        style={{
+                          width: width,
+                          height: width * 0.75,
+                        }}
+                        uri={imageArrayItem.url}
+                      />
+                    ) : (
+                      <Video
+                        source={{ uri: imageArrayItem.url }}
+                        rate={1.0}
+                        volume={1.0}
+                        useNativeControls={false}
+                        shouldPlay={true}
+                        isLooping
+                        resizeMode="contain"
+                        style={{
+                          width: width,
+                          height: width * 0.75,
+                        }}
+                      />
+                    )}
+                  </View>
+                ))}
+              </ScrollView>
+            ) : item.format === "Image" ? (
               <Image
                 resizeMode="contain"
                 imageBackgroundColor="#000000"
@@ -253,8 +295,12 @@ const ImageLibrary = ({ page, id }) => {
                 }}
               />
             )}
-            {item.caption ? <Text style={styles.body}>{item.caption}</Text>:null}
-            {item.contributor ? <Text style={styles.body}>Contributed by {item.contributor}</Text>:null}
+            {item.caption ? (
+              <Text style={styles.body}>{item.caption}</Text>
+            ) : null}
+            {item.contributor ? (
+              <Text style={styles.body}>Contributed by {item.contributor}</Text>
+            ) : null}
           </View>
         )}
         ListFooterComponent={() => (
@@ -286,9 +332,13 @@ const ImageLibrary = ({ page, id }) => {
                         source={require("../../assets/ncbi.png")}
                         style={{ height: 40, width: 30, marginRight: 10 }}
                       />
-                    ):(
-                      <View style={{width:30, height:40, marginRight:10}}>
-                        <MaterialCommunityIcons name="link" size={32} color="black" />
+                    ) : (
+                      <View style={{ width: 30, height: 40, marginRight: 10 }}>
+                        <MaterialCommunityIcons
+                          name="link"
+                          size={32}
+                          color="black"
+                        />
                       </View>
                     )}
                     <Text
@@ -302,7 +352,7 @@ const ImageLibrary = ({ page, id }) => {
                   </TouchableOpacity>
                 ))}
               </View>
-            ):null}
+            ) : null}
             {page.associated_pages ? (
               <View style={{ marginBottom: 10 }}>
                 <Text style={styles.header}>Associated Pages</Text>
@@ -317,7 +367,7 @@ const ImageLibrary = ({ page, id }) => {
                   </TouchableOpacity>
                 ))}
               </View>
-            ):null}
+            ) : null}
           </View>
         )}
       />
@@ -343,14 +393,12 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 15,
     marginBottom: 15,
-    // fontFamily: "Roboto-Black",
-    fontWeight:'bold'
+    fontWeight: "bold",
   },
   body: {
     marginHorizontal: 15,
     marginTop: 10,
-    // fontFamily: "Raleway-Light",
-    color:'gray'
+    color: "gray",
   },
   touchable: {
     color: "#2b59a2",

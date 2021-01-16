@@ -31,18 +31,20 @@ const styles = StyleSheet.create({
   moduleStyle: {
     alignItems: "center",
     flex: 1,
-    backgroundColor: "#F0F0F0",
+    backgroundColor: "white",
     borderRadius:30,
     height:120,
     // width:120,
     margin: 10,
     alignItems:'center',
     justifyContent:'center',
-    // shadowOpacity:0.1,
-    // shadowOffset:{
-    //   width:2,
-    //   height:2
-    // },
+    shadowOpacity:0.1,
+    shadowOffset:{
+      width:2,
+      height:2
+    },
+    shadowRadius:2,
+    elevation:2
   },
   iconStyle: {
     width: 75,
@@ -50,10 +52,10 @@ const styles = StyleSheet.create({
     // overflow:'hidden'
   },
   textStyle: {
-    fontFamily: "Raleway-Regular",
+    // fontFamily: "Raleway-Regular",
     fontSize: 14,
     // fontWeight:'bold',
-    marginTop:5
+    marginTop:5,
   },
 });
 
