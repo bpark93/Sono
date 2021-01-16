@@ -22,6 +22,7 @@ import {
   getBookmark,
 } from "../components/useBookmark";
 import { Snackbar } from "react-native-paper";
+import SnapCarousel from "../components/SnapCarousel"
 
 const { width, height } = Dimensions.get("window");
 
@@ -131,7 +132,7 @@ const ImageLibrary = ({ page, id }) => {
         maxToRenderPerBatch={5}
         windowSize={5}
         data={images}
-        keyExtractor={(item) => item.url}
+        keyExtractor={(item) => item.title}
         ListHeaderComponent={() => (
           <View style={{ backgroundColor: "white", paddingHorizontal: 15 }}>
             <View style={{ flexDirection: "row" }}>
@@ -233,43 +234,44 @@ const ImageLibrary = ({ page, id }) => {
           <View style={{ marginVertical: 15 }}>
             <Text style={styles.header}>{item.title}</Text>
             {Array.isArray(item.url) ? (
-              <ScrollView
-                horizontal={true}
-                snapToInterval={width}
-                decelerationRate="fast"
-                showsHorizontalScrollIndicator={true}
-                pagingEnabled={true}
-              >
-                {item.url.map((imageArrayItem) => (
-                  <View key={imageArrayItem.url}>
-                    {imageArrayItem.format === "Image" ? (
-                      <Image
-                        resizeMode="contain"
-                        imageBackgroundColor="#000000"
-                        style={{
-                          width: width,
-                          height: width * 0.75,
-                        }}
-                        uri={imageArrayItem.url}
-                      />
-                    ) : (
-                      <Video
-                        source={{ uri: imageArrayItem.url }}
-                        rate={1.0}
-                        volume={1.0}
-                        useNativeControls={false}
-                        shouldPlay={true}
-                        isLooping
-                        resizeMode="contain"
-                        style={{
-                          width: width,
-                          height: width * 0.75,
-                        }}
-                      />
-                    )}
-                  </View>
-                ))}
-              </ScrollView>
+              // <ScrollView
+              //   horizontal={true}
+              //   snapToInterval={width}
+              //   decelerationRate="fast"
+              //   showsHorizontalScrollIndicator={true}
+              //   pagingEnabled={true}
+              // >
+              //   {item.url.map((imageArrayItem) => (
+              //     <View key={imageArrayItem.url}>
+              //       {imageArrayItem.format === "Image" ? (
+              //         <Image
+              //           resizeMode="contain"
+              //           imageBackgroundColor="#000000"
+              //           style={{
+              //             width: width,
+              //             height: width * 0.75,
+              //           }}
+              //           uri={imageArrayItem.url}
+              //         />
+              //       ) : (
+              //         <Video
+              //           source={{ uri: imageArrayItem.url }}
+              //           rate={1.0}
+              //           volume={1.0}
+              //           useNativeControls={false}
+              //           shouldPlay={true}
+              //           isLooping
+              //           resizeMode="contain"
+              //           style={{
+              //             width: width,
+              //             height: width * 0.75,
+              //           }}
+              //         />
+              //       )}
+              //     </View>
+              //   ))}
+              // </ScrollView>
+              <SnapCarousel images={item.url}/>
             ) : item.format === "Image" ? (
               <Image
                 resizeMode="contain"
