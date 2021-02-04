@@ -451,7 +451,7 @@ const Calculator = ({ settings }) => {
       formula1 = ((var1-var2)/var1*100).toFixed(2)
       break;
     case "pi":
-      formula1 = ((var1+var2)/var3).toFixed(2) 
+      formula1 = ((var1-var2)/var3).toFixed(2) 
       break;
     default:
       break;
