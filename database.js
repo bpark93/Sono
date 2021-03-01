@@ -3,14 +3,13 @@ const categoryDatabase =
     "Cardiac": require("./assets/png2/040-heart.png"),
     "Lung and Pleura":require("./assets/png2/042-lungs.png"),
     "Abdominal":require("./assets/png/038-abs.png"),
-    "Renal":require("./assets/png2/032-kidney.png"),
+    "Genitourinary":require("./assets/png2/032-kidney.png"),
     "Procedural": require("./assets/png/injection.png"),
     "OB/Gyn": require("./assets/png2/029-pelvic-area.png"),
     "Head and Neck": require("./assets/png/043-thyroid.png"),
     "Musculoskeletal": require("./assets/png2/010-ankle.png"),
     "Skin":require("./assets/png2/056-dermis.png"),
     "Trauma": require("./assets/png/injury.png"),
-    "Testicular":require("./assets/png/028-testicle.png"),
     "Pediatric":require("./assets/png/brothers.png"),
     "Vascular":require("./assets/png/049-blood.png")
   }
@@ -198,10 +197,10 @@ const learnDatabase = [
         },
         {
           title: "Approach to difficult image acquisition",
-          youtube: "pending",
+          youtube: "_9GG3fiZpGs",
           id: "3.2",
           captionText:
-            "",
+            "This tutorial reviews methods for identifying the presence or absence of acoustic windows across the parasternal, apical and subcostal windows.  Avoid wondering if another scanner could have obtained 'better' images.  This is essential for resilience as a point-of-care scanner in the ICU!",
         },
         {
           title: "Assessment of LV Function",
@@ -260,6 +259,20 @@ const learnDatabase = [
           id: "3.10",
           captionText:
             "A short tutorial by Dr. Katie Wiskar outlining the ultrasound approach to distinguishing aortic stenosis from aortic sclerosis using POCUS and spectral Doppler.",
+        },
+        {
+          title: "McConnell's Sign",
+          youtube: "1omAV8z3fmA",
+          id: "3.11",
+          captionText:
+            "Michèle D'Amour from The University of Montreal takes us on a tour of McConnell's Sign through an illustrative case.",
+        },
+        {
+          title: "Diastology",
+          youtube: "683tSr582gI",
+          id: "3.12",
+          captionText:
+            "This video is a distilled-down 'why' and 'how' of diastolic assessment for point-of-care ultrasound.  Brought to you by Western's acute care ultrasound fellows Mathilde Gaudreau-Simard and Zain Burhani.  Mathilde and Zain put this bloated topic on a diet and bring you the approach we use here at Western and arm you with the techniques to apply this in your patients today.",
         },
       ],
     },
@@ -413,20 +426,11 @@ const learnDatabase = [
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
         },
       ],
-      "Bowel":[
-        {
-          title: "Small Bowel Obstruction",
-          youtube: "X_Ui91kjfag",
-          id: "6.3",
-          captionText:
-            "Is POCUS for SBO even a thing? Is it high time to say goodbye to X-rays? In this 10 minute screencast, Dr. Heather Hames explains the evidence behind using bedside ultrasound for small bowel obstructions, as well as how to generate and interpret your images.",
-        },
-      ],
       "Aorta":[
         {
           title: "Abdominal Aorta",
           youtube: "HAX7d3EMveg",
-          id: "6.4",
+          id: "6.3",
           captionText:
             "Ultrasound has been shown to accurately identify both aneurysmal and normal abdominal aortas. Learn all about this core emergency medicine skill in this 12 minute screencast. By Dr. Drew Thompson.",
         },
@@ -435,41 +439,42 @@ const learnDatabase = [
         {
           title: "Introduction",
           youtube: "PwqFuc4qzvY",
-          id: "6.5",
+          id: "6.4",
           captionText:
             "An introduction to the magical world of biliary ultrasound, including indications, probe selection, patient positioning, and gallbladder anatomy. By Dr. Frank Myslik.",
         },
         {
           title: "Stones and Mimics",
           youtube: "pY2BinfQea0",
-          id: "6.6",
+          id: "6.5",
           captionText:
             "The biggest use of biliary ultrasound is the evaluation for gallstones. Find out about what features characterize a gallstone, and how to distinguish them from the many similar structures that can be found within the gallbladder. By Dr. Frank Myslik.",
         },
         {
           title: "Cholecystitis",
           youtube: "XMEN2ZDUtNU",
-          id: "6.7",
+          id: "6.6",
           captionText:
             "The diagnosis of cholecystitis is based on the entire clinical picture in addition to the findings of the POCUS exam. Learn about the 4 important sonographic signs of cholecystitis, and how to distinguish them from mimics. By Dr. Frank Myslik. ",
+        },
+      ],
+      "Bowel":[
+        {
+          title: "Small Bowel Obstruction",
+          youtube: "X_Ui91kjfag",
+          id: "6.7",
+          captionText:
+            "Is POCUS for SBO even a thing? Is it high time to say goodbye to X-rays? In this 10 minute screencast, Dr. Heather Hames explains the evidence behind using bedside ultrasound for small bowel obstructions, as well as how to generate and interpret your images.",
         },
       ]
     }
   },
-  // {
-  //   title: "Biliary",
-  //   thumbnail: require("./assets/png2/035-liver.png"),
-  //   id: 7,
-  //   pages: [
-      
-  //   ],
-  // },
   {
     title: "OB/Gyn",
     thumbnail: require("./assets/png2/029-pelvic-area.png"),
     id: 7,
     pages:{
-      "Female Pelvis":[
+      "Fundamentals":[
         {
           title: "Trans-Abdominal Technique",
           youtube: "jgyYftAAQgk",

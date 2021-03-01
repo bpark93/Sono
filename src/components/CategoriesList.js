@@ -63,16 +63,13 @@ const ListAccordion = ({ name, groups }) => {
       case "Abdominal":
         picker = "#7FACD6"; // Material Blue
         break;
-      case "Renal":
+      case "Genitourinary":
         picker = "#BFB8DA"; // Material Green
         break;
       case "Procedural":
         picker = "#A5678E"; // Material Cyan
         break;
       case "OB/Gyn":
-        picker = "#f2aaaa"; // Material Pink
-        break;
-      case "Testicular":
         picker = "#f2aaaa"; // Material Pink
         break;
       case "Pediatric":
