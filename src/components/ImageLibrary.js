@@ -144,13 +144,13 @@ const ImageLibrary = ({ page, id }) => {
         windowSize={5}
         data={images}
         keyExtractor={(item) => item.title}
-        ListHeaderComponent={() => (
+        ListHeaderComponent={() => page.key_features ? (
           <View>
             <TouchableOpacity
               style={{
                 backgroundColor: "white",
                 paddingHorizontal: 15,
-                height: hidePressed ? 200 : null,
+                height: hidePressed ? page.key_features.length > 2 ? 200 : null : null,
                 overflow: "scroll",
               }}
               onPress={() => setHidePressed(!hidePressed)}
@@ -249,7 +249,7 @@ const ImageLibrary = ({ page, id }) => {
               />
             </TouchableOpacity>
           </View>
-        )}
+        ):null}
         renderItem={({ item }) => (
           <View style={{ marginVertical: 15 }}>
             <Text style={styles.header}>{item.title}</Text>
