@@ -22,7 +22,7 @@ import {
   getBookmark,
 } from "../components/useBookmark";
 import { Snackbar } from "react-native-paper";
-import SnapCarousel from "../components/SnapCarousel"
+import SnapCarousel from "../components/SnapCarousel";
 
 const { width, height } = Dimensions.get("window");
 
@@ -103,7 +103,7 @@ const ImageLibrary = ({ page, id }) => {
     });
   }, [bookmarked, page]);
 
-  const [hidePressed, setHidePressed] = useState(false);
+  const [hidePressed, setHidePressed] = useState(true);
 
   return (
     //Image library
@@ -117,7 +117,18 @@ const ImageLibrary = ({ page, id }) => {
           paddingVertical: 5,
         }}
       >
-        {page.filter_options && <Text style={{alignSelf:'center', justifyContent:'center', fontSize:12, color:"gray"}}>Filter By: </Text>}
+        {page.filter_options && (
+          <Text
+            style={{
+              alignSelf: "center",
+              justifyContent: "center",
+              fontSize: 12,
+              color: "gray",
+            }}
+          >
+            Filter By:{" "}
+          </Text>
+        )}
         {page.filter_options &&
           page.filter_options.map((item) => (
             <LibraryChip
@@ -134,8 +145,17 @@ const ImageLibrary = ({ page, id }) => {
         data={images}
         keyExtractor={(item) => item.title}
         ListHeaderComponent={() => (
-          <View style={{ backgroundColor: "white", paddingHorizontal: 15 }}>
-            <View style={{ flexDirection: "row" }}>
+          <View>
+            <TouchableOpacity
+              style={{
+                backgroundColor: "white",
+                paddingHorizontal: 15,
+                height: hidePressed ? 200 : null,
+                overflow: "scroll",
+              }}
+              onPress={() => setHidePressed(!hidePressed)}
+              activeOpacity={0.5}
+            >
               <Text
                 style={{
                   fontSize: 20,
@@ -145,89 +165,89 @@ const ImageLibrary = ({ page, id }) => {
               >
                 Key Features
               </Text>
-              <TouchableOpacity
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginLeft: 15,
-                  paddingVertical: 10,
-                  flexDirection: "row",
-                }}
-                onPress={() => setHidePressed(!hidePressed)}
-              >
-                <Text style={{ color: "#4f2683", fontWeight: "bold" }}>
-                  {hidePressed ? "Show" : "Hide"}
-                </Text>
-                <MaterialCommunityIcons
-                  name={hidePressed ? "chevron-down" : "chevron-up"}
-                  size={16}
-                  color="#4f2683"
-                />
-              </TouchableOpacity>
-            </View>
-            {page.key_features && !hidePressed
-              ? page.key_features
-                  .filter((tip) => tip.pnp === "Pearl")
-                  .map((tip) => (
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        marginVertical: 3,
-                        // alignItems: "center",
-                      }}
-                      key={tip.text}
-                    >
-                      <MaterialCommunityIcons
-                        name="plus-circle"
-                        size={24}
-                        color="#2ecc71"
-                      />
-                      <Text
+              {page.key_features
+                ? page.key_features
+                    .filter((tip) => tip.pnp === "Pearl")
+                    .map((tip) => (
+                      <View
                         style={{
-                          flex: 1,
-                          marginLeft: 6,
-                          // fontFamily: "Roboto-Regular",
-                          // color: "gray",
-                          fontSize: 14,
+                          flexDirection: "row",
+                          marginVertical: 3,
+                          // alignItems: "center",
                         }}
+                        key={tip.text}
                       >
-                        {tip.text}
-                      </Text>
-                    </View>
-                  ))
-              : null}
-            {page.key_features && !hidePressed
-              ? page.key_features
-                  .filter((tip) => tip.pnp === "Pitfall")
-                  .map((tip) => (
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        // justifyContent: "space-between",
-                        marginVertical: 2,
-                        // alignItems: "center",
-                      }}
-                      key={tip.text}
-                    >
-                      <MaterialCommunityIcons
-                        name="minus-circle"
-                        size={24}
-                        color="#e74c3c"
-                      />
-                      <Text
+                        <MaterialCommunityIcons
+                          name="plus-circle"
+                          size={24}
+                          color="#2ecc71"
+                        />
+                        <Text
+                          style={{
+                            flex: 1,
+                            marginLeft: 6,
+                            // fontFamily: "Roboto-Regular",
+                            // color: "gray",
+                            fontSize: 14,
+                          }}
+                        >
+                          {tip.text}
+                        </Text>
+                      </View>
+                    ))
+                : null}
+              {page.key_features
+                ? page.key_features
+                    .filter((tip) => tip.pnp === "Pitfall")
+                    .map((tip) => (
+                      <View
                         style={{
-                          flex: 1,
-                          marginLeft: 6,
-                          // fontFamily: "Roboto-Regular",
-                          // color: "gray",
-                          fontSize: 14,
+                          flexDirection: "row",
+                          // justifyContent: "space-between",
+                          marginVertical: 2,
+                          // alignItems: "center",
                         }}
+                        key={tip.text}
                       >
-                        {tip.text}
-                      </Text>
-                    </View>
-                  ))
-              : null}
+                        <MaterialCommunityIcons
+                          name="minus-circle"
+                          size={24}
+                          color="#e74c3c"
+                        />
+                        <Text
+                          style={{
+                            flex: 1,
+                            marginLeft: 6,
+                            // fontFamily: "Roboto-Regular",
+                            // color: "gray",
+                            fontSize: 14,
+                          }}
+                        >
+                          {tip.text}
+                        </Text>
+                      </View>
+                    ))
+                : null}
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                paddingVertical: 10,
+                flexDirection: "row",
+              }}
+              activeOpacity={0.5}
+              onPress={() => setHidePressed(!hidePressed)}
+            >
+              <Text style={{ color: "#4f2683", fontWeight: "bold" }}>
+                {hidePressed ? "Show More" : "Show Less"}
+              </Text>
+              <MaterialCommunityIcons
+                name={hidePressed ? "chevron-down" : "chevron-up"}
+                size={16}
+                color="#4f2683"
+              />
+            </TouchableOpacity>
           </View>
         )}
         renderItem={({ item }) => (
@@ -271,7 +291,7 @@ const ImageLibrary = ({ page, id }) => {
               //     </View>
               //   ))}
               // </ScrollView>
-              <SnapCarousel images={item.url}/>
+              <SnapCarousel images={item.url} />
             ) : item.format === "Image" ? (
               <Image
                 resizeMode="contain"

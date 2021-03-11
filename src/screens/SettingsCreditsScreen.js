@@ -11,21 +11,22 @@ import {
 } from "react-native";
 
 const SettingsAboutScreen = () => {
+
+  const height = 75;
+  const width = 75;
+
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={{ alignItems: "center" }}
     >
       <View style={styles.textBox}>
-        <Text style={{ fontFamily: "Raleway-Regular", fontSize: 20 }}>
-          Project Lead and Software Developer
-        </Text>
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-evenly",
             alignItems: "center",
-            marginVertical: 20,
+            marginBottom: 20,
           }}
         >
           <Image
@@ -33,7 +34,7 @@ const SettingsAboutScreen = () => {
               uri:
                 "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600485731/avatars/brian-800x600_vhvyo3.jpg",
             }}
-            style={{ height: 100, width: 100, borderRadius: 20 }}
+            style={{ height: height, width: width, borderRadius: 20 }}
           />
           <View style={{ marginLeft: 10, flex: 1 }}>
             <Text style={{ fontSize: 16 }}>Brian Park</Text>
@@ -49,17 +50,12 @@ const SettingsAboutScreen = () => {
             </Text>
           </View>
         </View>
-
-        <Text style={{ fontFamily: "Raleway-Regular", fontSize: 20 }}>
-          Project Supervisors
-        </Text>
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-evenly",
             alignItems: "center",
             marginBottom: 20,
-            marginTop: 20,
           }}
         >
           <Image
@@ -67,7 +63,7 @@ const SettingsAboutScreen = () => {
               uri:
                 "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_1000,h_1000/v1600485731/avatars/Profile-Picture_kgrj6l.png",
             }}
-            style={{ height: 100, width: 100, borderRadius: 20 }}
+            style={{ height: height, width: width, borderRadius: 20 }}
           />
           <View style={{ marginLeft: 10, flex: 1 }}>
             <Text style={{ fontSize: 16 }}>Dr. Frank Myslik</Text>
@@ -78,12 +74,12 @@ const SettingsAboutScreen = () => {
                 fontSize: 12,
               }}
             >
-              MD, CCFP-EM, Associate Professor of Medicine, Department of
+              MD, CCFP-EM {"\n"}Associate Professor of Medicine{"\n"}Ultrasound Fellowship Director, Division of
               Emergency Medicine, Western University
             </Text>
           </View>
         </View>
-        {/* <View
+        <View
           style={{
             flexDirection: "row",
             justifyContent: "space-evenly",
@@ -96,7 +92,7 @@ const SettingsAboutScreen = () => {
               uri:
                 "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_1000,h_1000/v1603318543/avatars/drew-thompson-2-e1533238732547_fkmbsk.jpg"
             }}
-            style={{ height: 100, width: 100, borderRadius: 20 }}
+            style={{ height: height, width: width, borderRadius: 20 }}
           />
           <View style={{ marginLeft: 10, flex: 1 }}>
             <Text style={{ fontSize: 16 }}>Dr. Drew Thompson</Text>
@@ -107,11 +103,11 @@ const SettingsAboutScreen = () => {
                 fontSize: 12,
               }}
             >
-              MD, FRCPC, Associate Professor of Medicine, Department of
+              MD, FRCPC{"\n"}Associate Professor of Medicine{"\n"}Division of
               Emergency Medicine, Western University
             </Text>
           </View>
-        </View> */}
+        </View>
         <View
           style={{
             flexDirection: "row",
@@ -125,7 +121,7 @@ const SettingsAboutScreen = () => {
               uri:
                 "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600485731/avatars/rob-e1533345037700_atdz73.jpg",
             }}
-            style={{ height: 100, width: 100, borderRadius: 20 }}
+            style={{ height: height, width: width, borderRadius: 20 }}
           />
           <View style={{ marginLeft: 10, flex: 1 }}>
             <Text style={{ fontSize: 16 }}>Dr. Robert Arntfield</Text>
@@ -136,22 +132,17 @@ const SettingsAboutScreen = () => {
                 fontSize: 12,
               }}
             >
-              MD, FRCPC, FCCP, FACEP, Associate Professor of Medicine,
+              MD, FRCPC, FCCP, FACEP{"\n"}Associate Professor of Medicine{"\n"}
               Department of Critical Care, Western University
             </Text>
           </View>
         </View>
-
-        <Text style={{ fontFamily: "Raleway-Regular", fontSize: 20 }}>
-          Content Contributors
-        </Text>
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-evenly",
             alignItems: "center",
             marginBottom: 20,
-            marginTop: 20,
           }}
         >
           <Image
@@ -159,7 +150,7 @@ const SettingsAboutScreen = () => {
               uri:
                 "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_1000,h_1000/v1600487717/avatars/shane-1160x1160_sm5as9.jpg",
             }}
-            style={{ height: 100, width: 100, borderRadius: 20 }}
+            style={{ height: height, width: width, borderRadius: 20 }}
           />
           <View style={{ marginLeft: 10, flex: 1 }}>
             <Text style={{ fontSize: 16 }}>Dr. Shane Freeman</Text>
@@ -187,7 +178,7 @@ const SettingsAboutScreen = () => {
             //   uri:
             //    "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600485731/avatars/rob-e1533345037700_atdz73.jpg",
             // }}
-            style={{ height: 100, width: 100, borderRadius: 20 }}
+            style={{ height: height, width: width, borderRadius: 20 }}
           />
           <View style={{ marginLeft: 10, flex: 1 }}>
             <Text style={{ fontSize: 16 }}>Dr. Jason Lam</Text>
@@ -215,7 +206,7 @@ const SettingsAboutScreen = () => {
               uri:
                 "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600487083/avatars/IMG_0147-1_efozod.jpg",
             }}
-            style={{ height: 100, width: 100, borderRadius: 20 }}
+            style={{ height: height, width: width, borderRadius: 20 }}
           />
           <View style={{ marginLeft: 10, flex: 1 }}>
             <Text style={{ fontSize: 16 }}>Derek Wu</Text>
@@ -361,7 +352,7 @@ const SettingsAboutScreen = () => {
             //   uri:
             //     "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_1000,h_1000/v1600487717/avatars/shane-1160x1160_sm5as9.jpg"
             // }}
-            style={{ height: 100, width: 100, borderRadius: 20 }}
+            style={{ height: height, width: width, borderRadius: 20 }}
           />
           <View style={{ marginLeft: 10, flex: 1 }}>
             <Text style={{ fontSize: 16 }}>Tracy Wang</Text>

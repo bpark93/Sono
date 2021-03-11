@@ -54,9 +54,11 @@ const SearchScreen = () => {
     getBannerInfo();
   }, []);
 
+  const scrollRef = useRef(null)
+
   return layout.length !== 0 ? (
     <View style={styles.container}>
-      <ScrollView stickyHeaderIndices={[1]}>
+      <ScrollView stickyHeaderIndices={[1]} ref={scrollRef}>
         <View
           style={{
             flexDirection: "row",
@@ -93,6 +95,7 @@ const SearchScreen = () => {
             placeholder="Search"
             value={term}
             onChangeText={(text) => {
+              scrollRef.current.scrollTo({x:0,y:0,animated:true})
               searchApi(text);
               setTerm(text);
             }}

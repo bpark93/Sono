@@ -128,51 +128,49 @@ const setList = async (id) => {
   }
 };
 
-const PrettyTag = ({ category }) => {
-  let picker = "#4f2683";
+const colorPicker = (category) => {
   switch (category) {
     case "Trauma":
-      picker = "#e51c23"; // Material Red
-      break;
+      return "#e51c23"; // Material Red
     case "Musculoskeletal":
-      picker = "#d2d4dc"; // Material Red
-      break;
+      return "#d2d4dc"; // Material Red
     case "Skin":
-      picker = "#fce9db"; // Material Red
-      break;
+      return "#fce9db"; // Material Red
     case "Head and Neck":
-      picker = "#a8e6cf"; // Material Red
-      break;
+      return "#a8e6cf"; // Material Red
     case "Cardiac":
-      picker = "#e36387"; // Material Deep Orange
-      break;
+      return "#e36387"; // Material Deep Orange
     case "Vascular":
-      picker = "#e36387"; // Material Deep Orange
-      break;
+      return "#e36387"; // Material Deep Orange
     case "Lung and Pleura":
-      picker = "#a6dcef"; // Material Indigo
-      break;
+      return "#a6dcef"; // Material Indigo
     case "Abdominal":
-      picker = "#7FACD6"; // Material Blue
-      break;
+      return "#7FACD6"; // Material Blue
     case "Genitourinary":
-      picker = "#BFB8DA"; // Material Green
-      break;
+      return "#BFB8DA"; // Material Green
     case "Procedural":
-      picker = "#A5678E"; // Material Cyan
-      break;
+      return "#A5678E"; // Material Cyan
     case "OB/Gyn":
-      picker = "#f2aaaa"; // Material Pink
-      break;
+      return "#f2aaaa"; // Material Pink
     case "Pediatric":
-      picker = "#ff99cc"; // Material Pink
-      break;
+      return "#ff99cc"; // Material Pink
     default:
-      break;
+      return "#4f2683";
   }
+}
+
+const PrettyTag = ({ category }) => {
   return (
-    <View style={{ ...styles.categoryView, backgroundColor: picker }}>
-      <Text style={{ ...styles.category }}>{category}</Text>
+    <View style={{ ...styles.categoryView, backgroundColor: colorPicker(category) }}>
+      <Text style={{ ...styles.category }}>
+        {category === "Genitourinary"
+          ? "GU"
+          : category === "Musculoskeletal"
+          ? "MSK"
+          : category === "Head and Neck"
+          ? "HEENT"
+          :category}
+      </Text>
     </View>
   );
 };
@@ -218,4 +216,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { RecentPages, initializeRecentPages, setList };
+export { RecentPages, initializeRecentPages, setList, colorPicker };

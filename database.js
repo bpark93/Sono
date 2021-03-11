@@ -430,7 +430,7 @@ const learnDatabase = [
         {
           title: "Abdominal Aorta",
           youtube: "HAX7d3EMveg",
-          id: "6.3",
+          id: "6.4",
           captionText:
             "Ultrasound has been shown to accurately identify both aneurysmal and normal abdominal aortas. Learn all about this core emergency medicine skill in this 12 minute screencast. By Dr. Drew Thompson.",
         },
@@ -439,21 +439,21 @@ const learnDatabase = [
         {
           title: "Introduction",
           youtube: "PwqFuc4qzvY",
-          id: "6.4",
+          id: "7.1",
           captionText:
             "An introduction to the magical world of biliary ultrasound, including indications, probe selection, patient positioning, and gallbladder anatomy. By Dr. Frank Myslik.",
         },
         {
           title: "Stones and Mimics",
           youtube: "pY2BinfQea0",
-          id: "6.5",
+          id: "7.2",
           captionText:
             "The biggest use of biliary ultrasound is the evaluation for gallstones. Find out about what features characterize a gallstone, and how to distinguish them from the many similar structures that can be found within the gallbladder. By Dr. Frank Myslik.",
         },
         {
           title: "Cholecystitis",
           youtube: "XMEN2ZDUtNU",
-          id: "6.6",
+          id: "7.3",
           captionText:
             "The diagnosis of cholecystitis is based on the entire clinical picture in addition to the findings of the POCUS exam. Learn about the 4 important sonographic signs of cholecystitis, and how to distinguish them from mimics. By Dr. Frank Myslik. ",
         },
@@ -462,7 +462,7 @@ const learnDatabase = [
         {
           title: "Small Bowel Obstruction",
           youtube: "X_Ui91kjfag",
-          id: "6.7",
+          id: "6.3",
           captionText:
             "Is POCUS for SBO even a thing? Is it high time to say goodbye to X-rays? In this 10 minute screencast, Dr. Heather Hames explains the evidence behind using bedside ultrasound for small bowel obstructions, as well as how to generate and interpret your images.",
         },
@@ -478,21 +478,21 @@ const learnDatabase = [
         {
           title: "Trans-Abdominal Technique",
           youtube: "jgyYftAAQgk",
-          id: "7.1",
+          id: "6.5",
           captionText:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
         },
         {
           title: "Endocavitary Approach",
           youtube: "By8TPKMRfdc",
-          id: "7.2",
+          id: "6.6",
           captionText:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
         },
         {
           title: "Defining a Positive OB Study",
           youtube: "Ww-_VGPlqdo",
-          id: "7.3",
+          id: "6.7",
           captionText:
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
         },

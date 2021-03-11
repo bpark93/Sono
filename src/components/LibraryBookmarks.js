@@ -10,8 +10,10 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { getBookmark, removeBookmark } from "./useBookmark";
-import { Menu, IconButton } from "react-native-paper";
+import { Menu, IconButton, Avatar } from "react-native-paper";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { colorPicker } from "../components/RecentPages";
+import { categoryDatabase } from "../../database";
 
 const Width = Dimensions.get("window").width;
 
@@ -152,9 +154,6 @@ const BookmarkItem = ({ info, updateBookmarkList }) => {
       }}
     >
       <View>
-        <Text
-          style={styles.category}
-        >{`${info.category} > ${info.subcategory}`}</Text>
         <View
           style={{
             flexDirection: "row",
@@ -163,37 +162,55 @@ const BookmarkItem = ({ info, updateBookmarkList }) => {
             alignItems: "center",
           }}
         >
-          <View
+          <Avatar.Image
+            source={categoryDatabase[info.category]}
             style={{
-              flexDirection: "row",
+              backgroundColor: colorPicker(info.category),
+              height: 50,
+              width: 50,
+              justifyContent: "center",
               alignItems: "center",
-              justifyContent:'center',
-              backgroundColor:
-                info.type === "rapidreview"
-                  ? "#d62d20"
-                  : info.type === "image"
-                  ? "#3b5998"
-                  : "#2a4d69",
-              borderRadius: 10,
-              padding: 5,
-              marginVertical: 2.5,
-              width: Width*0.2
             }}
-          >
-            <FontAwesome5
-              name={info.type === "rapidreview"
-              ? "play-circle"
-              : info.type === "image"
-              ? "images"
-              : "tools"}
-              size={14}
-              style={{ color: "white" }}
-            />
-            <Text style={{ marginLeft: 3, color: "white", fontSize: 12 }}>
-              {info.type === "rapidreview" ? "Video" : info.type === "image" ? "Images" : "Tools"}
+            size={40}
+          />
+          <View style={{ width: Width * 0.7 }}>
+            
+              
+              <Text style={{ ...styles.page, fontWeight: "500" }}>
+                {info.title}
+              </Text>
+              <Text style={{ ...styles.page, color: "#939393", marginBottom: 3, fontSize:14 }}>
+              {info.subcategory}
             </Text>
+            <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                  borderRadius: 10,
+                  marginVertical: 2.5,
+                  marginLeft:15
+                }}
+              >
+                <FontAwesome5
+                  name={
+                    info.type === "rapidreview"
+                      ? "play-circle"
+                      : info.type === "image"
+                      ? "images"
+                      : "tools"
+                  }
+                  size={14}
+                  style={{ color: "black" }}
+                />
+                <Text style={{ ...styles.page, fontSize: 12, color:'black', marginLeft:3 }}>{info.type === "rapidreview"
+                    ? "Video"
+                    : info.type === "image"
+                    ? "Images"
+                    : "Tools"}</Text>
+              </View>
+            
           </View>
-          <Text style={styles.page}>{info.title}</Text>
         </View>
       </View>
       <Menu
@@ -246,7 +263,6 @@ const styles = StyleSheet.create({
   page: {
     fontSize: 14,
     marginLeft: 15,
-    width: Width * 0.6,
   },
   iconStyle: {
     fontSize: 20,
