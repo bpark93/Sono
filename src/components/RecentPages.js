@@ -57,6 +57,7 @@ const RecentPages = ({ layout }) => {
           key={page.title}
           onPress={() => navigation.navigate("SearchDetail", { id: page.id })}
           style={{ flexDirection: "row", marginBottom: 8 }}
+          activeOpacity={0.5}
         >
           {/* <View style={styles.categoryView}>
                             <Text style={styles.category} >{page.category}</Text> 
@@ -132,8 +133,8 @@ const colorPicker = (category) => {
   switch (category) {
     case "Trauma":
       return "#e51c23"; // Material Red
-    case "Musculoskeletal":
-      return "#d2d4dc"; // Material Red
+    case "Soft Tissue MSK":
+      return "#ffc764"; // Material Red
     case "Skin":
       return "#fce9db"; // Material Red
     case "Head and Neck":
@@ -165,7 +166,7 @@ const PrettyTag = ({ category }) => {
       <Text style={{ ...styles.category }}>
         {category === "Genitourinary"
           ? "GU"
-          : category === "Musculoskeletal"
+          : category === "Soft Tissue MSK"
           ? "MSK"
           : category === "Head and Neck"
           ? "HEENT"

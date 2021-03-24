@@ -6,9 +6,8 @@ const categoryDatabase =
     "Genitourinary":require("./assets/png2/032-kidney.png"),
     "Procedural": require("./assets/png/injection.png"),
     "OB/Gyn": require("./assets/png2/029-pelvic-area.png"),
-    "Head and Neck": require("./assets/png/043-thyroid.png"),
-    "Musculoskeletal": require("./assets/png2/010-ankle.png"),
-    "Skin":require("./assets/png2/056-dermis.png"),
+    "Head and Neck": require("./assets/png/046-neck.png"),
+    "Soft Tissue MSK": require("./assets/png2/002-shoulder.png"),
     "Trauma": require("./assets/png/injury.png"),
     "Pediatric":require("./assets/png/brothers.png"),
     "Vascular":require("./assets/png/049-blood.png")
@@ -354,28 +353,28 @@ const learnDatabase = [
           youtube: "llUZeU-NUQo",
           id: "5.1",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "In this first part of the renal ultrasound module, Dr. Behzad Hassani introduces you to the fundamentals of renal and bladder ultrasound: its indications, pertinent anatomy, normal sonographic findings and the technique.",
         },
         {
           title: "Hydronephrosis",
           youtube: "RLxcOUQZ8G8",
           id: "5.2",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "The primary goal of renal ultrasound is the diagnosis and classification of hydronephrosis. In this screencast, Dr. Hassani will review the evidence for renal POCUS in the diagnosis of hydro, go into detail about the various sonographic findings and help you classify the findings into mild, moderate and severe categories. ",
         },
         {
           title: "Hydronephrosis Mimics",
           youtube: "p4qJzOuYgb8",
           id: "5.3",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "Proper identification and diagnosis of hydronephrosis can be tricky for newcomers, as there are many sonographic mimics to the condition. In this screencast, we will discuss the pearls and pitfalls of performing a renal ultrasound study and learn how to differentiate between the confounders of hydronephrosis.",
         },
         {
           title: "Stones and Masses",
           youtube: "PGBuxlmTta8",
           id: "5.4",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "This final screencast in the series will introduce you to the more advanced uses of renal POCUS, that is the identification of renal and bladder calculi and masses.",
         },
       ],
       "Bladder":[
@@ -393,14 +392,14 @@ const learnDatabase = [
           youtube: "xiVnNa2hCjY",
           id: "5.6",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "Ultrasound has emerged as a preferred modality for evaluation of acute scrotal pain. Point-of-care ultrasound can facilitate diagnosis of most testicular pathologies, with particular emphasis on the emergent pathologies that threaten the viability of the testicle. This screencast serves as in introduction to the world of scrotal ultrasound, with discussions of its indications, scanning technique, and pertinent anatomy. ",
         },
         {
           title: "Testicular Torsion and Other Pathologies",
           youtube: "BXaCUYnM9X0",
           id: "5.7",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "In this screencast, we will go over the most common pathologies you may encounter on scrotal ultrasound, with particular emphasis on interpreting findings for testicular torsion. ",
         },
       ]
     }
@@ -472,29 +471,30 @@ const learnDatabase = [
   {
     title: "OB/Gyn",
     thumbnail: require("./assets/png2/029-pelvic-area.png"),
+    description:'Point-of-care pelvic ultrasound is a fundamental exam performed for women of reproductive age presenting with abdominal pain, vaginal bleeding or syncope, routinely done in emergency departments and obstetrical clinics. Combined with a detailed history, physical examination and serum beta-hCG level, ultrasound is central to the accurate assessment and management of such patients. Point of care evaluations have been shown to have excellent accuracy with a sensitivity of 99.3% for detecting IUP and ruling out ectopic pregnancies. Bedside ultrasound has also been shown to reduce length of stay in the ED, thereby increasing overall efficiency. Learn all about this valuable skill in the following lectures!',
     id: 7,
     pages:{
       "Fundamentals":[
         {
-          title: "Trans-Abdominal Technique",
+          title: "Introduction to Pelvic Ultrasound and the Trans-Abdominal Technique",
           youtube: "jgyYftAAQgk",
           id: "6.5",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "In this screencast, Dr. Drew Thompson introduces you to the indications and the pertinent anatomy of pelvic ultrasound, as well as the trans-abdominal approach for examining the female pelvis at the bedside. ",
         },
         {
-          title: "Endocavitary Approach",
+          title: "Trans-Vaginal Technique",
           youtube: "By8TPKMRfdc",
           id: "6.6",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "While the transabdominal technique should always be your first approach, in many cases a more detailed assessment is required to call a determinant study. This is where the transvaginal approach comes in. Learn all about the technique, advantages/disadvantages, pearls, pitfalls, and more in this 10 minute screencast. By Dr. Drew Thompson, Division of Emergency Medicine.",
         },
         {
           title: "Defining a Positive OB Study",
           youtube: "Ww-_VGPlqdo",
           id: "6.7",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "What clinical questions are we are asking in the pelvic exam and what exactly are we looking for sonographically? This module will introduce you to the interpretation of the bedside pelvic ultrasound exam, define the positive OB study, and reinforce the criteria for an intrauterine pregnancy. By Dr. Drew Thompson, Division of Emergency Medicine.",
         },
       ],
     }

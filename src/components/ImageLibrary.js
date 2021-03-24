@@ -151,7 +151,7 @@ const ImageLibrary = ({ page, id }) => {
                 backgroundColor: "white",
                 paddingHorizontal: 15,
                 height: hidePressed ? page.key_features.length > 2 ? 200 : null : null,
-                overflow: "scroll",
+                overflow: "hidden",
               }}
               onPress={() => setHidePressed(!hidePressed)}
               activeOpacity={0.5}

@@ -11,6 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { List, Avatar  } from "react-native-paper";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { categoryDatabase } from "../../database";
+import { colorPicker } from "../components/RecentPages"
 
 const CategoriesList = ({ layout }) => {
   return (
@@ -36,58 +37,13 @@ const ListAccordion = ({ name, groups }) => {
 
   const [expanded, setExpanded] = useState(false);
 
-  const colorpicker = (category) => {
-    let picker = "#4f2683";
-    switch (category) {
-      case "Trauma":
-        picker = "#e51c23"; // Material Red
-        break;
-      case "Musculoskeletal":
-        picker = "#d2d4dc"; // Material Red
-        break;
-      case "Skin":
-        picker = "#fce9db"; // Material Red
-        break;
-      case "Head and Neck":
-        picker = "#a8e6cf"; // Material Red
-        break;
-      case "Cardiac":
-        picker = "#e36387"; // Material Deep Orange
-        break;
-      case "Vascular":
-        picker = "#e36387"; // Material Deep Orange
-        break;
-      case "Lung and Pleura":
-        picker = "#a6dcef"; // Material Indigo
-        break;
-      case "Abdominal":
-        picker = "#7FACD6"; // Material Blue
-        break;
-      case "Genitourinary":
-        picker = "#BFB8DA"; // Material Green
-        break;
-      case "Procedural":
-        picker = "#A5678E"; // Material Cyan
-        break;
-      case "OB/Gyn":
-        picker = "#f2aaaa"; // Material Pink
-        break;
-      case "Pediatric":
-        picker = "#ff99cc"; // Material Pink
-        break;
-      default:
-        break;
-    }
-    return picker
-  }
-
   return (
     <List.Accordion
-      style={{ backgroundColor: expanded ? colorpicker(name) : "white"}}
-      titleStyle={{ fontWeight: expanded ? "bold" : "normal", color: expanded ? "white" : "black" }}
+      style={{ backgroundColor: expanded ? colorPicker(name) : "white"}}
+      titleStyle={{ fontWeight: expanded ? "bold" : "normal", color: expanded ? "white" : "black", marginLeft:5 }}
       key={name}
       title={name}
-      left={() => <Avatar.Image source={categoryDatabase[name]} style={styles.image} size={40}/>}
+      left={() => <Avatar.Image source={categoryDatabase[name]} style={{...styles.image, backgroundColor: expanded ? "#F0F0F0" : colorPicker(name)}} size={40}/>}
       onPress={() => setExpanded(!expanded)}
     >
       {Object.entries(groups).map((subcategory) => (
@@ -160,7 +116,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
   },
   subCategoryStyle: {
-    paddingLeft: 20,
+    paddingLeft: 25,
   },
   listItemStyle: {
     paddingLeft: 20,
