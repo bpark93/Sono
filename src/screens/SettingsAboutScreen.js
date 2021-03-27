@@ -22,32 +22,25 @@ const SettingsAboutScreen = () => {
           source={require("../../assets/sono_logo.png")}
           style={{ height: 120, width: 120, resizeMode: "contain" }}
         />
-        <Text style={{ fontFamily: "Raleway-Regular", fontSize: 36 }}>
+        <Text style={{ fontSize: 36 }}>
           SONO
         </Text>
         <Text
           style={{
-            fontFamily: "Raleway-Regular",
             color: "gray",
             marginBottom: 10,
           }}
         >
-          Version 0.1.0
+          Version 1.0.0
         </Text>
-        <Text style={{ fontFamily: "Raleway-Regular", marginBottom: 5 }}>
+        <Text style={{ marginBottom: 5 }}>
           Powered By:
         </Text>
         <View style={{ flexDirection: "row", marginBottom: 10 }}>
-          <TouchableOpacity
-            onPress={async () =>
-              await Linking.openURL("https://westernsono.ca/")
-            }
-          >
             <Image
               source={require("../../assets/western-logo.png")}
               style={{ height: 50, width: 150, resizeMode: "contain" }}
             />
-          </TouchableOpacity>
           <Image
             source={require("../../assets/schulich.png")}
             style={{ height: 50, width: 150, resizeMode: "contain" }}
@@ -130,9 +123,10 @@ const SettingsAboutScreen = () => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={async () => {
-              await Linking.openURL("https://westernsono-library.web.app/");
-            }}
+            // onPress={async () => {
+            //   await Linking.openURL("https://westernsono-library.web.app/");
+            // }}
+            activeOpacity={1}
             style={{
               flexDirection: "row",
               alignItems: "center",
@@ -173,17 +167,13 @@ const SettingsAboutScreen = () => {
           Icons made by Freepik, Vectors Market and SmashIcons from
           www.flaticon.com
         </Text>
-
-        <Text
-          style={{
-            fontSize: 24,
-            marginVertical: 30,
-            alignSelf: "center",
-          }}
-        >
-          Privacy Policy
-        </Text>
-        <Text style={{ marginBottom: 10, color: "gray" }}>We don't collect any personal data. Period. The server only knows how many users are accessing its content, from which region access calls are being made and how many users have crashes, but there is no way to tie this information back to individual users.</Text>
+        <TouchableOpacity
+            onPress={async () =>
+              await Linking.openURL("https://westernsono.ca/sono-privacy-policy/")
+            }
+          >
+            <Text style={{ color: "#0000EE", alignSelf:'center', marginVertical:10 }}>Read our Privacy Policy</Text>
+          </TouchableOpacity>
       </View>
     </ScrollView>
   );

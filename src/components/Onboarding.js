@@ -2,7 +2,6 @@ import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet, View, Text, Image, Dimensions } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
-import LottieView from "lottie-react-native";
 
 const { width } = Dimensions.get("window");
 
@@ -11,26 +10,23 @@ const slides = [
     key: "1",
     title: "Learn Ultrasound",
     text:
-      "Learn the tool that is revolutionizing\ncare in nearly every medical and\nsurgical specialty",
-    image: require("../../assets/7774.jpg"),
-    animation: require("../../assets/lottie/phonetest.json"),
+      "Learn the tool that is revolutionizing care in nearly every medical and surgical specialty.",
+    image: require("../../assets/8535.jpg"),
     backgroundColor: "#FFFFFF",
   },
   {
     key: "2",
-    title: "Solve Cases",
-    text:
-      "Work your way through realistic and\ncomprehensive teaching cases with\ndetailed answer keys",
-    image: require("../../assets/6461.jpg"),
-    animation: require("../../assets/lottie/workingOffice.json"),
+    title: "Find images",
+    text: "Access a vast library of normal and pathological images, video tutorials, clinical tools and resources.",
+    image: require("../../assets/20945184.jpg"),
     backgroundColor: "#FFFFFF",
   },
   {
     key: "3",
-    title: "Quickly find images",
-    text: "Access a vast library of normal and\npathologic findings",
-    image: require("../../assets/6301.jpg"),
-    animation: require("../../assets/lottie/video.json"),
+    title: "Solve Cases",
+    text:
+      "Work your way through realistic and comprehensive teaching cases with detailed answer keys",
+    image: require("../../assets/6461.jpg"),
     backgroundColor: "#FFFFFF",
   },
 ];
@@ -38,7 +34,6 @@ const slides = [
 const _renderItem = ({ item }) => {
   return (
     <View style={styles.slide}>
-      {/* <LottieView source={item.animation} style={{width:400, height:400}} autoPlay loop/> */}
       <Image
         source={item.image}
         style={{ width: width, height: width, resizeMode:'contain'}}
@@ -100,12 +95,13 @@ const styles = StyleSheet.create({
   },
   title: {
     paddingBottom: 10,
-    fontSize: 30,
-    fontFamily: "Raleway-Medium",
+    fontSize: 40,
+    fontWeight:'bold',
   },
   text: {
     paddingTop: 10,
-    fontFamily: "Raleway-Light",
+    fontSize:16,
+    width:width-150,
   },
 });
 

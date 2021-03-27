@@ -17,7 +17,7 @@ const categoryDatabase =
 const learnDatabase = [
   {
     title: "Fundamentals",
-    description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',
+    description:'',
     thumbnail: require("./assets/png/fundamentals.png"),
     id: 1,
     pages: {
@@ -31,22 +31,26 @@ const learnDatabase = [
         {
           title: "Probe Types",
           id: "1.2",
-          captionText:""
+          captionText:"",
+          youtube:"pending"
         },
         {
           title: "Probe Movements",
           id: "1.3",
-          captionText:""
+          captionText:"",
+          youtube:"pending"
         },
         {
           title: "Controls on LHSC Machines",
           id: "1.4",
-          captionText:""
+          captionText:"",
+          youtube:"pending"
         },
         {
           title: "Ultrasound Machine Maintenance",
           id: "1.5",
-          captionText:""
+          captionText:"",
+          youtube:"pending"
         },
       ],
       "Advanced":[
@@ -84,8 +88,6 @@ const learnDatabase = [
         {
           title: "Image Acquisition",
           youtube: "aYSoYXqWJ5A",
-          video:
-            "https://westernsono.ca/wp-content/uploads/2013/06/lung-acquisition.mp4?_t=1514825028",
           id: "2.3",
           captionText:
             "The standard views for image acquisition of solid organs are typically dictated by what windows are possible based on external anatomy and surrounding structures.  The lungs, however, can be imaged from anywhere on the thorax.  This boundless opportunity can create confusion and, possibly, crippling anxiety as to which portions of the lungs deserve to be imaged.  The idea is, much like the way we auscultate, to take a representative sample from major lung zones and then synthesize a conclusion – clear lungs, unilateral lung disease, bilateral lung disease, etc that permits a rapid differential diagnosis for the respiratory failure that confronts you.  Efficiency and accuracy are essential. By Dr. Robert Arntfield MD FRCPC",
@@ -164,8 +166,6 @@ const learnDatabase = [
         {
           title: "Acute Respiratory Distress Syndrome",
           youtube: "rAC9Y28zpG8",
-          video:
-            "https://westernsono.ca/wp-content/uploads/2015/08/lung-ultrasonography-in-ards-2015.mp4?_t=1514825036",
           id: "2.13",
           captionText:
             "Still puzzled about the different patterns of B-lines and consolidation? Watch this case-based tutorial on differentiating between the various diffuse parenchymal diseases. Presented by Ann George, MD",
@@ -192,7 +192,7 @@ const learnDatabase = [
           youtube: "pending",
           id: "3.1",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "",
         },
         {
           title: "Approach to difficult image acquisition",
@@ -213,28 +213,28 @@ const learnDatabase = [
           youtube: "pending",
           id: "3.4",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "",
         },
         {
           title: "Pericardial Effusion",
           youtube: "pending",
           id: "3.5",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "",
         },
         {
           title: "Inferior Vena Cava",
           youtube: "pending",
           id: "3.6",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "",
         },
         {
           title: "Basic Valve assessment",
           youtube: "pending",
           id: "3.7",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "",
         },
       ],
       "Advanced Echo":[
@@ -279,7 +279,7 @@ const learnDatabase = [
   {
     title: "Procedures",
     thumbnail: require("./assets/png/injection.png"),
-    description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',
+    description:'',
     id: 4,
     pages: {
       "Vascular Access":[
@@ -344,7 +344,7 @@ const learnDatabase = [
   {
     title: "Genitourinary",
     thumbnail: require("./assets/png2/031-kidney-1.png"),
-    description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',
+    description:'',
     id: 5,
     pages: {
       "Renal":[
@@ -383,7 +383,7 @@ const learnDatabase = [
           youtube: "oun74cJR6QE",
           id: "5.5",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "",
         },
       ],
       "Testicular":[
@@ -415,14 +415,14 @@ const learnDatabase = [
           youtube: "orL-bSlwBTA",
           id: "6.1",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "",
         },
         {
           title: "FAST Exam Part 2: Algorithm and Pitfalls",
           youtube: "E6J06ta07QA",
           id: "6.2",
           captionText:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+            "",
         },
       ],
       "Aorta":[
@@ -510,7 +510,7 @@ const learnDatabase = [
         youtube: "kenAPbRVMl0",
         id: "8.1",
         captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+          "",
       },
       {
         title: "Lower Extremity DVT",
@@ -533,7 +533,7 @@ const learnDatabase = [
         youtube: "dW8F_sMojKk",
         id: "8.4",
         captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+          "",
       },
     ],
     "Transcranial Doppler":[
@@ -544,7 +544,7 @@ const learnDatabase = [
           "https://westernsono.ca/wp-content/uploads/2016/06/tcd-camtasia.mp4?_t=1514825049",
         id: "8.5",
         captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+          "",
       },
     ],
   }
@@ -563,7 +563,7 @@ const learnDatabase = [
           "https://westernsono.ca/wp-content/uploads/2015/11/hypovolemia-final.mp4?_t=1514825045",
         id: "9.1",
         captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+          "",
       },
       {
         title: "Distributive Shock",
@@ -572,7 +572,7 @@ const learnDatabase = [
           "https://westernsono.ca/wp-content/uploads/2015/11/vasoplegia-final.mp4?_t=1514825047",
         id: "9.2",
         captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+          "",
       },
       {
         title: "Cardiogenic Shock",
@@ -581,7 +581,7 @@ const learnDatabase = [
           "https://westernsono.ca/wp-content/uploads/2015/11/cardiogenic-shock-final.mp4?_t=1514825037",
         id: "9.3",
         captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+          "",
       },
       {
         title: "Sepsis with CHF",
@@ -590,7 +590,7 @@ const learnDatabase = [
           "https://westernsono.ca/wp-content/uploads/2015/11/sepsis-chf-final.mp4?_t=1514825046",
         id: "9.4",
         captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+          "",
       },
       {
         title: "Calcium Channel Blocker Overdose",
@@ -599,7 +599,7 @@ const learnDatabase = [
           "https://westernsono.ca/wp-content/uploads/2015/11/ccb-od-final.mp4?_t=1514825038",
         id: "9.5",
         captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+          "",
       },
       {
         title: "Dimensionless Index",
@@ -608,7 +608,7 @@ const learnDatabase = [
           "https://westernsono.ca/wp-content/uploads/2015/11/dimensionless-index-final.mp4?_t=1514825042",
         id: "9.6",
         captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+          "",
       },
       {
         title: "Cor Pulmonale",
@@ -617,7 +617,7 @@ const learnDatabase = [
           "https://westernsono.ca/wp-content/uploads/2015/11/cor-pulmonale-rv-overload-final.mp4?_t=1514825040",
         id: "9.7",
         captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+          "",
       },
       {
         title: "Hypertrophic Obstructive Cardiomyopathy",
@@ -626,7 +626,7 @@ const learnDatabase = [
           "https://westernsono.ca/wp-content/uploads/2015/11/hocm-final.mp4?_t=1514825043",
         id: "9.8",
         captionText:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type",
+          "",
       },
     ],}
   },

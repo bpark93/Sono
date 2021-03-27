@@ -15,8 +15,12 @@ const LearnModuleItem = ({ page, category }) => {
   const navigation = useNavigation();
 
   const [pressed, setPressed] = useState(false);
-  const handlePress = () => {
-    setPressed(!pressed);
+  const handlePress = (page) => {
+    if (page.youtube != "pending"){
+      setPressed(!pressed);
+    } else {
+      return;
+    }
     updateProgress();
   };
 
@@ -36,8 +40,8 @@ const LearnModuleItem = ({ page, category }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => handlePress()}
-        // activeOpacity={0.8}
+        onPress={() => handlePress(page)}
+        activeOpacity={0.7}
       >
         <View style={styles.moduleStyle}>
           <FontAwesome
@@ -64,9 +68,11 @@ const LearnModuleItem = ({ page, category }) => {
               fontSize: 16,
               // width: width*.85,
               marginHorizontal: 20,
+              color: page.youtube != "pending" ? null : "#C0C0C0"
             }}
           >
             {page.title + "  "}
+            <Text style={{fontSize:12}}>{page.youtube != "pending" ? null: "(Coming Soon)"}</Text>
           </Text>
         </View>
       </TouchableOpacity>

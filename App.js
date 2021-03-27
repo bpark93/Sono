@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, AsyncStorage, YellowBox, TouchableOpacity } from 'react-native'
+import {View, AsyncStorage } from 'react-native'
 import { Provider as PaperProvider, DefaultTheme, ActivityIndicator } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -26,6 +26,7 @@ import checkIfFirstLaunch from './src/components/checkIfFirstLaunch'
 import {learnProgressInitialized} from './src/components/getLearnDatabase'
 import {initializeBookmark} from './src/components/useBookmark'
 import * as Font from 'expo-font';
+import { Asset } from 'expo-asset';
 import {initializeRecentPages} from './src/components/RecentPages'
 
 
@@ -36,8 +37,6 @@ const Bookmark = createStackNavigator();
 const Settings = createStackNavigator();
 
 function App() {
-
-  YellowBox.ignoreWarnings(['Setting a timer for a long period of time, i.e. multiple minutes,']); // REMEMBER TO TAKE OUT 
 
   const [first, setFirst] = useState(null);
   useEffect(()=> {
@@ -67,6 +66,19 @@ function App() {
     }
     loadFonts();
   },[]);
+
+  const [assetsLoaded, setAssetsLoaded] = useState(false)
+  useEffect(() => {
+    async function loadAssets() {
+      await Asset.loadAsync([
+        require('./assets/8535.jpg'),
+        require('./assets/20945184.jpg'),
+        require('./assets/6461.jpg'),
+      ])
+      setAssetsLoaded(true)
+    }
+    loadAssets();
+  })
 
   const [dataInitialized, setDataInitialized] = useState(false)
   useEffect(() => {
@@ -110,7 +122,7 @@ function App() {
     fetchData();
   })
 
-  if (!fontLoaded || !dataInitialized || !bookmarkInitialized || !recentPagesInitialized){
+  if (!fontLoaded || !dataInitialized || !bookmarkInitialized || !recentPagesInitialized || !assetsLoaded){
     return (
       <View style={{flex:1, alignItems: 'center', justifyContent:'center'}}>
         <ActivityIndicator
@@ -130,7 +142,6 @@ function App() {
       <Main.Navigator
         initialRouteName='Library'
         backBehavior='initialRoute'
-        // tabBarPosition='bottom'
         style={{
           backgroundColor: '#ffffff',
         }}
@@ -250,11 +261,10 @@ function SearchNav() {
     <Search.Navigator
       screenOptions={{
         headerStyle:{
-          // shadowColor:'transparent', -- LOOKS BETTER ON iOS
           elevation:0
         },
         headerTitleStyle:{
-          fontFamily:'Raleway-Bold',
+          fontWeight:'bold',
         },
         headerBackTitle:"",
       }}
@@ -335,7 +345,7 @@ function SettingsNav() {
       <Settings.Screen 
         name="about" 
         component={SettingsAboutScreen}
-        options={{title: "About Application"}}
+        options={{title: "About Sono"}}
       />
       <Settings.Screen 
         name="credits" 

@@ -15,359 +15,89 @@ const SettingsAboutScreen = () => {
   const height = 75;
   const width = 75;
 
+  const teamMembers = [
+    {
+      name:"Brian Park",
+      role:'Project Lead',
+      title:"Medical Student Class of 2023, Schulich School of Medicine and Dentistry, Western University",
+      pictureUrl:"https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600485731/avatars/brian-800x600_vhvyo3.jpg"
+    },
+    {
+      name:"Dr. Frank Myslik",
+      title:"MD, CCFP-EM \nAssociate Professor of Medicine\nUltrasound Fellowship Director, Division of Emergency Medicine, Western University",
+      pictureUrl:"https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_1000,h_1000/v1600485731/avatars/Profile-Picture_kgrj6l.png"
+    },
+    {
+      name:"Dr. Drew Thompson",
+      title:"MD, FRCPC\nAssociate Professor of Medicine\nDivision of Emergency Medicine, Western University",
+      pictureUrl:"https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_1000,h_1000/v1603318543/avatars/drew-thompson-2-e1533238732547_fkmbsk.jpg"
+    },
+    {
+      name:"Dr. Robert Arntfield",
+      title:"MD, FRCPC, FCCP, FACEP\nAssociate Professor of Medicine\n Department of Critical Care, Western University",
+      pictureUrl:"https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600485731/avatars/rob-e1533345037700_atdz73.jpg"
+    },
+    {
+      name:"Dr. Shane Freeman",
+      title:"MD, PGY-4, Department of Emergency Medicine, Western University",
+      pictureUrl:"https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_1000,h_1000/v1600487717/avatars/shane-1160x1160_sm5as9.jpg"
+    },
+    {
+      name:"Dr. Jason Lam",
+      title:"MD, CCFP-EM, Department of Emergency Medicine, Western University",
+      pictureUrl:""
+    },
+    {
+      name:"Derek Wu",
+      title:"Medical Student Class of 2021, Schulich School of Medicine and Dentistry, Western University",
+      pictureUrl:"https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600487083/avatars/IMG_0147-1_efozod.jpg"
+    },
+    {
+      name:"Tracy Wang",
+      role:'Graphic Design',
+      title:"B.Sc 2022, Western University",
+      pictureUrl:""
+    },
+
+  ]
+
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={{ alignItems: "center" }}
     >
-      <View style={styles.textBox}>
+      {teamMembers.map((member) => (
         <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginBottom: 20,
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          marginVertical: 15,
+          marginHorizontal:15
+        }}
+        key={member.name}
+      >
+        {member.pictureUrl ? <Image
+          source={{
+            uri:member.pictureUrl,
           }}
-        >
-          <Image
-            source={{
-              uri:
-                "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600485731/avatars/brian-800x600_vhvyo3.jpg",
+          style={{ height: height, width: width, borderRadius: 20 }}
+        />: <View style={{ height: height, width: width, borderRadius: 20 }}></View>}
+        <View style={{ marginLeft: 10, flex: 1 }}>
+          <Text style={{ fontSize: 16 }}>{member.name}</Text>
+          {member.role ? <Text style={{ fontSize: 12 }}>{member.role}</Text> : null}
+          <Text
+            style={{
+              fontFamily: "Roboto-Regular",
+              color: "gray",
+              fontSize: 12,
             }}
-            style={{ height: height, width: width, borderRadius: 20 }}
-          />
-          <View style={{ marginLeft: 10, flex: 1 }}>
-            <Text style={{ fontSize: 16 }}>Brian Park</Text>
-            <Text
-              style={{
-                fontFamily: "Roboto-Regular",
-                color: "gray",
-                fontSize: 12,
-              }}
-            >
-              MD 2023 Candidate, Schulich School of Medicine and Dentistry,
-              Western University
-            </Text>
-          </View>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginBottom: 20,
-          }}
-        >
-          <Image
-            source={{
-              uri:
-                "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_1000,h_1000/v1600485731/avatars/Profile-Picture_kgrj6l.png",
-            }}
-            style={{ height: height, width: width, borderRadius: 20 }}
-          />
-          <View style={{ marginLeft: 10, flex: 1 }}>
-            <Text style={{ fontSize: 16 }}>Dr. Frank Myslik</Text>
-            <Text
-              style={{
-                fontFamily: "Roboto-Regular",
-                color: "gray",
-                fontSize: 12,
-              }}
-            >
-              MD, CCFP-EM {"\n"}Associate Professor of Medicine{"\n"}Ultrasound Fellowship Director, Division of
-              Emergency Medicine, Western University
-            </Text>
-          </View>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginBottom: 20,
-          }}
-        >
-          <Image
-            source={{
-              uri:
-                "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_1000,h_1000/v1603318543/avatars/drew-thompson-2-e1533238732547_fkmbsk.jpg"
-            }}
-            style={{ height: height, width: width, borderRadius: 20 }}
-          />
-          <View style={{ marginLeft: 10, flex: 1 }}>
-            <Text style={{ fontSize: 16 }}>Dr. Drew Thompson</Text>
-            <Text
-              style={{
-                fontFamily: "Roboto-Regular",
-                color: "gray",
-                fontSize: 12,
-              }}
-            >
-              MD, FRCPC{"\n"}Associate Professor of Medicine{"\n"}Division of
-              Emergency Medicine, Western University
-            </Text>
-          </View>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginBottom: 20,
-          }}
-        >
-          <Image
-            source={{
-              uri:
-                "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600485731/avatars/rob-e1533345037700_atdz73.jpg",
-            }}
-            style={{ height: height, width: width, borderRadius: 20 }}
-          />
-          <View style={{ marginLeft: 10, flex: 1 }}>
-            <Text style={{ fontSize: 16 }}>Dr. Robert Arntfield</Text>
-            <Text
-              style={{
-                fontFamily: "Roboto-Regular",
-                color: "gray",
-                fontSize: 12,
-              }}
-            >
-              MD, FRCPC, FCCP, FACEP{"\n"}Associate Professor of Medicine{"\n"}
-              Department of Critical Care, Western University
-            </Text>
-          </View>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginBottom: 20,
-          }}
-        >
-          <Image
-            source={{
-              uri:
-                "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_1000,h_1000/v1600487717/avatars/shane-1160x1160_sm5as9.jpg",
-            }}
-            style={{ height: height, width: width, borderRadius: 20 }}
-          />
-          <View style={{ marginLeft: 10, flex: 1 }}>
-            <Text style={{ fontSize: 16 }}>Dr. Shane Freeman</Text>
-            <Text
-              style={{
-                fontFamily: "Roboto-Regular",
-                color: "gray",
-                fontSize: 12,
-              }}
-            >
-              MD, PGY-4, Department of Emergency Medicine, Western University
-            </Text>
-          </View>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginBottom: 20,
-          }}
-        >
-          <Image
-            // source={{
-            //   uri:
-            //    "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600485731/avatars/rob-e1533345037700_atdz73.jpg",
-            // }}
-            style={{ height: height, width: width, borderRadius: 20 }}
-          />
-          <View style={{ marginLeft: 10, flex: 1 }}>
-            <Text style={{ fontSize: 16 }}>Dr. Jason Lam</Text>
-            <Text
-              style={{
-                fontFamily: "Roboto-Regular",
-                color: "gray",
-                fontSize: 12,
-              }}
-            >
-              MD, CCFP-EM, Department of Emergency Medicine, Western University
-            </Text>
-          </View>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginBottom: 20,
-          }}
-        >
-          <Image
-            source={{
-              uri:
-                "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600487083/avatars/IMG_0147-1_efozod.jpg",
-            }}
-            style={{ height: height, width: width, borderRadius: 20 }}
-          />
-          <View style={{ marginLeft: 10, flex: 1 }}>
-            <Text style={{ fontSize: 16 }}>Derek Wu</Text>
-            <Text
-              style={{
-                fontFamily: "Roboto-Regular",
-                color: "gray",
-                fontSize: 12,
-              }}
-            >
-              MD 2021 Candidate, Schulich School of Medicine and Dentistry,
-              Western University
-            </Text>
-          </View>
-        </View>
-        {/* <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginBottom: 20,
-          }}
-        >
-          <Image
-            // source={{
-            //   uri:
-            //   "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600487083/avatars/IMG_0147-1_efozod.jpg"
-            // }}
-            style={{ height: 100, width: 100, borderRadius: 20 }}
-          />
-          <View style={{ marginLeft: 10, flex: 1 }}>
-            <Text style={{ fontSize: 16 }}>Dr. Mathilde Gaudreau-Simard</Text>
-            <Text
-              style={{
-                fontFamily: "Roboto-Regular",
-                color: "gray",
-                fontSize: 12,
-              }}
-            >
-              MD, PGY-5, Department of Internal Medicine, University of Ottawa
-            </Text>
-          </View>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginBottom: 20,
-          }}
-        >
-          <Image
-            // source={{
-            //   uri:
-            //   "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600487083/avatars/IMG_0147-1_efozod.jpg"
-            // }}
-            style={{ height: 100, width: 100, borderRadius: 20 }}
-          />
-          <View style={{ marginLeft: 10, flex: 1 }}>
-            <Text style={{ fontSize: 16 }}>Dr. Thamer Alaifan</Text>
-            <Text
-              style={{
-                fontFamily: "Roboto-Regular",
-                color: "gray",
-                fontSize: 12,
-              }}
-            >
-              MD, FRCPC, Department of Critical Care, Western University
-            </Text>
-          </View>
-        </View>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginBottom: 20,
-          }}
-        >
-          <Image
-            // source={{
-            //   uri:
-            //   "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600487083/avatars/IMG_0147-1_efozod.jpg"
-            // }}
-            style={{ height: 100, width: 100, borderRadius: 20 }}
-          />
-          <View style={{ marginLeft: 10, flex: 1 }}>
-            <Text style={{ fontSize: 16 }}>Dr. Bader Alsherhy</Text>
-            <Text
-              style={{
-                fontFamily: "Roboto-Regular",
-                color: "gray",
-                fontSize: 12,
-              }}
-            >
-              MBBS, MPH, Department of Critical Care, Western University
-            </Text>
-          </View>
-        </View> */}
-        {/* <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginBottom: 20,
-          }}
-        >
-          <Image
-            // source={{
-            //   uri:
-            //   "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600487083/avatars/IMG_0147-1_efozod.jpg"
-            // }}
-            style={{ height: 100, width: 100, borderRadius: 20 }}
-          />
-          <View style={{ marginLeft: 10, flex: 1 }}>
-            <Text style={{ fontSize: 16 }}>Dr. Melanie Le May</Text>
-            <Text
-              style={{
-                fontFamily: "Roboto-Regular",
-                color: "gray",
-                fontSize: 12,
-              }}
-            >
-              MD, PGY-5, Department of Internal Medicine, Western University
-            </Text>
-          </View>
-        </View> */}
-
-        <Text style={{ fontFamily: "Raleway-Regular", fontSize: 20 }}>
-          Graphic Design
-        </Text>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginBottom: 20,
-            marginTop: 20,
-          }}
-        >
-          <Image
-            // source={{
-            //   uri:
-            //     "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_1000,h_1000/v1600487717/avatars/shane-1160x1160_sm5as9.jpg"
-            // }}
-            style={{ height: height, width: width, borderRadius: 20 }}
-          />
-          <View style={{ marginLeft: 10, flex: 1 }}>
-            <Text style={{ fontSize: 16 }}>Tracy Wang</Text>
-            <Text
-              style={{
-                fontFamily: "Roboto-Regular",
-                color: "gray",
-                fontSize: 12,
-              }}
-            >
-              B.Sc 2022, Western University
-            </Text>
-          </View>
+          >
+            {member.title}
+          </Text>
         </View>
       </View>
+      ))}
     </ScrollView>
   );
 };

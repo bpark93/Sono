@@ -7,7 +7,7 @@
       "android",
       "web"
     ],
-    "version": "0.2.0",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/sono_logo.png",
     "splash": {
@@ -23,7 +23,7 @@
     ],
     "ios": {
       "bundleIdentifier": "ca.westernsono.sono",
-      "buildNumber": "0.2.0",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android":{

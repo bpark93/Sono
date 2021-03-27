@@ -1,8 +1,7 @@
 import React from "react";
-import { View, StyleSheet, Text, ScrollView, Image } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import { learnDatabase } from "../../database";
 import LearnItem from "../components/LearnItem";
-import LottieView from "lottie-react-native";
 import Cases from "../components/Cases";
 import Constants from "expo-constants";
 import { FlatList } from "react-native-gesture-handler";
@@ -16,11 +15,6 @@ const LearnScreen = () => {
         paddingTop: Constants.statusBarHeight + 15,
       }}
     >
-      {/* <Image
-        style={styles.logoStyle}
-        source={require("../../assets/western-logo.png")}
-      /> */}
-      {/* <ScrollView style={{ flex: 1 }}> */}
       <View
         style={{
           flexDirection: "row",
@@ -35,11 +29,7 @@ const LearnScreen = () => {
         />
         <Text style={{ fontFamily: "Roboto-Black", fontSize: 36 }}>Learn</Text>
       </View>
-      {/* <Cases /> */}
       <View style={{ flex: 1 }}>
-        {/* {learnDatabase.map((item) => (
-            <LearnItem item={item} key={item.id} />
-          ))} */}
         <FlatList
           data={learnDatabase}
           ListHeaderComponent={() => (
@@ -53,7 +43,6 @@ const LearnScreen = () => {
           numColumns={2}
         />
       </View>
-      {/* </ScrollView> */}
     </View>
   );
 };

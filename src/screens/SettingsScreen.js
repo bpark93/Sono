@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { List } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -19,19 +19,19 @@ const SettingsScreen = ({ navigation }) => {
         onPress={() => navigation.navigate("credits")}
       />
       <List.Item
-        title="Help"
+        title="FAQs"
         left={() => (
           <MaterialCommunityIcons name="help" style={styles.iconStyle} />
         )}
         style={styles.listItemStyle}
         onPress={() => navigation.navigate("help")}
       />
-      <List.Item
+      {/* <List.Item
         title="Settings"
         left={() => <MaterialCommunityIcons name="settings-outline" style={styles.iconStyle} />}
         style={styles.listItemStyle}
         onPress={() => navigation.navigate("auth")}
-      />
+      /> */}
     </View>
   );
 };
