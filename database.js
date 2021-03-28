@@ -29,30 +29,30 @@ const learnDatabase = [
           captionText:"An understanding of ultrasound physics (groan) is a necessary evil in the quest to applying and mastering ultrasound at the point of care. Begin this module to start your POCUS journey!",
           headerImage:require('./assets/png/movement.png')
         },
-        // {
-        //   title: "Probe Types",
-        //   id: "1.2",
-        //   captionText:"",
-        //   youtube:"pending"
-        // },
-        // {
-        //   title: "Probe Movements",
-        //   id: "1.3",
-        //   captionText:"",
-        //   youtube:"pending"
-        // },
-        // {
-        //   title: "Controls on LHSC Machines",
-        //   id: "1.4",
-        //   captionText:"",
-        //   youtube:"pending"
-        // },
-        // {
-        //   title: "Ultrasound Machine Maintenance",
-        //   id: "1.5",
-        //   captionText:"",
-        //   youtube:"pending"
-        // },
+        {
+          title: "Probe Types",
+          id: "1.2",
+          captionText:"",
+          youtube:"pending"
+        },
+        {
+          title: "Probe Movements",
+          id: "1.3",
+          captionText:"",
+          youtube:"pending"
+        },
+        {
+          title: "Controls on LHSC Machines",
+          id: "1.4",
+          captionText:"",
+          youtube:"pending"
+        },
+        {
+          title: "Ultrasound Machine Maintenance",
+          id: "1.5",
+          captionText:"",
+          youtube:"pending"
+        },
       ],
       "Advanced":[
         {
@@ -190,13 +190,13 @@ const learnDatabase = [
     testReady: false,
     pages: {
       "Basic Echo":[
-        // {
-        //   title: "Essential Views and Techniques",
-        //   youtube: "pending",
-        //   id: "3.1",
-        //   captionText:
-        //     "",
-        // },
+        {
+          title: "Essential Views and Techniques",
+          youtube: "pending",
+          id: "3.1",
+          captionText:
+            "",
+        },
         {
           title: "Approach to difficult image acquisition",
           youtube: "_9GG3fiZpGs",
@@ -211,34 +211,34 @@ const learnDatabase = [
           captionText:
             "Assessing LV function at the point of care is typically used for patients in shock. Compromised LV function may either be the cause or may significantly complicate shock management. The “eyeball” method for addressing LV function is acceptable and even necessary in the point of care setting. Exact determination of ejection fraction (EF) is time consuming and the additional investment in acquiring a more “precise” number does not typically provide incrementally better or more detailed care. ",
         },
-        // {
-        //   title: "Assessment of the RV",
-        //   youtube: "pending",
-        //   id: "3.4",
-        //   captionText:
-        //     "",
-        // },
-        // {
-        //   title: "Pericardial Effusion",
-        //   youtube: "pending",
-        //   id: "3.5",
-        //   captionText:
-        //     "",
-        // },
-        // {
-        //   title: "Inferior Vena Cava",
-        //   youtube: "pending",
-        //   id: "3.6",
-        //   captionText:
-        //     "",
-        // },
-        // {
-        //   title: "Basic Valve assessment",
-        //   youtube: "pending",
-        //   id: "3.7",
-        //   captionText:
-        //     "",
-        // },
+        {
+          title: "Assessment of the RV",
+          youtube: "pending",
+          id: "3.4",
+          captionText:
+            "",
+        },
+        {
+          title: "Pericardial Effusion",
+          youtube: "pending",
+          id: "3.5",
+          captionText:
+            "",
+        },
+        {
+          title: "Inferior Vena Cava",
+          youtube: "pending",
+          id: "3.6",
+          captionText:
+            "",
+        },
+        {
+          title: "Basic Valve assessment",
+          youtube: "pending",
+          id: "3.7",
+          captionText:
+            "",
+        },
       ],
       "Advanced Echo":[
         {
@@ -293,18 +293,18 @@ const learnDatabase = [
           id: "4.1",
           captionText: "How many times have you had a patient that needs IV access, but none can be obtained by traditional visualization or even blind technique, even by the most experienced operators (i.e. the IV team)? What do you do next? Attempt a central line instead? Not necessarily! Instead, much like arterial lines, you can use ultrasound (US) to help with venous cannulation.",
         },
-        // {
-        //   title: "Central Vascular Access",
-        //   youtube: "pending",
-        //   id: "4.2",
-        //   captionText: "",
-        // },
-        // {
-        //   title: "Subclavian and Peripheral Arterial Access",
-        //   youtube: "pending",
-        //   id: "4.3",
-        //   captionText: "",
-        // },
+        {
+          title: "Central Vascular Access",
+          youtube: "pending",
+          id: "4.2",
+          captionText: "",
+        },
+        {
+          title: "Subclavian and Peripheral Arterial Access",
+          youtube: "pending",
+          id: "4.3",
+          captionText: "",
+        },
         {
           title: "Sterile Technique for US Guided Procedures",
           youtube: "BIZJdzqgF88",
