@@ -107,6 +107,7 @@ const LearnTextScreen = ({ route, navigation }) => {
             pageInfo={id}
             snackToggle={() => setSnackVisible(true)}
             modalToggle={() => setModalVisible(true)}
+            quizNotAvailable={true}
           />
           <Text style={styles.body}>{id.captionText}</Text>
           {none && <Image source={require('../../assets/crane.png')} style={{height:200, width:200, marginVertical:20, alignSelf:'center'}}/>}
