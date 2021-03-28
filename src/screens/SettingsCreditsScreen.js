@@ -45,7 +45,7 @@ const SettingsAboutScreen = () => {
     {
       name:"Dr. Jason Lam",
       title:"MD, CCFP-EM, Department of Emergency Medicine, Western University",
-      pictureUrl:""
+      pictureUrl:"https://res.cloudinary.com/dwtw3ge2z/image/upload/v1616906695/avatars/user_ynm3wo.png"
     },
     {
       name:"Derek Wu",
@@ -56,7 +56,7 @@ const SettingsAboutScreen = () => {
       name:"Tracy Wang",
       role:'Graphic Design',
       title:"B.Sc 2022, Western University",
-      pictureUrl:""
+      pictureUrl:"https://res.cloudinary.com/dwtw3ge2z/image/upload/v1616906695/avatars/user_ynm3wo.png"
     },
 
   ]

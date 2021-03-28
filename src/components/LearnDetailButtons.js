@@ -12,6 +12,7 @@ const LearnDetailButtons = ({
   pageInfo,
   snackToggle,
   modalToggle,
+  quizNotAvailable,
   transcriptToggle,
   noteToggle,
   youtubeToggle,
@@ -114,7 +115,7 @@ const LearnDetailButtons = ({
       }
 
       {/* Quiz Button */}
-      {progress === "100" ? (
+      {quizNotAvailable ? null : progress === "100" ? (
         <TouchableOpacity
           style={styles.touchable}
           onPress={() => {

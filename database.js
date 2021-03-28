@@ -20,6 +20,7 @@ const learnDatabase = [
     description:'',
     thumbnail: require("./assets/png/fundamentals.png"),
     id: 1,
+    testReady: true,
     pages: {
       "Ultrasound Basics":[
         {
@@ -28,30 +29,30 @@ const learnDatabase = [
           captionText:"An understanding of ultrasound physics (groan) is a necessary evil in the quest to applying and mastering ultrasound at the point of care. Begin this module to start your POCUS journey!",
           headerImage:require('./assets/png/movement.png')
         },
-        {
-          title: "Probe Types",
-          id: "1.2",
-          captionText:"",
-          youtube:"pending"
-        },
-        {
-          title: "Probe Movements",
-          id: "1.3",
-          captionText:"",
-          youtube:"pending"
-        },
-        {
-          title: "Controls on LHSC Machines",
-          id: "1.4",
-          captionText:"",
-          youtube:"pending"
-        },
-        {
-          title: "Ultrasound Machine Maintenance",
-          id: "1.5",
-          captionText:"",
-          youtube:"pending"
-        },
+        // {
+        //   title: "Probe Types",
+        //   id: "1.2",
+        //   captionText:"",
+        //   youtube:"pending"
+        // },
+        // {
+        //   title: "Probe Movements",
+        //   id: "1.3",
+        //   captionText:"",
+        //   youtube:"pending"
+        // },
+        // {
+        //   title: "Controls on LHSC Machines",
+        //   id: "1.4",
+        //   captionText:"",
+        //   youtube:"pending"
+        // },
+        // {
+        //   title: "Ultrasound Machine Maintenance",
+        //   id: "1.5",
+        //   captionText:"",
+        //   youtube:"pending"
+        // },
       ],
       "Advanced":[
         {
@@ -69,6 +70,7 @@ const learnDatabase = [
     thumbnail: require("./assets/png2/042-lungs.png"),
     description:'Still using the Chest X-ray to look for acute causes of dyspnea? Lung ultrasound (or LUS) has been shown to have a diagnostic accurary that is not only higher than traditional chest radiography, but similar to chest CT scans. LUS can be used to rapidly identify pneumonia, pulmonary edema, pneomothorax, characterize pleural effusions and even guide therapy by locating a safe needle site for drainage. This section will address the main topics of lung and pleural ultrasound including relevant physics, signs of thoracic pathology, A lines, B lines and much more.',
     id: 2,
+    testReady: true,
     pages: {
       "Fundamentals":[
         {
@@ -185,15 +187,16 @@ const learnDatabase = [
     thumbnail: require("./assets/png2/040-heart.png"),
     description:'The point of care ultrasound revolution has brought a renaissance to providers of resuscitative care: No longer is determination of shock something that requires invasive monitoring (e.g. Swan Ganz) or an ICU admission. Instead, with good image acquisition and image interpretation skills, point of care echo can answer this question anywhere in the hospital – the ED, the ward, the ICU and, the CT scanner or the cafeteria.',
     id: 3,
+    testReady: false,
     pages: {
       "Basic Echo":[
-        {
-          title: "Essential Views and Techniques",
-          youtube: "pending",
-          id: "3.1",
-          captionText:
-            "",
-        },
+        // {
+        //   title: "Essential Views and Techniques",
+        //   youtube: "pending",
+        //   id: "3.1",
+        //   captionText:
+        //     "",
+        // },
         {
           title: "Approach to difficult image acquisition",
           youtube: "_9GG3fiZpGs",
@@ -208,34 +211,34 @@ const learnDatabase = [
           captionText:
             "Assessing LV function at the point of care is typically used for patients in shock. Compromised LV function may either be the cause or may significantly complicate shock management. The “eyeball” method for addressing LV function is acceptable and even necessary in the point of care setting. Exact determination of ejection fraction (EF) is time consuming and the additional investment in acquiring a more “precise” number does not typically provide incrementally better or more detailed care. ",
         },
-        {
-          title: "Assessment of the RV",
-          youtube: "pending",
-          id: "3.4",
-          captionText:
-            "",
-        },
-        {
-          title: "Pericardial Effusion",
-          youtube: "pending",
-          id: "3.5",
-          captionText:
-            "",
-        },
-        {
-          title: "Inferior Vena Cava",
-          youtube: "pending",
-          id: "3.6",
-          captionText:
-            "",
-        },
-        {
-          title: "Basic Valve assessment",
-          youtube: "pending",
-          id: "3.7",
-          captionText:
-            "",
-        },
+        // {
+        //   title: "Assessment of the RV",
+        //   youtube: "pending",
+        //   id: "3.4",
+        //   captionText:
+        //     "",
+        // },
+        // {
+        //   title: "Pericardial Effusion",
+        //   youtube: "pending",
+        //   id: "3.5",
+        //   captionText:
+        //     "",
+        // },
+        // {
+        //   title: "Inferior Vena Cava",
+        //   youtube: "pending",
+        //   id: "3.6",
+        //   captionText:
+        //     "",
+        // },
+        // {
+        //   title: "Basic Valve assessment",
+        //   youtube: "pending",
+        //   id: "3.7",
+        //   captionText:
+        //     "",
+        // },
       ],
       "Advanced Echo":[
         {
@@ -281,6 +284,7 @@ const learnDatabase = [
     thumbnail: require("./assets/png/injection.png"),
     description:'',
     id: 4,
+    testReady: false,
     pages: {
       "Vascular Access":[
         {
@@ -289,18 +293,18 @@ const learnDatabase = [
           id: "4.1",
           captionText: "How many times have you had a patient that needs IV access, but none can be obtained by traditional visualization or even blind technique, even by the most experienced operators (i.e. the IV team)? What do you do next? Attempt a central line instead? Not necessarily! Instead, much like arterial lines, you can use ultrasound (US) to help with venous cannulation.",
         },
-        {
-          title: "Central Vascular Access",
-          youtube: "pending",
-          id: "4.2",
-          captionText: "",
-        },
-        {
-          title: "Subclavian and Peripheral Arterial Access",
-          youtube: "pending",
-          id: "4.3",
-          captionText: "",
-        },
+        // {
+        //   title: "Central Vascular Access",
+        //   youtube: "pending",
+        //   id: "4.2",
+        //   captionText: "",
+        // },
+        // {
+        //   title: "Subclavian and Peripheral Arterial Access",
+        //   youtube: "pending",
+        //   id: "4.3",
+        //   captionText: "",
+        // },
         {
           title: "Sterile Technique for US Guided Procedures",
           youtube: "BIZJdzqgF88",
@@ -346,6 +350,7 @@ const learnDatabase = [
     thumbnail: require("./assets/png2/031-kidney-1.png"),
     description:'',
     id: 5,
+    testReady: false,
     pages: {
       "Renal":[
         {
@@ -408,6 +413,7 @@ const learnDatabase = [
     title: "Abdomen",
     thumbnail: require("./assets/png/038-abs.png"),
     id: 6,
+    testReady: false,
     pages: {
       "FAST Exam":[
         {
@@ -473,6 +479,7 @@ const learnDatabase = [
     thumbnail: require("./assets/png2/029-pelvic-area.png"),
     description:'Point-of-care pelvic ultrasound is a fundamental exam performed for women of reproductive age presenting with abdominal pain, vaginal bleeding or syncope, routinely done in emergency departments and obstetrical clinics. Combined with a detailed history, physical examination and serum beta-hCG level, ultrasound is central to the accurate assessment and management of such patients. Point of care evaluations have been shown to have excellent accuracy with a sensitivity of 99.3% for detecting IUP and ruling out ectopic pregnancies. Bedside ultrasound has also been shown to reduce length of stay in the ED, thereby increasing overall efficiency. Learn all about this valuable skill in the following lectures!',
     id: 7,
+    testReady: false,
     pages:{
       "Fundamentals":[
         {
@@ -503,6 +510,7 @@ const learnDatabase = [
     title: "Miscellaneous",
     thumbnail: require("./assets/png/049-blood.png"),
     id: 8,
+    testReady: false,
     pages: {
       "DVT":[
       {
@@ -554,6 +562,7 @@ const learnDatabase = [
     thumbnail: require("./assets/png/044-blood.png"),
     description:"The beauty of point-of-care echo is that we can generally answer our most pressing clinical questions (such as: gross LV function, RV size, IVC size and variability and pericardial effusion) rapidly without relying on measurements, or advanced “knobs” related to spectral Doppler.  The literature and our clinical experience reflect that this approach is accurate and improves confidence and speed to diagnosis.\n\nThere ARE however times when the extensive additional training and commitment to learning these skills does pay off at the point-of-care.  This could be in the resus bay in the ED, the peri-operative milieu or in the ICU. In this series of case presentations, Dr. Vincent Lau, PGY5 in critical care at Western University, articulately and visually takes us through several superb cases where one can only be inspired to possess these advanced skills.  The cases are presented in order of increasing complexity and frequently refer to the use of stroke volume determination.",
     id: 9,
+    testReady: false,
     pages: {
       "":[
       {
@@ -635,6 +644,7 @@ const learnDatabase = [
     thumbnail: require("./assets/png2/038-esophagus.png"),
     description:"For most point-of-care needs, one can do both basic and more advanced applications of echocardiography with transthoracic scanning. However, there ARE times whereby having ability to perform transesophageal echocardiography (TEE) can be extremely helpful in the point-of-care. This is especially true when windows are hard to obtain in transthoracic echo (TTE) during a technically difficult study, or when a more sensitive and specific modality is required to help with various diagnoses (i.e. endocarditis, cardiac source of emboli, shunts, dissection), or during procedural guidance (i.e. veno-venous extracorporeal membrane oxygenation insertion). In this series of case presentations Dr. Rob Arntfield, MD, FRCPC and Dr. Vincent Lau, critical care medicine alumnus and critical care ultrasound fellow at Western University, introduces various advanced concepts with regards to performing critical care TEEs.",
     id: 10,
+    testReady: false,
     pages: {
       "":[
       {

@@ -297,6 +297,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
             pageInfo={id}
             snackToggle={() => setSnackVisible(true)}
             modalToggle={() => setModalVisible(true)}
+            quizNotAvailable={noQuizError}
             transcriptToggle={() => setTranscriptToggled(true)}
             noteToggle={(bool) => setNoteVisible(bool)}
             youtubeToggle={() => setYoutubePlaying(false)}

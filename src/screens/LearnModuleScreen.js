@@ -133,7 +133,7 @@ const LearnModuleScreen = ({ route, navigation }) => {
               ))}
             </View>
           ))}
-          <QuizLink name={id.title} id={id.id} />
+          {id.testReady ? <QuizLink name={id.title} id={id.id} /> : null}
         </View>
       </ScrollView>
     </View>
