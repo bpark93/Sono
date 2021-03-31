@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Platform, TouchableOpacity } from "react-native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { AsyncStorage } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -191,7 +191,9 @@ const styles = StyleSheet.create({
   category: {
     fontSize: 14,
     fontWeight: "bold",
+    fontFamily: Platform.OS === "android" ? 'Roboto-Bold' : null,
     color: "white",
+    textAlign:'center'
   },
   categoryView: {
     // borderColor: "#4f2683",

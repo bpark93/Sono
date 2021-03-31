@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
+  Platform
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons";
@@ -63,8 +64,8 @@ const LearnModuleItem = ({ page, category }) => {
           />
           <Text
             style={{
-              // fontFamily: "Roboto-Regular",
-              fontWeight: pressed ? "bold" : "normal",
+              fontFamily: Platform.OS === "android" ? pressed ? "Roboto-Bold" : "Roboto-Regular" : null,
+              fontWeight: Platform.OS === "android" ? null : pressed ? "bold" : "normal",
               fontSize: 16,
               // width: width*.85,
               marginHorizontal: 20,

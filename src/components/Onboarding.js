@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Onboarding = ({ onDoneClick }) => {
+const Onboarding = ({ onDoneClick }) => {
   return (
     <AppIntroSlider
       data={slides}
@@ -118,3 +118,5 @@ export default Onboarding = ({ onDoneClick }) => {
     />
   );
 };
+
+export default Onboarding;

@@ -35,7 +35,7 @@ const LearnScreen = () => {
           ListHeaderComponent={() => (
             <View>
               <Cases />
-              <Text style={styles.header}>Screencasts</Text>
+              <Text style={styles.header}>Lessons</Text>
             </View>
           )}
           renderItem={(item) => <LearnItem item={item.item} />}

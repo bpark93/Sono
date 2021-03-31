@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Platform } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
@@ -46,11 +46,13 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight:"bold",
+    fontFamily:Platform.OS === "android" ? "Roboto-Bold" : null,
     fontSize: 20,
     // color:'white'
   },
   buttonText: {
     fontWeight:'bold',
+    fontFamily:Platform.OS === "android" ? "Roboto-Bold" : null,
     fontSize: 20,
     color: "white",
   },

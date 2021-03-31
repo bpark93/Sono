@@ -129,7 +129,7 @@ const LibraryBookmarks = ({ layout, sortBy }) => {
       >
         You don't have any saved bookmarks.
       </Text>
-      <Text
+      <Text // Remember to Add or Take out
         style={{ opacity: 0.3, marginTop: 15, marginHorizontal: 30 }}
         numberOfLines={2}
       >

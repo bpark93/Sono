@@ -40,7 +40,7 @@ const ListAccordion = ({ name, groups }) => {
   return (
     <List.Accordion
       style={{ backgroundColor: expanded ? colorPicker(name) : "white"}}
-      titleStyle={{ fontWeight: expanded ? "bold" : "normal", color: expanded ? "white" : "black", marginLeft:5 }}
+      titleStyle={{ fontWeight: expanded ? "bold" : "normal", color: expanded ? "white" : "black", marginLeft:5,}}
       key={name}
       title={name}
       left={() => <Avatar.Image source={categoryDatabase[name]} style={{...styles.image, backgroundColor: expanded ? "#F0F0F0" : colorPicker(name)}} size={40}/>}

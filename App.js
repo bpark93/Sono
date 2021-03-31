@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, AsyncStorage } from 'react-native'
+import {View, AsyncStorage, Platform } from 'react-native'
 import { Provider as PaperProvider, DefaultTheme, ActivityIndicator } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -59,6 +59,9 @@ function App() {
         'Raleway-Bold': require('./assets/fonts/Raleway/Raleway-Bold.ttf'),
         'Roboto-Black': require('./assets/fonts/Roboto/Roboto-Black.ttf'),
         'Roboto-Regular': require('./assets/fonts/Roboto/Roboto-Regular.ttf'),
+        'Roboto-Medium': require('./assets/fonts/Roboto/Roboto-Medium.ttf'),
+        'Roboto-Light': require('./assets/fonts/Roboto/Roboto-Light.ttf'),
+        'Roboto-Bold': require('./assets/fonts/Roboto/Roboto-Bold.ttf'),
         'Lora-Regular': require('./assets/fonts/Lora/Lora-Regular.ttf'),
         'Lora-Bold': require('./assets/fonts/Lora/Lora-Bold.ttf')
       })
@@ -70,11 +73,13 @@ function App() {
   const [assetsLoaded, setAssetsLoaded] = useState(false)
   useEffect(() => {
     async function loadAssets() {
-      await Asset.loadAsync([
-        require('./assets/8535.jpg'),
-        require('./assets/20945184.jpg'),
-        require('./assets/6461.jpg'),
-      ])
+      if (first) {
+        await Asset.loadAsync([
+          require('./assets/8535.jpg'),
+          require('./assets/20945184.jpg'),
+          require('./assets/6461.jpg'),
+        ])
+      }
       setAssetsLoaded(true)
     }
     loadAssets();
@@ -134,7 +139,12 @@ function App() {
   }
   
   if (first) { // FIX BACK TO FIRST WHEN DONE DEVLOPING
-    return <Onboarding onDoneClick={(firstBool) => setFirst(firstBool)}/>
+    if (Platform.OS != "web"){
+      return <Onboarding onDoneClick={(firstBool) => setFirst(firstBool)}/>
+    } else {
+      setFirst(false)
+      return;
+    }
   }
 
   return (
@@ -364,6 +374,17 @@ const theme = {
     primary: '#4f2683',
     background: '#ffffff',
   },
+  fonts:{
+    regular: {
+      fontFamily: Platform.OS === "android" ? "Roboto-Regular" : null
+    },
+    medium: {
+      fontFamily: Platform.OS === "android" ? "Roboto-Medium" : null
+    },
+    light: {
+      fontFamily: Platform.OS === "android" ? "Roboto-Light" : null
+    },
+  }
 };
 
 export default () => {
