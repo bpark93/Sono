@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore'
-// import 'firebase/auth'
+import 'firebase/auth'
 
 // Firebase configuration object
 const firebaseConfig = {
@@ -17,5 +17,6 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 // firebase.analytics();
+firebase.auth().signInAnonymously();
 
 export default firebase

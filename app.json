@@ -28,7 +28,8 @@
     },
     "android":{
       "package":"ca.westernsono.sono",
-      "versionCode": 1
+      "versionCode": 1,
+      "permissions" : []
     }
   }
 }
