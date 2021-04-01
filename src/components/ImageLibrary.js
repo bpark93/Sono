@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Dimensions,
   FlatList,
-  ScrollView,
+  Platform,
   TouchableOpacity,
   Image as RNImage,
   Linking,
@@ -266,7 +266,7 @@ const ImageLibrary = ({ page, id }) => {
               activeOpacity={0.5}
               onPress={() => setHidePressed(!hidePressed)}
             >
-              <Text style={{ color: "#4f2683", fontWeight: "bold" }}>
+              <Text style={{ color: "#4f2683", fontWeight: "bold", fontFamily: Platform.OS === "android" ? "Roboto-Regular" : null }}>
                 {hidePressed ? "Show More" : "Show Less"}
               </Text>
               <MaterialCommunityIcons

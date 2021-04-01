@@ -3,7 +3,7 @@ import {
   View,
   StyleSheet,
   Text,
-  ScrollView,
+  Platform,
   Dimensions,
   TouchableOpacity,
   Image as RNImage,
@@ -328,6 +328,7 @@ const ReferenceDocument = ({ page, id }) => {
                   style={{
                     width: 120,
                     fontWeight: "bold",
+                    fontFamily: Platform.OS === "android" ? "Roboto-Regular" : null,
                     marginHorizontal: 10,
                   }}
                 >
@@ -550,6 +551,7 @@ const Calculator = ({ settings }) => {
                   style={{
                     fontSize: 16,
                     fontWeight: "bold",
+                    fontFamily: Platform.OS === "android" ? "Roboto-Regular" : null
                   }}
                 >
                   {variable.count === "0"
@@ -673,7 +675,7 @@ const PickerElement = ({valuesArray, setVar1, setVar2, setVar3, elementIndex}) =
           }
         }}
       >
-        <Text style={{fontWeight:'bold', color:selected === index ? '#3b5998':'gray'}}>{value}</Text>
+        <Text style={{fontWeight:'bold',fontFamily: Platform.OS === "android" ? "Roboto-Regular" : null, color:selected === index ? '#3b5998':'gray'}}>{value}</Text>
       </TouchableOpacity>))}
               {/* <Text>{JSON.stringify(valuesArray)}</Text> */}
 
@@ -684,6 +686,7 @@ const PickerElement = ({valuesArray, setVar1, setVar2, setVar3, elementIndex}) =
 const styles = StyleSheet.create({
   header: {
     fontWeight: "bold",
+    fontFamily: Platform.OS === "android" ? "Roboto-Regular" : null,
     fontSize: 24,
     marginVertical: 10,
     marginHorizontal: 10,
