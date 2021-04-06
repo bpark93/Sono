@@ -23,6 +23,12 @@ const SnapCarousel = ({ images }) => {
               width: WIDTH,
               height: WIDTH * 0.75,
             }}
+            posterSource={require("../../assets/loading.png")}
+            posterStyle={{
+              width: WIDTH,
+              height: WIDTH * 0.75,
+            }}
+            usePoster={true}
           />
         ) : (
           <Image
