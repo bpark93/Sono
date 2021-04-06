@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesome } from "@expo/vector-icons";
-import { StyleSheet, View, Text, Image, Dimensions } from "react-native";
+import { StyleSheet, View, Text, Image, Dimensions, Platform } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 
 const { width } = Dimensions.get("window");
@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     fontSize: 40,
     fontWeight:'bold',
+    fontFamily: Platform.OS === 'android' ? "Raleway-Regular" : null
   },
   text: {
     paddingTop: 10,

@@ -142,7 +142,7 @@ const colorPicker = (category) => {
     case "Cardiac":
       return "#e36387"; // Material Deep Orange
     case "Vascular":
-      return "#e36387"; // Material Deep Orange
+      return "#FF6961"; // Material Deep Orange
     case "Lung and Pleura":
       return "#a6dcef"; // Material Indigo
     case "Abdominal":

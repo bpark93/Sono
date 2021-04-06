@@ -29,7 +29,10 @@
     "android":{
       "package":"ca.westernsono.sono",
       "versionCode": 1,
-      "permissions" : []
+      "permissions" : [],
+      "adaptiveIcon":{
+        "foregroundImage":"./assets/512-adaptive.png"
+      }
     }
   }
 }
