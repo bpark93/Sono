@@ -31,7 +31,7 @@
       "versionCode": 2,
       "permissions" : [],
       "adaptiveIcon":{
-        "foregroundImage":"./assets/512-adaptive.png"
+        "foregroundImage":"./assets/adaptive-icon.png"
       }
     }
   }
