@@ -13,9 +13,9 @@ The increasing evidence for bedside ultrasound and the continued evolution of sm
 [<img src="https://user-images.githubusercontent.com/6689251/114214802-cc4dd700-9932-11eb-9977-d986d004508e.png" width="220">](https://apps.apple.com/us/app/sono/id1532686897)
 
 ## Key Features
-<img src="https://user-images.githubusercontent.com/6689251/114215524-affe6a00-9933-11eb-92a8-70368b85192f.png" width="220"> <img src="https://user-images.githubusercontent.com/6689251/114215687-e2a86280-9933-11eb-8196-fd7966b41a6f.png" width="220">
-<img src="https://user-images.githubusercontent.com/6689251/114215695-e63be980-9933-11eb-9780-59021b4313a5.png" width="220">
-<img src="https://user-images.githubusercontent.com/6689251/114215701-e805ad00-9933-11eb-8ebd-7826c938f8a6.png" width="220">
+<img src="https://user-images.githubusercontent.com/6689251/114215524-affe6a00-9933-11eb-92a8-70368b85192f.png" width="200"> <img src="https://user-images.githubusercontent.com/6689251/114215687-e2a86280-9933-11eb-8196-fd7966b41a6f.png" width="200">
+<img src="https://user-images.githubusercontent.com/6689251/114215695-e63be980-9933-11eb-9780-59021b4313a5.png" width="200">
+<img src="https://user-images.githubusercontent.com/6689251/114215701-e805ad00-9933-11eb-8ebd-7826c938f8a6.png" width="200">
 
 - Huge library of ultrasound clips curated by our POCUS experts. Contains normal and pathological, common and rare images to help sharpen your skills, with helpful pearls and pitfalls for successful interpretation of your bedside ultrasound.
 - Concise, to-the-point video tutorials to review probe selection and positioning, patient positioning, sonographic landmarks and tips for improving your image acquisition.
