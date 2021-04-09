@@ -1,47 +1,39 @@
 # Sono
 
+![featured_image](https://user-images.githubusercontent.com/6689251/114212713-239e7800-9930-11eb-9e65-4a2a58946059.png)
+
+
 ## Description
 
-Sono is an all-in-one POCUS app that contains screencasts, technique guides, a standard images library, on-going cases of the week, and everything you need to learn and use POCUS! It is meant to supplement in-person training as well as to serve as an on the job guide for acquiring and interpreting ultrasound clips. 
+Quickly find the information you need, when you need it: Discover the features required to declare an intrauterine pregnancy, learn about the sonographic features of a dislocated shoulder, learn where to stick the probe for the parasternal heart views. Sono has you covered for whatever POCUS content you may need.
 
+The increasing evidence for bedside ultrasound and the continued evolution of smaller and more portable devices has ushered in a new era of fast, reliable and accurate assessment of patients at the bedside. Ultrasound has applications head to toe (literally) and will be relevant to you whether you are a medical student, resident, nurse or physician. 
 
-### Installation Guide - Try it out on your own phone (Android Only)
+[<img src="https://user-images.githubusercontent.com/6689251/114213727-5d23b300-9931-11eb-9231-483f26bb6697.png" width="250">](https://play.google.com/store/apps/details?id=ca.westernsono.sono)
+[<img src="https://user-images.githubusercontent.com/6689251/114214802-cc4dd700-9932-11eb-9977-d986d004508e.png" width="220">](https://apps.apple.com/us/app/sono/id1532686897)
 
-This is a temporary method for trying out the app. Once complete, beta versions of the app will be available through Apple TestFlight and Google Play Store.   
+## Key Features
+<img src="https://user-images.githubusercontent.com/6689251/114215524-affe6a00-9933-11eb-92a8-70368b85192f.png" width="220"> <img src="https://user-images.githubusercontent.com/6689251/114215687-e2a86280-9933-11eb-8196-fd7966b41a6f.png" width="220">
+<img src="https://user-images.githubusercontent.com/6689251/114215695-e63be980-9933-11eb-9780-59021b4313a5.png" width="220">
+<img src="https://user-images.githubusercontent.com/6689251/114215701-e805ad00-9933-11eb-8ebd-7826c938f8a6.png" width="220">
 
-1. Download “Expo” from the App store, or Google Play Store
-  - The icon looks like this: ![expo](./docs/expo%20icon.png)
-2. Open: https://expo.io/@bparking/pocus on your computer
-3. Open the Expo app, Press the Scan QR Code button at the top, then scan the QR code on the webpage
+- Huge library of ultrasound clips curated by our POCUS experts. Contains normal and pathological, common and rare images to help sharpen your skills, with helpful pearls and pitfalls for successful interpretation of your bedside ultrasound.
+- Concise, to-the-point video tutorials to review probe selection and positioning, patient positioning, sonographic landmarks and tips for improving your image acquisition.
+- Handy list of materials needed for procedural techniques involving POCUS.
+-	Calculators, protocols, and other clinical resources for advanced learners.
+-	Bookmark your favorite pages for rapid access.
+-	Access video lectures developed by our faculty here at Western University, with functionality to bookmark, write notes, save timestamps, read transcripts and to assess your comprehension with short quizzes.
+-	Comprehensive End-of-Module Challenges for each of our 10 Screencasts series (Fundamentals, Lung and Pleura, Echocardiography, Procedural, OB/Gyn, Critical Care Hemodynamics, TEE and Miscellaneous) to truly put your ultrasound knowledge to the test.
+- Realistic and comprehensive cases developed by our residents and fellows with detailed answer keys.
 
-NOTE: Sometimes it takes a couple of tries to load the project on your phone. If it doesn’t work on the first try, just close the app and try again.
+## Credits
 
-## Learn 
+![western-logo](https://user-images.githubusercontent.com/6689251/114215998-50ed2500-9934-11eb-930c-15c24fb114dd.png)
 
-![LearnDemo](https://res.cloudinary.com/dwtw3ge2z/image/upload/v1596475773/Misc/Github%20Readme/LearnDemo_sq9olv.png)
+Sono was developed by medical students, residents and faculty at the Schulich School of Medicine and Dentistry at Western University. With representation from Emergency Medicine, Critical Care, Anesthesia, Internal Medicine and Surgery, WesternSono is the hub for Point-of-Care Ultrasound training, education and research at Western University in London, ON, Canada.
 
-Tab for all your lecture content, neatly organized into applicable organ systems. Bookmark your favorite screencasts for easy access from the front page. Each lecture also has a transcript you can follow along with, and you can leave notes with timestamps to mark the high yield stuff from the video. The app will save your progress, so you can always pick up where you left off. Test your knowledge at the end with a quick quiz, and if you are feeling confident, try out the comprehensive, case-based module test! 
+### Disclaimer
 
-## Library
+All content found on Sono, including: text, images, video, or other formats were created for informational purposes only. The content is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay in seeking it because of something you have read on this App.
 
-![Librarydemo](https://res.cloudinary.com/dwtw3ge2z/image/upload/v1596476197/Misc/Github%20Readme/LibraryDemo_ljjl1k.png)
-
-The main feature of Sono, the library tab is a vast repository of clips, images and tools to guide you at the point of care. Navigate the categories by clicking on the list or search for what you are looking for in the search bar. 
-
-**Image library**: Holds nearly every possible POCUS finding, both normal and pathological that will aid you in your image interpretation. 
-
-**Rapid Reviews**: Quick 1-2 minute videos on technique combined with information about probe types, presets, positioning. Good for a quick reminder on image acquisition techniques.
-
-**Tools**: Calculators, table of normal values, and more for the quantitative minded learners. 
-
-## Cases
-
-![CasesDemo](https://res.cloudinary.com/dwtw3ge2z/image/upload/v1596475912/Misc/Github%20Readme/CasesDemo_zmaedo.png)
-
-Apply your skills to real clinical cases, composed by Western's very own POCUS fellows. New cases will be uploaded every week. 
-
-The clinical scenarios will encompass a variety of settings including the ICU, ED, and more. Carefully read the background text, peruse the images, and come to your conclusion. You can always check your answer with the one provided by our experts. You can also let us know your thoughts on the case or start a discussion in the comment section at the bottom
-
-### Settings
-
-Need help? Find explanations of each functionality here. Still need help? Email us your concerns by clicking on the Support button. Check out our team of medical studetns and physicians while you are here. 
+The information contained in this application is for general information purposes only. The information is provided by WesternSono and while we endeavor to keep the information up-to-date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability or availability with respect to the application or the information. Any reliance you place on such information is therefore strictly at your own risk. In no event will we be liable to any loss of damage including without limitation, indirect or consequential loss or damage, or any loss or damage in connection with, the use of this application.
