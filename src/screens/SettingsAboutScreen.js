@@ -78,7 +78,7 @@ const SettingsAboutScreen = () => {
             alignSelf: "center",
           }}
         >
-          Help us improve Sono!
+          Help us improve Sono
         </Text>
         <View style={{ marginBottom: 10 }}>
           <Text style={{ marginBottom: 20, color: "gray" }}>
