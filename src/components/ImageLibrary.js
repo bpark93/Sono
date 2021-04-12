@@ -144,86 +144,98 @@ const ImageLibrary = ({ page, id }) => {
         windowSize={5}
         data={images}
         keyExtractor={(item) => item.title}
-        ListHeaderComponent={() => page.key_features ? (
-          <View>
-            <TouchableOpacity
-              style={{
-                backgroundColor: "white",
-                paddingHorizontal: 15,
-                // height: hidePressed ? page.key_features.length > 2 ? 200 : null : null,
-                overflow: "hidden",
-              }}
-              onPress={() => setHidePressed(!hidePressed)}
-              activeOpacity={0.5}
-            >
-              <Text
+        ListHeaderComponent={() =>
+          page.key_features ? (
+            <View>
+              <TouchableOpacity
                 style={{
-                  fontSize: 20,
-                  fontWeight: "bold",
-                  marginVertical: 5,
+                  backgroundColor: "white",
+                  paddingHorizontal: 15,
+                  // height: hidePressed ? page.key_features.length > 2 ? 200 : null : null,
+                  overflow: "hidden",
                 }}
+                onPress={() => setHidePressed(!hidePressed)}
+                activeOpacity={0.5}
               >
-                Key Features
-              </Text>
-              {page.key_features
-                ? hidePressed ? 
-                  page.key_features.slice(0,3)
-                    // .filter((tip) => tip.pnp === "Pearl")
-                    .map((tip) => (
-                      <View
-                        style={{
-                          flexDirection: "row",
-                          marginVertical: 3,
-                          // alignItems: "center",
-                        }}
-                        key={tip.text}
-                      >
-                        <MaterialCommunityIcons
-                          name={tip.pnp === "Pearl" ? "plus-circle" : "minus-circle"}
-                          size={24}
-                          color={tip.pnp === "Pearl" ? "#2ecc71" : "#e74c3c"}
-                        />
-                        <Text
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: "bold",
+                    marginVertical: 5,
+                  }}
+                >
+                  Key Features
+                </Text>
+                {page.key_features
+                  ? hidePressed
+                    ? page.key_features
+                        .slice(0, 3)
+                        // .filter((tip) => tip.pnp === "Pearl")
+                        .map((tip) => (
+                          <View
+                            style={{
+                              flexDirection: "row",
+                              marginVertical: 3,
+                              // alignItems: "center",
+                            }}
+                            key={tip.text}
+                          >
+                            <MaterialCommunityIcons
+                              name={
+                                tip.pnp === "Pearl"
+                                  ? "plus-circle"
+                                  : "minus-circle"
+                              }
+                              size={24}
+                              color={
+                                tip.pnp === "Pearl" ? "#2ecc71" : "#e74c3c"
+                              }
+                            />
+                            <Text
+                              style={{
+                                flex: 1,
+                                marginLeft: 6,
+                                // fontFamily: "Roboto-Regular",
+                                // color: "gray",
+                                fontSize: 14,
+                                lineHeight: 17,
+                              }}
+                            >
+                              {tip.text}
+                            </Text>
+                          </View>
+                        ))
+                    : page.key_features.map((tip) => (
+                        <View
                           style={{
-                            flex: 1,
-                            marginLeft: 6,
-                            // fontFamily: "Roboto-Regular",
-                            // color: "gray",
-                            fontSize: 14,
-                            lineHeight:17
+                            flexDirection: "row",
+                            marginVertical: 3,
                           }}
+                          key={tip.text}
                         >
-                          {tip.text}
-                        </Text>
-                      </View>
-                    ))
-                : page.key_features
-                .map((tip) => (
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      marginVertical: 3,
-                    }}
-                    key={tip.text}
-                  >
-                    <MaterialCommunityIcons
-                      name={tip.pnp === "Pearl" ? "plus-circle" : "minus-circle"}
-                      size={24}
-                      color={tip.pnp === "Pearl" ? "#2ecc71" : "#e74c3c"}
-                    />
-                    <Text
-                      style={{
-                        flex: 1,
-                        marginLeft: 6,
-                        fontSize: 14,
-                        lineHeight:17
-                      }}
-                    >
-                      {tip.text}
-                    </Text>
-                  </View>
-                )) : null}
-              {/* {page.key_features
+                          <MaterialCommunityIcons
+                            name={
+                              tip.pnp === "Pearl"
+                                ? "plus-circle"
+                                : "minus-circle"
+                            }
+                            size={24}
+                            color={tip.pnp === "Pearl" ? "#2ecc71" : "#e74c3c"}
+                          />
+                          <Text
+                            style={{
+                              flex: 1,
+                              marginLeft: 6,
+                              fontSize: 14,
+                              lineHeight: 17,
+                            }}
+                          >
+                            {tip.text}
+                          </Text>
+                        </View>
+                      ))
+                  : null}
+                {/* {page.key_features
                 ? page.key_features
                     .filter((tip) => tip.pnp === "Pitfall")
                     .map((tip) => (
@@ -255,28 +267,46 @@ const ImageLibrary = ({ page, id }) => {
                       </View>
                     ))
                 : null} */}
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                paddingVertical: 10,
-                flexDirection: "row",
-              }}
-              activeOpacity={0.5}
-              onPress={() => setHidePressed(!hidePressed)}
-            >
-              <Text style={{ color: "#4f2683", fontWeight: "bold", fontFamily: Platform.OS === "android" ? "Roboto-Regular" : null }}>
-                {hidePressed ? "Show More" : "Show Less"}
-              </Text>
-              <MaterialCommunityIcons
-                name={hidePressed ? "chevron-down" : "chevron-up"}
-                size={16}
-                color="#4f2683"
-              />
-            </TouchableOpacity>
-          </View>
-        ):null}
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  paddingVertical: 10,
+                  flexDirection: "row",
+                }}
+                activeOpacity={0.5}
+                onPress={() => setHidePressed(!hidePressed)}
+              >
+                <Text
+                  style={{
+                    color: "#4f2683",
+                    fontWeight: "bold",
+                    fontFamily:
+                      Platform.OS === "android" ? "Roboto-Regular" : null,
+                  }}
+                >
+                  {hidePressed ? "Show More" : "Show Less"}
+                </Text>
+                <MaterialCommunityIcons
+                  name={hidePressed ? "chevron-down" : "chevron-up"}
+                  size={16}
+                  color="#4f2683"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={async () =>
+                  await Linking.openURL(
+                    `mailto:sono.app.contact@gmail.com?subject=Issue with "${page.title}" - ${page.category}&body=Describe the issue: \n\nTo reproduce (Steps to reproduce the behavior): \n\nExpected Behavior: \n\nScreenshots: \n\nSmartphone (Device, OS + version): \n\nAdditional Context: `
+                  )
+                }
+                style={{ paddingHorizontal: 15, alignSelf: "center" }}
+              >
+                <Text style={{ color: "#0000EE" }}>Report an Issue</Text>
+              </TouchableOpacity>
+            </View>
+          ) : null
+        }
         renderItem={({ item }) => (
           <View style={{ marginVertical: 15 }}>
             <Text style={styles.header}>{item.title}</Text>

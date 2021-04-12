@@ -12,3 +12,6 @@ web-report/
 
 # macOS
 .DS_Store
+
+# firebase API
+components/firebase.js
