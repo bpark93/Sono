@@ -329,9 +329,6 @@ function SettingsNav() {
           shadowColor:'transparent',
           elevation:0
         },
-        headerTitleStyle:{
-          fontFamily:'Raleway-Medium'
-        }
       }}
       initialRouteName="SettingsMain"
     >

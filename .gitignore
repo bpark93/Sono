@@ -14,4 +14,4 @@ web-report/
 .DS_Store
 
 # firebase API
-components/firebase.js
+src/components/firebase.js

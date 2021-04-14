@@ -20,30 +20,32 @@ const SettingsAboutScreen = () => {
       <View style={{ alignItems: "center", marginHorizontal: 20 }}>
         <Image
           source={require("../../assets/sono_logo.png")}
-          style={{ height: 120, width: 120, resizeMode: "contain" }}
+          style={{ height: 200, width: 200, resizeMode: "contain" }}
         />
-        <Text style={{ fontSize: 36 }}>
-          SONO
-        </Text>
+        <Text style={{ fontSize: 50 }}>Sono</Text>
         <Text
           style={{
             color: "gray",
             marginBottom: 10,
           }}
         >
-          Version 1.0.0
+          Version 1.0.2
         </Text>
-        <Text style={{ marginBottom: 5 }}>
-          Powered By:
-        </Text>
-        <View style={{ flexDirection: "row", marginBottom: 10 }}>
-            <Image
-              source={require("../../assets/western-logo.png")}
-              style={{ height: 50, width: 150, resizeMode: "contain" }}
-            />
+        <Text style={{ marginBottom: 5, fontSize: 20 }}>Powered By:</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            marginBottom: 10,
+            justifyContent: "space-between",
+          }}
+        >
+          <Image
+            source={require("../../assets/western-logo.png")}
+            style={{ height: 60, width: 170, resizeMode: "contain" }}
+          />
           <Image
             source={require("../../assets/schulich.png")}
-            style={{ height: 50, width: 150, resizeMode: "contain" }}
+            style={{ height: 60, width: 170, resizeMode: "contain" }}
           />
         </View>
         <Text style={{ color: "gray", marginBottom: 10 }}>
@@ -51,9 +53,9 @@ const SettingsAboutScreen = () => {
           residents and faculty of Schulich School of Medicine, London, ON.
         </Text>
         <Text style={{ color: "gray" }}>
-          Screencasts, cases and resources on the Learn Tab are from
-          WesternSono.ca adapted to a mobile platform. Ultrasound clips in the
-          Library section are sourced from the ultrasound archives within London
+          Screencasts, cases and resources on the Learn Tab are provided by
+          WesternSono, adapted to a mobile platform. Ultrasound clips in the
+          Library section are sourced from ultrasound archives within London
           Health Sciences Centre. WesternSono is the hub of Point-Of-Care
           Ultrasound training, education and research at Western University.
         </Text>
@@ -72,20 +74,14 @@ const SettingsAboutScreen = () => {
         <Text
           style={{
             fontSize: 24,
-            marginVertical: 30,
-            // fontFamily: "Raleway-Regular",
-            // fontWeight:'bold',
+            marginBottom: 15,
+            marginTop:30,
             alignSelf: "center",
           }}
         >
-          Help us improve Sono
+          Contribute to Sono!
         </Text>
         <View style={{ marginBottom: 10 }}>
-          <Text style={{ marginBottom: 20, color: "gray" }}>
-            We are always looking for more collaborators and ideas. Help us
-            improve by:
-          </Text>
-
           <TouchableOpacity
             onPress={async () => {
               await Linking.openURL("mailto:spark2023@meds.uwo.ca");
@@ -94,15 +90,16 @@ const SettingsAboutScreen = () => {
               flexDirection: "row",
               alignItems: "center",
               marginVertical: 2,
+              marginVertical: 5,
             }}
           >
             <MaterialCommunityIcons
               name="email-check-outline"
-              size={40}
+              size={50}
               color="black"
             />
             <Text style={{ color: "gray", fontSize: 16 }}>
-              Emailing us your feedback
+              Email us your feedback
             </Text>
           </TouchableOpacity>
 
@@ -114,28 +111,32 @@ const SettingsAboutScreen = () => {
               flexDirection: "row",
               alignItems: "center",
               marginVertical: 2,
+              marginVertical: 5,
             }}
           >
-            <MaterialCommunityIcons name="github-box" size={40} color="black" />
+            <MaterialCommunityIcons name="github-box" size={50} color="black" />
             <Text style={{ color: "gray", fontSize: 16 }}>
-              Making a pull request
+              Collaborate with us on our code
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            // onPress={async () => {
-            //   await Linking.openURL("https://westernsono-library.web.app/");
-            // }}
+            onPress={async () => {
+              await Linking.openURL(
+                `mailto:sono.app.contact@gmail.com?subject=Clip Contribution"&body=Name: \n\nLevel of Training: \n\nHeader: \n\nCaption (Describe the findings on the clips, or provide a learning point. Limit 200 characters): `
+              );
+            }}
             activeOpacity={1}
             style={{
               flexDirection: "row",
               alignItems: "center",
               marginVertical: 2,
+              marginVertical: 5,
             }}
           >
-            <MaterialCommunityIcons name="database" size={40} color="black" />
+            <MaterialCommunityIcons name="database" size={50} color="black" />
             <Text style={{ color: "gray", fontSize: 16 }}>
-              Contributing your clips and images
+              Contribute your clips and images
             </Text>
           </TouchableOpacity>
         </View>
@@ -163,17 +164,40 @@ const SettingsAboutScreen = () => {
           modified version is used to provide a service over a network, the
           complete source code of the modified version must be made available.
         </Text>
+        <TouchableOpacity
+          onPress={async () =>
+            await Linking.openURL("https://github.com/bpark93/pocus/blob/5d93ddca3d423cdc7f0c0b849081e5aa9546e121/README.md")
+          }
+        >
+          <Text
+            style={{
+              color: "#3366BB",
+              alignSelf: "center",
+              marginBottom: 20,
+            }}
+          >
+            Read the Full Version Here
+          </Text>
+        </TouchableOpacity>
         <Text style={{ marginBottom: 10, color: "gray" }}>
           Icons made by Freepik, Vectors Market and SmashIcons from
           www.flaticon.com
         </Text>
         <TouchableOpacity
-            onPress={async () =>
-              await Linking.openURL("https://westernsono.ca/sono-privacy-policy/")
-            }
+          onPress={async () =>
+            await Linking.openURL("https://westernsono.ca/sono-privacy-policy/")
+          }
+        >
+          <Text
+            style={{
+              color: "#3366BB",
+              alignSelf: "center",
+              marginVertical: 10,
+            }}
           >
-            <Text style={{ color: "#0000EE", alignSelf:'center', marginVertical:10 }}>Read our Privacy Policy</Text>
-          </TouchableOpacity>
+            Read our Privacy Policy
+          </Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

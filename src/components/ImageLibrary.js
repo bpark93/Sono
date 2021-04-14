@@ -268,7 +268,7 @@ const ImageLibrary = ({ page, id }) => {
                     ))
                 : null} */}
               </TouchableOpacity>
-              <TouchableOpacity
+              {page.key_features.length > 3 ? <TouchableOpacity
                 style={{
                   alignItems: "center",
                   justifyContent: "center",
@@ -293,16 +293,17 @@ const ImageLibrary = ({ page, id }) => {
                   size={16}
                   color="#4f2683"
                 />
-              </TouchableOpacity>
+              </TouchableOpacity>:null}
               <TouchableOpacity
                 onPress={async () =>
                   await Linking.openURL(
                     `mailto:sono.app.contact@gmail.com?subject=Issue with "${page.title}" - ${page.category}&body=Describe the issue: \n\nTo reproduce (Steps to reproduce the behavior): \n\nExpected Behavior: \n\nScreenshots: \n\nSmartphone (Device, OS + version): \n\nAdditional Context: `
                   )
                 }
-                style={{ paddingHorizontal: 15, alignSelf: "center" }}
+                style={{ paddingHorizontal: 15, alignSelf: "center", alignItems:'center', flexDirection:'row', justifyContent:'center'}}
               >
-                <Text style={{ color: "#0000EE" }}>Report an Issue</Text>
+                <MaterialCommunityIcons name="alert-circle-outline" size={20} color="#A55858" />
+                <Text style={{ color: "#A55858", marginLeft:5 }}>Report an Issue</Text>
               </TouchableOpacity>
             </View>
           ) : null

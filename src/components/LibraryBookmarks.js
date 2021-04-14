@@ -133,7 +133,7 @@ const LibraryBookmarks = ({ layout, sortBy }) => {
         style={{ opacity: 0.3, marginTop: 15, marginHorizontal: 30 }}
         numberOfLines={2}
       >
-        Your bookmarks can be downloaded for offline viewing.
+        Bookmark your favorite pages for rapid and easy access.
       </Text>
     </View>
   );

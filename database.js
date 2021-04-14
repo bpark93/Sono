@@ -68,7 +68,7 @@ const learnDatabase = [
   {
     title: "Lung and Pleura",
     thumbnail: require("./assets/png2/042-lungs.png"),
-    description:'Still using the Chest X-ray to look for acute causes of dyspnea? Lung ultrasound (or LUS) has been shown to have a diagnostic accurary that is not only higher than traditional chest radiography, but similar to chest CT scans. LUS can be used to rapidly identify pneumonia, pulmonary edema, pneomothorax, characterize pleural effusions and even guide therapy by locating a safe needle site for drainage. This section will address the main topics of lung and pleural ultrasound including relevant physics, signs of thoracic pathology, A lines, B lines and much more.',
+    description:'Still using the Chest X-ray to look for acute causes of dyspnea? Lung ultrasound (or LUS) has a diagnostic accuracy that is not only higher than traditional chest radiography, but essentially equivalent to chest CT. LUS can be used to rapidly identify pneumonia, pulmonary edema, pneomothorax, characterize pleural effusions and even guide therapy by locating a safe needle site for drainage. This section will address the main topics of lung and pleural ultrasound including relevant physics, signs of thoracic pathology, A lines, B lines and much more.',
     id: 2,
     testReady: true,
     pages: {
@@ -185,7 +185,7 @@ const learnDatabase = [
   {
     title: "Echocardiography",
     thumbnail: require("./assets/png2/040-heart.png"),
-    description:'The point of care ultrasound revolution has brought a renaissance to providers of resuscitative care: No longer is determination of shock something that requires invasive monitoring (e.g. Swan Ganz) or an ICU admission. Instead, with good image acquisition and image interpretation skills, point of care echo can answer this question anywhere in the hospital – the ED, the ward, the ICU and, the CT scanner or the cafeteria.',
+    description:'The point of care ultrasound revolution has brought a renaissance to providers of resuscitative care: No longer is determination of shock something that requires invasive monitoring (e.g. Swan Ganz) or an ICU admission. Instead, with good image acquisition and image interpretation skills, point of care echo can answer this question anywhere in the hospital – the ED, the ward, the ICU, the CT scanner or the cafeteria.',
     id: 3,
     testReady: false,
     pages: {

@@ -26,12 +26,12 @@ const SettingsScreen = ({ navigation }) => {
         style={styles.listItemStyle}
         onPress={() => navigation.navigate("help")}
       />
-      <List.Item
+      {/* <List.Item
         title="Settings"
         left={() => <MaterialCommunityIcons name="settings-outline" style={styles.iconStyle} />}
         style={styles.listItemStyle}
         onPress={() => navigation.navigate("auth")}
-      />
+      /> */}
     </View>
   );
 };
