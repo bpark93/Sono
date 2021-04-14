@@ -105,7 +105,7 @@ const SettingsAboutScreen = () => {
 
           <TouchableOpacity
             onPress={async () => {
-              await Linking.openURL("https://github.com/bpark93/pocus");
+              await Linking.openURL("https://github.com/bpark93/Sono");
             }}
             style={{
               flexDirection: "row",
@@ -166,7 +166,7 @@ const SettingsAboutScreen = () => {
         </Text>
         <TouchableOpacity
           onPress={async () =>
-            await Linking.openURL("https://github.com/bpark93/pocus/blob/5d93ddca3d423cdc7f0c0b849081e5aa9546e121/README.md")
+            await Linking.openURL("https://github.com/bpark93/Sono/blob/71d7b21b8b659f0670ac9ca1bb896b9e57bad6d7/README.md")
           }
         >
           <Text
