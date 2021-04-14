@@ -166,7 +166,7 @@ const SettingsAboutScreen = () => {
         </Text>
         <TouchableOpacity
           onPress={async () =>
-            await Linking.openURL("https://github.com/bpark93/Sono/blob/71d7b21b8b659f0670ac9ca1bb896b9e57bad6d7/README.md")
+            await Linking.openURL("https://github.com/bpark93/Sono/blob/4b2e100819ab1474b8e4526bf672d16d7520a968/LICENSE.txt")
           }
         >
           <Text
