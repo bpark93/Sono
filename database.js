@@ -42,7 +42,7 @@ const learnDatabase = [
           youtube:"pending"
         },
         {
-          title: "Controls on LHSC Machines",
+          title: "Ultrasound Machine Controls",
           id: "1.4",
           captionText:"",
           youtube:"pending"
@@ -276,6 +276,13 @@ const learnDatabase = [
           captionText:
             "This video is a distilled-down 'why' and 'how' of diastolic assessment for point-of-care ultrasound.  Brought to you by Western's acute care ultrasound fellows Mathilde Gaudreau-Simard and Zain Burhani.  Mathilde and Zain put this bloated topic on a diet and bring you the approach we use here at Western and arm you with the techniques to apply this in your patients today.",
         },
+        {
+          title: "Pitfalls of VTI",
+          youtube: "TguP8GHHD88",
+          id: "3.13",
+          captionText:
+            "Stroke volume determination using LVOT VTI is rapidly becoming a valuable asset for answering complex hemodynamic questions at the bedside in the critically ill. Given that important clinical recommendations are made based on the LVOT VTI and stroke volume determination it is vital that we understand the limitations associated with VTI acquisition. In this screencast Dr. Zain Burhani and Dr. Michael Sattin take us through 5 of the common pitfalls associated with LVOT VTI acquisition and interpretation.",
+        },
       ],
     },
   },
@@ -289,7 +296,7 @@ const learnDatabase = [
       "Vascular Access":[
         {
           title: "Peripheral IV Insertion",
-          youtube: "hlGFZJYWIgw",
+          youtube: "Rj-Ow6uNcEM",
           id: "4.1",
           captionText: "How many times have you had a patient that needs IV access, but none can be obtained by traditional visualization or even blind technique, even by the most experienced operators (i.e. the IV team)? What do you do next? Attempt a central line instead? Not necessarily! Instead, much like arterial lines, you can use ultrasound (US) to help with venous cannulation.",
         },

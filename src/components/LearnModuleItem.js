@@ -80,9 +80,9 @@ const LearnModuleItem = ({ page, category }) => {
 
       {pressed ? (
         <>
-          <Text style={styles.shortText} numberOfLines={5}>
+          {page.captionText? <Text style={styles.shortText} numberOfLines={5}>
             {page.captionText}
-          </Text>
+          </Text> : null}
           <View
             style={{
               justifyContent: "space-around",
