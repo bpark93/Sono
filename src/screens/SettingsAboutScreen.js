@@ -84,7 +84,7 @@ const SettingsAboutScreen = () => {
         <View style={{ marginBottom: 10 }}>
           <TouchableOpacity
             onPress={async () => {
-              await Linking.openURL("mailto:spark2023@meds.uwo.ca");
+              await Linking.openURL("mailto:sono.app.contact@gmail.com");
             }}
             style={{
               flexDirection: "row",
