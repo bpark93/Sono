@@ -108,9 +108,9 @@ const LearnModuleItem = ({ page, category }) => {
               disabled={page.youtube === "pending"}
               onPress={() => {
                 if (!page.video && !page.youtube) {
-                  navigation.replace("LearnText", { id: page, category });
+                  navigation.navigate("LearnText", { id: page, category });
                 } else {
-                  navigation.replace("LearnDetail", { id: page, category });
+                  navigation.navigate("LearnDetail", { id: page, category });
                 }
               }}
               style={

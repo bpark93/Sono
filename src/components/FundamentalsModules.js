@@ -8,6 +8,7 @@ import {
   Platform
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import { Image } from "react-native-expo-image-cache";
 
 const PhysicsModule = () => {
     return (

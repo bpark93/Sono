@@ -226,6 +226,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     backgroundColor: "white",
     borderBottomWidth: 0.5,
+    borderBottomColor:"#E0E0E0",
     paddingVertical: 10,
     flexDirection: "row",
     justifyContent: "space-between",

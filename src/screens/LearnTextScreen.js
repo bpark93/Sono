@@ -90,6 +90,7 @@ const LearnTextScreen = ({ route, navigation }) => {
       <ScrollView
         style={styles.container}
         containerStyle={{ justifyContent: "space-between", flex: 1 }}
+        stickyHeaderIndices={[0]}
       >
         {/* Go Back to Module Button */}
         <View style={styles.categoryTouchable}>
@@ -134,7 +135,7 @@ const LearnTextScreen = ({ route, navigation }) => {
         />
 
         {/* Caption */}
-        <Text style={styles.body}>{id.captionText}</Text>
+        <Text style={{...styles.body, marginTop:20}}>{id.captionText}</Text>
 
         {/* Placeholder */}
         {none && (
@@ -207,14 +208,14 @@ const styles = StyleSheet.create({
   header: {
     marginHorizontal: 15,
     marginBottom: 5,
-    fontSize: 24,
+    fontSize: 30,
     fontFamily: Platform.OS === "android" ? "Roboto-Bold" : null,
     fontWeight: "bold",
   },
   body: {
     marginHorizontal: 15,
     // fontFamily: "Lora-Regular",
-    fontSize: 18,
+    fontSize: 16,
   },
   category: {
     marginHorizontal: 10,
@@ -246,7 +247,7 @@ const styles = StyleSheet.create({
   categoryTouchable: {
     flexDirection: "row",
     marginHorizontal: 15,
-    marginTop: 10,
+    // marginTop: 5,
   },
 });
 
