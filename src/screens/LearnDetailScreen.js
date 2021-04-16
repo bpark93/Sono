@@ -280,7 +280,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
             <TouchableOpacity
               style={{ flexDirection: "row", alignItems: "center" }}
               onPress={() =>
-                navigation.replace("Modules", { id: moduleParams[0] })
+                navigation.navigate("Modules", { id: moduleParams[0] })
               }
             >
               <MaterialCommunityIcons
