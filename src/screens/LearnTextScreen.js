@@ -21,7 +21,11 @@ import Constants from "expo-constants";
 import firebase from "../components/firebase";
 import HTML from "react-native-render-html";
 import { Image } from "react-native-expo-image-cache";
-import {PhysicsModule, ProbeTypes, ProbeMovements} from "../components/FundamentalsModules";
+import {
+  PhysicsModule,
+  ProbeTypes,
+  ProbeMovements,
+} from "../components/FundamentalsModules";
 
 const LearnTextScreen = ({ route, navigation }) => {
   const { id, category } = route.params;
@@ -29,6 +33,8 @@ const LearnTextScreen = ({ route, navigation }) => {
 
   // Progress
   const [progress, setProgress] = useState(null);
+  const [updatedProgress, setUpdatedProgress] = useState(null)
+  
   useEffect(() => {
     const checkProgress = async () => {
       const pageprogress = await getLearnProgress(id.id);
@@ -41,12 +47,16 @@ const LearnTextScreen = ({ route, navigation }) => {
 
     const updateProgress = async () => {
       //   update progress based on text read
+      if (parseInt(updatedProgress)>parseInt(progress)){
+        await setLearnProgress(id.id, updatedProgress)
+      } 
     };
+
     const unsubscribe = navigation.addListener("blur", () => {
       updateProgress();
     });
     return () => unsubscribe();
-  }, []);
+  }, [updatedProgress]);
 
   // Set up for navigation to Modules
   const categoryId = id.id.split(".")[0];
@@ -87,43 +97,43 @@ const LearnTextScreen = ({ route, navigation }) => {
         backgroundColor: "white",
       }}
     >
+      {/* Go Back to Module Button */}
+      <View>
+        <TouchableOpacity
+          style={styles.touchable}
+          onPress={() =>
+            navigation.navigate("Modules", { id: moduleParams[0] })
+          }
+        >
+          <MaterialCommunityIcons
+            name="chevron-left"
+            size={30}
+            color="#4f2683"
+          />
+          <Text style={styles.category}>{category}</Text>
+        </TouchableOpacity>
+      </View>
       <ScrollView
         style={styles.container}
         containerStyle={{ justifyContent: "space-between", flex: 1 }}
-        stickyHeaderIndices={[0]}
       >
-        {/* Go Back to Module Button */}
-        <View style={styles.categoryTouchable}>
-          <TouchableOpacity
-            style={{ flexDirection: "row", alignItems: "center" }}
-            onPress={() =>
-              navigation.navigate("Modules", { id: moduleParams[0] })
-            }
-          >
-            <MaterialCommunityIcons
-              name="chevron-left"
-              size={30}
-              color="#4f2683"
-            />
-            <Text style={styles.category}>{category}</Text>
-          </TouchableOpacity>
-        </View>
+        {/* Header */}
+        <Text style={{...styles.header, marginTop:20}}>{id.title}</Text>
 
         {/* Page Image */}
         {pageImage.length != 0 && (
           <Image
-            source={{ uri: pageImage }}
+            uri={pageImage}
             style={{
               height: width * 0.75,
               width: width,
-              marginVertical: 20,
-              resizeMode: "contain",
+              marginTop: 20,
             }}
+            resizeMode="contain"
           />
         )}
 
-        {/* Header */}
-        <Text style={styles.header}>{id.title}</Text>
+        
 
         {/* Buttons */}
         <LearnDetailButtons
@@ -135,7 +145,7 @@ const LearnTextScreen = ({ route, navigation }) => {
         />
 
         {/* Caption */}
-        <Text style={{...styles.body, marginTop:20}}>{id.captionText}</Text>
+        {/* <Text style={{ ...styles.body, marginTop: 20 }}>{id.captionText}</Text> */}
 
         {/* Placeholder */}
         {none && (
@@ -152,7 +162,7 @@ const LearnTextScreen = ({ route, navigation }) => {
 
         {/* Content */}
         {id.id === "1.1" ? (
-          <PhysicsModule />
+          <PhysicsModule progress={(newProgress) => setUpdatedProgress(newProgress)}/>
         ) : id.id === "1.2" ? (
           <ProbeTypes />
         ) : id.id === "1.3" ? (
@@ -244,10 +254,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 15,
   },
-  categoryTouchable: {
+  touchable: {
     flexDirection: "row",
+    alignItems: "center",
     marginHorizontal: 15,
-    // marginTop: 5,
+    marginVertical: 10,
   },
 });
 
