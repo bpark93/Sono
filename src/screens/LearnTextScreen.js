@@ -24,6 +24,7 @@ import {
   ProbeTypes,
   ProbeMovements,
 } from "../components/FundamentalsModules";
+import firebase from "../components/firebase"
 
 const LearnTextScreen = ({ route, navigation }) => {
   const { id, category } = route.params;
@@ -65,6 +66,25 @@ const LearnTextScreen = ({ route, navigation }) => {
   // States for Buttons
   const [snackVisible, setSnackVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+
+  const [quizStarted, setQuizStarted] = useState(false);
+  const [quizQuestions, setQuizQuestions] = useState(null);
+  const [questionsCorrect, setQuestionsCorrect] = useState(0)
+  const [questionsAnswered, setQuestionsAnswered] = useState(0)
+  const [noQuizError, setNoQuizError] = useState("")
+  useEffect(() => {
+    firebase
+      .firestore()
+      .collection("learnQuizzes")
+      .doc("" + id.id)
+      .get()
+      .then(function (doc) {
+        setQuizQuestions(doc.data().questions);
+      })
+      .catch(function (error) {
+        setNoQuizError("This quiz is being developed. Stay tuned!");
+      });
+  }, [id]);
 
   return (
     <View
@@ -109,7 +129,7 @@ const LearnTextScreen = ({ route, navigation }) => {
             resizeMode="contain"
           />
         ):null}
-        
+
         {/* Buttons */}
         <LearnDetailButtons
           progress={progress}
@@ -146,24 +166,108 @@ const LearnTextScreen = ({ route, navigation }) => {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
-        <View style={styles.modalView}>
-          <Text style={styles.header}>{id.title}: Lesson Quiz</Text>
-          <TouchableOpacity
-            style={{ ...styles.modalButton, backgroundColor: "#2ecc71" }}
-          >
-            <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
-              Start
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{ ...styles.modalButton, backgroundColor: "#2980b9" }}
-            onPress={() => setModalVisible(false)}
-          >
-            <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
-              Dismiss
-            </Text>
-          </TouchableOpacity>
-        </View>
+        {quizStarted ? (
+          quizQuestions ? (
+            <ScrollView style={{ flex: 1, marginVertical:50, }} contentContainerStyle={{justifyContent: "center", alignItems:'center',}}> 
+              <View style={{marginVertical:20, marginHorizontal:15}}>
+                <Text style={{fontSize:24}}>{id.title} Lesson Quiz</Text>
+                <Text style={{color:'#BBBBBB'}}>Get 80% or higher to complete the lesson.</Text>
+              </View>
+              
+              <TouchableOpacity
+                style={{ ...styles.modalButton, backgroundColor: "#ff6961", marginBottom:10, marginTop:0 }}
+                onPress={() => {
+                  setModalVisible(false)
+                  setQuizStarted(false)
+                  setQuestionsCorrect(0)
+                }}
+              >
+                <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                  Exit Quiz
+                </Text>
+              </TouchableOpacity>
+              
+              {quizQuestions.map((item,index) => (
+                <View key={item.question} style={{width:Width-30,}}>
+                  {/* <Text style={{alignSelf:'center', fontSize:18}}>{`Question ${index+1}`}</Text> */}
+                  <QuizQuestion index={index} question={item} checker={() => setQuestionsCorrect(questionsCorrect+1)} answered={() => setQuestionsAnswered(questionsAnswered+1)}/>
+                </View>
+              ))}
+              {questionsAnswered === quizQuestions.length ?
+                (questionsCorrect / quizQuestions.length)>0.8 ? (
+                  <TouchableOpacity
+                    style={{ ...styles.modalButton, backgroundColor: "#2ecc71"}}
+                    onPress={() => {
+                      setModalVisible(false)
+                      setQuizStarted(false)
+                      setLearnProgress(id.id, '100')
+                      setUpdatedProgress('100')
+                      setQuestionsCorrect(0)
+                      setQuestionsAnswered(0)
+                    }}
+                  >
+                    <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                      Finish
+                    </Text>
+                  </TouchableOpacity>
+                ):(
+                  <TouchableOpacity
+                    style={{ ...styles.modalButton, backgroundColor: "#ff6961"}}
+                    onPress={() => {
+                      setModalVisible(false)
+                      setQuizStarted(false)
+                      setQuestionsCorrect(0)
+                      setQuestionsAnswered(0)
+                    }}
+                  >
+                    <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                      Retry Quiz
+                    </Text>
+                  </TouchableOpacity>
+                )
+              :null}
+            </ScrollView>
+          ) : noQuizError ? (
+            <View style={styles.modalView}>
+              <Text>{noQuizError}</Text>
+              <TouchableOpacity
+                style={{ ...styles.modalButton, backgroundColor: "#2980b9" }}
+                onPress={() => {
+                  setModalVisible(false)
+                  setQuizStarted(false)
+                }}
+              >
+                <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                  Exit Quiz
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ):(
+            <View style={styles.modalView}>
+              <ActivityIndicator size="large" />
+            </View>
+          )
+        ) : (
+          <View style={styles.modalView}>
+            <Text style={styles.header}>{id.title}: Lesson Quiz</Text>
+            <TouchableOpacity
+              style={{ ...styles.modalButton, backgroundColor: "#2ecc71" }}
+              onPress={() => setQuizStarted(true)}
+            >
+              <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                Start
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{ ...styles.modalButton, backgroundColor: "#2980b9" }}
+              onPress={() => setModalVisible(false)}
+            >
+              <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                Dismiss
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </Modal>
     </View>
   );

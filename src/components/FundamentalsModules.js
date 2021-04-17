@@ -26,7 +26,12 @@ const PhysicsModule = ({ progress }) => {
 
   useEffect(() => {
     async function refreshProgress () {
-      await progress(((position / 5) * 100).toString());
+      if (position >="5"){
+        await progress("99")
+      } else {
+        await progress(((position / 5) * 100).toString());
+
+      }
     }
     refreshProgress()
   },[position])

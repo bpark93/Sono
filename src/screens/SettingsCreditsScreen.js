@@ -70,7 +70,7 @@ const SettingsAboutScreen = () => {
       role: "Graphic Design",
       title: "B.Sc 2022, Western University",
       pictureUrl:
-        "https://res.cloudinary.com/dwtw3ge2z/image/upload/v1616906695/avatars/user_ynm3wo.png",
+        "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_1100,h_1100/v1618627819/avatars/174202434_1615409581992080_1278976305973028815_n_z4imhq.jpg",
     },
   ];
 

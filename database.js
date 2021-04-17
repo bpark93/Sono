@@ -323,13 +323,19 @@ const learnDatabase = [
         {
           title: "Paracentesis",
           youtube: "WuqWGs4Kxr4",
-          id: "4.7",
-          captionText: "",
+          id: "4.5",
+          captionText: "Do you want to maximize procedural success? Do you want to be sure of where you are stabbing before you stab them? Be blind no more and let ultrasound take the wheel. Learn about patient positioning, required materials, approach to landmarking and live guidance, as well as important pitfalls to avoid while performing a paracentesis. By Dr. Frank Myslik from the Division of EM.",
         },
         {
           title: "Thoracentesis",
           youtube: "Zg0d7Y3uPb4",
-          id: "4.8",
+          id: "4.6",
+          captionText: "Better with ultrasound: Learn how to perform a safer thoracentesis with ultrasound guidance. Topics covered include purposes of a thoracentesis, materials required, patient positioning, approach techniques and pearls and pitfalls of the procedure. By Dr. Frank Myslik from the Division of EM. ",
+        },
+        {
+          title: "Paracentesis and Thoracentesis Cases",
+          youtube: "0wL9Rz-Yf_Y",
+          id: "4.7",
           captionText: "",
         },
         
@@ -338,7 +344,7 @@ const learnDatabase = [
         {
           title: "Nerve Blocks for Hip Fractures",
           youtube: "7RKXLAqHaOk",
-          id: "4.9",
+          id: "4.8",
           captionText: "",
         },
       ],
@@ -346,7 +352,7 @@ const learnDatabase = [
         {
           title: "Fracture Management",
           youtube: "9Dd25I1b4_I",
-          id: "4.6",
+          id: "4.9",
           captionText: "",
         },
       ]
