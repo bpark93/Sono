@@ -34,6 +34,8 @@ const PhysicsModule = ({ progress }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.h1}>Introduction</Text>
+      <Text style={{fontSize:14, color:"gray", marginHorizontal:15}}>Authored by Brian Park, MD 2023</Text>
+
       <Text style={styles.paragraph}>
         Being able to interpret any diagnostic imaging requires a firm grasp on
         the underlying physics of the modality, and this is especially true for
@@ -44,7 +46,6 @@ const PhysicsModule = ({ progress }) => {
         just how sound waves become translated into the useful images you see on
         your screen.
       </Text>
-      <Text style={{fontSize:12, color:"gray", marginHorizontal:15}}>Authored by Brian Park, MD 2023</Text>
       {position > "0" ? (
         <>
           <Text style={styles.h1}>Generation of Sound</Text>

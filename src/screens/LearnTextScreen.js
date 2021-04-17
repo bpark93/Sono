@@ -18,8 +18,6 @@ import {
 } from "../components/getLearnDatabase";
 import { Snackbar, ActivityIndicator } from "react-native-paper";
 import Constants from "expo-constants";
-import firebase from "../components/firebase";
-import HTML from "react-native-render-html";
 import { Image } from "react-native-expo-image-cache";
 import {
   PhysicsModule,
@@ -68,27 +66,6 @@ const LearnTextScreen = ({ route, navigation }) => {
   const [snackVisible, setSnackVisible] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
-  const [content, setContent] = useState("");
-  const [pageImage, setPageImage] = useState("");
-  const [none, setNone] = useState(false);
-  useEffect(() => {
-    firebase
-      .firestore()
-      .collection("learnTextModules")
-      .doc("" + id.id)
-      .get()
-      .then(function (doc) {
-        setContent(doc.data().html);
-        setPageImage(doc.data().headerImage);
-      })
-      .catch(function (error) {
-        setNone(true);
-        setContent(
-          "This lesson is not yet ready for prime-time! Please check later for an update."
-        );
-      });
-  }, []);
-
   return (
     <View
       style={{
@@ -121,9 +98,9 @@ const LearnTextScreen = ({ route, navigation }) => {
         <Text style={{...styles.header, marginTop:20}}>{id.title}</Text>
 
         {/* Page Image */}
-        {pageImage.length != 0 && (
+        {id.headerImage ? (
           <Image
-            uri={pageImage}
+            uri={id.headerImage}
             style={{
               height: width * 0.75,
               width: width,
@@ -131,10 +108,8 @@ const LearnTextScreen = ({ route, navigation }) => {
             }}
             resizeMode="contain"
           />
-        )}
-
+        ):null}
         
-
         {/* Buttons */}
         <LearnDetailButtons
           progress={progress}
@@ -143,22 +118,6 @@ const LearnTextScreen = ({ route, navigation }) => {
           modalToggle={() => setModalVisible(true)}
           quizNotAvailable={true}
         />
-
-        {/* Caption */}
-        {/* <Text style={{ ...styles.body, marginTop: 20 }}>{id.captionText}</Text> */}
-
-        {/* Placeholder */}
-        {none && (
-          <Image
-            source={require("../../assets/crane.png")}
-            style={{
-              height: 200,
-              width: 200,
-              marginVertical: 20,
-              alignSelf: "center",
-            }}
-          />
-        )}
 
         {/* Content */}
         {id.id === "1.1" ? (

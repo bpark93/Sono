@@ -27,7 +27,7 @@ const learnDatabase = [
           title: "Ultrasound Physics",
           id: "1.1",
           captionText:"An understanding of ultrasound physics (groan) is a necessary evil in the quest to applying and mastering ultrasound at the point of care. Begin this module to start your POCUS journey!",
-          headerImage:require('./assets/png/movement.png'),
+          headerImage:"https://firebasestorage.googleapis.com/v0/b/westernsono-library.appspot.com/o/textModuleImage%2Froman-mager-5mZ_M06Fc9g-unsplash.jpg?alt=media&token=193484db-54db-432f-934b-6888cde6af25",
         },
         {
           title: "Probe Types",
