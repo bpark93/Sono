@@ -336,24 +336,30 @@ const learnDatabase = [
           title: "Paracentesis and Thoracentesis Cases",
           youtube: "0wL9Rz-Yf_Y",
           id: "4.7",
-          captionText: "",
+          captionText: "In this module, Dr. Myslik reviews several real-life clinical cases related to both thoracentesis and paracentesis, as well as some of the pearls and pitfalls of performing the procedures. We hope this highlights the utility, the diagnostic accuracy and improved safety of using ultrasound guidance.",
         },
         
       ],
       "Nerve Blocks":[
         {
+          title: "Introduction to Nerve Blocks",
+          youtube: "kOxwPDzgXUo",
+          id: "4.8",
+          captionText: "Nerve blocks, when done correctly, not only have huge benefits for the patient in terms of pain management, but also for the provider in terms of cost-saving and time-saving. Learn about why we perform nerve blocks, what drugs to use, what equipment to use and the general approach with important caveats to watch out for. By Dr. Frank Myslik from the Division of EM",
+        },
+        {
           title: "Nerve Blocks for Hip Fractures",
           youtube: "7RKXLAqHaOk",
-          id: "4.8",
-          captionText: "",
+          id: "4.9",
+          captionText: "In this module, we will apply what we have learned about nerve blocks to help patients in the emergency department with hip fractures. Dr. Myslik explains why it is a great alternative to conventional analgesia, what the relevant anatomy is around the femoral nerve, some common approaches to the block, as well as pearls and pitfalls of performing the procedure.",
         },
       ],
       "Others":[
         {
           title: "Fracture Management",
           youtube: "9Dd25I1b4_I",
-          id: "4.9",
-          captionText: "",
+          id: "4.10",
+          captionText: "Few things are more frustrating than attempting a reduction of a Colles' fracture in the ED, sending the patient for a post-reduction X-ray, only to find out that the reduction is still inadequate. Now you have to go back, sheepishly explain your ineptitude to the patient, saw off the cast and start all over again. Thankfully in this screencast, Dr. Heather Hames will help relieve that frustration with a simple ultrasound-based approach to confirming reductions at the point-of-care.",
         },
       ]
     }
@@ -401,7 +407,7 @@ const learnDatabase = [
           youtube: "oun74cJR6QE",
           id: "5.5",
           captionText:
-            "",
+            "This is a 5-minute, practical screencast on how to use ultrasound to calculate bladder volumes. Dr. Myslik explains why it is a superior method to other point-of-care tools commonly used for this purpose, other benefits to using ultrasound and what buttons to press to make the magic happen." ,
         },
       ],
       "Testicular":[
@@ -434,14 +440,14 @@ const learnDatabase = [
           youtube: "orL-bSlwBTA",
           id: "6.1",
           captionText:
-            "",
+            "In this module, Dr. Heather Hames introduces the scanning technique, image interpretation, and proper archiving for the abdominal component of the FAST Exam.",
         },
         {
           title: "FAST Exam Part 2: Algorithm and Pitfalls",
           youtube: "E6J06ta07QA",
           id: "6.2",
           captionText:
-            "",
+            "This module highlights some important pearls to know and pitfalls to avoid in your real-time bedside interpretation of the abdominal component of the FAST exam.",
         },
       ],
       "Aorta":[
@@ -450,7 +456,7 @@ const learnDatabase = [
           youtube: "HAX7d3EMveg",
           id: "6.4",
           captionText:
-            "Ultrasound has been shown to accurately identify both aneurysmal and normal abdominal aortas. Learn all about this core emergency medicine skill in this 12 minute screencast. By Dr. Drew Thompson.",
+            "Ultrasound is the preferred initial modality for detecting and meaasuring abdominal aortic aneurysms (AAA), and has demonstrated very high sensitivities and specificities in the literature. Learn all about this core emergency medicine skill in this 12 minute screencast by Dr. Drew Thompson from the Division of EM.",
         },
       ],
       "Gallbladder":[
@@ -466,14 +472,14 @@ const learnDatabase = [
           youtube: "pY2BinfQea0",
           id: "7.2",
           captionText:
-            "The biggest use of biliary ultrasound is the evaluation for gallstones. Find out about what features characterize a gallstone, and how to distinguish them from the many similar structures that can be found within the gallbladder. By Dr. Frank Myslik.",
+            "The biggest use of biliary ultrasound is the evaluation for gallstones. Find out about what features characterize a gallstone and how to distinguish them from the many similar structures that can be found within the gallbladder. By Dr. Frank Myslik.",
         },
         {
           title: "Cholecystitis",
           youtube: "XMEN2ZDUtNU",
           id: "7.3",
           captionText:
-            "The diagnosis of cholecystitis is based on the entire clinical picture in addition to the findings of the POCUS exam. Learn about the 4 important sonographic signs of cholecystitis, and how to distinguish them from mimics. By Dr. Frank Myslik. ",
+            "Learn about the 4 important sonographic signs of cholecystitis, and how to distinguish them from mimics. By Dr. Frank Myslik. ",
         },
       ],
       "Bowel":[
@@ -482,7 +488,7 @@ const learnDatabase = [
           youtube: "X_Ui91kjfag",
           id: "6.3",
           captionText:
-            "Is POCUS for SBO even a thing? Is it high time to say goodbye to X-rays? In this 10 minute screencast, Dr. Heather Hames explains the evidence behind using bedside ultrasound for small bowel obstructions, as well as how to generate and interpret your images.",
+            "Is POCUS for SBO even a thing? Is it high time to say goodbye to X-rays? Based on the literature, it is a resounding Yes to both. In this 10 minute screencast, Dr. Heather Hames explains the evidence behind using bedside ultrasound for small bowel obstructions, as well as how to generate and interpret your images at the bedside.",
         },
       ]
     }
@@ -490,7 +496,7 @@ const learnDatabase = [
   {
     title: "OB/Gyn",
     thumbnail: require("./assets/png2/029-pelvic-area.png"),
-    description:'Point-of-care pelvic ultrasound is a fundamental exam performed for women of reproductive age presenting with abdominal pain, vaginal bleeding or syncope, routinely done in emergency departments and obstetrical clinics. Combined with a detailed history, physical examination and serum beta-hCG level, ultrasound is central to the accurate assessment and management of such patients. Point of care evaluations have been shown to have excellent accuracy with a sensitivity of 99.3% for detecting IUP and ruling out ectopic pregnancies. Bedside ultrasound has also been shown to reduce length of stay in the ED, thereby increasing overall efficiency. Learn all about this valuable skill in the following lectures!',
+    description:'Point-of-care pelvic ultrasound is a fundamental exam performed for every woman of reproductive age presenting with abdominal pain, vaginal bleeding or syncope, routinely done in emergency departments and obstetrical clinics. Combined with a detailed history, physical examination and serum beta-hCG level, ultrasound is central to the accurate assessment and management of such patients. Point of care evaluations have been shown to have excellent accuracy with a sensitivity of 99.3% for detecting IUP and ruling out ectopic pregnancies. Bedside ultrasound has also been shown to reduce length of stay in the ED, thereby increasing overall efficiency. Learn all about this valuable skill in the following lectures!',
     id: 7,
     testReady: false,
     pages:{
@@ -507,7 +513,7 @@ const learnDatabase = [
           youtube: "By8TPKMRfdc",
           id: "6.6",
           captionText:
-            "While the transabdominal technique should always be your first approach, in many cases a more detailed assessment is required to call a determinant study. This is where the transvaginal approach comes in. Learn all about the technique, advantages/disadvantages, pearls, pitfalls, and more in this 10 minute screencast. By Dr. Drew Thompson, Division of Emergency Medicine.",
+            "While the transabdominal technique should always be your first approach, in many cases a more detailed assessment is required to call a determinant study. This is where the transvaginal approach comes in. Learn about the technique, advantages/disadvantages, pearls, pitfalls, and more in this 10 minute screencast. By Dr. Drew Thompson, Division of Emergency Medicine.",
         },
         {
           title: "Defining a Positive OB Study",
@@ -525,21 +531,21 @@ const learnDatabase = [
     id: 8,
     testReady: false,
     pages: {
-      "DVT":[
+      "Vascular":[
       {
         title: "DVT",
         youtube: "kenAPbRVMl0",
         id: "8.1",
         captionText:
-          "",
+          "In this comprehensive module, Dr. Heather Hames goes over the indications for, and practical use of POCUS for DVT, including pertinent anatomy, acquisition techniques and diagnostic criteria. Included is a live demonstration of a full DVT exam, with detailed explanations of each step of the exam.",
       },
-      {
-        title: "Lower Extremity DVT",
-        youtube: "-HERC2yB0Yk",
-        id: "8.2",
-        captionText:
-          "Sean Spence (PGY-5 Critical Care Medicine, University of Calgary) explains how to conduct a DVT exam. He covers lower extremity vascular anatomy relevant to the DVT exam and then wraps up by demonstrating a DVT study done by himself. There are examples of both a normal study and a positive finding.",
-      },
+      // {
+      //   title: "Lower Extremity DVT",
+      //   youtube: "-HERC2yB0Yk",
+      //   id: "8.2",
+      //   captionText:
+      //     "Sean Spence (PGY-5 Critical Care Medicine, University of Calgary) explains how to conduct a DVT exam. He covers lower extremity vascular anatomy relevant to the DVT exam and then wraps up by demonstrating a DVT study done by himself. There are examples of both a normal study and a positive finding.",
+      // },
       {
         title: "Solid Organ Doppler Assessment of Venous Congestion",
         youtube: "e_bIVvFV6jE",
@@ -554,18 +560,16 @@ const learnDatabase = [
         youtube: "dW8F_sMojKk",
         id: "8.4",
         captionText:
-          "",
+          "Ocular ultrasound is a valuable tool in the evaluation of ocular trauma and can be used to assess for foreign bodies, traumatic detachments, lens dislocation and vitreous hemorrhage. Dr. Kang Lin explains the background of ocular POCUS, image acquisition/interpretation and finishes with a clinical case of ocular POCUS use in the ED.",
       },
     ],
     "Transcranial Doppler":[
       {
         title: "Vasospasm and Cerebral Circulatory Arrest",
         youtube: "sWR9a3tBZVY",
-        video:
-          "https://westernsono.ca/wp-content/uploads/2016/06/tcd-camtasia.mp4?_t=1514825049",
         id: "8.5",
         captionText:
-          "",
+          "It is time to move beyond pupils and GCS for the bedside CNS assessment. Enter point-of-care Transcranial Doppler: Rapid assessment for vasospasm, increased ICP and progression of brain death. An ideal tool for the ICU. By Dr. Vincent Lau, MD FRCPC Department of Critical Care.",
       },
     ],
   }
@@ -581,74 +585,58 @@ const learnDatabase = [
       {
         title: "Hypovolemic Shock",
         youtube: "THJjNqhfi54",
-        video:
-          "https://westernsono.ca/wp-content/uploads/2015/11/hypovolemia-final.mp4?_t=1514825045",
         id: "9.1",
         captionText:
-          "",
+          "Case presentation on the use of point-of-care ultrasound in Hypovolemia presented by Dr. Vincent Lau",
       },
       {
         title: "Distributive Shock",
         youtube: "OAtiIY_Apco",
-        video:
-          "https://westernsono.ca/wp-content/uploads/2015/11/vasoplegia-final.mp4?_t=1514825047",
         id: "9.2",
         captionText:
-          "",
+          "Case presentation on the use of point-of-care ultrasound in Distributive shock (vasoplegia) presented by Dr. Vincent Lau",
       },
       {
         title: "Cardiogenic Shock",
         youtube: "-sYW0xNLqkA",
-        video:
-          "https://westernsono.ca/wp-content/uploads/2015/11/cardiogenic-shock-final.mp4?_t=1514825037",
         id: "9.3",
         captionText:
-          "",
+          "Case presentation on the use of point-of-care ultrasound in Cardiogenic shock presented by Dr. Vincent Lau",
       },
       {
         title: "Sepsis with CHF",
         youtube: "MiV8lrtdKEU",
-        video:
-          "https://westernsono.ca/wp-content/uploads/2015/11/sepsis-chf-final.mp4?_t=1514825046",
         id: "9.4",
         captionText:
-          "",
+          "Case presentation on the use of point-of-care ultrasound in Sepsis with pre-existing CHF presented by Dr. Vincent Lau",
       },
       {
         title: "Calcium Channel Blocker Overdose",
         youtube: "dXEGVc-JHxw",
-        video:
-          "https://westernsono.ca/wp-content/uploads/2015/11/ccb-od-final.mp4?_t=1514825038",
         id: "9.5",
         captionText:
-          "",
+          "Case presentation on the use of point-of-care ultrasound in the overdose of calcium channel blockers presented by Dr. Vincent Lau",
       },
       {
         title: "Dimensionless Index",
         youtube: "UFDpp1WtZjQ",
-        video:
-          "https://westernsono.ca/wp-content/uploads/2015/11/dimensionless-index-final.mp4?_t=1514825042",
         id: "9.6",
         captionText:
-          "",
+          "Case presentation on the use of point-of-care ultrasound to measure Dimensionless Index for severe aortic stenosis by Dr. Vincent Lau",
       },
       {
         title: "Cor Pulmonale",
         youtube: "NwmMdyeV8og",
-        video:
-          "https://westernsono.ca/wp-content/uploads/2015/11/cor-pulmonale-rv-overload-final.mp4?_t=1514825040",
         id: "9.7",
         captionText:
-          "",
+          "Case presentation on the use of point-of-care ultrasound in Cor Pulmonale presented by Dr. Vincent Lau",
       },
       {
         title: "Hypertrophic Obstructive Cardiomyopathy",
         youtube: "HH1V6D-TDfo",
-        video:
-          "https://westernsono.ca/wp-content/uploads/2015/11/hocm-final.mp4?_t=1514825043",
         id: "9.8",
         captionText:
-          "",
+          "Case presentation on the use of point-of-care ultrasound in Hypertrophic Obstructive Cardiomyopathy (HOCM) presented by Dr. Vincent Lau",
       },
     ],}
   },

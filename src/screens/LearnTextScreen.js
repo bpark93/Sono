@@ -24,7 +24,8 @@ import {
   ProbeTypes,
   ProbeMovements,
 } from "../components/FundamentalsModules";
-import firebase from "../components/firebase"
+import QuizQuestion from "../components/QuizQuestion";
+import firebase from "../components/firebase";
 
 const LearnTextScreen = ({ route, navigation }) => {
   const { id, category } = route.params;
@@ -32,8 +33,8 @@ const LearnTextScreen = ({ route, navigation }) => {
 
   // Progress
   const [progress, setProgress] = useState(null);
-  const [updatedProgress, setUpdatedProgress] = useState(null)
-  
+  const [updatedProgress, setUpdatedProgress] = useState(null);
+
   useEffect(() => {
     const checkProgress = async () => {
       const pageprogress = await getLearnProgress(id.id);
@@ -46,9 +47,9 @@ const LearnTextScreen = ({ route, navigation }) => {
 
     const updateProgress = async () => {
       //   update progress based on text read
-      if (parseInt(updatedProgress)>parseInt(progress)){
-        await setLearnProgress(id.id, updatedProgress)
-      } 
+      if (parseInt(updatedProgress) > parseInt(progress)) {
+        await setLearnProgress(id.id, updatedProgress);
+      }
     };
 
     const unsubscribe = navigation.addListener("blur", () => {
@@ -69,9 +70,9 @@ const LearnTextScreen = ({ route, navigation }) => {
 
   const [quizStarted, setQuizStarted] = useState(false);
   const [quizQuestions, setQuizQuestions] = useState(null);
-  const [questionsCorrect, setQuestionsCorrect] = useState(0)
-  const [questionsAnswered, setQuestionsAnswered] = useState(0)
-  const [noQuizError, setNoQuizError] = useState("")
+  const [questionsCorrect, setQuestionsCorrect] = useState(0);
+  const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [noQuizError, setNoQuizError] = useState("");
   useEffect(() => {
     firebase
       .firestore()
@@ -115,7 +116,7 @@ const LearnTextScreen = ({ route, navigation }) => {
         containerStyle={{ justifyContent: "space-between", flex: 1 }}
       >
         {/* Header */}
-        <Text style={{...styles.header, marginTop:20}}>{id.title}</Text>
+        <Text style={{ ...styles.header, marginTop: 20 }}>{id.title}</Text>
 
         {/* Page Image */}
         {id.headerImage ? (
@@ -128,7 +129,7 @@ const LearnTextScreen = ({ route, navigation }) => {
             }}
             resizeMode="contain"
           />
-        ):null}
+        ) : null}
 
         {/* Buttons */}
         <LearnDetailButtons
@@ -136,16 +137,28 @@ const LearnTextScreen = ({ route, navigation }) => {
           pageInfo={id}
           snackToggle={() => setSnackVisible(true)}
           modalToggle={() => setModalVisible(true)}
-          quizNotAvailable={true}
+          quizNotAvailable={noQuizError}
         />
 
         {/* Content */}
         {id.id === "1.1" ? (
-          <PhysicsModule progress={(newProgress) => setUpdatedProgress(newProgress)}/>
+          <PhysicsModule
+            progress={(newProgress) => setUpdatedProgress(newProgress)}
+            quizTrigger={() => setModalVisible(true)}
+            quizNotAvailable={noQuizError}
+          />
         ) : id.id === "1.2" ? (
-          <ProbeTypes />
+          <ProbeTypes
+            progress={(newProgress) => setUpdatedProgress(newProgress)}
+            quizTrigger={() => setModalVisible(true)}
+            quizNotAvailable={noQuizError}
+          />
         ) : id.id === "1.3" ? (
-          <ProbeMovements />
+          <ProbeMovements
+            progress={(newProgress) => setUpdatedProgress(newProgress)}
+            quizTrigger={() => setModalVisible(true)}
+            quizNotAvailable={noQuizError}
+          />
         ) : null}
       </ScrollView>
 
@@ -168,64 +181,92 @@ const LearnTextScreen = ({ route, navigation }) => {
       >
         {quizStarted ? (
           quizQuestions ? (
-            <ScrollView style={{ flex: 1, marginVertical:50, }} contentContainerStyle={{justifyContent: "center", alignItems:'center',}}> 
-              <View style={{marginVertical:20, marginHorizontal:15}}>
-                <Text style={{fontSize:24}}>{id.title} Lesson Quiz</Text>
-                <Text style={{color:'#BBBBBB'}}>Get 80% or higher to complete the lesson.</Text>
+            <ScrollView
+              style={{ flex: 1, marginVertical: 50 }}
+              contentContainerStyle={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <View style={{ marginVertical: 20, marginHorizontal: 15 }}>
+                <Text style={{ fontSize: 24 }}>{id.title} Lesson Quiz</Text>
+                <Text style={{ color: "#BBBBBB" }}>
+                  Get 80% or higher to complete the lesson.
+                </Text>
               </View>
-              
+
               <TouchableOpacity
-                style={{ ...styles.modalButton, backgroundColor: "#ff6961", marginBottom:10, marginTop:0 }}
+                style={{
+                  ...styles.modalButton,
+                  backgroundColor: "#ff6961",
+                  marginBottom: 10,
+                  marginTop: 0,
+                }}
                 onPress={() => {
-                  setModalVisible(false)
-                  setQuizStarted(false)
-                  setQuestionsCorrect(0)
+                  setModalVisible(false);
+                  setQuizStarted(false);
+                  setQuestionsCorrect(0);
                 }}
               >
                 <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
                   Exit Quiz
                 </Text>
               </TouchableOpacity>
-              
-              {quizQuestions.map((item,index) => (
-                <View key={item.question} style={{width:Width-30,}}>
+
+              {quizQuestions.map((item, index) => (
+                <View key={item.question} style={{ width: width - 30 }}>
                   {/* <Text style={{alignSelf:'center', fontSize:18}}>{`Question ${index+1}`}</Text> */}
-                  <QuizQuestion index={index} question={item} checker={() => setQuestionsCorrect(questionsCorrect+1)} answered={() => setQuestionsAnswered(questionsAnswered+1)}/>
+                  <QuizQuestion
+                    index={index}
+                    question={item}
+                    checker={() => setQuestionsCorrect(questionsCorrect + 1)}
+                    answered={() => setQuestionsAnswered(questionsAnswered + 1)}
+                  />
                 </View>
               ))}
-              {questionsAnswered === quizQuestions.length ?
-                (questionsCorrect / quizQuestions.length)>0.8 ? (
+              {questionsAnswered === quizQuestions.length ? (
+                questionsCorrect / quizQuestions.length > 0.8 ? (
                   <TouchableOpacity
-                    style={{ ...styles.modalButton, backgroundColor: "#2ecc71"}}
+                    style={{
+                      ...styles.modalButton,
+                      backgroundColor: "#2ecc71",
+                    }}
                     onPress={() => {
-                      setModalVisible(false)
-                      setQuizStarted(false)
-                      setLearnProgress(id.id, '100')
-                      setUpdatedProgress('100')
-                      setQuestionsCorrect(0)
-                      setQuestionsAnswered(0)
+                      setModalVisible(false);
+                      setQuizStarted(false);
+                      setLearnProgress(id.id, "100");
+                      setUpdatedProgress("100");
+                      setQuestionsCorrect(0);
+                      setQuestionsAnswered(0);
                     }}
                   >
-                    <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                    <Text
+                      style={{ color: "white", fontFamily: "Raleway-Bold" }}
+                    >
                       Finish
                     </Text>
                   </TouchableOpacity>
-                ):(
+                ) : (
                   <TouchableOpacity
-                    style={{ ...styles.modalButton, backgroundColor: "#ff6961"}}
+                    style={{
+                      ...styles.modalButton,
+                      backgroundColor: "#ff6961",
+                    }}
                     onPress={() => {
-                      setModalVisible(false)
-                      setQuizStarted(false)
-                      setQuestionsCorrect(0)
-                      setQuestionsAnswered(0)
+                      setModalVisible(false);
+                      setQuizStarted(false);
+                      setQuestionsCorrect(0);
+                      setQuestionsAnswered(0);
                     }}
                   >
-                    <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                    <Text
+                      style={{ color: "white", fontFamily: "Raleway-Bold" }}
+                    >
                       Retry Quiz
                     </Text>
                   </TouchableOpacity>
                 )
-              :null}
+              ) : null}
             </ScrollView>
           ) : noQuizError ? (
             <View style={styles.modalView}>
@@ -233,8 +274,8 @@ const LearnTextScreen = ({ route, navigation }) => {
               <TouchableOpacity
                 style={{ ...styles.modalButton, backgroundColor: "#2980b9" }}
                 onPress={() => {
-                  setModalVisible(false)
-                  setQuizStarted(false)
+                  setModalVisible(false);
+                  setQuizStarted(false);
                 }}
               >
                 <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
@@ -242,7 +283,7 @@ const LearnTextScreen = ({ route, navigation }) => {
                 </Text>
               </TouchableOpacity>
             </View>
-          ):(
+          ) : (
             <View style={styles.modalView}>
               <ActivityIndicator size="large" />
             </View>
@@ -260,7 +301,9 @@ const LearnTextScreen = ({ route, navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
               style={{ ...styles.modalButton, backgroundColor: "#2980b9" }}
-              onPress={() => setModalVisible(false)}
+              onPress={() => {
+                setModalVisible(false);
+              }}
             >
               <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
                 Dismiss

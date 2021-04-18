@@ -7,58 +7,66 @@ import {
   Dimensions,
   Platform,
 } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import { Video } from "expo-av";
 import { Image } from "react-native-expo-image-cache";
 import { useNavigation } from "@react-navigation/native";
 
-const PhysicsModule = ({ progress }) => {
-  const { width } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
+
+const PhysicsModule = ({ progress, quizTrigger, quizNotAvailable }) => {
   const [position, setPosition] = useState("0");
   const navigation = useNavigation();
 
-  const handlePress =  async () => {
+  const handlePress = async () => {
     if (position >= "5") {
       navigation.goBack();
     } else {
-      setPosition((parseInt(position) + 1).toString())
-    };
-  } 
+      setPosition((parseInt(position) + 1).toString());
+    }
+  };
 
   useEffect(() => {
-    async function refreshProgress () {
-      if (position >="5"){
-        await progress("99")
+    async function refreshProgress() {
+      if (position >= "5") {
+        await progress("99");
       } else {
         await progress(((position / 5) * 100).toString());
-
       }
     }
-    refreshProgress()
-  },[position])
+    refreshProgress();
+  }, [position]);
 
   return (
     <View style={styles.container}>
       <Text style={styles.h1}>Introduction</Text>
-      <Text style={{fontSize:14, color:"gray", marginHorizontal:15}}>Authored by Brian Park, MD 2023</Text>
+      <Text style={{ fontSize: 14, color: "gray", marginHorizontal: 15 }}>
+        Authored by Dr. Chris Byrne, Brian Park, Dr. Rob Arntfield
+      </Text>
 
       <Text style={styles.paragraph}>
         Being able to interpret any diagnostic imaging requires a firm grasp on
         the underlying physics of the modality, and this is especially true for
         ultrasound which heavily incorporates artefact-based studies in some of
-        its mainstream uses. Like the name implies, ultrasound machines use
-        sound waves to generate images, which is akin to conventional
-        radiography and ionizing radiation. This lesson will begin to illustrate
-        just how sound waves become translated into the useful images you see on
-        your screen.
+        its mainstream uses.
+      </Text>
+
+      <Text style={styles.paragraph}>
+        Like the name implies, ultrasound machines use sound waves to generate
+        images, and is thus considered one of the safest imaging modalities
+        available. This lesson will begin to illustrate just how sound waves
+        become translated into the useful images you see on your screen.
       </Text>
       {position > "0" ? (
         <>
           <Text style={styles.h1}>Generation of Sound</Text>
           <Text style={styles.paragraph}>
-            Ultrasound probes or transducers generate sound waves through
-            piezoelectric materials. <Bold>Piezoelectric materials</Bold> are
-            materials that generate an <Underline>electric current</Underline>{" "}
-            when <Underline>applied mechanical stress</Underline> - called the{" "}
+            Ultrasound probes (or transducers) generate sound waves through
+            piezoelectric materials.
+          </Text>
+          <Text style={styles.paragraph}>
+            <Bold>Piezoelectric materials</Bold> are materials that generate an{" "}
+            <Underline>electric current</Underline> when{" "}
+            <Underline>applied mechanical stress</Underline> - called the{" "}
             <Bold>direct piezoelectric effect</Bold> - but can also do the
             opposite, i.e. generate{" "}
             <Underline>mechanical deformations</Underline> when{" "}
@@ -68,19 +76,44 @@ const PhysicsModule = ({ progress }) => {
           <Text style={styles.paragraph}>
             The converse piezoelectric effect is how ultrasound probes generate
             sound waves. When a rapidly alternating current is applied to a
-            piezoelectric material inside a transducer, mechanical deformations,
-            and thereby sound waves are generated. These sound waves travel out
-            and away from the transducer and into the surroundings. </Text>
-            <Text style={styles.paragraph}>When those
-            sound waves encounter an interface between 2 different media, some
-            of the ultrasonic energy <Underline>can reflect back</Underline> to
-            its source (an echo). When this echo returns to the probe, it takes
+            piezoelectric material inside a transducer, it undergoes mechanical
+            deformations, generating sound waves in the process. These sound
+            waves travel out and away from the transducer and into the
+            surroundings.{" "}
+          </Text>
+          <Image
+            uri="https://westernsono-library.b-cdn.net/FundamentalsTextModule/Physics/piezo1.png"
+            style={{
+              height: (width - 30) * 0.5,
+              width: width - 30,
+              marginHorizontal: 15,
+              // marginBottom: 20,
+            }}
+            resizeMode="contain"
+          />
+          <ImageCaption>Figure 1: Converse Piezoelectric Effect</ImageCaption>
+          <Text style={styles.paragraph}>
+            When those sound waves encounter an interface between 2 different
+            media, some of the ultrasonic energy{" "}
+            <Underline>can reflect back</Underline> to its source (an{" "}
+            <Bold>echo</Bold>). When this echo returns to the probe, it takes
             advantage of the direct piezoelectric effect — i.e. the echo creates
             mechanical strain on the piezoelectric material which then generates
             an electric current in response. The generated current is processed
             by the ultrasound machine to make up the grayscale images that you
-            see on the screen. Pretty cool huh?
+            see on the screen.
           </Text>
+          <Image
+            uri="https://westernsono-library.b-cdn.net/FundamentalsTextModule/Physics/piezo2.png"
+            style={{
+              height: (width - 30) * 0.5,
+              width: width - 30,
+              marginHorizontal: 15,
+              // marginBottom: 20,
+            }}
+            resizeMode="contain"
+          />
+          <ImageCaption>Figure 2: Direct Piezoelectric Effect</ImageCaption>
         </>
       ) : null}
 
@@ -106,26 +139,47 @@ const PhysicsModule = ({ progress }) => {
             }}
             resizeMode="contain"
           />
-          <Text style={styles.highlight}>
-          {"\u2B50"}  Strong returning echoes, i.e. high amplitude waves, translate into
-            bright and white (formally, <Bold>hyperechoic</Bold>) areas on the
-            screen.
-          </Text>
+          <ImageCaption>Figure 3: Amplitudes of Waves</ImageCaption>
 
           <Text style={styles.highlight}>
-          {"\u2B50"}  Weak returning echoes, i.e. low amplitude waves translate into dark
-            grey and back (formally, <Bold>hypoechoic</Bold>) areas on the
-            screen
+            {"\u2B50"} Strong returning echoes, i.e. high amplitude waves,
+            translate into bright and white (formally, <Bold>hyperechoic</Bold>)
+            areas on the screen.
           </Text>
+          <Image
+            uri="https://westernsono-library.b-cdn.net/FundamentalsTextModule/Physics/hyperechoic.png"
+            style={{
+              height: (width - 30) * 0.5,
+              width: width - 30,
+              // marginHorizontal: 15,
+              marginLeft: 10,
+            }}
+            resizeMode="contain"
+          />
+          <ImageCaption>Figure 5: Hyperechoic Tissue</ImageCaption>
+          <Text style={styles.highlight}>
+            {"\u2B50"} Weak returning echoes, i.e. low amplitude waves translate
+            into dark grey and black (formally, <Bold>hypoechoic</Bold>) areas
+            on the screen
+          </Text>
+          <Image
+            uri="https://westernsono-library.b-cdn.net/FundamentalsTextModule/Physics/hypoechoic.png"
+            style={{
+              height: (width - 30) * 0.5,
+              width: width - 30,
+              // marginHorizontal: 15,
+              marginLeft: 10,
+            }}
+            resizeMode="contain"
+          />
+          <ImageCaption>Figure 4: Hypoechoic Tissue</ImageCaption>
 
           <Text style={styles.paragraph}>
             <Bold>Frequency</Bold> is the number of sound waves per second, or
             hertz (Hz). Audible sound ranges from 20 Hz to 20 kHz, while
             ultrasound refers to sound waves at a frequency above the audible
             range (greater than 20 kHz). Typical frequencies used in medical
-            ultrasound machines range from 1-15 MHz. The frequency of an
-            ultrasound wave affects two important considerations of imaging:
-            depth of penetration and resolution of the image.{" "}
+            ultrasound machines range from 1-15 MHz.
           </Text>
           <Image
             uri="https://res.cloudinary.com/dwtw3ge2z/image/upload/v1595699550/Learn/Fundamentals/1.1/Untitled_1_d7gshf.png"
@@ -137,16 +191,31 @@ const PhysicsModule = ({ progress }) => {
             }}
             resizeMode="contain"
           />
-          <Text style={styles.highlight}>
-            {"\u2B50"}  High frequency ultrasound waves have a smaller wavelength, and can
-            resolve structures that are smaller with greater detail. However,
-            tissue penetration is limited with high frequency waves as they are
-            more readily absorbed by tissues. (See Attenuation below)
+          <ImageCaption>Figure 5: Frequencies of Waves</ImageCaption>
+
+          <Text style={styles.paragraph}>
+            The frequency of an ultrasound wave affects two important
+            considerations of imaging: depth of penetration and resolution of
+            the image:
           </Text>
+
           <Text style={styles.highlight}>
-          {"\u2B50"}  Low frequency waves do not create as high resolution images as high
-            frequency waves, but are able to penetrate deeper into tissue
+            {"\u2B50"} <Bold>High frequency</Bold> ultrasound waves have a
+            smaller wavelength, and can therefore resolve structures that are
+            smaller with greater detail. However, a downside of using high
+            frequency waves is that{" "}
+            <Underline>tissue penetration is limited</Underline> as they are more
+            readily absorbed by tissues, preventing their reflection back to the probe. (See Attenuation
+            below)
           </Text>
+
+          <Text style={styles.highlight}>
+            {"\u2B50"} <Bold>Low frequency</Bold> waves do not create as high
+            resolution images as high frequency waves, but are able to penetrate
+            deeper into tissue as they are not as readily absorbed by body
+            tissues.
+          </Text>
+
           <Text style={styles.paragraph}>
             Maximizing resolution while maintaining adequate depth is a key
             consideration when choosing appropriate transducer frequency. We'll
@@ -154,12 +223,12 @@ const PhysicsModule = ({ progress }) => {
             module.
           </Text>
           <Text style={styles.paragraph}>
-            The power and intensity of ultrasound is also another important
-            characteristic to consider. In practical terms, power will determine
-            how much heat is generated in tissues. The heat generated from an
-            ultrasound is generally insignificant as long as the proper settings
-            are used. However, heat can be important to consider when dealing
-            with certain more vulnerable tissues (eg. eye).{" "}
+            The <Bold>power</Bold> and intensity of ultrasound is also another
+            important characteristic to consider. In practical terms, power will
+            determine how much heat is generated in tissues. The heat generated
+            from an ultrasound is generally insignificant as long as the proper
+            settings are used. However, heat can be important to consider when
+            dealing with certain more vulnerable tissues such as the eye.{" "}
           </Text>
         </>
       ) : null}
@@ -171,6 +240,16 @@ const PhysicsModule = ({ progress }) => {
             In ultrasound imaging, there are 4 aspects of resolution: axial,
             lateral, elevational and temporal.{" "}
           </Text>
+          <Image
+            uri="https://westernsono-library.b-cdn.net/FundamentalsTextModule/Physics/resolution1.png"
+            style={{
+              height: width - 30,
+              width: width - 30,
+              marginHorizontal: 15,
+            }}
+            resizeMode="contain"
+          />
+          <ImageCaption>Figure 6: Resolution of Ultrasound Images. Soni, N. J., Arntfield, R., Kory, P. (2020). Point-of-care Ultrasound. Philadelphia, PA: Elsevier.</ImageCaption>
           <Text style={styles.paragraph}>
             <Bold>Axial resolution</Bold> is the ability to separate two points
             on the y-axis or x axis of the image. Higher frequency ultrasound
@@ -224,6 +303,19 @@ const PhysicsModule = ({ progress }) => {
             Differences in acoustic impedance determine reflectivity of sound
             waves at tissue interfaces.{" "}
           </Text>
+          <Image
+            uri="https://westernsono-library.b-cdn.net/FundamentalsTextModule/Physics/acousticimpedance.png"
+            style={{
+              height: (width - 30) * 0.5,
+              width: width - 30,
+              // marginHorizontal: 15,
+              marginLeft: 10,
+            }}
+            resizeMode="contain"
+          />
+          <ImageCaption>
+            Table 1: Acoustic Impedance of Different Tissues
+          </ImageCaption>
           <Text style={styles.paragraph}>
             <Bold>Reflection</Bold> at an interface{" "}
             <Underline>increases</Underline> when the difference in acoustic
@@ -244,15 +336,19 @@ const PhysicsModule = ({ progress }) => {
             }}
             resizeMode="contain"
           />
+          <ImageCaption>
+            Figure 7: Homogenous Tissues appear Isoechoic
+          </ImageCaption>
+
           <Text style={styles.paragraph}>
-            Air has a very low acoustic impedance relative to body tissues. As a
-            result, sound waves will be reflected in all directions (also called
-            scattering) and nearly no echos will be generated. This is a reason
-            why ultrasound gel (a liquid medium) is required to seal the
-            interface between the skin and the probe.{" "}
+            <Bold>Air</Bold> has a very low acoustic impedance relative to body
+            tissues. As a result, sound waves will be reflected in all
+            directions (also called scattering) and nearly no echos will be
+            generated. This is a reason why ultrasound gel (a liquid medium) is
+            required to seal the interface between the skin and the probe.{" "}
           </Text>
           <Image
-            uri="https://res.cloudinary.com/dwtw3ge2z/image/upload/v1595699550/Learn/Fundamentals/1.1/Untitled_3_mhge6a.png"
+            uri="https://westernsono-library.b-cdn.net/FundamentalsTextModule/Physics/air.png"
             style={{
               height: (width - 30) * 0.5,
               width: width - 30,
@@ -261,16 +357,34 @@ const PhysicsModule = ({ progress }) => {
             }}
             resizeMode="contain"
           />
+          <ImageCaption>Figure 8: Air and Scatter</ImageCaption>
+
           <Text style={styles.paragraph}>
-            Bone, calcifications and materials like metal have a very high
-            acoustic impedance relative to body tissues; the majority of
-            ultrasound waves will be reflected, resulting in a hyperechoic
+            <Bold>Bone</Bold>, calcifications and materials like metal have a
+            very high acoustic impedance relative to body tissues; the majority
+            of ultrasound waves will be reflected, resulting in a hyperechoic
             appearance. However, because most waves are reflected, structures
             deep to bone or metal cannot be visualized (acoustic shadowing).
           </Text>
+          <Image
+            uri="https://westernsono-library.b-cdn.net/FundamentalsTextModule/Physics/bone.png"
+            style={{
+              height: (width - 30) * 0.5,
+              width: width - 30,
+              // marginHorizontal: 15,
+              marginLeft: 10,
+            }}
+            resizeMode="contain"
+          />
+          <ImageCaption>Figure 9: Bone and Reflection</ImageCaption>
+
           <Text style={styles.paragraph}>
             As sound waves travel through tissues, energy can be lost through
-            absorption, deflection and divergence. This is called attenuation.{" "}
+            absorption, deflection and divergence. This is called{" "}
+            <Bold>
+              <Underline>attenuation</Underline>
+            </Bold>
+            .{" "}
           </Text>
           <Text style={styles.paragraph}>
             An ultrasound beam can be absorbed by tissue and transferred to
@@ -279,6 +393,17 @@ const PhysicsModule = ({ progress }) => {
             mentioned above, high frequency waves are more readily absorbed than
             low frequency waves, and thereby are limited in its penetration.
           </Text>
+          <Image
+            uri="https://westernsono-library.b-cdn.net/FundamentalsTextModule/Physics/attenuation.png"
+            style={{
+              height: (width - 30) * 0.5,
+              width: width - 30,
+              // marginHorizontal: 15,
+              marginLeft: 10,
+            }}
+            resizeMode="contain"
+          />
+          <ImageCaption>Figure 10: Attenuation</ImageCaption>
         </>
       ) : null}
 
@@ -289,52 +414,109 @@ const PhysicsModule = ({ progress }) => {
             Let's now discuss some of the basic modes of ultrasound.{" "}
           </Text>
           <Text style={styles.paragraph}>
-            The majority of ultrasound imaging is done using the 2D or B-mode (B
-            for brightness). This is the default mode that displays the image as
-            varying shades of gray or black or white depending on the amplitude
-            of echoes that are reflected back to the probe.{" "}
+            The majority of ultrasound imaging is done using the{" "}
+            <Bold>2D or B-mode</Bold> (B for brightness). This is the default
+            mode that displays the image as varying shades of gray or black or
+            white depending on the amplitude of echoes that are reflected back
+            to the probe.{" "}
           </Text>
+          <Video
+            source={{
+              uri:
+                "https://westernsono-library.b-cdn.net/library/Abdominal/Abdominal%20Free%20Fluid/abdo%20neg%202.mp4",
+            }}
+            rate={1.0}
+            volume={1.0}
+            useNativeControls={false}
+            shouldPlay={true}
+            isLooping
+            resizeMode="contain"
+            style={{
+              width: width - 20,
+              height: (width - 20) * 0.75,
+              alignSelf: "center",
+              marginBottom: 5,
+            }}
+          />
+          <ImageCaption>Figure 11: 2D Mode - FAST exam</ImageCaption>
           <Text style={styles.paragraph}>
             Structures that mostly transmit ultrasound and do not reflect are
             termed anechoic and appear black on the screen. Examples of anechoic
-            structures include fluid such as blood, bile, urine. Structures that
-            reflect less sound waves than surrounding structures are termed
-            hypoechoic and will appear gray, and those that reflect more are
-            termed hyperechoic and appears white.{" "}
+            structures include fluid such as blood, bile, urine.
           </Text>
           <Text style={styles.paragraph}>
-            Another important mode is the M-mode or motion mode. The M-mode
-            captures a single line within the image and all the motion that
-            occurs along that line. Once you've chosen the line you want to
-            observe, you can get an image of all the points along that line on
-            the vertical axis as they vary in time on the horizonal axis. In
-            other words we see how all the points on that line are changing in
-            time but we can see all the changes in time on one image. Its main
-            advantage is its great temporal resolution which makes it good for
-            depicting dynamic phenomenon or making time-sensitive measurements
-            such as the difference in the thickness of the diaphragm during
-            inspiration and expiration
+            Structures that reflect less sound waves than surrounding structures
+            are termed hypoechoic and will appear gray, and those that reflect
+            more are termed hyperechoic and appears white.{" "}
           </Text>
           <Text style={styles.paragraph}>
-            The last of the main ultrasound modes is Doppler imaging, and will
-            be discussed in great detail in the screencast titled "Principles of
-            Doppler Ultrasound" by Dr. Katie Wiskar. Feel free to check it out
-            after completing this lesson.{" "}
+            Another important mode is the <Bold>M-mode</Bold> or motion mode.
+            The M-mode captures a single line within the image and all the
+            motion that occurs along that line. Once you've chosen the line you
+            want to observe, you can get an image of all the points along that
+            line on the vertical axis as they vary in time on the horizonal
+            axis. In other words, we see how all the points on that line are
+            changing in time but we can see all the changes in time on one
+            image.
+          </Text>
+          <Text style={styles.paragraph}>
+            Its main advantage is its great temporal resolution which makes it
+            good for depicting dynamic phenomenon or making time-sensitive
+            measurements such as the difference in the thickness of the
+            diaphragm during inspiration and expiration
+          </Text>
+
+          <Image
+            uri="https://westernsono-library.b-cdn.net/library/Cardiac/IVC/normal%202-2.jpg"
+            style={{
+              height: (width - 30) * 0.75,
+              width: width - 30,
+              marginHorizontal: 15,
+            }}
+            resizeMode="contain"
+          />
+          <ImageCaption>Figure 12: M-Mode assessment of the IVC</ImageCaption>
+          <Text style={styles.paragraph}>
+            The last of the main ultrasound modes is{" "}
+            <Bold>Doppler imaging</Bold>, and will be discussed in great detail
+            in the screencast titled "Principles of Doppler Ultrasound" by Dr.
+            Katie Wiskar. Feel free to check it out after completing this
+            lesson.{" "}
           </Text>
         </>
       ) : null}
-
-      <TouchableOpacity
+      <View
         style={{
-          ...styles.nextButton,
-          backgroundColor: position >= "5" ? "#2ecc71" : "#B19CD9",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
         }}
-        onPress={handlePress}
       >
-        <Text style={{ fontSize: 18, color: "white" }}>
-          {position >= "5" ? "Finish" : "Continue"}
-        </Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            ...styles.nextButton,
+            backgroundColor: position >= "5" ? "#2ecc71" : "#B19CD9",
+          }}
+          onPress={handlePress}
+        >
+          <Text style={{ fontSize: 18, color: "white" }}>
+            {position >= "5" ? "Exit" : "Continue"}
+          </Text>
+        </TouchableOpacity>
+
+        {position >= "5" && !quizNotAvailable ? (
+          <TouchableOpacity
+            style={{
+              ...styles.nextButton,
+              backgroundColor: "#B19CD9",
+              marginLeft: 10,
+            }}
+            onPress={() => quizTrigger()}
+          >
+            <Text style={{ fontSize: 18, color: "white" }}>Take the Quiz</Text>
+          </TouchableOpacity>
+        ) : null}
+      </View>
     </View>
   );
 };
@@ -364,10 +546,17 @@ const Underline = ({ children }) => {
   return <Text style={{ textDecorationLine: "underline" }}>{children}</Text>;
 };
 
-const Point = ({ children }) => {
+const ImageCaption = ({ children }) => {
   return (
-    <Text>
-      {"\u2043"} {children}
+    <Text
+      style={{
+        fontSize: 12,
+        color: "gray",
+        marginHorizontal: 15,
+        marginBottom: 15,
+      }}
+    >
+      {children}
     </Text>
   );
 };
@@ -396,10 +585,10 @@ const styles = StyleSheet.create({
   highlight: {
     fontSize: 16,
     marginHorizontal: 15,
-    padding:15,
-    borderRadius:20,
+    padding: 15,
+    borderRadius: 20,
     marginVertical: 10,
-    backgroundColor:'#FBF3DB'
+    backgroundColor: "#FBF3DB",
   },
 });
 
