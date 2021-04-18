@@ -23,7 +23,7 @@
     ],
     "ios": {
       "bundleIdentifier": "ca.westernsono.sono",
-      "buildNumber": "1.0.0",
+      "buildNumber": "1.0.3",
       "supportsTablet": true
     },
     "android":{
