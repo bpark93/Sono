@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Video } from "expo-av";
 import { learnDatabase } from "../../database";
 import LearnDetailButtons from "../components/LearnDetailButtons";
 import {
@@ -30,7 +29,7 @@ import { addNote, getNotes, editNote } from "../components/useLearnNotes";
 import LearnNotes from "../components/LearnNotes";
 import firebase from "../components/firebase";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { StatusBar, setStatusBarTranslucent } from "expo-status-bar";
+import { StatusBar } from "expo-status-bar";
 import QuizQuestion from "../components/QuizQuestion";
 
 const LearnDetailScreen = ({ route, navigation }) => {
@@ -63,10 +62,9 @@ const LearnDetailScreen = ({ route, navigation }) => {
       }
     };
     const unsubscribe = navigation.addListener("blur", () => {
-      if (id.youtube != "pending"){
+      if (id.youtube != "pending") {
         updateProgress();
       }
-        setStatusBarTranslucent(true);
     });
     return () => unsubscribe();
   }, []);
@@ -84,7 +82,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
   const portrait = () => {
     setOrientationMode({ width: Width, height: (Width * 9) / 16 });
   };
-  
+
   const handleFullScreenYoutube = async (status) => {
     if (status === true) {
       try {
@@ -108,9 +106,8 @@ const LearnDetailScreen = ({ route, navigation }) => {
   };
 
   // Set up for navigation to Modules
-  const categoryId = id.id.split(".")[0];
   const moduleParams = learnDatabase.filter(
-    (item) => item.id.toString() === categoryId
+    (item) => item.title === id.category
   );
 
   // States for Buttons
@@ -203,9 +200,9 @@ const LearnDetailScreen = ({ route, navigation }) => {
 
   const [quizStarted, setQuizStarted] = useState(false);
   const [quizQuestions, setQuizQuestions] = useState(null);
-  const [questionsCorrect, setQuestionsCorrect] = useState(0)
-  const [questionsAnswered, setQuestionsAnswered] = useState(0)
-  const [noQuizError, setNoQuizError] = useState("")
+  const [questionsCorrect, setQuestionsCorrect] = useState(0);
+  const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [noQuizError, setNoQuizError] = useState("");
   useEffect(() => {
     firebase
       .firestore()
@@ -220,7 +217,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
       });
   }, [id]);
 
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(false);
 
   return (
     <View style={{ flex: 1 }}>
@@ -259,14 +256,16 @@ const LearnDetailScreen = ({ route, navigation }) => {
               }}
             />
           ) : (
-            <View style={{
-              height: OrientationMode.height,
-              width: OrientationMode.width,
-              backgroundColor:'black',
-              alignItems:'center',
-              justifyContent:'center'
-            }}>
-              <Text style={{color:'white'}}>Video Unavailable</Text>
+            <View
+              style={{
+                height: OrientationMode.height,
+                width: OrientationMode.width,
+                backgroundColor: "black",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Text style={{ color: "white" }}>Video Unavailable</Text>
             </View>
           )}
         </View>
@@ -302,8 +301,17 @@ const LearnDetailScreen = ({ route, navigation }) => {
             noteToggle={(bool) => setNoteVisible(bool)}
             youtubeToggle={() => setYoutubePlaying(false)}
           />
-          <Text style={styles.body} numberOfLines={toggle ? null : 5}>{id.captionText}</Text>
-          <TouchableOpacity onPress={() => setToggle(!toggle)} style={{marginHorizontal:15}}><Text style={{fontWeight:'bold', color:'gray'}}>{toggle ? "Show Less" : "Show More"}</Text></TouchableOpacity>
+          <Text style={styles.body} numberOfLines={toggle ? null : 5}>
+            {id.captionText}
+          </Text>
+          <TouchableOpacity
+            onPress={() => setToggle(!toggle)}
+            style={{ marginHorizontal: 15 }}
+          >
+            <Text style={{ fontWeight: "bold", color: "gray" }}>
+              {toggle ? "Show Less" : "Show More"}
+            </Text>
+          </TouchableOpacity>
 
           {noteVisible ? (
             <View style={{ margin: 15, flex: 1 }}>
@@ -336,15 +344,22 @@ const LearnDetailScreen = ({ route, navigation }) => {
                   }
                 }}
               >
-                <View style={{backgroundColor:'#E0E0E0', flexDirection:'row', padding:10, borderRadius:10}}>
+                <View
+                  style={{
+                    backgroundColor: "#E0E0E0",
+                    flexDirection: "row",
+                    padding: 10,
+                    borderRadius: 10,
+                  }}
+                >
                   <MaterialCommunityIcons
                     name={
                       newNoteButtonPressed ? "cancel" : "comment-plus-outline"
                     }
                     size={16}
-                    style={{ marginRight: 5,}}
+                    style={{ marginRight: 5 }}
                   />
-                  <Text style={{ fontSize: 14, }}>
+                  <Text style={{ fontSize: 14 }}>
                     {newNoteButtonPressed ? "Cancel" : "Add a new note"}
                   </Text>
                 </View>
@@ -421,31 +436,53 @@ const LearnDetailScreen = ({ route, navigation }) => {
         </KeyboardAwareScrollView>
       ) : (
         <View style={{ ...styles.container }}>
-          <TouchableOpacity
-            style={{ ...styles.transcriptButton, alignSelf: "flex-end" }}
-            onPress={() => {
-              setTranscriptToggled(false);
-              setNoteVisible(false);
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+              borderBottomWidth: 0.5,
+              borderColor: "#E0E0E0",
+              marginBottom: 10,
             }}
           >
-            <MaterialCommunityIcons name="close" size={24} color="black" />
-          </TouchableOpacity>
+            <Text
+              style={{
+                fontSize: 20,
+                marginLeft: 15,
+                fontFamily: "Roboto-Bold",
+              }}
+            >
+              Transcript
+            </Text>
+            <TouchableOpacity
+              style={{ ...styles.transcriptButton }}
+              onPress={() => {
+                setTranscriptToggled(false);
+                setNoteVisible(false);
+              }}
+            >
+              <MaterialCommunityIcons name="close" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
           <ScrollView>
             {transcriptText && !errorMessage
               ? transcriptText.map((paragraph) => (
                   <View key={paragraph.timestamp}>
                     <TouchableWithoutFeedback
-                      onPress={() => youtubeSeek(paragraph.timestamp)}
+                      onPress={() => youtubeSeek(parseInt(paragraph.timestamp))}
                     >
                       <Text
                         style={{
-                          // fontFamily: "Raleway-Regular",
+                          fontFamily: "Raleway-Bold",
+                          // fontWeight:'bold',
                           textDecorationLine: "underline",
                           marginHorizontal: 15,
+                          fontSize: 20,
                           color: "#03a9f4",
                         }}
                       >
-                        {formatTime(paragraph.timestamp)}
+                        {formatTime(parseInt(paragraph.timestamp))}
                       </Text>
                     </TouchableWithoutFeedback>
                     <Text style={styles.body}>{paragraph.body}</Text>
@@ -453,7 +490,13 @@ const LearnDetailScreen = ({ route, navigation }) => {
                 ))
               : null}
             {errorMessage ? (
-              <Text style={{ fontSize: 18, marginHorizontal: 15 }}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  marginHorizontal: 15,
+                  alignSelf: "center",
+                }}
+              >
                 {errorMessage}
               </Text>
             ) : null}
@@ -479,64 +522,92 @@ const LearnDetailScreen = ({ route, navigation }) => {
       >
         {quizStarted ? (
           quizQuestions ? (
-            <ScrollView style={{ flex: 1, marginVertical:50, }} contentContainerStyle={{justifyContent: "center", alignItems:'center',}}> 
-              <View style={{marginVertical:20, marginHorizontal:15}}>
-                <Text style={{fontSize:24}}>{id.title} Lesson Quiz</Text>
-                <Text style={{color:'#BBBBBB'}}>Get 80% or higher to complete the lesson.</Text>
+            <ScrollView
+              style={{ flex: 1, marginVertical: 50 }}
+              contentContainerStyle={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <View style={{ marginVertical: 20, marginHorizontal: 15 }}>
+                <Text style={{ fontSize: 24 }}>{id.title} Lesson Quiz</Text>
+                <Text style={{ color: "#BBBBBB" }}>
+                  Get 80% or higher to complete the lesson.
+                </Text>
               </View>
-              
+
               <TouchableOpacity
-                style={{ ...styles.modalButton, backgroundColor: "#ff6961", marginBottom:10, marginTop:0 }}
+                style={{
+                  ...styles.modalButton,
+                  backgroundColor: "#ff6961",
+                  marginBottom: 10,
+                  marginTop: 0,
+                }}
                 onPress={() => {
-                  setModalVisible(false)
-                  setQuizStarted(false)
-                  setQuestionsCorrect(0)
+                  setModalVisible(false);
+                  setQuizStarted(false);
+                  setQuestionsCorrect(0);
                 }}
               >
                 <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
                   Exit Quiz
                 </Text>
               </TouchableOpacity>
-              
-              {quizQuestions.map((item,index) => (
-                <View key={item.question} style={{width:Width-30,}}>
+
+              {quizQuestions.map((item, index) => (
+                <View key={item.question} style={{ width: Width - 30 }}>
                   {/* <Text style={{alignSelf:'center', fontSize:18}}>{`Question ${index+1}`}</Text> */}
-                  <QuizQuestion index={index} question={item} checker={() => setQuestionsCorrect(questionsCorrect+1)} answered={() => setQuestionsAnswered(questionsAnswered+1)}/>
+                  <QuizQuestion
+                    index={index}
+                    question={item}
+                    checker={() => setQuestionsCorrect(questionsCorrect + 1)}
+                    answered={() => setQuestionsAnswered(questionsAnswered + 1)}
+                  />
                 </View>
               ))}
-              {questionsAnswered === quizQuestions.length ?
-                (questionsCorrect / quizQuestions.length)>0.8 ? (
+              {questionsAnswered === quizQuestions.length ? (
+                questionsCorrect / quizQuestions.length > 0.8 ? (
                   <TouchableOpacity
-                    style={{ ...styles.modalButton, backgroundColor: "#2ecc71"}}
+                    style={{
+                      ...styles.modalButton,
+                      backgroundColor: "#2ecc71",
+                    }}
                     onPress={() => {
-                      setModalVisible(false)
-                      setQuizStarted(false)
-                      setLearnProgress(id.id, '100')
-                      setProgress('100')
-                      setQuestionsCorrect(0)
-                      setQuestionsAnswered(0)
+                      setModalVisible(false);
+                      setQuizStarted(false);
+                      setLearnProgress(id.id, "100");
+                      setProgress("100");
+                      setQuestionsCorrect(0);
+                      setQuestionsAnswered(0);
                     }}
                   >
-                    <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                    <Text
+                      style={{ color: "white", fontFamily: "Raleway-Bold" }}
+                    >
                       Finish
                     </Text>
                   </TouchableOpacity>
-                ):(
+                ) : (
                   <TouchableOpacity
-                    style={{ ...styles.modalButton, backgroundColor: "#ff6961"}}
+                    style={{
+                      ...styles.modalButton,
+                      backgroundColor: "#ff6961",
+                    }}
                     onPress={() => {
-                      setModalVisible(false)
-                      setQuizStarted(false)
-                      setQuestionsCorrect(0)
-                      setQuestionsAnswered(0)
+                      setModalVisible(false);
+                      setQuizStarted(false);
+                      setQuestionsCorrect(0);
+                      setQuestionsAnswered(0);
                     }}
                   >
-                    <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
+                    <Text
+                      style={{ color: "white", fontFamily: "Raleway-Bold" }}
+                    >
                       Retry Quiz
                     </Text>
                   </TouchableOpacity>
                 )
-              :null}
+              ) : null}
             </ScrollView>
           ) : noQuizError ? (
             <View style={styles.modalView}>
@@ -544,8 +615,8 @@ const LearnDetailScreen = ({ route, navigation }) => {
               <TouchableOpacity
                 style={{ ...styles.modalButton, backgroundColor: "#2980b9" }}
                 onPress={() => {
-                  setModalVisible(false)
-                  setQuizStarted(false)
+                  setModalVisible(false);
+                  setQuizStarted(false);
                 }}
               >
                 <Text style={{ color: "white", fontFamily: "Raleway-Bold" }}>
@@ -553,7 +624,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
                 </Text>
               </TouchableOpacity>
             </View>
-          ):(
+          ) : (
             <View style={styles.modalView}>
               <ActivityIndicator size="large" />
             </View>
@@ -593,6 +664,7 @@ const styles = StyleSheet.create({
   },
   body: {
     margin: 15,
+    fontSize: 16,
   },
   category: {
     marginHorizontal: 10,

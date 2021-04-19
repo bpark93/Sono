@@ -126,7 +126,7 @@ const LearnTestScreen = ({ route }) => {
                 Quit test
               </Button>
 
-              {questionsAnswered === pageInfo.count ? (
+              {questionsAnswered === parseInt(pageInfo.count) ? (
                 <Button
                   mode="contained"
                   color="green"
@@ -150,7 +150,7 @@ const LearnTestScreen = ({ route }) => {
                 marginBottom: reviewPressed ? 5 : 20,
               }}
             >
-              Your score is {Math.floor((numberCorrect / pageInfo.count) * 100)}
+              Your score is {Math.floor((numberCorrect / parseInt(pageInfo.count)) * 100)}
               %
             </Text>
             <View style={{ flexDirection: "row" }}>
@@ -349,7 +349,7 @@ const QuizQuestions = ({
         >
           {data.answers.map((answer) => (
             <View
-              key={answer}
+              key={answer.text}
               style={{
                 width: Width - 80,
                 borderRadius: 20,
@@ -359,8 +359,8 @@ const QuizQuestions = ({
               }}
             >
               <RadioButton.Item
-                value={answer}
-                label={answer}
+                value={answer.text}
+                label={answer.text}
                 labelStyle={{ width: Width - 150 }}
               />
             </View>
@@ -371,20 +371,20 @@ const QuizQuestions = ({
           <RadioButton.Group onValueChange={() => null} value={data.correct}>
             {data.answers.map((answer) => (
               <View
-                key={answer}
+                key={answer.text}
                 style={{
                   width: Width - 80,
                   borderRadius: 20,
                   backgroundColor: "#F5F5F5",
                   marginBottom: 10,
                   overflow: "hidden",
-                  borderWidth: answer === data.correct ? 3 : 0,
-                  borderColor: answer === data.correct ? "green" : null,
+                  borderWidth: answer.text === data.correct ? 3 : 0,
+                  borderColor: answer.text === data.correct ? "green" : null,
                 }}
               >
                 <RadioButton.Item
-                  value={answer}
-                  label={answer}
+                  value={answer.text}
+                  label={answer.text}
                   labelStyle={{
                     width: Width - 150,
                   }}
