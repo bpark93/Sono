@@ -394,7 +394,7 @@ const ImageLibrary = ({ page, id }) => {
                       marginHorizontal: 15,
                       flexDirection: "row",
                       borderBottomWidth: 0.5,
-                      borderColor: "gray",
+                      borderColor: "#E0E0E0",
                       padding: 8,
                     }}
                     key={ref.text}

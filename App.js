@@ -9,6 +9,7 @@ import {LearnScreen,
   LearnDetailScreen,
   SearchScreen,
   SearchDetailScreen,
+  SearchListScreen,
   BookmarkScreen,
   CasesDetailScreen,
   CasesListScreen,
@@ -290,6 +291,13 @@ function SearchNav() {
       <Search.Screen 
         name="SearchDetail" 
         component={SearchDetailScreen} 
+        options={{
+          title:'',
+        }}
+      />
+      <Search.Screen 
+        name="TutorialList" 
+        component={SearchListScreen} 
         options={{
           title:'',
         }}

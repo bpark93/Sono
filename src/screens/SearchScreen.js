@@ -5,8 +5,10 @@ import {
   Text,
   Keyboard,
   ScrollView,
-  AsyncStorage,
+  TouchableOpacity,
   Image,
+  Dimensions,
+  Platform,
 } from "react-native";
 import { Searchbar, Banner, ActivityIndicator } from "react-native-paper";
 import { FontAwesome } from "@expo/vector-icons";
@@ -17,8 +19,12 @@ import { RecentPages } from "../components/RecentPages";
 import Constants from "expo-constants";
 import firebase from "../components/firebase";
 import LibraryBookmarks from "../components/LibraryBookmarks";
+import { useNavigation } from "@react-navigation/native";
+
+const width = Dimensions.get("window").width;
 
 const SearchScreen = () => {
+  const navigation = useNavigation();
   const [layout, setLayout] = useState([]);
   useEffect(() => {
     firebase
@@ -30,7 +36,7 @@ const SearchScreen = () => {
         setLayout(doc.data());
       })
       .catch(function (error) {
-        console.log("Error getting List", error);
+        return;
       });
   }, []);
 
@@ -38,23 +44,7 @@ const SearchScreen = () => {
   const [searchApi, results, errorMessage] = useResults(layout);
 
   const searchbarRef = useRef(null);
-
-  const [bannerVisible, setBannerVisible] = useState(false);
-  const dismissForever = async () => {
-    await AsyncStorage.setItem("search_screen_banner_dismissed", "true");
-  };
-  useEffect(() => {
-    async function getBannerInfo() {
-      // AsyncStorage.removeItem("search_screen_banner_dismissed")
-      const bannerInfo = await AsyncStorage.getItem(
-        "search_screen_banner_dismissed"
-      );
-      bannerInfo === "true" ? setBannerVisible(false) : setBannerVisible(true);
-    }
-    getBannerInfo();
-  }, []);
-
-  const scrollRef = useRef(null)
+  const scrollRef = useRef(null);
 
   return layout.length !== 0 ? (
     <View style={styles.container}>
@@ -95,7 +85,7 @@ const SearchScreen = () => {
             placeholder="Search"
             value={term}
             onChangeText={(text) => {
-              scrollRef.current.scrollTo({x:0,y:0,animated:true})
+              scrollRef.current.scrollTo({ x: 0, y: 0, animated: true });
               searchApi(text);
               setTerm(text);
             }}
@@ -125,6 +115,56 @@ const SearchScreen = () => {
         ) : (
           <>
             {/* <LibraryBookmarks layout={layout} /> */}
+            <View
+              style={{
+                flexDirection: "row",
+                marginHorizontal: 15,
+                marginTop: 15,
+              }}
+            >
+              <TouchableOpacity
+                style={{ ...styles.buttonStyle, backgroundColor: "#1e3d59" }}
+                onPress={() => navigation.navigate("TutorialList", {listId: "rapidreviews"})}
+                activeOpacity={0.6}
+              >
+                <Image
+                  source={{
+                    uri:
+                      "https://res.cloudinary.com/dwtw3ge2z/image/upload/v1618899537/Misc/ultrasound-machine_cecazk.png",
+                  }}
+                  style={{
+                    width: 40,
+                    height: 50,
+                    resizeMode: "contain",
+                    marginRight: 5,
+                  }}
+                />
+                <Text style={{ ...styles.buttonTextStyle, color: "#f5f0e1" }}>
+                  Tutorials
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{ ...styles.buttonStyle, backgroundColor: "#f5f0e1" }}
+                onPress={() => navigation.navigate("TutorialList", {listId: "tools"})}
+                activeOpacity={0.6}
+              >
+                <Image
+                  source={{
+                    uri:
+                      "https://res.cloudinary.com/dwtw3ge2z/image/upload/v1618899872/Misc/calculator_hsnz9t.png",
+                  }}
+                  style={{
+                    width: 35,
+                    height: 50,
+                    resizeMode: "contain",
+                    marginRight: 5,
+                  }}
+                />
+                <Text style={{ ...styles.buttonTextStyle, color: "#1e3d59" }}>
+                  Tools
+                </Text>
+              </TouchableOpacity>
+            </View>
             <RecentPages layout={layout} />
             <CategoriesList layout={layout} />
           </>
@@ -171,6 +211,21 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: 18,
     color: "black",
+  },
+  buttonStyle: {
+    overflow: "hidden",
+    width: (width - 40) / 2,
+    borderRadius: 20,
+    marginRight: 5,
+    padding: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonTextStyle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    fontFamily: Platform.OS === "android" ? "Roboto-Regular" : null,
   },
 });
 

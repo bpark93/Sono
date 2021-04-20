@@ -8,38 +8,38 @@ const ShortSummary = ({ data }) => {
   return (
       
     <View style={{ flex: 1, marginHorizontal: 15 }}>
-      <View style={styles.row}>
+      {data.purpose ? <View style={styles.row}>
         <Text style={styles.category}>Purpose</Text>
         <Text style={styles.text}>{data.purpose}</Text>
-      </View>
-      <View style={styles.row}>
+      </View>:null}
+      {data.probe ? <View style={styles.row}>
         <Text style={styles.category}>Probe</Text>
         <Text style={styles.text}>{data.probe}</Text>
-      </View>
-      <View style={styles.row}>
+      </View>:null}
+      {data.preset ? <View style={styles.row}>
         <Text style={styles.category}>Preset</Text>
         <Text style={styles.text}>{data.preset}</Text>
-      </View>
-      <View style={styles.row}>
+      </View>:null}
+      {data.patient_position ? <View style={styles.row}>
         <Text style={styles.category}>{`Patient\nPosition`}</Text>
         <Text style={styles.text}>{data.patient_position}</Text>
-      </View>
-      <View style={styles.row}>
+      </View>:null}
+      {data.probe_position ? <View style={styles.row}>
         <Text style={styles.category}>{`Probe\nPosition`}</Text>
         <Text style={styles.text}>{data.probe_position}</Text>
-      </View>
-      <View style={styles.row}>
+      </View>:null}
+      {data.sono_landmark ? <View style={styles.row}>
         <Text style={styles.category}>{`Sonographic\nLandmark`}</Text>
         <Text style={styles.text}>{data.sono_landmark}</Text>
-      </View>
-      <View style={styles.row}>
+      </View>:null}
+      {data.areas_of_interest ? <View style={styles.row}>
         <Text style={styles.category}>{`Areas of\nInterest`}</Text>
         <Text style={styles.text}>{data.areas_of_interest}</Text>
-      </View>
-      <View style={styles.row}>
+      </View>:null}
+      {data.interpretation ? <View style={styles.row}>
         <Text style={styles.category}>{`Interpretation`}</Text>
         <Text style={styles.text}>{data.interpretation}</Text>
-      </View>
+      </View>:null}
     </View>
   );
 };
@@ -59,10 +59,12 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
     width:width*.32,
     borderRadius:10,
+    fontSize:14
   },
   text: {
     alignSelf: "flex-start",
     paddingVertical: 10,
+    fontSize:16,
     color:'black',
     flex:1
   },

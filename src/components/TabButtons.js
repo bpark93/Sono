@@ -2,7 +2,7 @@ import React from "react";
 import { View, TouchableOpacity, Text } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const TabButtons = ({ activeIndex, setActiveIndex, settings }) => {
+const TabButtons = ({ activeIndex, setActiveIndex, settings, scrollviewRef }) => {
   return (
     <View
       style={{
@@ -19,10 +19,15 @@ const TabButtons = ({ activeIndex, setActiveIndex, settings }) => {
           style={{
             alignItems: "center",
             flex: 1,
-            borderBottomWidth: activeIndex === item.name ? 2 : 0,
-            borderBottomColor: "#4f2683",
+            borderBottomWidth: activeIndex === item.name ? 2 : 0.5,
+            borderBottomColor: activeIndex === item.name ? "#4f2683" : "#E0E0E0",
           }}
-          onPress={() => setActiveIndex(item.name)}
+          onPress={() => {
+            setActiveIndex(item.name)
+            if (scrollviewRef) {
+              scrollviewRef.current.scrollTo({x:0,y:0,animated:false})
+            }
+          }}
           key={item.name}
         >
           <MaterialCommunityIcons
