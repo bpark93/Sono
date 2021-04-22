@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, AsyncStorage, Platform } from 'react-native'
+import {View, AsyncStorage, Platform, } from 'react-native'
 import { Provider as PaperProvider, DefaultTheme, ActivityIndicator } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -39,6 +39,7 @@ const Settings = createStackNavigator();
 
 function App() {
 
+  // YellowBox.ignoreWarnings(['Setting a timer'])
   const [first, setFirst] = useState(null);
   useEffect(()=> {
     async function fetchData() {

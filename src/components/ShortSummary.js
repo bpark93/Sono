@@ -1,72 +1,86 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 
-const {width} = Dimensions.get('window')
+const { width } = Dimensions.get("window");
 
 const ShortSummary = ({ data }) => {
-
   return (
-      
     <View style={{ flex: 1, marginHorizontal: 15 }}>
-      {data.purpose ? <View style={styles.row}>
-        <Text style={styles.category}>Purpose</Text>
-        <Text style={styles.text}>{data.purpose}</Text>
-      </View>:null}
-      {data.probe ? <View style={styles.row}>
-        <Text style={styles.category}>Probe</Text>
-        <Text style={styles.text}>{data.probe}</Text>
-      </View>:null}
-      {data.preset ? <View style={styles.row}>
-        <Text style={styles.category}>Preset</Text>
-        <Text style={styles.text}>{data.preset}</Text>
-      </View>:null}
-      {data.patient_position ? <View style={styles.row}>
-        <Text style={styles.category}>{`Patient\nPosition`}</Text>
-        <Text style={styles.text}>{data.patient_position}</Text>
-      </View>:null}
-      {data.probe_position ? <View style={styles.row}>
-        <Text style={styles.category}>{`Probe\nPosition`}</Text>
-        <Text style={styles.text}>{data.probe_position}</Text>
-      </View>:null}
-      {data.sono_landmark ? <View style={styles.row}>
-        <Text style={styles.category}>{`Sonographic\nLandmark`}</Text>
-        <Text style={styles.text}>{data.sono_landmark}</Text>
-      </View>:null}
-      {data.areas_of_interest ? <View style={styles.row}>
-        <Text style={styles.category}>{`Areas of\nInterest`}</Text>
-        <Text style={styles.text}>{data.areas_of_interest}</Text>
-      </View>:null}
-      {data.interpretation ? <View style={styles.row}>
-        <Text style={styles.category}>{`Interpretation`}</Text>
-        <Text style={styles.text}>{data.interpretation}</Text>
-      </View>:null}
+      {data.purpose ? (
+        <Row rowName="Purpose" rowContent={data.purpose} />
+      ) : null}
+      {data.probe ? <Row rowName="Probe" rowContent={data.probe} /> : null}
+      {data.preset ? <Row rowName="Preset" rowContent={data.preset} /> : null}
+      {data.patient_position ? (
+        <Row rowName={`Patient\nPosition`} rowContent={data.patient_position} />
+      ) : null}
+      {data.probe_position ? (
+        <Row rowName={`Probe\nPosition`} rowContent={data.probe_position} />
+      ) : null}
+      {data.sono_landmark ? (
+        <Row
+          rowName={`Sonographic\nLandmark`}
+          rowContent={data.sono_landmark}
+        />
+      ) : null}
+      {data.areas_of_interest ? (
+        <Row
+          rowName={`Areas of\nInterest`}
+          rowContent={data.areas_of_interest}
+          format={Array.isArray(data.areas_of_interest) ? "array" : null}
+        />
+      ) : null}
+      {data.interpretation ? (
+        <Row
+          rowName="Interpretation"
+          rowContent={data.interpretation}
+          format={Array.isArray(data.interpretation) ? "array" : null}
+        />
+      ) : null}
     </View>
   );
 };
+
+const Row = ({ rowName, rowContent, format }) => (
+  <View style={styles.row}>
+    <Text style={styles.category}>{rowName}</Text>
+    {format === "array" ? (
+      <View style={{ flex: 1, paddingBottom:10 }}>
+        {rowContent.map((page) => (
+          <Text style={{...styles.text, paddingTop:10, paddingBottom:0, fontSize:14}} key={page.text}>
+            {`\u2023 ${page.text}`}
+          </Text>
+        ))}
+      </View>
+    ) : (
+      <Text style={styles.text}>{rowContent}</Text>
+    )}
+  </View>
+);
 
 const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     flex: 1,
-    marginVertical:5,
-    borderBottomWidth:1,
-    borderColor:'#F0F0F0'
+    paddingVertical: 5,
+    borderBottomWidth: 1,
+    borderColor: "#F0F0F0",
   },
   category: {
     color: "#4f2683",
     padding: 10,
     alignSelf: "flex-start",
-    fontWeight:'bold',
-    width:width*.32,
-    borderRadius:10,
-    fontSize:14
+    fontWeight: "bold",
+    width: width * 0.32,
+    borderRadius: 10,
+    fontSize: 14,
   },
   text: {
     alignSelf: "flex-start",
     paddingVertical: 10,
-    fontSize:16,
-    color:'black',
-    flex:1
+    fontSize: 16,
+    color: "black",
+    flex: 1,
   },
 });
 
