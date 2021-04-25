@@ -24,7 +24,7 @@ const BookmarkScreen = () => {
         setLayout(doc.data());
       })
       .catch(function (error) {
-        console.log("Error getting List", error);
+        return;
       });
   }, []);
 

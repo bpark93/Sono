@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Text,
   Dimensions,
+  Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import ContentLoader, { Rect, Circle } from "react-content-loader/native";
@@ -31,13 +32,11 @@ const Cases = () => {
         setLoading(false);
       })
       .catch(function (error) {
-        console.log("Error getting List", error);
+        setErrorMessage("There was a problem getting the cases. Please restart the app.", error);
       });
   }, []);
 
-  const { width, height } = Dimensions.get("window");
-
-  // const [activeSlide, setActiveSlide] = useState(0);
+  const { width } = Dimensions.get("window");
 
   return (
     <View style={styles.container}>
@@ -49,13 +48,34 @@ const Cases = () => {
             activeOpacity={0.8}
             style={styles.next}
           >
-            <Text style={{ fontWeight: "bold", padding: 5, }}>
+            <Text style={{ fontWeight: "bold", padding: 10, }}>
               See All Cases
             </Text>
           </TouchableOpacity>
         )}
       </View>
-      {loading ? (
+      {!loading ? (
+        <View>
+          <Carousel
+            data={results}
+            renderItem={({ item, index }) => (
+              <TouchableOpacity
+                onPress={() => navigation.navigate("CasesDetail", { id: item })}
+                activeOpacity={0.8}
+              >
+                <CasesCard item={item} />
+              </TouchableOpacity>
+            )}
+            sliderWidth={width}
+            itemWidth={width * 0.85}
+            removeClippedSubviews={false}
+          />
+        </View>
+      ) : errorMessage ? (
+        <View style={{...styles.container, alignItems:'center', justifyContent:'center'}}>
+          <Text style={{fontSize:16}}>{errorMessage}</Text>
+        </View>
+      ) : (
         <ContentLoader
           speed={1.2}
           width={width * 0.75}
@@ -72,29 +92,6 @@ const Cases = () => {
           <Rect x="15" y="210" rx="0" ry="0" width={width * 0.6} height="10" />
           <Rect x="15" y="225" rx="0" ry="0" width={width * 0.6} height="10" />
         </ContentLoader>
-      ) : (
-        <View>
-          <Carousel
-            // layout="stack"
-            data={results}
-            renderItem={({ item, index }) => (
-              <TouchableOpacity
-                onPress={() => navigation.navigate("CasesDetail", { id: item })}
-                activeOpacity={0.8}
-              >
-                <CasesCard item={item} />
-              </TouchableOpacity>
-            )}
-            sliderWidth={width}
-            itemWidth={width * 0.85}
-            removeClippedSubviews={false}
-            // onSnapToItem={(index) => setActiveSlide(index)}
-          />
-          {/* <Pagination
-            dotsLength={results.length}
-            activeDotIndex={activeSlide}
-          /> */}
-        </View>
       )}
     </View>
   );
@@ -106,12 +103,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    // fontFamily: "Raleway-Bold",
+    fontFamily: Platform.OS === "android" ? "Roboto-Regular" : null,
     fontWeight: "bold",
-    fontSize: 22,
+    fontSize: 24,
     marginLeft: 15,
-    marginRight:1,
-    width:75
+    marginRight:5,
+    paddingVertical:5,
   },
   loadingContainer: {
     alignItems: "center",

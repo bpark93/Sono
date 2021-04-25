@@ -330,13 +330,11 @@ const styles = StyleSheet.create({
   },
   body: {
     marginHorizontal: 15,
-    // fontFamily: "Lora-Regular",
     fontSize: 16,
   },
   category: {
     marginHorizontal: 10,
     fontSize: 20,
-    // fontFamily: "Raleway-Regular",
     color: "#4f2683",
   },
   container: {

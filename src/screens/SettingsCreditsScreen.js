@@ -24,13 +24,10 @@ const SettingsAboutScreen = () => {
       title:
         "Medical Student Class of 2023, Schulich School of Medicine and Dentistry, Western University",
       pictureUrl:
-        // "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1600485731/avatars/brian-800x600_vhvyo3.jpg",
         "https://res.cloudinary.com/dwtw3ge2z/image/upload/g_face,c_thumb,w_300,h_300/v1617951173/avatars/1617492196574-14_lferdw.jpg",
       blurb:
-        // "Brian is a Medical Student at Western University with interests in ultrasound guided procedures and Emergency Medicine. He developed a keen interest in point of care ultrasound through his research with faculty at WesternSono where he was able to see firsthand how bedside ultrasound is transforming the practice of acute medicine. In an effort to create a free and open resource for POCUS education, Brian spent his lockdown downtime on combining two of his passions (Programming and POCUS) to create Sono. \n\nWhen not dreaming about dynamic air bronchograms and regional wall motion abnormalities, Brian enjoys cooking, snowboarding and spending time with his niece and nephew. He is also a fan of waking up early in the morning to watch his favorite football team Tottenham Hotspur lose yet another premier league game.",
         "Brian is a Medical Student at Western University with interests in ultrasound guided procedures and Emergency Medicine. After stumbling upon Dr. Myslik and the faculty at WesternSono, he was instantly hooked on the immense utility and broad applicability of ultrasound at the point of care. In an effort to share his newfound passion, Brian spent his lockdown downtime combining ultrasound with another passion of his (software development) to create the free and open resource that is currently in your hands. When he's not nerding out over ultrasound clips or pixel nudging Sono to perfection, Brian enjoys cooking, snowboarding and crafting new creative excuses for his underperforming Tottenham Hotspur FC.",
       twitter: "_brianpark",
-      // email: "sono.app.contact@gmail.com",
       shortName: "Brian",
     },
     {
@@ -61,7 +58,7 @@ const SettingsAboutScreen = () => {
       title:
         "MD, CCFP-EM, Acute Care POCUS Fellow, Department of Emergency Medicine, Western University",
       pictureUrl:
-        "https://res.cloudinary.com/dwtw3ge2z/image/upload/v1616906695/avatars/user_ynm3wo.png",
+        "https://res.cloudinary.com/dwtw3ge2z/image/upload/c_fill_pad,g_auto,b_auto,w_300,h_300/v1619126586/avatars/Jason_Lam_usz8p3.jpg",
       role: "Content Editor",
     },
 

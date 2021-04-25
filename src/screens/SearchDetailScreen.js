@@ -3,7 +3,6 @@ import { View, Text } from "react-native";
 import RapidReviews from "../components/RapidReviews";
 import ImageLibrary from "../components/ImageLibrary";
 import ReferenceDocument from "../components/ReferenceDocument"
-import DiagnosticAlgorithm from "../components/DiagnosticAlgorithm"
 import { setList } from "../components/RecentPages";
 import firebase from "../components/firebase";
 import {ActivityIndicator} from 'react-native-paper'
@@ -45,11 +44,9 @@ const SearchDetailScreen = ({ route }) => {
         ) : pageInfo.type === "image" ? (
           //Image library
           <ImageLibrary page={pageInfo} id={id}/>
-        ) : pageInfo.type === "resource" ? (
-          <ReferenceDocument page={pageInfo} id={id}/>
         ) : (
-          <DiagnosticAlgorithm page={pageInfo} id={id}/>
-        )
+          <ReferenceDocument page={pageInfo} id={id}/>
+        ) 
       ) : (
         <View style={{flex:1, backgroundColor:'white', justifyContent:'center', alignItems:'center'}}>
           <ActivityIndicator size="large" />

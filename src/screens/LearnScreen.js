@@ -1,10 +1,9 @@
 import React from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
+import { View, StyleSheet, Text, Image, FlatList } from "react-native";
 import { learnDatabase } from "../../database";
 import LearnItem from "../components/LearnItem";
 import Cases from "../components/Cases";
 import Constants from "expo-constants";
-import { FlatList } from "react-native-gesture-handler";
 
 const LearnScreen = () => {
   return (
@@ -61,9 +60,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   header: {
-    // fontFamily: "Raleway-Bold",
     fontWeight: "bold",
-    fontSize: 22,
+    fontSize: 24,
     marginHorizontal: 15,
   },
 });

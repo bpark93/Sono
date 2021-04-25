@@ -8,7 +8,6 @@ import {
   Dimensions,
 } from "react-native";
 import { ActivityIndicator, Avatar, Menu } from "react-native-paper";
-import wpServer from "../api/wpServer";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import firebase from "../components/firebase";
@@ -39,7 +38,7 @@ const CasesListScreen = ({ route }) => {
         setFullyLoaded(true);
       })
       .catch(function (error) {
-        console.log("Error getting List", error);
+        return;
       });
   }
 

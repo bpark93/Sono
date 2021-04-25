@@ -55,17 +55,10 @@ function App() {
     async function loadFonts() {
       await Font.loadAsync({
         'Raleway-Regular': require('./assets/fonts/Raleway/Raleway-Regular.ttf'),
-        'Raleway-Medium': require('./assets/fonts/Raleway/Raleway-Medium.ttf'),
-        'Raleway-Thin': require('./assets/fonts/Raleway/Raleway-Thin.ttf'),
-        'Raleway-Light': require('./assets/fonts/Raleway/Raleway-Light.ttf'),
         'Raleway-Bold': require('./assets/fonts/Raleway/Raleway-Bold.ttf'),
         'Roboto-Black': require('./assets/fonts/Roboto/Roboto-Black.ttf'),
         'Roboto-Regular': require('./assets/fonts/Roboto/Roboto-Regular.ttf'),
-        'Roboto-Medium': require('./assets/fonts/Roboto/Roboto-Medium.ttf'),
-        'Roboto-Light': require('./assets/fonts/Roboto/Roboto-Light.ttf'),
         'Roboto-Bold': require('./assets/fonts/Roboto/Roboto-Bold.ttf'),
-        'Lora-Regular': require('./assets/fonts/Lora/Lora-Regular.ttf'),
-        'Lora-Bold': require('./assets/fonts/Lora/Lora-Bold.ttf')
       })
       setFontLoaded(true);
     }
@@ -140,7 +133,7 @@ function App() {
     )
   }
   
-  if (first) { // FIX BACK TO FIRST WHEN DONE DEVLOPING
+  if (first) {
     if (Platform.OS != "web"){
       return <Onboarding onDoneClick={(firstBool) => setFirst(firstBool)}/>
     } else {
@@ -174,7 +167,7 @@ function App() {
           }} 
         />
         <Main.Screen 
-          name="Library" //CHANGED FROM SEARCH
+          name="Library"
           component={SearchNav} 
           options={{
             tabBarIcon: ({color}) => (

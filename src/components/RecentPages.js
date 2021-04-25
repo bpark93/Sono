@@ -40,9 +40,6 @@ const RecentPages = ({ layout }) => {
         setList(finalList);
       }
       getData();
-      // const unsubscribe = navigation.addListener('focus', () => {
-      //     getData()
-      // })
       return () => {
         isActive = false;
       };
@@ -83,12 +80,11 @@ const initializeRecentPages = async () => {
   try {
     const initialized = await AsyncStorage.getItem(RECENT);
     if (initialized === null) {
-      await AsyncStorage.setItem(RECENT, "empty"); // Why do this?
+      await AsyncStorage.setItem(RECENT, "empty"); 
       return false;
     }
     return true;
-  } catch (e) {
-    console.log(e);
+  } catch (e) {;
     return false;
   }
 };
@@ -102,7 +98,7 @@ const getList = async () => {
     const listArray = pagesList.split(",");
     return listArray;
   } catch (e) {
-    console.log(e);
+    return;
   }
 };
 
@@ -125,36 +121,36 @@ const setList = async (id) => {
       await AsyncStorage.setItem(RECENT, newListString);
     }
   } catch (e) {
-    console.log(e);
+    return;
   }
 };
 
 const colorPicker = (category) => {
   switch (category) {
     case "Trauma":
-      return "#e51c23"; // Material Red
+      return "#e51c23"; 
     case "Soft Tissue MSK":
-      return "#ffc764"; // Material Red
+      return "#ffc764"; 
     case "Skin":
-      return "#fce9db"; // Material Red
+      return "#fce9db"; 
     case "Head and Neck":
-      return "#a8e6cf"; // Material Red
+      return "#a8e6cf"; 
     case "Cardiac":
-      return "#e36387"; // Material Deep Orange
+      return "#e36387";
     case "Vascular":
-      return "#FF6961"; // Material Deep Orange
+      return "#FF6961";
     case "Lung and Pleura":
-      return "#a6dcef"; // Material Indigo
+      return "#a6dcef"; 
     case "Abdominal":
-      return "#7FACD6"; // Material Blue
+      return "#7FACD6"; 
     case "Genitourinary":
-      return "#BFB8DA"; // Material Green
+      return "#BFB8DA";
     case "Procedural":
-      return "#A5678E"; // Material Cyan
+      return "#A5678E"; 
     case "OB/Gyn":
-      return "#f2aaaa"; // Material Pink
+      return "#f2aaaa"; 
     case "Pediatric":
-      return "#ff99cc"; // Material Pink
+      return "#ff99cc"; 
     default:
       return "#4f2683";
   }
@@ -185,7 +181,6 @@ const styles = StyleSheet.create({
   subheaderStyle: {
     marginVertical: 15,
     fontSize: 20,
-    // fontFamily: "Raleway-Bold",
     fontWeight: "bold",
   },
   category: {
@@ -196,8 +191,6 @@ const styles = StyleSheet.create({
     textAlign:'center'
   },
   categoryView: {
-    // borderColor: "#4f2683",
-    // borderWidth: 2,
     borderRadius: 5,
     backgroundColor: "#4f2683",
     padding: 5,

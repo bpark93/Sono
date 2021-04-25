@@ -75,13 +75,6 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     overflow: "hidden",
   },
-  title: {
-    marginHorizontal: 15,
-    alignSelf: "center",
-    fontSize: 20,
-    fontFamily: "Raleway-Light",
-    color: "black",
-  },
 });
 
 export default SnapCarousel;

@@ -7,7 +7,6 @@ const addNote = async (id, content, timestamp) => {
     try {
         let notesList = await getNotes(id)
         if (notesList===[]){
-            // Start a new array
             const newList = {
                 time: Math.floor(timestamp),
                 note: content
@@ -25,7 +24,7 @@ const addNote = async (id, content, timestamp) => {
         }
     }
     catch (error){
-        console.log(error)
+        return;
     }
 }
 
@@ -38,30 +37,26 @@ const deleteNote = async (id, note) => {
         await AsyncStorage.setItem(`learn_notes_${id}`, newListString)
     }
     catch(error){
-        console.log(error)
+        return;
     }
 }
 
 const editNote = async (id, note, time, original) => {
     try{
-        console.log('hi')
         let notesList = await getNotes(id)
         const originalString = JSON.stringify(original)
-        console.log(originalString)
         const newString = JSON.stringify({time:time, note:note})
-        console.log(newString)
         const filteredNoteArray = notesList.map(item => {
             if (item===originalString){
                 return newString
             }
             else {return item}
         })
-        console.log(filteredNoteArray)
         const newListString = filteredNoteArray.join(endOfNoteIndicator);
         await AsyncStorage.setItem(`learn_notes_${id}`, newListString)
     }
     catch(error){
-        console.log(error)
+        return;
     }
 }
 
@@ -77,7 +72,7 @@ const getNotes = async (id) => {
         }
     }
     catch(error){
-        console.log(error)
+        return;
     }
 }
 

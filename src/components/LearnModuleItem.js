@@ -67,7 +67,6 @@ const LearnModuleItem = ({ page, category }) => {
               fontFamily: Platform.OS === "android" ? pressed ? "Roboto-Bold" : "Roboto-Regular" : null,
               fontWeight: Platform.OS === "android" ? null : pressed ? "bold" : "normal",
               fontSize: 16,
-              // width: width*.85,
               marginHorizontal: 20,
               color: page.youtube != "pending" ? null : "#C0C0C0"
             }}

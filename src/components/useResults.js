@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Fuse from 'fuse.js'
-import {database} from '../../database'
 
 export default (layout) => {
     const [results, setResults] = useState([]);

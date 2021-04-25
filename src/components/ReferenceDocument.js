@@ -164,7 +164,7 @@ const ReferenceDocument = ({ page, id }) => {
                     <HTML
                       html={section.body}
                       containerStyle={{ flex: 1, margin: 10 }}
-                      baseFontStyle={{ fontFamily: "Roboto-Regular" }}
+                      baseFontStyle={{ fontFamily: "Roboto-Regular", }}
                       imagesMaxWidth={width-100}
                     />
                   </View>
@@ -178,6 +178,7 @@ const ReferenceDocument = ({ page, id }) => {
                         style={{
                           borderBottomColor: "#E0E0E0",
                           borderBottomWidth: 0.5,
+                          paddingVertical:10
                         }}
                       >
                         <View
@@ -216,8 +217,8 @@ const ReferenceDocument = ({ page, id }) => {
                       </View>
                     ))}
                     {section.caveats ? (
-                      <View style={{ marginBottom: 10 }}>
-                        <Text style={{ ...styles.header, fontSize: 18 }}>
+                      <View style={{paddingVertical:10}}>
+                        <Text style={{ ...styles.header, fontSize: 22 }}>
                           Caveats
                         </Text>
                         {section.caveats.map((caveat) => (
@@ -283,7 +284,7 @@ const ReferenceDocument = ({ page, id }) => {
                   marginTop: 20,
                   flexDirection: "row",
                   borderBottomWidth: 0.5,
-                  borderColor: "gray",
+                  borderColor: "#F0F0F0",
                   paddingBottom: 5,
                 }}
                 key={ref.text}
@@ -326,7 +327,7 @@ const ReferenceDocument = ({ page, id }) => {
               >
                 <Text
                   style={{
-                    width: 120,
+                    width: 100,
                     fontWeight: "bold",
                     fontFamily: Platform.OS === "android" ? "Roboto-Regular" : null,
                     marginHorizontal: 10,
@@ -461,7 +462,7 @@ const Calculator = ({ settings }) => {
 
   return (
     <View style={styles.card}>
-      <Text style={{ ...styles.header, fontSize: 20 }}>{settings.title}</Text>
+      <Text style={{ ...styles.header, fontSize: 20, paddingBottom:20 }}>{settings.title}</Text>
 
       {settings.formulaImage ? <Image
         resizeMode="contain"
@@ -687,31 +688,27 @@ const styles = StyleSheet.create({
   header: {
     fontWeight: "bold",
     fontFamily: Platform.OS === "android" ? "Roboto-Regular" : null,
-    fontSize: 24,
+    fontSize: 32,
     marginVertical: 10,
     marginHorizontal: 10,
   },
   container: {
-    backgroundColor: "#F0F0F0",
+    backgroundColor: "white",
     flex: 1,
   },
   paragraph: {
-    fontFamily: "Roboto-Regular",
-    fontSize: 14,
+    fontSize: 16,
     margin: 10,
   },
   card: {
     borderRadius: 20,
-    marginHorizontal: 10,
-    marginVertical: 10,
-    padding: 5,
-    backgroundColor: "#FDFDFD",
-    elevation: 3,
-    shadowOffset: {
-      width: -3,
-      height: 3,
-    },
-    shadowOpacity: 0.1,
+    paddingHorizontal: 10,
+    paddingTop:10,
+    paddingBottom:20,
+    marginBottom: 15,    
+    backgroundColor: "white",
+    borderBottomColor:'#F0F0F0',
+    borderBottomWidth:1
   },
   touchable: {
     color: "#2b59a2",

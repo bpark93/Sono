@@ -11,7 +11,6 @@ const TabButtons = ({ activeIndex, setActiveIndex, settings, scrollviewRef }) =>
         paddingTop: 10,
         backgroundColor: "white",
         elevation: 1,
-        // Need to add for iOS
       }}
     >
       {settings.map((item) => (

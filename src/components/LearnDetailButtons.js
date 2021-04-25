@@ -76,7 +76,6 @@ const LearnDetailButtons = ({
           style={styles.touchable}
           onPress={() => {
             transcriptToggle();
-            // noteToggle();
           }}
         >
           <MaterialCommunityIcons

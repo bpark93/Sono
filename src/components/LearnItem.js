@@ -7,14 +7,15 @@ import {
   Image,
   ImageBackground
 } from "react-native";
+
 import { useNavigation } from "@react-navigation/native";
+import {colorPicker} from "./RecentPages"
 
 const LearnItem = ({ item }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate("Modules", { id: item })}
-      // activeOpacity={0.8}
       style={styles.moduleStyle}
     >
       <Image
@@ -34,7 +35,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius:30,
     height:120,
-    // width:120,
     margin: 10,
     alignItems:'center',
     justifyContent:'center',
@@ -44,17 +44,14 @@ const styles = StyleSheet.create({
       height:2
     },
     shadowRadius:2,
-    elevation:2
+    elevation:2,
   },
   iconStyle: {
     width: 75,
     height: 75,
-    // overflow:'hidden'
   },
   textStyle: {
-    // fontFamily: "Raleway-Regular",
     fontSize: 14,
-    // fontWeight:'bold',
     marginTop:5,
   },
 });

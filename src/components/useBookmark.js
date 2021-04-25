@@ -12,7 +12,7 @@ const setBookmark = async (pageId, source) => {
       const newListString = oldListArray.toString();
       await AsyncStorage.setItem(BOOKMARK, newListString);
     } catch {
-      console.log(e);
+      return;
     }
   } else if (source === "lib") {
     try {
@@ -27,7 +27,7 @@ const setBookmark = async (pageId, source) => {
         await AsyncStorage.setItem(LIBRARYBOOKMARKS, newListString);
       }
     } catch (e) {
-      console.log(e);
+      return;
     }
   }
 };
@@ -41,7 +41,7 @@ const removeBookmark = async (pageId, source) => {
       const newListString = newArray.toString();
       await AsyncStorage.setItem(BOOKMARK, newListString);
     } catch {
-      console.log(e);
+      return;
     }
   } else if (source === "lib") {
     try {
@@ -51,7 +51,7 @@ const removeBookmark = async (pageId, source) => {
       const newListString = newArray.toString();
       await AsyncStorage.setItem(LIBRARYBOOKMARKS, newListString);
     } catch {
-      console.log(e);
+      return;
     }
   }
 };
@@ -66,7 +66,7 @@ const getBookmark = async (source) => {
       const listArray = bookmarkList.split(",");
       return listArray;
     } catch (error) {
-      console.log(error);
+      return;
     }
   } else if (source === "lib") {
     try {
@@ -77,7 +77,7 @@ const getBookmark = async (source) => {
       const listArray = bookmarkList.split(",");
       return listArray;
     } catch (error) {
-      console.log(error);
+      return;
     }
   }
 };
@@ -93,7 +93,6 @@ const initializeBookmark = async () => {
     }
     return true;
   } catch (e) {
-    console.log(e);
     return false;
   }
 };

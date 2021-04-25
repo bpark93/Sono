@@ -10,7 +10,6 @@ import {
   Image as RNImage,
   Linking,
 } from "react-native";
-// import ImageModal from "react-native-image-modal";
 import { Image } from "react-native-expo-image-cache";
 import { Video } from "expo-av";
 import LibraryChip from "../components/LibraryChip";
@@ -151,11 +150,11 @@ const ImageLibrary = ({ page, id }) => {
                 style={{
                   backgroundColor: "white",
                   paddingHorizontal: 15,
-                  // height: hidePressed ? page.key_features.length > 2 ? 200 : null : null,
                   overflow: "hidden",
                 }}
                 onPress={() => setHidePressed(!hidePressed)}
                 activeOpacity={0.5}
+                disabled={page.key_features.length <= 3}
               >
                 <Text
                   style={{
@@ -170,13 +169,11 @@ const ImageLibrary = ({ page, id }) => {
                   ? hidePressed
                     ? page.key_features
                         .slice(0, 3)
-                        // .filter((tip) => tip.pnp === "Pearl")
                         .map((tip) => (
                           <View
                             style={{
                               flexDirection: "row",
                               marginVertical: 3,
-                              // alignItems: "center",
                             }}
                             key={tip.text}
                           >
@@ -195,8 +192,6 @@ const ImageLibrary = ({ page, id }) => {
                               style={{
                                 flex: 1,
                                 marginLeft: 6,
-                                // fontFamily: "Roboto-Regular",
-                                // color: "gray",
                                 fontSize: 14,
                                 lineHeight: 17,
                               }}
@@ -235,38 +230,6 @@ const ImageLibrary = ({ page, id }) => {
                         </View>
                       ))
                   : null}
-                {/* {page.key_features
-                ? page.key_features
-                    .filter((tip) => tip.pnp === "Pitfall")
-                    .map((tip) => (
-                      <View
-                        style={{
-                          flexDirection: "row",
-                          // justifyContent: "space-between",
-                          marginVertical: 2,
-                          // alignItems: "center",
-                        }}
-                        key={tip.text}
-                      >
-                        <MaterialCommunityIcons
-                          name="minus-circle"
-                          size={24}
-                          color="#e74c3c"
-                        />
-                        <Text
-                          style={{
-                            flex: 1,
-                            marginLeft: 6,
-                            // fontFamily: "Roboto-Regular",
-                            // color: "gray",
-                            fontSize: 14,
-                          }}
-                        >
-                          {tip.text}
-                        </Text>
-                      </View>
-                    ))
-                : null} */}
               </TouchableOpacity>
               {page.key_features.length > 3 ? <TouchableOpacity
                 style={{
@@ -300,7 +263,7 @@ const ImageLibrary = ({ page, id }) => {
                     `mailto:sono.app.contact@gmail.com?subject=Issue with "${page.title}" - ${page.category}&body=Describe the issue: \n\nTo reproduce (Steps to reproduce the behavior): \n\nExpected Behavior: \n\nScreenshots: \n\nSmartphone (Device, OS + version): \n\nAdditional Context: `
                   )
                 }
-                style={{ paddingHorizontal: 15, alignSelf: "center", alignItems:'center', flexDirection:'row', justifyContent:'center'}}
+                style={{ marginTop:5, paddingHorizontal: 15, alignSelf: "center", alignItems:'center', flexDirection:'row', justifyContent:'center'}}
               >
                 <MaterialCommunityIcons name="alert-circle-outline" size={20} color="#A55858" />
                 <Text style={{ color: "#A55858", marginLeft:5 }}>Report an Issue</Text>
@@ -312,43 +275,6 @@ const ImageLibrary = ({ page, id }) => {
           <View style={{ marginVertical: 15 }}>
             <Text style={styles.header}>{item.title}</Text>
             {Array.isArray(item.url) ? (
-              // <ScrollView
-              //   horizontal={true}
-              //   snapToInterval={width}
-              //   decelerationRate="fast"
-              //   showsHorizontalScrollIndicator={true}
-              //   pagingEnabled={true}
-              // >
-              //   {item.url.map((imageArrayItem) => (
-              //     <View key={imageArrayItem.url}>
-              //       {imageArrayItem.format === "Image" ? (
-              //         <Image
-              //           resizeMode="contain"
-              //           imageBackgroundColor="#000000"
-              //           style={{
-              //             width: width,
-              //             height: width * 0.75,
-              //           }}
-              //           uri={imageArrayItem.url}
-              //         />
-              //       ) : (
-              //         <Video
-              //           source={{ uri: imageArrayItem.url }}
-              //           rate={1.0}
-              //           volume={1.0}
-              //           useNativeControls={false}
-              //           shouldPlay={true}
-              //           isLooping
-              //           resizeMode="contain"
-              //           style={{
-              //             width: width,
-              //             height: width * 0.75,
-              //           }}
-              //         />
-              //       )}
-              //     </View>
-              //   ))}
-              // </ScrollView>
               <SnapCarousel images={item.url} />
             ) : item.format === "Image" ? (
               <Image

@@ -1,8 +1,7 @@
 import React from "react";
-import { View, StyleSheet, FlatList, Text } from "react-native";
+import { View, StyleSheet,} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { List, Avatar } from "react-native-paper";
-import { FontAwesome5 } from "@expo/vector-icons";
 import { colorPicker } from "./RecentPages";
 import {categoryDatabase} from "../../database"
 
@@ -17,67 +16,6 @@ const SearchResultsScreen = ({ results }) => {
           title={item.title}
           description={item.subcategory}
           left={() =>
-            // item.type === "rapidreview" ? (
-            //   <View
-            //     style={{
-            //       flexDirection: "row",
-            //       alignItems: "center",
-            //       backgroundColor: "#d62d20",
-            //       borderRadius: 10,
-            //       padding: 5,
-            //       marginVertical: 10,
-            //     }}
-            //   >
-            //     <FontAwesome5
-            //       name="play-circle"
-            //       size={20}
-            //       style={{ color: "white" }}
-            //     />
-            //     <Text style={{ marginLeft: 3, color: "white", fontSize: 12 }}>
-            //       Video
-            //     </Text>
-            //   </View>
-            // ) : item.type === "image" ? (
-            //   <View
-            //     style={{
-            //       flexDirection: "row",
-            //       alignItems: "center",
-            //       backgroundColor: "#3b5998",
-            //       borderRadius: 10,
-            //       padding: 5,
-            //       marginVertical: 10,
-            //     }}
-            //   >
-            //     <FontAwesome5
-            //       name="images"
-            //       size={20}
-            //       style={{ color: "white" }}
-            //     />
-            //     <Text style={{ marginLeft: 3, color: "white", fontSize: 12 }}>
-            //       Images
-            //     </Text>
-            //   </View>
-            // ) : (
-            //   <View
-            //     style={{
-            //       flexDirection: "row",
-            //       alignItems: "center",
-            //       backgroundColor: "#2a4d69",
-            //       borderRadius: 10,
-            //       padding: 5,
-            //       marginVertical: 10,
-            //     }}
-            //   >
-            //     <FontAwesome5
-            //       name="tools"
-            //       size={20}
-            //       style={{ color: "white" }}
-            //     />
-            //     <Text style={{ marginLeft: 3, color: "white", fontSize: 12 }}>
-            //       Tools
-            //     </Text>
-            //   </View>
-            // )
             <Avatar.Image
             source={categoryDatabase[item.category]}
             style={{
@@ -104,7 +42,6 @@ const styles = StyleSheet.create({
   iconStyle: {
     fontSize: 20,
     color: "black",
-    // width:40,
     marginTop: 10,
     marginRight: 10,
   },

@@ -35,7 +35,7 @@ const CasesDetailScreen = ({ route }) => {
         setResults(doc.data());
       })
       .catch(function (error) {
-        console.log("Error getting List", error);
+        return;
       });
   }, []);
 
@@ -76,7 +76,7 @@ const CasesDetailScreen = ({ route }) => {
               alignItems: "center",
             }}
           >
-            <ActivityIndicator // UPGRADE TO SOMETHING FANCIER
+            <ActivityIndicator
               animating={true}
               color="purple"
               size="large"

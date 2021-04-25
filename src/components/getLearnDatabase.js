@@ -8,7 +8,7 @@ const learnProgressInitialized = async () => {
         const hasSynced = await AsyncStorage.getItem(LEARN_PROGRESS_SYNCED)
         if (hasSynced === null){
             learnDatabase.forEach(item => {
-                Object.entries(item.pages).forEach(section => { // ["name", [obj, obj...]]
+                Object.entries(item.pages).forEach(section => {
                     section[1].forEach(page => {
                         AsyncStorage.setItem(`learn_progress_${page.id}`,"0")
                     })
@@ -18,8 +18,7 @@ const learnProgressInitialized = async () => {
             return false;
         }
         return true
-    }catch(e){
-        console.log(e);
+    }catch(e){;
         return false;
     }
 }
@@ -28,7 +27,7 @@ const setLearnProgress = async (id, number) => {
     try{
         await AsyncStorage.setItem(`learn_progress_${id}`,number)
     }catch(e){
-        console.log(e);
+        return;
     }
 }
 
@@ -41,7 +40,6 @@ const getLearnProgress = async (id) => {
         }
         return database;
     } catch (e) {
-        console.log(e)
         return false;
     }
 }

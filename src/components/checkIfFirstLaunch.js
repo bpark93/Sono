@@ -6,7 +6,7 @@ const setAppLaunched = async () => {
     try{
         await AsyncStorage.setItem(HAS_LAUNCHED,'true')
     }catch(e){
-        console.log(e);
+        return;
     }
 }
 
@@ -19,7 +19,6 @@ export default async function checkIfFirstLaunch(){
         }
         return false;
     } catch (e) {
-        console.log(e)
         return false;
     }
 }

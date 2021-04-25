@@ -107,15 +107,15 @@ const LibraryBookmarks = ({ layout, sortBy }) => {
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
+        marginTop:150,
         width: Width,
-        height: 200,
       }}
     >
       <Image
         source={require("../../assets/write.png")}
         style={{
-          height: 75,
-          width: 100,
+          height: 150,
+          width: 200,
           opacity: 0.3,
           resizeMode: "contain",
         }}
@@ -129,11 +129,11 @@ const LibraryBookmarks = ({ layout, sortBy }) => {
       >
         You don't have any saved bookmarks.
       </Text>
-      <Text // Remember to Add or Take out
+      <Text
         style={{ opacity: 0.3, marginTop: 15, marginHorizontal: 30 }}
         numberOfLines={2}
       >
-        Bookmark your favorite pages for rapid and easy access.
+        Bookmark your favorite pages for rapid access.
       </Text>
     </View>
   );

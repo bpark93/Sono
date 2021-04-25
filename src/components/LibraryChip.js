@@ -9,7 +9,6 @@ const LibraryChip = ({name, handleChipPress}) => {
         <Chip 
             mode="flat"
             selected={pressed}
-            // icon="video-vintage"
             onPress={() => {
                 setPressed(!pressed)
                 handleChipPress(name)

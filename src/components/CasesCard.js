@@ -61,18 +61,10 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     paddingBottom: 15,
     backgroundColor:'white',
-    // elevation:5,
-    // shadowOffset:{
-    //   width:10,
-    //   height:-10
-    // },
-    // shadowOpacity:0.2,
-    // shadowRadius:1
   },
   title: {
     fontSize: 18,
     marginHorizontal: 15,
-    // fontFamily: "Roboto-Black",
     fontWeight:'bold',
     width: Width * 0.7,
     color:'black'

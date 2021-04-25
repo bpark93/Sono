@@ -314,7 +314,7 @@ const learnDatabase = [
     },
   },
   {
-    title: "Procedures",
+    title: "Procedural",
     thumbnail: require("./assets/png/injection.png"),
     description: "",
     id: 4,

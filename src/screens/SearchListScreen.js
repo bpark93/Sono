@@ -7,12 +7,14 @@ import {
   ScrollView,
   Image,
   Platform,
+  TouchableOpacity
 } from "react-native";
 import firebase from "../components/firebase";
 import { useNavigation } from "@react-navigation/native";
-import { List, Avatar, ActivityIndicator } from "react-native-paper";
+import { List, Avatar, ActivityIndicator, Menu } from "react-native-paper";
 import { categoryDatabase } from "../../database";
 import { colorPicker } from "../components/RecentPages";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const SearchTutorialListScreen = ({ route }) => {
   const { listId } = route.params;
@@ -28,9 +30,12 @@ const SearchTutorialListScreen = ({ route }) => {
         setList(doc.data().list);
       })
       .catch(function (error) {
-        console.log("Error getting List", error);
+        return;
       });
   }, []);
+
+  const [sortByPressed, setSortByPressed] = useState(false);
+  const [sortBy, setSortBy] = useState("Popular")
 
   return (
     <ScrollView style={styles.container}>
@@ -45,6 +50,55 @@ const SearchTutorialListScreen = ({ route }) => {
       >
         {listId === "rapidreviews" ? "Tutorials" : "Tools"}
       </Text>
+
+      {/* <View style={{ marginHorizontal: 15, flexDirection: "row", marginBottom:15 }}>
+        <Text style={{ fontSize: 18 }}>Sort By:</Text>
+        <Menu
+          visible={sortByPressed}
+          onDismiss={() => setSortByPressed(false)}
+          anchor={
+            <TouchableOpacity
+                onPress={() => setSortByPressed(true)}
+                style={{ flexDirection: "row", alignItems: "center", marginLeft:15 }}
+              >
+                <Text
+                  style={{
+                    color: "#4f2683",
+                    fontSize: 18,
+                    marginRight:5,
+                    fontFamily:Platform.OS === "android" ? "Roboto-Regular" : null, 
+                    fontWeight:'bold'
+                  }}
+                >
+                  {sortBy}
+                </Text>
+                <MaterialCommunityIcons
+                  name="chevron-down"
+                  size={16}
+                  color="#4f2683"
+                />
+              </TouchableOpacity>
+          }
+        >
+            <Menu.Item
+              onPress={() => {
+                setSortBy("Popular");
+                setSortByPressed(false)
+              }}
+              title="Popular"
+              titleStyle={{ fontSize: 16,  }}
+            />
+            <Menu.Item
+              onPress={() => {
+                setSortBy("Category");
+                setSortByPressed(false)
+              }}
+              title="Category"
+              titleStyle={{ fontSize: 16,  }}
+            />
+        </Menu>
+      </View> */}
+
       {list ? (
         list.map((item) =>
           item.id != "null" && !item.popular ? (
@@ -122,7 +176,6 @@ const styles = StyleSheet.create({
   iconStyle: {
     fontSize: 20,
     color: "black",
-    // width:40,
     marginTop: 10,
     marginRight: 10,
   },

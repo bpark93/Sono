@@ -87,7 +87,6 @@ const PhysicsModule = ({ progress, quizTrigger, quizNotAvailable }) => {
               height: (width - 30) * 0.5,
               width: width - 30,
               marginHorizontal: 15,
-              // marginBottom: 20,
             }}
             resizeMode="contain"
           />
@@ -109,7 +108,6 @@ const PhysicsModule = ({ progress, quizTrigger, quizNotAvailable }) => {
               height: (width - 30) * 0.5,
               width: width - 30,
               marginHorizontal: 15,
-              // marginBottom: 20,
             }}
             resizeMode="contain"
           />
@@ -135,7 +133,6 @@ const PhysicsModule = ({ progress, quizTrigger, quizNotAvailable }) => {
             style={{
               height: width * 0.5,
               width: width,
-              // marginBottom: 20,
             }}
             resizeMode="contain"
           />
@@ -151,7 +148,6 @@ const PhysicsModule = ({ progress, quizTrigger, quizNotAvailable }) => {
             style={{
               height: (width - 30) * 0.5,
               width: width - 30,
-              // marginHorizontal: 15,
               marginLeft: 10,
             }}
             resizeMode="contain"
@@ -167,7 +163,6 @@ const PhysicsModule = ({ progress, quizTrigger, quizNotAvailable }) => {
             style={{
               height: (width - 30) * 0.5,
               width: width - 30,
-              // marginHorizontal: 15,
               marginLeft: 10,
             }}
             resizeMode="contain"
@@ -186,7 +181,6 @@ const PhysicsModule = ({ progress, quizTrigger, quizNotAvailable }) => {
             style={{
               height: (width - 30) * 0.5,
               width: width - 30,
-              // marginHorizontal: 15,
               marginLeft: 10,
             }}
             resizeMode="contain"
@@ -308,7 +302,6 @@ const PhysicsModule = ({ progress, quizTrigger, quizNotAvailable }) => {
             style={{
               height: (width - 30) * 0.5,
               width: width - 30,
-              // marginHorizontal: 15,
               marginLeft: 10,
             }}
             resizeMode="contain"
@@ -331,7 +324,6 @@ const PhysicsModule = ({ progress, quizTrigger, quizNotAvailable }) => {
             style={{
               height: (width - 30) * 0.5,
               width: width - 30,
-              // marginHorizontal: 15,
               marginLeft: 10,
             }}
             resizeMode="contain"
@@ -352,7 +344,6 @@ const PhysicsModule = ({ progress, quizTrigger, quizNotAvailable }) => {
             style={{
               height: (width - 30) * 0.5,
               width: width - 30,
-              // marginHorizontal: 15,
               marginLeft: 10,
             }}
             resizeMode="contain"
@@ -371,7 +362,6 @@ const PhysicsModule = ({ progress, quizTrigger, quizNotAvailable }) => {
             style={{
               height: (width - 30) * 0.5,
               width: width - 30,
-              // marginHorizontal: 15,
               marginLeft: 10,
             }}
             resizeMode="contain"
@@ -398,7 +388,6 @@ const PhysicsModule = ({ progress, quizTrigger, quizNotAvailable }) => {
             style={{
               height: (width - 30) * 0.5,
               width: width - 30,
-              // marginHorizontal: 15,
               marginLeft: 10,
             }}
             resizeMode="contain"

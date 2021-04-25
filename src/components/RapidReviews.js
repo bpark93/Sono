@@ -374,7 +374,6 @@ const RapidReviews = ({ page, id }) => {
 };
 
 const MaterialsItem = ({ material, optional }) => {
-  // material.notes, material.level
 
   const [checked, setChecked] = useState(false);
   return (
@@ -465,7 +464,6 @@ const StepItem = ({ item, index }) => {
               width: Width * 0.8,
               height: Width * 0.6,
               alignSelf: "center",
-              // backgroundColor: "#ffffff",
               opacity: checked ? 0.5 : 1,
             }}
           />
@@ -480,7 +478,6 @@ const styles = StyleSheet.create({
     color: "#2b59a2",
     fontSize: 18,
     marginHorizontal: 10,
-    // marginBottom: 10,
   },
   header: {
     fontSize: 20,
@@ -492,13 +489,11 @@ const styles = StyleSheet.create({
   body: {
     marginHorizontal: 15,
     marginVertical: 10,
-    // fontFamily: "Roboto-Regular",
     fontSize: 16,
     color: "gray",
   },
   textContent: {
     fontSize: 14,
-    // fontFamily:'Lora-Regular',
     color: "gray",
     marginHorizontal: 15,
     marginVertical: 10,

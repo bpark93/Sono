@@ -23,9 +23,11 @@ const BookmarkList = ({ sortBy }) => {
     const currentBookmarkArray = await getBookmark("learn");
     const modulesArray = learnDatabase.map((item) => item.pages);
 
-    const categoryArray = modulesArray.map(item => Object.entries(item).map(page => page[1]))
-    const sectionArray = [].concat.apply([], categoryArray)
-    const pagesArray = [].concat.apply([], sectionArray)
+    const categoryArray = modulesArray.map((item) =>
+      Object.entries(item).map((page) => page[1])
+    );
+    const sectionArray = [].concat.apply([], categoryArray);
+    const pagesArray = [].concat.apply([], sectionArray);
 
     const idArray = pagesArray.map((item) => item.id);
     let finalList = [];
@@ -112,14 +114,14 @@ const BookmarkList = ({ sortBy }) => {
             alignItems: "center",
             justifyContent: "center",
             width: Width,
-            height: 200,
+            marginTop: 150,
           }}
         >
           <Image
             source={require("../../assets/write.png")}
             style={{
-              height: 75,
-              width: 100,
+              height: 150,
+              width: 200,
               opacity: 0.3,
               resizeMode: "contain",
             }}
@@ -132,6 +134,12 @@ const BookmarkList = ({ sortBy }) => {
             }}
           >
             You don't have any saved bookmarks.
+          </Text>
+          <Text
+            style={{ opacity: 0.3, marginTop: 15, marginHorizontal: 30 }}
+            numberOfLines={2}
+          >
+            Bookmark your favorite pages for rapid access.
           </Text>
         </View>
       )}
@@ -226,7 +234,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     backgroundColor: "white",
     borderBottomWidth: 0.5,
-    borderBottomColor:"#E0E0E0",
+    borderBottomColor: "#E0E0E0",
     paddingVertical: 10,
     flexDirection: "row",
     justifyContent: "space-between",
@@ -238,7 +246,6 @@ const styles = StyleSheet.create({
   },
   page: {
     fontSize: 20,
-    // fontFamily: "Raleway-Regular",
     marginHorizontal: 10,
     width: 250,
   },
@@ -246,7 +253,7 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     resizeMode: "contain",
-    alignSelf:'center'
+    alignSelf: "center",
   },
 });
 

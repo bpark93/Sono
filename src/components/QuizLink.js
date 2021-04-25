@@ -27,14 +27,11 @@ const QuizLink = ({ name, id }) => {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     justifyContent: "center",
     alignItems: "center",
     margin: 15,
     padding:10,
-    // borderWidth:1,
     borderRadius:30,
-    // backgroundColor:'#E0E0E0'
   },
   button: {
     padding:15,
@@ -48,7 +45,6 @@ const styles = StyleSheet.create({
     fontWeight:"bold",
     fontFamily:Platform.OS === "android" ? "Roboto-Bold" : null,
     fontSize: 20,
-    // color:'white'
   },
   buttonText: {
     fontWeight:'bold',

@@ -113,9 +113,9 @@ const Onboarding = ({ onDoneClick }) => {
       renderItem={_renderItem}
       renderDoneButton={_renderDoneButton}
       renderNextButton={_renderNextButton}
-      renderPrevButton={_renderPrevButton} // DOESN'T WORK
+      renderPrevButton={_renderPrevButton}
       activeDotStyle={{ backgroundColor: "#000000" }}
-      onDone={() => onDoneClick(false)} //FIX BACK TO FALSE WHEN DONE
+      onDone={() => onDoneClick(false)}
     />
   );
 };

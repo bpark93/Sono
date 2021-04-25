@@ -91,7 +91,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
           ScreenOrientation.OrientationLock.LANDSCAPE
         );
       } catch (error) {
-        console.log(error);
+        return;
       }
     } else if (status === false) {
       try {
@@ -100,7 +100,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
           ScreenOrientation.OrientationLock.PORTRAIT_UP
         );
       } catch (error) {
-        console.log(error);
+        return;
       }
     }
   };
@@ -161,7 +161,7 @@ const LearnDetailScreen = ({ route, navigation }) => {
         setNoteList(notes);
       }
     } catch (error) {
-      console.log(error);
+      return;
     }
   };
   useEffect(() => {
@@ -337,7 +337,6 @@ const LearnDetailScreen = ({ route, navigation }) => {
                     getTime();
                     parseNoteList();
                   } else {
-                    // setYoutubePlaying(true)
                     setNewNoteButtonPressed(false);
                     setEditing(false);
                     setText("");
@@ -475,7 +474,6 @@ const LearnDetailScreen = ({ route, navigation }) => {
                       <Text
                         style={{
                           fontFamily: "Raleway-Bold",
-                          // fontWeight:'bold',
                           textDecorationLine: "underline",
                           marginHorizontal: 15,
                           fontSize: 20,
@@ -669,7 +667,6 @@ const styles = StyleSheet.create({
   category: {
     marginHorizontal: 10,
     fontSize: 20,
-    // fontFamily: "Raleway-Regular",
     color: "#4f2683",
   },
   container: {

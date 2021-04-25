@@ -184,7 +184,6 @@ const LearnTestScreen = ({ route }) => {
         {(submitPressed && reviewPressed) ||
         (!submitPressed && !reviewPressed) ? (
           <Carousel
-            // ref={(c) => { this._carousel = c; }}
             data={pageInfo.questions}
             renderItem={({ item, index }) => {
               return (

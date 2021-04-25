@@ -79,7 +79,6 @@ const SearchScreen = () => {
         <View style={{ backgroundColor: "white" }}>
           <Searchbar
             ref={searchbarRef}
-            // autoFocus
             autoCapitalize="none"
             autoCorrect={false}
             placeholder="Search"
@@ -99,7 +98,6 @@ const SearchScreen = () => {
             onIconPress={() => {
               Keyboard.dismiss();
               setTerm("");
-              // searchbarRef.current.blur()
             }}
             inputStyle={styles.inputStyle}
             style={styles.barStyle}
