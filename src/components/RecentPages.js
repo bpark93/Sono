@@ -32,7 +32,7 @@ const RecentPages = ({ layout }) => {
         let finalList = [];
         for (let j = 0; j < temp.length; j++) {
           for (let i = 0; i < flatterLayout.length; i++) {
-            if (flatterLayout[i].id === temp[j]) {
+            if (flatterLayout[i].id === temp[j] && !flatterLayout[i].duplicate) {
               finalList = [...finalList, flatterLayout[i]];
             }
           }

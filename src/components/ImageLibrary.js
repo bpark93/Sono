@@ -15,6 +15,7 @@ import { Video } from "expo-av";
 import LibraryChip from "../components/LibraryChip";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import ImageModal from 'react-native-image-modal';
 import {
   setBookmark,
   removeBookmark,
@@ -277,21 +278,22 @@ const ImageLibrary = ({ page, id }) => {
             {Array.isArray(item.url) ? (
               <SnapCarousel images={item.url} />
             ) : item.format === "Image" ? (
-              <Image
+              <ImageModal
                 resizeMode="contain"
                 imageBackgroundColor="#000000"
                 style={{
                   width: width,
                   height: width * 0.75,
                 }}
-                uri={item.url}
+                source={{uri: item.url}}
               />
             ) : (
               <Video
                 source={{ uri: item.url }}
                 rate={1.0}
                 volume={1.0}
-                useNativeControls={false}
+                useNativeControls={true}
+                isMuted={true}
                 shouldPlay={true}
                 isLooping
                 resizeMode="contain"

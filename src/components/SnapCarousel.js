@@ -3,6 +3,7 @@ import { View, StyleSheet, Dimensions } from "react-native";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 import { Image } from "react-native-expo-image-cache";
 import { Video } from "expo-av";
+import ImageModal from 'react-native-image-modal';
 
 const WIDTH = Dimensions.get("window").width;
 
@@ -15,7 +16,8 @@ const SnapCarousel = ({ images }) => {
             source={{ uri: item.url }}
             rate={1.0}
             volume={1.0}
-            useNativeControls={false}
+            useNativeControls={true}
+            isMuted={true}
             shouldPlay={true}
             isLooping
             resizeMode="contain"
@@ -31,10 +33,10 @@ const SnapCarousel = ({ images }) => {
             usePoster={true}
           />
         ) : (
-          <Image
+          <ImageModal
             resizeMode="contain"
             imageBackgroundColor="black"
-            uri={item.url}
+            source={{uri: item.url}}
             style={{ height: (WIDTH - 60) * 0.75, width: WIDTH }}
           />
         )}

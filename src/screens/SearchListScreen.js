@@ -20,6 +20,8 @@ const SearchTutorialListScreen = ({ route }) => {
   const { listId } = route.params;
   const navigation = useNavigation();
   const [list, setList] = useState([]);
+  const [listCopy, setListCopy] = useState([])
+
   useEffect(() => {
     firebase
       .firestore()
@@ -28,6 +30,7 @@ const SearchTutorialListScreen = ({ route }) => {
       .get()
       .then(function (doc) {
         setList(doc.data().list);
+        setListCopy(doc.data().list);
       })
       .catch(function (error) {
         return;
@@ -35,7 +38,44 @@ const SearchTutorialListScreen = ({ route }) => {
   }, []);
 
   const [sortByPressed, setSortByPressed] = useState(false);
-  const [sortBy, setSortBy] = useState("Popular")
+  const [sortBy, setSortBy] = useState("Category")
+  const [itemsHidden, setItemsHidden] = useState(false)
+
+  const hideItems = () => {
+    if (!itemsHidden){
+      const hiddenList = list.filter(item => item.id != "null")
+      setList(hiddenList)
+      setItemsHidden(true)
+    } else {
+      sortItems(sortBy)
+      setItemsHidden(false)
+    }
+  }
+
+  const sortItems = (sortName) => {
+    switch (sortName){
+      case "Category":
+        let sortingCat = [...listCopy]
+        sortingCat.sort(function(a,b){
+          if (a.category < b.category) {return -1}
+          if (a.category > b.category) {return 1}
+          return 0;
+        })
+        setList(sortingCat)
+        break;
+      case "Alphabetical A-Z":
+        let sorting = [...listCopy]
+        sorting.sort(function(a,b){
+          if (a.title < b.title) {return -1}
+          if (a.title > b.title) {return 1}
+          return 0;
+        })
+        setList(sorting)
+        break;
+      default:
+        break;
+    }
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -51,7 +91,7 @@ const SearchTutorialListScreen = ({ route }) => {
         {listId === "rapidreviews" ? "Tutorials" : "Tools"}
       </Text>
 
-      {/* <View style={{ marginHorizontal: 15, flexDirection: "row", marginBottom:15 }}>
+      <View style={{ marginHorizontal: 15, flexDirection: "row", marginBottom:15 }}>
         <Text style={{ fontSize: 18 }}>Sort By:</Text>
         <Menu
           visible={sortByPressed}
@@ -82,22 +122,38 @@ const SearchTutorialListScreen = ({ route }) => {
         >
             <Menu.Item
               onPress={() => {
-                setSortBy("Popular");
-                setSortByPressed(false)
-              }}
-              title="Popular"
-              titleStyle={{ fontSize: 16,  }}
-            />
-            <Menu.Item
-              onPress={() => {
+                sortItems("Category")
                 setSortBy("Category");
                 setSortByPressed(false)
               }}
               title="Category"
               titleStyle={{ fontSize: 16,  }}
             />
+            {/* <Menu.Item
+              onPress={() => {
+                sortItems("Popular")
+                setSortBy("Popular");
+                setSortByPressed(false)
+              }}
+              title="Popular"
+              titleStyle={{ fontSize: 16,  }}
+            /> */}
+            <Menu.Item
+              onPress={() => {
+                sortItems("Alphabetical A-Z")
+                setSortBy("Alphabetical A-Z");
+                setSortByPressed(false)
+              }}
+              title="Alphabetical A-Z"
+              titleStyle={{ fontSize: 16,  }}
+            />
         </Menu>
-      </View> */}
+      </View>
+
+      <TouchableOpacity style={{ marginHorizontal: 15, flexDirection: "row", marginBottom:15, alignItems:'center'}} onPress={hideItems}>
+        <MaterialCommunityIcons name={itemsHidden ? "eye":"eye-off"} size={18} color="gray" />
+        <Text style={{ fontSize: 14, color:"gray", marginLeft:10 }}>{`${itemsHidden ? "Show" : "Hide"} unavailable items`}</Text>
+      </TouchableOpacity>
 
       {list ? (
         list.map((item) =>
@@ -107,7 +163,7 @@ const SearchTutorialListScreen = ({ route }) => {
               style={styles.listItemStyle}
               title={item.title}
               titleStyle={{ fontSize: 18 }}
-              description={item.subcategory}
+              description={`${item.category} / ${item.subcategory}`}
               left={() => (
                 <Avatar.Image
                   source={
@@ -135,7 +191,7 @@ const SearchTutorialListScreen = ({ route }) => {
               style={styles.listItemStyle}
               title={`${item.title} - Coming Soon`}
               titleStyle={{ color: "#D0D0D0", fontSize: 18 }}
-              description={item.subcategory}
+              description={`${item.category} / ${item.subcategory}`}
               descriptionStyle={{ color: "#D0D0D0" }}
               left={() => (
                 <Avatar.Image
