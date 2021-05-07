@@ -518,24 +518,24 @@ const Calculator = ({ settings }) => {
     case "last":
       if (var1 === "Lidocaine") {
         if (var2 === "Without Epi") {
-          formula1 = ((var4 * 5) / (10 * var3.slice(0, -1))).toFixed(2);
+          formula1 = ((var4 * multiplier4 * 5) / (10 * var3.slice(0, -1))).toFixed(2);
         } else {
-          formula1 = ((var4 * 7) / (10 * var3.slice(0, -1))).toFixed(2);
+          formula1 = ((var4 * multiplier4 * 7) / (10 * var3.slice(0, -1))).toFixed(2);
         }
       } else if (var1 === "Bupivacaine") {
         if (var2 === "Without Epi") {
-          formula1 = ((var4 * 2.5) / (10 * var3.slice(0, -1))).toFixed(2);
+          formula1 = ((var4 * multiplier4 * 2.5) / (10 * var3.slice(0, -1))).toFixed(2);
         } else {
-          formula1 = ((var4 * 3) / (10 * var3.slice(0, -1))).toFixed(2);
+          formula1 = ((var4 * multiplier4 * 3) / (10 * var3.slice(0, -1))).toFixed(2);
         }
       } else if (var1 === "Mepivacaine") {
         if (var2 === "Without Epi") {
-          formula1 = ((var4 * 7) / (10 * var3.slice(0, -1))).toFixed(2);
+          formula1 = ((var4 * multiplier4 * 7) / (10 * var3.slice(0, -1))).toFixed(2);
         } else {
-          formula1 = ((var4 * 8) / (10 * var3.slice(0, -1))).toFixed(2);
+          formula1 = ((var4 * multiplier4 * 8) / (10 * var3.slice(0, -1))).toFixed(2);
         }
       } else if (var1 === "Ropivacaine") {
-        formula1 = ((var4 * 3) / (10 * var3.slice(0, -1))).toFixed(2);
+        formula1 = ((var4 * multiplier4 * 3) / (10 * var3.slice(0, -1))).toFixed(2);
       }
       break;
     default:
