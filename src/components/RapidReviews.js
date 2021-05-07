@@ -13,10 +13,8 @@ import {
 } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
 import ShortSummary from "../components/ShortSummary";
-import { database } from "../../database";
-import { StackActions } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
-import { Checkbox, Snackbar } from "react-native-paper";
+import { Checkbox, Snackbar, Menu } from "react-native-paper";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
 import TabButtons from "./TabButtons";
@@ -123,7 +121,7 @@ const RapidReviews = ({ page, id }) => {
     });
   }, [bookmarked]);
 
-  const scrollviewRef = useRef(null)
+  const scrollviewRef = useRef(null);
 
   return (
     <View style={{ flex: 1 }}>
@@ -202,6 +200,29 @@ const RapidReviews = ({ page, id }) => {
           page.required_materials ? (
             <View>
               <Text style={styles.header}>Required Materials</Text>
+              <MaterialsItem
+                material={{
+                  level: "Required",
+                  notes: "",
+                  text: "Ultrasound Machine",
+                }}
+              />
+              <MaterialsItem
+                material={{
+                  level: "Required",
+                  notes: "",
+                  text: `${
+                    page.orientation ? page.orientation.probe : null
+                  } Probe`,
+                }}
+              />
+              <MaterialsItem
+                material={{
+                  level: "Required",
+                  notes: "",
+                  text: "Ultrasound Gel",
+                }}
+              />
               {page.required_materials
                 .filter((item) => item.level === "Required")
                 .map((item) => (
@@ -224,7 +245,16 @@ const RapidReviews = ({ page, id }) => {
                 material={{
                   level: "Required",
                   notes: "",
-                  text: "Ultrasound Machine, Probes",
+                  text: "Ultrasound Machine",
+                }}
+              />
+              <MaterialsItem
+                material={{
+                  level: "Required",
+                  notes: "",
+                  text: `${
+                    page.orientation ? page.orientation.probe : null
+                  } Probe`,
                 }}
               />
               <MaterialsItem
@@ -253,20 +283,26 @@ const RapidReviews = ({ page, id }) => {
               <TouchableOpacity
                 key={page.id}
                 onPress={() => navigation.push("SearchDetail", { id: page.id })}
-                style={{flexDirection:'row', alignItems:'center', marginLeft:15, marginBottom:10}}
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  marginLeft: 15,
+                  marginBottom: 10,
+                }}
               >
                 <View
                   style={{
                     flexDirection: "row",
                     alignItems: "center",
-                    backgroundColor: page.type === "Tools" ? "#2a4d69" : "#3b5998",
+                    backgroundColor:
+                      page.type === "Tools" ? "#2a4d69" : "#3b5998",
                     borderRadius: 10,
                     padding: 5,
                     marginVertical: 2.5,
                   }}
                 >
                   <FontAwesome5
-                    name={page.type === "Tools" ? "tools":"images"}
+                    name={page.type === "Tools" ? "tools" : "images"}
                     size={14}
                     style={{ color: "white" }}
                   />
@@ -287,18 +323,42 @@ const RapidReviews = ({ page, id }) => {
             {page.pnp
               .filter((tip) => tip.type === "Pearl")
               .map((tip) => (
-                <View key={tip.text} style={{marginHorizontal:15,flexDirection:'row', alignItems:'flex-start', marginBottom:10}}>
-                  <MaterialCommunityIcons name="plus-circle" size={24} color="#2ecc71" />
-                  <Text style={{marginLeft:10, flex:1}}>{tip.text}</Text>
+                <View
+                  key={tip.text}
+                  style={{
+                    marginHorizontal: 15,
+                    flexDirection: "row",
+                    alignItems: "flex-start",
+                    marginBottom: 10,
+                  }}
+                >
+                  <MaterialCommunityIcons
+                    name="plus-circle"
+                    size={24}
+                    color="#2ecc71"
+                  />
+                  <Text style={{ marginLeft: 10, flex: 1 }}>{tip.text}</Text>
                 </View>
               ))}
             <Text style={styles.header}>Pitfalls</Text>
             {page.pnp
               .filter((tip) => tip.type === "Pitfall")
               .map((tip) => (
-                <View key={tip.text} style={{marginHorizontal:15,flexDirection:'row', alignItems:'center', marginBottom:10}}>
-                  <MaterialCommunityIcons name="minus-circle" size={24} color="#e74c3c" />
-                  <Text style={{marginLeft:10, flex:1}}>{tip.text}</Text>
+                <View
+                  key={tip.text}
+                  style={{
+                    marginHorizontal: 15,
+                    flexDirection: "row",
+                    alignItems: "center",
+                    marginBottom: 10,
+                  }}
+                >
+                  <MaterialCommunityIcons
+                    name="minus-circle"
+                    size={24}
+                    color="#e74c3c"
+                  />
+                  <Text style={{ marginLeft: 10, flex: 1 }}>{tip.text}</Text>
                 </View>
               ))}
           </View>
@@ -315,11 +375,10 @@ const RapidReviews = ({ page, id }) => {
         ) : null}
 
         {/* References */}
-        {activeIndex === "Links" && page.references
-          ? 
+        {activeIndex === "Links" && page.references ? (
           <View>
             <Text style={styles.header}>References</Text>
-          {page.references.map((ref, index) => (
+            {page.references.map((ref, index) => (
               <TouchableOpacity
                 style={{
                   marginHorizontal: 15,
@@ -353,10 +412,11 @@ const RapidReviews = ({ page, id }) => {
                     />
                   </View>
                 )}
-                <Text style={{ fontSize: 14, flex: 1}}>{ref.text}</Text>
+                <Text style={{ fontSize: 14, flex: 1 }}>{ref.text}</Text>
               </TouchableOpacity>
-            ))}</View>
-          : null}
+            ))}
+          </View>
+        ) : null}
       </ScrollView>
       <Snackbar
         visible={snackVisible}
@@ -374,11 +434,17 @@ const RapidReviews = ({ page, id }) => {
 };
 
 const MaterialsItem = ({ material, optional }) => {
-
   const [checked, setChecked] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(true);
+
   return (
     <View
-      style={{ flexDirection: "row", marginHorizontal: 20 }}
+      style={{
+        flexDirection: "row",
+        marginHorizontal: 10,
+        alignItems: "center",
+        flex: 1,
+      }}
       key={material.text}
     >
       <Checkbox.Android
@@ -390,18 +456,18 @@ const MaterialsItem = ({ material, optional }) => {
         <Text
           style={{
             ...styles.body,
-            width: Width - 80,
+            // width: Width * 0.75,
             textDecorationLine: checked ? "line-through" : "none",
+            alignItems: "center",
+            flex:1
           }}
         >
-          
-          {material.text} 
+          {material.text}
           {optional && (
             <Text
               style={{
-                fontWeight: "normal",
                 color: "gray",
-                fontSize: 12,
+                fontSize: 14,
               }}
             >
               {` (Optional) `}
@@ -411,12 +477,49 @@ const MaterialsItem = ({ material, optional }) => {
             <Text
               style={{
                 color: "gray",
-                fontSize:12,
+                fontSize: 12,
               }}
             >{` - ${material.notes}`}</Text>
           )}
         </Text>
       </TouchableWithoutFeedback>
+      {material.image ? (
+        <Menu
+          visible={menuVisible}
+          onDismiss={() => setMenuVisible(false)}
+          anchor={
+            <TouchableOpacity
+              onPress={() => setMenuVisible(true)}
+              style={{ padding: 5, paddingRight:10}}
+            >
+              <FontAwesome5 name="question-circle" size={16} color="gray" />
+            </TouchableOpacity>
+          }
+        >
+          <Image
+            resizeMode="contain"
+            uri={material.image}
+            // uri="https://res.cloudinary.com/dwtw3ge2z/image/upload/v1595814556/sample.jpg"
+            style={{
+              width: Width * 0.8,
+              height: Width * 0.6,
+              alignSelf: "center",
+            }}
+          />
+          {material.imageCaption ? (
+            <Text
+              style={{
+                marginHorizontal: 10,
+                fontStyle: "italic",
+                fontSize: 16,
+                width: Width * 0.8,
+              }}
+            >
+              {material.imageCaption}
+            </Text>
+          ) : null}
+        </Menu>
+    ) : null}
     </View>
   );
 };
@@ -429,8 +532,8 @@ const StepItem = ({ item, index }) => {
         flexDirection: "row",
         justifyContent: "flex-start",
         padding: 5,
-        marginHorizontal:15,
-        marginVertical:10,
+        marginHorizontal: 15,
+        marginVertical: 10,
         width: Width,
       }}
       activeOpacity={0.9}
@@ -487,7 +590,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   body: {
-    marginHorizontal: 15,
+    marginHorizontal: 10,
     marginVertical: 10,
     fontSize: 16,
     color: "gray",
