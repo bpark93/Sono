@@ -377,12 +377,6 @@ const theme = {
     regular: {
       fontFamily: Platform.OS === "android" ? "Roboto-Regular" : null
     },
-    medium: {
-      fontFamily: Platform.OS === "android" ? "Roboto-Medium" : null
-    },
-    light: {
-      fontFamily: Platform.OS === "android" ? "Roboto-Light" : null
-    },
   }
 };
 

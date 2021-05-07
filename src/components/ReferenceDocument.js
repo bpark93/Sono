@@ -126,18 +126,17 @@ const ReferenceDocument = ({ page, id }) => {
               alignItems: "center",
               justifyContent: "center",
               borderRadius: 15,
-              margin: 15,
-              backgroundColor: "#B33A3A",
+              marginHorizontal: 15,
+              // backgroundColor: "#B33A3A",
             }}
           >
-            <Text style={{ color: "white" }}>
+            <Text>
               <Text style={{ fontWeight: "bold" }}>Disclaimer: </Text>
               {page.disclaimer}
             </Text>
             <TouchableOpacity
               onPress={() => setHideDisclaimerPressed(true)}
               style={{
-                borderRadius: 10,
                 padding: 5,
                 flexDirection: "row",
                 alignItems: "center",
@@ -147,9 +146,9 @@ const ReferenceDocument = ({ page, id }) => {
               <MaterialCommunityIcons
                 name="check-circle-outline"
                 size={24}
-                color="white"
+                color="black"
               />
-              <Text style={{ color: "white", fontSize: 16 }}>Got it</Text>
+              <Text style={{ fontSize: 16 }}>Got it</Text>
             </TouchableOpacity>
           </View>
         ) : null}
@@ -827,7 +826,8 @@ const PickerElement = ({
           setVar4(itemValue);
         }
       }}
-      style={{ flex: 1 }}
+      style={{ flex:1, justifyContent:'flex-end' }}
+      mode="dropdown"
     >
       {valuesArray.map((value) => (
         <Picker.Item label={value} value={value} key={value} />
