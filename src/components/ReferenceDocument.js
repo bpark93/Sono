@@ -165,21 +165,15 @@ const ReferenceDocument = ({ page, id }) => {
 
             <DataTable>
               <DataTable.Header>
-                <DataTable.Title>
-                  {page.normalValuesHeaders
-                    ? page.normalValuesHeaders[0]
-                    : "Variable"}
-                </DataTable.Title>
-                <DataTable.Title numeric>
-                  {page.normalValuesHeaders
-                    ? page.normalValuesHeaders[1]
-                    : "Value"}
-                </DataTable.Title>
-                <DataTable.Title numeric>
-                  {page.normalValuesHeaders
-                    ? page.normalValuesHeaders[2]
-                    : "Unit"}
-                </DataTable.Title>
+                {page.normalValuesHeaders ? page.normalValuesHeaders.map((header, index) => (
+                  <DataTable.Title numeric={index != 0 ? true : false} key={header}>{header}</DataTable.Title>
+                )) : (
+                  <>
+                    <DataTable.Title>Variable</DataTable.Title>
+                    <DataTable.Title numeric>Value</DataTable.Title>
+                    <DataTable.Title numeric>Unit</DataTable.Title>
+                  </>
+                )}
               </DataTable.Header>
 
               {page.normalValues?.map((ref, index) => (
