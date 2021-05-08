@@ -27,12 +27,11 @@
       "supportsTablet": true
     },
     "android":{
-      "package":"ca.westernsono.sono",
+      "package":"ca.sparkmedical.sono",
       "versionCode": 5,
       "permissions" : [],
       "adaptiveIcon":{
-        "foregroundImage":"./assets/adaptive-icon.png",
-        "backgroundColor":"#4f2683"
+        "foregroundImage":"./assets/adaptive-icon.png"
       }
     }
   }
