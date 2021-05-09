@@ -22,6 +22,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { Image } from "react-native-expo-image-cache";
 import HTML from "react-native-render-html";
 import { Picker } from "@react-native-community/picker";
+import { Video } from "expo-av";
 
 const { width } = Dimensions.get("window");
 
@@ -205,6 +206,16 @@ const ReferenceDocument = ({ page, id }) => {
                 {typeof section.body === "string" ? (
                   <View style={styles.card}>
                     <Text style={styles.header}>{section.header}</Text>
+                    {section.image ? <Image
+                      uri={section.image}
+                      style={{
+                        width: width - 30,
+                        height: (width - 30),
+                        marginVertical: 20,
+                      }}
+                      resizeMode="contain"
+                    />:null}
+                    {section.imageCaption ? <Text style={{color:'gray', fontSize:12, alignSelf:'center'}}>{section.imageCaption}</Text> : null}
                     <HTML
                       html={section.body}
                       containerStyle={{ flex: 1, margin: 10 }}
@@ -248,13 +259,36 @@ const ReferenceDocument = ({ page, id }) => {
                             baseFontStyle={{ fontSize: 16 }}
                           />
                         </View>
-                        {step.stepImage ? (
+                        {step.video ? (
+                          <Video
+                            source={{ uri: step.video }}
+                            rate={1.0}
+                            volume={1.0}
+                            useNativeControls={false}
+                            isMuted={true}
+                            shouldPlay={true}
+                            isLooping
+                            resizeMode="contain"
+                            style={{
+                              width: (width-30),
+                              height: (width-30) * 0.75,
+                              alignSelf:'center'
+                            }}
+                            posterSource={require("../../assets/loading.png")}
+                            posterStyle={{
+                              width: (width-30),
+                              height: (width-30) * 0.75,
+                            }}
+                            usePoster={true}
+                          />
+                        ) : step.stepImage ? (
                           <Image
                             uri={step.stepImage}
                             style={{
                               width: width - 30,
                               height: (width - 30) * 0.75,
                               marginVertical: 20,
+                              alignSelf:'center'
                             }}
                             resizeMode="contain"
                           />
@@ -267,12 +301,15 @@ const ReferenceDocument = ({ page, id }) => {
                           Caveats
                         </Text>
                         {section.caveats.map((caveat) => (
+                          <View key={caveat} style={{flexDirection:"row", alignItems:'center', justifyContent:'center', marginHorizontal:10}}>
+                            <MaterialCommunityIcons name="alert" size={24} color="#EED202" />
                           <HTML
                             html={`<li>${caveat}</li>`}
                             key={caveat}
                             containerStyle={{ flex: 1, margin: 10 }}
                             baseFontStyle={{ fontSize: 16 }}
                           />
+                          </View>
                         ))}
                       </View>
                     ) : null}
@@ -309,11 +346,37 @@ const ReferenceDocument = ({ page, id }) => {
             <Text style={styles.header}>Associated Pages</Text>
             {page.associated_pages.map((page) => (
               <TouchableOpacity
-                key={page.id}
-                onPress={() => navigation.push("SearchDetail", { id: page.id })}
+              key={page.id}
+              onPress={() => navigation.push("SearchDetail", { id: page.id })}
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                marginLeft: 15,
+                marginBottom: 10,
+              }}
+            >
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  backgroundColor:
+                    page.type === "Tools" ? "#2a4d69" : page.type === "Video" ? "#d62d20" : "#3b5998",
+                  borderRadius: 10,
+                  padding: 5,
+                  marginVertical: 2.5,
+                }}
               >
-                <Text style={styles.touchable}>{page.title}</Text>
-              </TouchableOpacity>
+                <FontAwesome5
+                  name={page.type === "Tools" ? "tools" : page.type === "Video" ? "play-circle" : "images"}
+                  size={14}
+                  style={{ color: "white" }}
+                />
+                <Text style={{ marginLeft: 3, color: "white", fontSize: 12 }}>
+                  {page.type === "Tools" ? "Tools" : "Images"}
+                </Text>
+              </View>
+              <Text style={styles.touchable}>{page.title}</Text>
+            </TouchableOpacity>
             ))}
           </View>
         ) : null}
@@ -858,9 +921,8 @@ const styles = StyleSheet.create({
   },
   touchable: {
     color: "#2b59a2",
-    fontSize: 16,
-    marginHorizontal: 15,
-    marginBottom: 10,
+    fontSize: 20,
+    marginHorizontal: 10,
   },
 });
 

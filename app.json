@@ -7,7 +7,7 @@
       "android",
       "web"
     ],
-    "version": "1.0.4",
+    "version": "1.0.5",
     "orientation": "portrait",
     "icon": "./assets/sono_logo.png",
     "splash": {
@@ -23,12 +23,12 @@
     ],
     "ios": {
       "bundleIdentifier": "ca.westernsono.sono",
-      "buildNumber": "1.0.4",
+      "buildNumber": "1.0.5",
       "supportsTablet": true
     },
     "android":{
       "package":"ca.sparkmedical.sono",
-      "versionCode": 5,
+      "versionCode": 6,
       "permissions" : [],
       "adaptiveIcon":{
         "foregroundImage":"./assets/adaptive-icon.png",

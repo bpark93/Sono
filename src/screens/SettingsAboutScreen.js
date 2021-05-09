@@ -29,7 +29,7 @@ const SettingsAboutScreen = () => {
             marginBottom: 10,
           }}
         >
-          Version 1.0.2
+          Version 1.0.5
         </Text>
         <Text style={{ marginBottom: 5, fontSize: 20 }}>Powered By:</Text>
         <View
