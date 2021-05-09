@@ -412,7 +412,7 @@ const RapidReviews = ({ page, id }) => {
                     />
                   </View>
                 )}
-                <Text style={{ fontSize: 14, flex: 1 }}>{ref.text}</Text>
+                <Text style={{ fontSize: 12, flex: 1, color:'gray' }}>{ref.text}</Text>
               </TouchableOpacity>
             ))}
           </View>

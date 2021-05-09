@@ -351,8 +351,9 @@ const ImageLibrary = ({ page, id }) => {
                     )}
                     <Text
                       style={{
-                        fontSize: 14,
+                        fontSize: 12,
                         flex: 1,
+                        color: "gray",
                       }}
                     >
                       {ref.text}
