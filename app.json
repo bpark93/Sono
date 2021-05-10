@@ -27,7 +27,7 @@
       "supportsTablet": true
     },
     "android":{
-      "package":"ca.sparkmedical.sono",
+      "package":"ca.westernsono.sono",
       "versionCode": 6,
       "permissions" : [],
       "adaptiveIcon":{
