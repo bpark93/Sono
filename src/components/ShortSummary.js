@@ -27,27 +27,25 @@ const ShortSummary = ({ data }) => {
         <Row
           rowName={`Areas of\nInterest`}
           rowContent={data.areas_of_interest}
-          format={Array.isArray(data.areas_of_interest) ? "array" : null}
         />
       ) : null}
       {data.interpretation ? (
         <Row
           rowName="Interpretation"
           rowContent={data.interpretation}
-          format={Array.isArray(data.interpretation) ? "array" : null}
         />
       ) : null}
     </View>
   );
 };
 
-const Row = ({ rowName, rowContent, format }) => (
+const Row = ({ rowName, rowContent }) => (
   <View style={styles.row}>
     <Text style={styles.category}>{rowName}</Text>
-    {format === "array" ? (
+    {Array.isArray(rowContent) ? (
       <View style={{ flex: 1, paddingBottom:10 }}>
         {rowContent.map((page) => (
-          <Text style={{...styles.text, paddingTop:10, paddingBottom:0, fontSize:14}} key={page.text}>
+          <Text style={{...styles.text, paddingTop:10, paddingBottom:0}} key={page.text}>
             {`\u2023 ${page.text}`}
           </Text>
         ))}

@@ -15,7 +15,7 @@ import { Video } from "expo-av";
 import LibraryChip from "../components/LibraryChip";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import ImageModal from 'react-native-image-modal';
+import ImageModal from "react-native-image-modal";
 import {
   setBookmark,
   removeBookmark,
@@ -23,6 +23,7 @@ import {
 } from "../components/useBookmark";
 import { Snackbar } from "react-native-paper";
 import SnapCarousel from "../components/SnapCarousel";
+import HTML from "react-native-render-html";
 
 const { width, height } = Dimensions.get("window");
 
@@ -168,27 +169,30 @@ const ImageLibrary = ({ page, id }) => {
                 </Text>
                 {page.key_features
                   ? hidePressed
-                    ? page.key_features
-                        .slice(0, 3)
-                        .map((tip) => (
-                          <View
-                            style={{
-                              flexDirection: "row",
-                              marginVertical: 3,
-                            }}
-                            key={tip.text}
-                          >
-                            <MaterialCommunityIcons
-                              name={
-                                tip.pnp === "Pearl"
-                                  ? "plus-circle"
-                                  : "minus-circle"
-                              }
-                              size={24}
-                              color={
-                                tip.pnp === "Pearl" ? "#2ecc71" : "#e74c3c"
-                              }
+                    ? page.key_features.slice(0, 3).map((tip) => (
+                        <View
+                          style={{
+                            flexDirection: "row",
+                            marginVertical: 3,
+                          }}
+                          key={tip.text}
+                        >
+                          <MaterialCommunityIcons
+                            name={
+                              tip.pnp === "Pearl"
+                                ? "plus-circle"
+                                : "minus-circle"
+                            }
+                            size={24}
+                            color={tip.pnp === "Pearl" ? "#2ecc71" : "#e74c3c"}
+                          />
+                          {tip.html ? (
+                            <HTML
+                              html={tip.html}
+                              containerStyle={{ flex: 1, marginLeft: 6, }}
+                              baseFontStyle={{ fontSize: 14, lineHeight:17, flex:1 }}
                             />
+                          ) : (
                             <Text
                               style={{
                                 flex: 1,
@@ -199,8 +203,9 @@ const ImageLibrary = ({ page, id }) => {
                             >
                               {tip.text}
                             </Text>
-                          </View>
-                        ))
+                          )}
+                        </View>
+                      ))
                     : page.key_features.map((tip) => (
                         <View
                           style={{
@@ -218,56 +223,79 @@ const ImageLibrary = ({ page, id }) => {
                             size={24}
                             color={tip.pnp === "Pearl" ? "#2ecc71" : "#e74c3c"}
                           />
-                          <Text
-                            style={{
-                              flex: 1,
-                              marginLeft: 6,
-                              fontSize: 14,
-                              lineHeight: 17,
-                            }}
-                          >
-                            {tip.text}
-                          </Text>
+                          {tip.html ? (
+                            <HTML
+                              html={tip.html}
+                              containerStyle={{ flex: 1, marginLeft: 6, }}
+                              baseFontStyle={{ fontSize: 14, lineHeight:17, flex:1 }}
+                            />
+                          ) : (
+                            <Text
+                              style={{
+                                flex: 1,
+                                marginLeft: 6,
+                                fontSize: 14,
+                                lineHeight: 17,
+                              }}
+                            >
+                              {tip.text}
+                            </Text>
+                          )}
                         </View>
                       ))
                   : null}
               </TouchableOpacity>
-              {page.key_features.length > 3 ? <TouchableOpacity
-                style={{
-                  alignItems: "center",
-                  justifyContent: "center",
-                  paddingVertical: 10,
-                  flexDirection: "row",
-                }}
-                activeOpacity={0.5}
-                onPress={() => setHidePressed(!hidePressed)}
-              >
-                <Text
+              {page.key_features.length > 3 ? (
+                <TouchableOpacity
                   style={{
-                    color: "#4f2683",
-                    fontWeight: "bold",
-                    fontFamily:
-                      Platform.OS === "android" ? "Roboto-Regular" : null,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    paddingVertical: 10,
+                    flexDirection: "row",
                   }}
+                  activeOpacity={0.5}
+                  onPress={() => setHidePressed(!hidePressed)}
                 >
-                  {hidePressed ? "Show More" : "Show Less"}
-                </Text>
-                <MaterialCommunityIcons
-                  name={hidePressed ? "chevron-down" : "chevron-up"}
-                  size={16}
-                  color="#4f2683"
-                />
-              </TouchableOpacity>:null}
+                  <Text
+                    style={{
+                      color: "#4f2683",
+                      fontWeight: "bold",
+                      fontFamily:
+                        Platform.OS === "android" ? "Roboto-Regular" : null,
+                    }}
+                  >
+                    {hidePressed ? "Show More" : "Show Less"}
+                  </Text>
+                  <MaterialCommunityIcons
+                    name={hidePressed ? "chevron-down" : "chevron-up"}
+                    size={16}
+                    color="#4f2683"
+                  />
+                </TouchableOpacity>
+              ) : null}
               <TouchableOpacity
                 onPress={async () =>
                   await Linking.openURL(
                     `mailto:sono.app.contact@gmail.com?subject=Issue with "${page.title}" - ${page.category}&body=Describe the issue: \n\nTo reproduce (Steps to reproduce the behavior): \n\nExpected Behavior: \n\nScreenshots: \n\nSmartphone (Device, OS + version): \n\nAdditional Context: `
                   )
                 }
-                style={{ marginTop:5, paddingHorizontal: 15, alignSelf: "center", alignItems:'center', flexDirection:'row', justifyContent:'center'}}
+                style={{
+                  marginTop: 5,
+                  paddingHorizontal: 15,
+                  alignSelf: "center",
+                  alignItems: "center",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                }}
               >
-                <MaterialCommunityIcons name="alert-circle-outline" size={20} color="#A55858" />
-                <Text style={{ color: "#A55858", marginLeft:5 }}>Report an Issue</Text>
+                <MaterialCommunityIcons
+                  name="alert-circle-outline"
+                  size={20}
+                  color="#A55858"
+                />
+                <Text style={{ color: "#A55858", marginLeft: 5 }}>
+                  Report an Issue
+                </Text>
               </TouchableOpacity>
             </View>
           ) : null
@@ -285,7 +313,7 @@ const ImageLibrary = ({ page, id }) => {
                   width: width,
                   height: width * 0.75,
                 }}
-                source={{uri: item.url}}
+                source={{ uri: item.url }}
               />
             ) : (
               <Video
